@@ -1,0 +1,38 @@
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top"  role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
+                <img class="logo-img" src="content/img/logo.png" alt="logo"/>
+                <!--
+                <span data-translate="global.title">Afripoint</span> <span class="navbar-version">v{{VERSION}}</span>
+                -->
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a du-smooth-scroll du-scrollspy offset="50" class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a du-smooth-scroll du-scrollspy offset="50" class="page-scroll" href="#services">Services</a>
+                </li>
+                <li>
+                    <a du-smooth-scroll du-scrollspy offset="50" class="page-scroll" href="#portfolio">Location</a>
+                </li>
+                <li>
+                    <a du-smooth-scroll du-scrollspy offset="30" class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
