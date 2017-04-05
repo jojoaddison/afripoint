@@ -34,7 +34,7 @@
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="container-fluid">
-        <div class="well well-lg voffset5" ui-view="content">
+        <div class="voffset5" ui-view="content">
             <!-- Angular views -->
         </div>
         <div class="footer" ng-cloak ui-view="footer">
@@ -105,6 +105,12 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/entities/event/event-dialog.controller.js"></script>
+    <script src="app/entities/event/event-detail.controller.js"></script>
+    <script src="app/entities/event/event-delete-dialog.controller.js"></script>
+    <script src="app/entities/event/event.state.js"></script>
+    <script src="app/entities/event/event.service.js"></script>
+    <script src="app/entities/event/event.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>

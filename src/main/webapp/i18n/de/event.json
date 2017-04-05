@@ -1,0 +1,30 @@
+{
+    "afripointApp": {
+        "event" : {
+            "home": {
+                "title": "Events",
+                "createLabel": "Event erstellen",
+                "createOrEditLabel": "Event erstellen oder bearbeiten"
+            },
+            "created": "Event erstellt mit ID {{ param }}",
+            "updated": "Event aktualisiert mit ID {{ param }}",
+            "deleted": "Event gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Event {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Event"
+            },
+            "title": "Title",
+            "owner": "Owner",
+            "description": "Description",
+            "photo": "Photo",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "createdBy": "Created By",
+            "modifiedBy": "Modified By"
+        }
+    }
+}
