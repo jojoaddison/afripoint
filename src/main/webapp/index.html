@@ -18,6 +18,8 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <!-- endinject -->
     <!-- endbuild -->
@@ -33,8 +35,8 @@
     <![endif]-->
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container-fluid">
-        <div class="voffset5" ui-view="content">
+    <div class="container-fluid voffset6">
+        <div ui-view="content">
             <!-- Angular views -->
         </div>
         <div class="footer" ng-cloak ui-view="footer">
@@ -61,6 +63,9 @@
     <script src="bower_components/install/detect-zoom.js"></script>
     <script src="bower_components/jquery.easing/js/jquery.easing.js"></script>
     <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+    <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -80,6 +85,9 @@
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="bower_components/angular-bootstrap-material/angular-bootstrap-material.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -105,6 +113,18 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/entities/partner/partner-dialog.controller.js"></script>
+    <script src="app/entities/partner/partner-detail.controller.js"></script>
+    <script src="app/entities/partner/partner-delete-dialog.controller.js"></script>
+    <script src="app/entities/partner/partner.state.js"></script>
+    <script src="app/entities/partner/partner.service.js"></script>
+    <script src="app/entities/partner/partner.controller.js"></script>
+    <script src="app/entities/media/media-dialog.controller.js"></script>
+    <script src="app/entities/media/media-detail.controller.js"></script>
+    <script src="app/entities/media/media-delete-dialog.controller.js"></script>
+    <script src="app/entities/media/media.state.js"></script>
+    <script src="app/entities/media/media.service.js"></script>
+    <script src="app/entities/media/media.controller.js"></script>
     <script src="app/entities/event/event-dialog.controller.js"></script>
     <script src="app/entities/event/event-detail.controller.js"></script>
     <script src="app/entities/event/event-delete-dialog.controller.js"></script>
@@ -119,6 +139,7 @@
     <script src="app/components/util/parse-links.service.js"></script>
     <script src="app/components/util/pagination-util.service.js"></script>
     <script src="app/components/util/jhi-item-count.directive.js"></script>
+    <script src="app/components/util/date-validation.js"></script>
     <script src="app/components/util/date-util.service.js"></script>
     <script src="app/components/util/data-util.service.js"></script>
     <script src="app/components/util/capitalize.filter.js"></script>
@@ -175,6 +196,13 @@
     <script src="app/admin/configuration/configuration.state.js"></script>
     <script src="app/admin/configuration/configuration.service.js"></script>
     <script src="app/admin/configuration/configuration.controller.js"></script>
+    <script src="app/admin/authority/authority-dialog.controller.js"></script>
+    <script src="app/admin/authority/authority-detail.controller.js"></script>
+    <script src="app/admin/authority/authority-delete-dialog.controller.js"></script>
+    <script src="app/admin/authority/authority.state.js"></script>
+    <script src="app/admin/authority/authority.service.js"></script>
+    <script src="app/admin/authority/authority.directive.js"></script>
+    <script src="app/admin/authority/authority.controller.js"></script>
     <script src="app/admin/audits/audits.state.js"></script>
     <script src="app/admin/audits/audits.service.js"></script>
     <script src="app/admin/audits/audits.controller.js"></script>

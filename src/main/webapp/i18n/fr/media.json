@@ -1,0 +1,29 @@
+{
+    "afripointApp": {
+        "media" : {
+            "home": {
+                "title": "Media",
+                "createLabel": "Créer un nouveau Media",
+                "createOrEditLabel": "Créer ou éditer un Media"
+            },
+            "created": "Un nouveau Media a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Media avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Media avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Media {{ id }} ?"
+            },
+            "detail": {
+                "title": "Media"
+            },
+            "caption": "Caption",
+            "url": "Url",
+            "name": "Name",
+            "bytes": "Bytes",
+            "description": "Description",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "type": "Type",
+            "size": "Size"
+        }
+    }
+}

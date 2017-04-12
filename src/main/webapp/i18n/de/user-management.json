@@ -3,7 +3,7 @@
         "home": {
             "title": "Benutzer",
             "createLabel": "Neuen Benutzer erstellen",
-            "createOrEditLabel": "Benutzer erstellen oder bearbeiten"
+            "createOrEditLabel": "Benutzer bearbeiten"
         },
         "created": "Ein neuer Benutzer wurde mit ID {{ param }} erstellt",
         "updated": "Ein Benutzer mit ID {{ param }} wurde geändert",
@@ -20,7 +20,8 @@
         "email": "E-Mail",
         "activated": "Aktiv",
         "deactivated": "Deaktiviert",
-        "profiles": "Profile",
+        "roles": "Rollen",
+        "profile": "Profil",
         "langKey": "Sprache",
         "createdBy": "Erstellt von",
         "createdDate": "Erstellt am",

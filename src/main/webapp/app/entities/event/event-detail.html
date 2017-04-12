@@ -44,6 +44,14 @@
         <dd>
             <span>{{vm.event.modifiedBy}}</span>
         </dd>
+        <dt><span data-translate="afripointApp.event.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{vm.event.startTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.event.endTime">End Time</span></dt>
+        <dd>
+            <span>{{vm.event.endTime | date:'medium'}}</span>
+        </dd>
     </dl>
 
     <button type="submit"

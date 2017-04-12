@@ -24,6 +24,7 @@
                         var $input = angular.element(this);
                         var inputName = $input.attr('name');
                         scope.$watch(function() {
+                        	if(formCtrl[inputName])
                             return formCtrl[inputName].$invalid && formCtrl[inputName].$dirty;
                         }, function(isInvalid) {
                             $formGroup.toggleClass('has-error', isInvalid);

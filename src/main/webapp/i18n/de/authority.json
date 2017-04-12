@@ -1,0 +1,21 @@
+{
+    "afripointApp": {
+        "authority" : {
+            "home": {
+                "title": "Authorities",
+                "createLabel": "Authority erstellen",
+                "createOrEditLabel": "Authority erstellen oder bearbeiten"
+            },
+            "created": "Authority erstellt mit ID {{ param }}",
+            "updated": "Authority aktualisiert mit ID {{ param }}",
+            "deleted": "Authority gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Authority {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Authority"
+            },
+            "name": "Name"
+        }
+    }
+}

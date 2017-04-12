@@ -1,0 +1,60 @@
+
+<div>
+    <h2><span data-translate="afripointApp.media.detail.title">Media</span> {{vm.media.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.media.caption">Caption</span></dt>
+        <dd>
+            <span>{{vm.media.caption}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.url">Url</span></dt>
+        <dd>
+            <span>{{vm.media.url}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.name">Name</span></dt>
+        <dd>
+            <span>{{vm.media.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.bytes">Bytes</span></dt>
+        <dd>
+            <div ng-if="vm.media.bytes">
+                <a ng-click="vm.openFile(vm.media.bytesContentType, vm.media.bytes)">
+                    <img data-ng-src="{{'data:' + vm.media.bytesContentType + ';base64,' + vm.media.bytes}}" style="max-width: 100%;" alt="media image"/>
+                </a>
+                {{vm.media.bytesContentType}}, {{vm.byteSize(vm.media.bytes)}}
+            </div>
+        </dd>
+        <dt><span data-translate="afripointApp.media.description">Description</span></dt>
+        <dd>
+            <span>{{vm.media.description}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.media.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.media.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.type">Type</span></dt>
+        <dd>
+            <span>{{vm.media.type}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.media.size">Size</span></dt>
+        <dd>
+            <span>{{vm.media.size}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="media-detail.edit({id:vm.media.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

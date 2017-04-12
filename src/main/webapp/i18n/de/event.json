@@ -4,7 +4,7 @@
             "home": {
                 "title": "Events",
                 "createLabel": "Event erstellen",
-                "createOrEditLabel": "Event erstellen oder bearbeiten"
+                "createOrEditLabel": "Event bearbeiten"
             },
             "created": "Event erstellt mit ID {{ param }}",
             "updated": "Event aktualisiert mit ID {{ param }}",
@@ -24,7 +24,9 @@
             "createdDate": "Created Date",
             "modifiedDate": "Modified Date",
             "createdBy": "Created By",
-            "modifiedBy": "Modified By"
+            "modifiedBy": "Modified By",
+            "startTime": "Start Time",
+            "endTime": "End Time"
         }
     }
 }

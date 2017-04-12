@@ -20,6 +20,8 @@
                         data.endDate = DateUtils.convertLocalDateFromServer(data.endDate);
                         data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
                         data.modifiedDate = DateUtils.convertDateTimeFromServer(data.modifiedDate);
+                        data.startTime = DateUtils.convertDateTimeFromServer(data.startTime);
+                        data.endTime = DateUtils.convertDateTimeFromServer(data.endTime);
                     }
                     return data;
                 }

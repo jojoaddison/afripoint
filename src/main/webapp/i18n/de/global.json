@@ -12,6 +12,9 @@
             "entities": {
                 "main": "Aktivitäten",
                 "event": "Event",
+                "partner": "Partner",
+                "media": "Medien",
+                "authority": "Authority",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -87,6 +90,7 @@
         "action": {
             "addblob": "Blob hinzufügen",
             "addimage": "Bild hinzufügen",
+            "changeimage": "Bild ändern",
             "back": "Zurück",
             "cancel": "Abbrechen",
             "delete": "Löschen",

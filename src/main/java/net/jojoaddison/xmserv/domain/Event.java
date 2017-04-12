@@ -1,13 +1,14 @@
 package net.jojoaddison.xmserv.domain;
 
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.util.Objects;
 
 /**
  * A Event.
@@ -25,7 +26,7 @@ public class Event implements Serializable {
     private String title;
 
     @Field("owner")
-    private String owner;
+    private Partner owner;
 
     @Field("description")
     private String description;
@@ -33,12 +34,12 @@ public class Event implements Serializable {
     @Field("photo")
     private String photo;
 
-    @Field("start_date")
-    private LocalDate startDate;
+    @Field("image")
+    private byte[] image;
 
-    @Field("end_date")
-    private LocalDate endDate;
-
+    @Field("image_content_type")
+    private String imageContentType;
+    
     @Field("created_date")
     private ZonedDateTime createdDate;
 
@@ -46,10 +47,17 @@ public class Event implements Serializable {
     private ZonedDateTime modifiedDate;
 
     @Field("created_by")
-    private String createdBy;
+    private User createdBy;
 
     @Field("modified_by")
-    private String modifiedBy;
+    private User modifiedBy;
+
+    @Field("start_time")
+    private ZonedDateTime startTime;
+
+    @NotNull
+    @Field("end_time")
+    private ZonedDateTime endTime;
 
     public String getId() {
         return id;
@@ -72,16 +80,16 @@ public class Event implements Serializable {
         this.title = title;
     }
 
-    public String getOwner() {
+    public Partner getOwner() {
         return owner;
     }
 
-    public Event owner(String owner) {
+    public Event owner(Partner owner) {
         this.owner = owner;
         return this;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Partner owner) {
         this.owner = owner;
     }
 
@@ -111,32 +119,6 @@ public class Event implements Serializable {
         this.photo = photo;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public Event startDate(LocalDate startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public Event endDate(LocalDate endDate) {
-        this.endDate = endDate;
-        return this;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
     public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
@@ -163,31 +145,84 @@ public class Event implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public Event createdBy(String createdBy) {
+    public Event createdBy(User createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
-    public String getModifiedBy() {
+    public User getModifiedBy() {
         return modifiedBy;
     }
 
-    public Event modifiedBy(String modifiedBy) {
+    public Event modifiedBy(User modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
 
-    public void setModifiedBy(String modifiedBy) {
+    public void setModifiedBy(User modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
+
+    public ZonedDateTime getStartTime() {
+        return startTime;
+    }
+
+    public Event startTime(ZonedDateTime startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+    public void setStartTime(ZonedDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public ZonedDateTime getEndTime() {
+        return endTime;
+    }
+
+    public Event endTime(ZonedDateTime endTime) {
+        this.endTime = endTime;
+        return this;
+    }
+
+    public void setEndTime(ZonedDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public Event image(byte[] image) {
+        this.image = image;
+        return this;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public Event imageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+        return this;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -216,13 +251,13 @@ public class Event implements Serializable {
             ", title='" + title + "'" +
             ", owner='" + owner + "'" +
             ", description='" + description + "'" +
-            ", photo='" + photo + "'" +
-            ", startDate='" + startDate + "'" +
-            ", endDate='" + endDate + "'" +
+            ", imageContentType='" + imageContentType + "'" +
             ", createdDate='" + createdDate + "'" +
             ", modifiedDate='" + modifiedDate + "'" +
             ", createdBy='" + createdBy + "'" +
             ", modifiedBy='" + modifiedBy + "'" +
+            ", startTime='" + startTime + "'" +
+            ", endTime='" + endTime + "'" +
             '}';
     }
 }

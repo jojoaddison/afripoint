@@ -23,15 +23,14 @@
     "bower_components",
     "app/bower_components"
   ],
-  "version": "3.3.4",
-  "_release": "3.3.4",
+  "version": "3.3.5",
+  "_release": "3.3.5",
   "_resolution": {
     "type": "version",
-    "tag": "v3.3.4",
-    "commit": "1b726a3041a806c562b3c516d73d64d449a89979"
+    "tag": "v3.3.5",
+    "commit": "8fef4efbc321f4db020bd98093df767d76ccb1a0"
   },
   "_source": "https://github.com/jlmakes/scrollreveal.js.git",
   "_target": "^3.3.4",
-  "_originalSource": "scrollreveal",
-  "_direct": true
+  "_originalSource": "scrollreveal"
 }

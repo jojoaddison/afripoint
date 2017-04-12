@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span data-translate="afripointApp.partner.detail.title">Partner</span> {{vm.partner.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.partner.firstname">Firstname</span></dt>
+        <dd>
+            <span>{{vm.partner.firstname}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.lastname">Lastname</span></dt>
+        <dd>
+            <span>{{vm.partner.lastname}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.title">Title</span></dt>
+        <dd>
+            <span>{{vm.partner.title}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.email">Email</span></dt>
+        <dd>
+            <span>{{vm.partner.email}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.mobileNumber">Mobile Number</span></dt>
+        <dd>
+            <span>{{vm.partner.mobileNumber}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.telephoneNumber">Telephone Number</span></dt>
+        <dd>
+            <span>{{vm.partner.telephoneNumber}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.streetAddress">Street Address</span></dt>
+        <dd>
+            <span>{{vm.partner.streetAddress}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.zipcode">Zipcode</span></dt>
+        <dd>
+            <span>{{vm.partner.zipcode}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.city">City</span></dt>
+        <dd>
+            <span>{{vm.partner.city}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.state">State</span></dt>
+        <dd>
+            <span>{{vm.partner.state}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.country">Country</span></dt>
+        <dd>
+            <span>{{vm.partner.country}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.region">Region</span></dt>
+        <dd>
+            <span>{{vm.partner.region}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.partner.continent">Continent</span></dt>
+        <dd>
+            <span>{{vm.partner.continent}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="partner-detail.edit({id:vm.partner.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

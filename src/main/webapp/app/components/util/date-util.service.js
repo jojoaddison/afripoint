@@ -13,7 +13,8 @@
             convertDateTimeFromServer: convertDateTimeFromServer,
             convertLocalDateFromServer: convertLocalDateFromServer,
             convertLocalDateToServer: convertLocalDateToServer,
-            dateformat: dateformat
+            dateformat: dateformat,
+            timeformat: timeformat
         };
 
         return service;
@@ -44,6 +45,9 @@
 
         function dateformat() {
             return 'yyyy-MM-dd';
+        }
+        function timeformat(){
+        	return 'HH:mm';
         }
     }
 

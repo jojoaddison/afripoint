@@ -4,7 +4,7 @@
             "home": {
                 "title": "Events",
                 "createLabel": "Create a new Event",
-                "createOrEditLabel": "Create or edit a Event"
+                "createOrEditLabel": "Event editor"
             },
             "created": "A new Event is created with identifier {{ param }}",
             "updated": "A Event is updated with identifier {{ param }}",
@@ -24,7 +24,9 @@
             "createdDate": "Created Date",
             "modifiedDate": "Modified Date",
             "createdBy": "Created By",
-            "modifiedBy": "Modified By"
+            "modifiedBy": "Modified By",
+            "startTime": "Start Time",
+            "endTime": "End Time"
         }
     }
 }

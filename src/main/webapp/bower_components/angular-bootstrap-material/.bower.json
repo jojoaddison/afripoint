@@ -1,0 +1,36 @@
+{
+  "name": "angular-bootstrap-material",
+  "main": "angular-bootstrap-material.js",
+  "homepage": "https://github.com/heyflock/angular-bootstrap-material",
+  "authors": [
+    "Flock <team@heyflock.com>"
+  ],
+  "description": "Angular directives for FezVrasta/bootstrap-material-design",
+  "keywords": [
+    "angular",
+    "material desgin",
+    "bootstrap",
+    "bootstrap material"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "~0.3.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "cb055cd953",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "cb055cd95375671f9d7dc0b3dbd8170f768adcd5"
+  },
+  "_source": "https://github.com/heyflock/angular-bootstrap-material.git",
+  "_target": "*",
+  "_originalSource": "angular-bootstrap-material",
+  "_direct": true
+}

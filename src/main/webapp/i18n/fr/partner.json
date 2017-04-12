@@ -1,0 +1,44 @@
+{
+    "afripointApp": {
+        "partner" : {
+            "home": {
+                "title": "Partners",
+                "createLabel": "Créer un nouveau Partner",
+                "createOrEditLabel": "Éditer un Partner"
+            },
+            "created": "Un nouveau Partner a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Partner avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Partner avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Partner {{ id }} ?"
+            },
+            "detail": {
+                "title": "Partner"
+            },
+            "firstname": "Firstname",
+            "lastname": "Lastname",
+            "title": "Title",
+            "email": "Email",
+            "mobileNumber": "Mobile",
+            "telephoneNumber": "Telephone",
+            "streetAddress": "Street",
+            "zipcode": "Zipcode",
+            "city": "City",
+            "state": "State",
+            "country": "Country",
+            "region": "Region",
+            "continent": "Continent",
+            "notes": "Notes",
+            "address": "Address",
+            "titles": {
+            	"mr": "Mr.",
+            	"mrs": "Mrs.",
+            	"miss": "Miss.",
+            	"dr": "Dr.",
+            	"ms": "Ms.",
+            	"ing": "Eng.",
+            	"prof": "Prof."
+            }
+        }
+    }
+}

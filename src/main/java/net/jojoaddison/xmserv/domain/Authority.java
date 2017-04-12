@@ -1,11 +1,14 @@
 package net.jojoaddison.xmserv.domain;
 
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * An authority (a security role) used by Spring Security.
@@ -16,8 +19,9 @@ public class Authority implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    @Size(min = 0, max = 50)
     @Id
+    @Size(min = 0, max = 50)
+    @Field(value="name")
     private String name;
 
     public String getName() {
@@ -26,6 +30,11 @@ public class Authority implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public Authority name(String name){
+    	this.name = name;
+    	return this;
     }
 
     @Override

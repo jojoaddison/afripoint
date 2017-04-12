@@ -16,8 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,11 +49,13 @@ public class EventResource {
      */
     @PostMapping("/events")
     @Timed
-    public ResponseEntity<Event> createEvent(@RequestBody Event event) throws URISyntaxException {
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to save Event : {}", event);
         if (event.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new event cannot already have an ID")).body(null);
         }
+        event.setCreatedDate(ZonedDateTime.now());
+        event.setModifiedDate(ZonedDateTime.now());
         Event result = eventService.save(event);
         return ResponseEntity.created(new URI("/api/events/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -69,11 +73,12 @@ public class EventResource {
      */
     @PutMapping("/events")
     @Timed
-    public ResponseEntity<Event> updateEvent(@RequestBody Event event) throws URISyntaxException {
+    public ResponseEntity<Event> updateEvent(@Valid @RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to update Event : {}", event);
         if (event.getId() == null) {
             return createEvent(event);
         }
+        event.setModifiedDate(ZonedDateTime.now());
         Event result = eventService.save(event);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, event.getId().toString()))

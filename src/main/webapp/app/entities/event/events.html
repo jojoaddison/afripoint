@@ -18,7 +18,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                	<!--
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                   -->
                     <th jh-sort-by="title"><span data-translate="afripointApp.event.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="owner"><span data-translate="afripointApp.event.owner">Owner</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span data-translate="afripointApp.event.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -27,24 +29,30 @@
                     <th jh-sort-by="endDate"><span data-translate="afripointApp.event.endDate">End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="createdDate"><span data-translate="afripointApp.event.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="modifiedDate"><span data-translate="afripointApp.event.modifiedDate">Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="createdBy"><span data-translate="afripointApp.event.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="modifiedBy"><span data-translate="afripointApp.event.modifiedBy">Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdBy"><span data-translate="afripointApp.event.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="event in vm.events track by event.id">
+                	<!--
                     <td><a ui-sref="event-detail({id:event.id})">{{event.id}}</a></td>
+                   -->
                     <td>{{event.title}}</td>
-                    <td>{{event.owner}}</td>
+                    <td><a ui-sref="partner-detail({id:event.owner.id})">{{event.owner.firstname}}&nbsp;{{event.owner.lastname}}</a></td>
                     <td>{{event.description}}</td>
-                    <td>{{event.photo}}</td>
-                        <td>{{event.startDate | date:'mediumDate'}}</td>
-                        <td>{{event.endDate | date:'mediumDate'}}</td>
+                    <td>
+						<a ng-if="event.image" ng-click="vm.openFile(event.imageContentType, event.image)">
+                            <img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" style="max-height: 100px;" alt="event image"/>
+                        </a>
+					</td>
+                        <td> {{event.startTime | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                        <td> {{event.endTime | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                     <td>{{event.createdDate | date:'medium'}}</td>
                     <td>{{event.modifiedDate | date:'medium'}}</td>
-                    <td>{{event.createdBy}}</td>
-                    <td>{{event.modifiedBy}}</td>
+                    <td>{{event.modifiedBy.login}}</td>
+                    <td>{{event.createdBy.login}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
