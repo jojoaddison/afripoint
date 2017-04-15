@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -60,6 +61,27 @@ public class Partner implements Serializable {
 
     @Field("notes")
     private String notes;
+    
+
+    @Field("image")
+    private byte[] image;
+
+    @Field("image_content_type")
+    private String imageContentType;
+    
+    @Field("created_date")
+    private ZonedDateTime createdDate;
+
+    @Field("modified_date")
+    private ZonedDateTime modifiedDate;
+
+    @Field("created_by")
+    private User createdBy;
+
+    @Field("modified_by")
+    private User modifiedBy;
+
+   
 
     public String getId() {
         return id;
@@ -245,7 +267,86 @@ public class Partner implements Serializable {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+	 public ZonedDateTime getCreatedDate() {
+	        return createdDate;
+	    }
 
+	    public Partner createdDate(ZonedDateTime createdDate) {
+	        this.createdDate = createdDate;
+	        return this;
+	    }
+
+	    public void setCreatedDate(ZonedDateTime createdDate) {
+	        this.createdDate = createdDate;
+	    }
+
+	    public ZonedDateTime getModifiedDate() {
+	        return modifiedDate;
+	    }
+
+	    public Partner modifiedDate(ZonedDateTime modifiedDate) {
+	        this.modifiedDate = modifiedDate;
+	        return this;
+	    }
+
+	    public void setModifiedDate(ZonedDateTime modifiedDate) {
+	        this.modifiedDate = modifiedDate;
+	    }
+
+	    public User getCreatedBy() {
+	        return createdBy;
+	    }
+
+	    public Partner createdBy(User createdBy) {
+	        this.createdBy = createdBy;
+	        return this;
+	    }
+
+	    public void setCreatedBy(User createdBy) {
+	        this.createdBy = createdBy;
+	    }
+
+	    public User getModifiedBy() {
+	        return modifiedBy;
+	    }
+
+	    public Partner modifiedBy(User modifiedBy) {
+	        this.modifiedBy = modifiedBy;
+	        return this;
+	    }
+
+	    public void setModifiedBy(User modifiedBy) {
+	        this.modifiedBy = modifiedBy;
+	    }
+
+
+	    public byte[] getImage() {
+	        return image;
+	    }
+
+	    public Partner image(byte[] image) {
+	        this.image = image;
+	        return this;
+	    }
+
+	    public void setImage(byte[] image) {
+	        this.image = image;
+	    }
+
+	    public String getImageContentType() {
+	        return imageContentType;
+	    }
+
+	    public Partner imageContentType(String imageContentType) {
+	        this.imageContentType = imageContentType;
+	        return this;
+	    }
+
+	    public void setImageContentType(String imageContentType) {
+	        this.imageContentType = imageContentType;
+	    }
+
+	    
 	@Override
     public boolean equals(Object o) {
         if (this == o) {

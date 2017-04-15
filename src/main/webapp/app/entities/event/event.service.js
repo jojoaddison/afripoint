@@ -11,13 +11,21 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'current': { 
+            			url: 'api/events/current',
+            			method: 'GET', 
+            			isArray: true
+            		},
+            'history': { 
+		    			url: 'api/events/history',
+		    			method: 'GET', 
+		    			isArray: true
+    				},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.startDate = DateUtils.convertLocalDateFromServer(data.startDate);
-                        data.endDate = DateUtils.convertLocalDateFromServer(data.endDate);
                         data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
                         data.modifiedDate = DateUtils.convertDateTimeFromServer(data.modifiedDate);
                         data.startTime = DateUtils.convertDateTimeFromServer(data.startTime);
@@ -30,8 +38,6 @@
                 method: 'PUT',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.startDate = DateUtils.convertLocalDateToServer(copy.startDate);
-                    copy.endDate = DateUtils.convertLocalDateToServer(copy.endDate);
                     return angular.toJson(copy);
                 }
             },
@@ -39,8 +45,6 @@
                 method: 'POST',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.startDate = DateUtils.convertLocalDateToServer(copy.startDate);
-                    copy.endDate = DateUtils.convertLocalDateToServer(copy.endDate);
                     return angular.toJson(copy);
                 }
             }

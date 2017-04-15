@@ -15,6 +15,11 @@
                 "partner": "Partner",
                 "media": "Medien",
                 "authority": "Authority",
+                "gallery": "Gallery",
+                "album": "Album",
+                "afripointService": "Service",
+                "page": "Page",
+                "article": "Article",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -52,6 +57,8 @@
             "email.placeholder": "Ihre E-Mail Adresse"
         },
         "messages": {
+        	"from": "von",
+        	"to": "bis",
             "info": {
                 "authenticated": "Wenn Sie sich <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">anmelden</a> möchten, versuchen Sie es mit <br/>- Administrator (Name=\"admin\" und Passwort=\"admin\")<br/>- Benutzer (Name=\"user\" und Passwort=\"user\").",
                 "register": "Sie haben noch keinen Zugang? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Registrieren Sie sich</a>"
@@ -97,7 +104,8 @@
             "edit": "Bearbeiten",
             "open": "Open",
             "save": "Speichern",
-            "view": "Details"
+            "view": "Details",
+            "close": "Schließen"
         },
         "detail": {
             "field": "Feld",

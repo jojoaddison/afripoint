@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import net.jojoaddison.xmserv.domain.Partner;
 
 import net.jojoaddison.xmserv.repository.PartnerRepository;
+import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
 import net.jojoaddison.xmserv.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -121,6 +123,7 @@ public class PartnerResource {
      */
     @DeleteMapping("/partners/{id}")
     @Timed
+	@Secured({ AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER })
     public ResponseEntity<Void> deletePartner(@PathVariable String id) {
         log.debug("REST request to delete Partner : {}", id);
         partnerRepository.delete(id);

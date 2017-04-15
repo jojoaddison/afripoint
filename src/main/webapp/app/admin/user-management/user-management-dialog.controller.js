@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('UserManagementDialogController',UserManagementDialogController);
 
-    UserManagementDialogController.$inject = ['$rootScope', '$scope', '$timeout', '$stateParams', '$uibModalInstance', 'entity', 'User', 'JhiLanguageService', 'DataUtils', 'Authority'];
+    UserManagementDialogController.$inject = ['$rootScope', '$scope', '$timeout', '$stateParams', '$uibModalInstance', 'entity', 'User', 'JhiLanguageService', 'DataUtils', 'Authority', 'Principal'];
 
-    function UserManagementDialogController ($rootScope, $scope, $timeout, $stateParams, $uibModalInstance, entity, User, JhiLanguageService, DataUtils, Authority) {
+    function UserManagementDialogController ($rootScope, $scope, $timeout, $stateParams, $uibModalInstance, entity, User, JhiLanguageService, DataUtils, Authority, Principal) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -24,6 +24,9 @@
         });
 
         $timeout(function(){
+        	Principal.identity().then(function(account) {
+                vm.account = account;
+            });
         	loadAuthorities();
         	angular.element('.form-group:eq(1)>input').focus();
         });
@@ -55,6 +58,7 @@
 
         function save () {
             vm.isSaving = true;
+            vm.user.lastModifiedBy = vm.account.login;
             if (vm.user.id !== null) {
                 User.update(vm.user, onSaveSuccess, onSaveError);
             } else {

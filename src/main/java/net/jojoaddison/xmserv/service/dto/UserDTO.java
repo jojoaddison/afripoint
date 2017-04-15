@@ -6,6 +6,7 @@ import net.jojoaddison.xmserv.domain.Authority;
 import net.jojoaddison.xmserv.domain.User;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
@@ -50,6 +51,11 @@ public class UserDTO {
     private ZonedDateTime lastModifiedDate;
 
     private Set<String> authorities;
+    
+    private String imageContentType;
+
+	private byte[] image;
+
 
     public UserDTO() {
         // Empty constructor needed for MapStruct.
@@ -57,14 +63,14 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
+            user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),user.getImageContentType(), user.getImage(),
             user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
     public UserDTO(String id, String login, String firstName, String lastName,
-        String email, boolean activated, String imageUrl, String langKey,
+        String email, boolean activated, String imageUrl, String langKey, String imageContentType, byte[] image,
         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,
         Set<String> authorities) {
 
@@ -75,6 +81,8 @@ public class UserDTO {
         this.email = email;
         this.activated = activated;
         this.imageUrl = imageUrl;
+        this.image = image;
+        this.imageContentType = imageContentType;
         this.langKey = langKey;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -147,14 +155,33 @@ public class UserDTO {
         return authorities;
     }
 
-    @Override
+    public String getImageContentType() {
+		return imageContentType;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+    public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
+            ", imageContentType='" + imageContentType + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", createdBy=" + createdBy +

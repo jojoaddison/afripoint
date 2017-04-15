@@ -1,19 +1,22 @@
 {
     "home": {
-        "title": "Willkommen, Java Hipster!",
-        "subtitle": "Dies ist Ihre Hauptseite",
+        "title": "Willkommen bei Afripoint!",
+        "subtitle": "Hier ist AfriPoint",
         "logged": {
-            "message": "Sie sind als Benutzer \"{{username}}\" angemeldet."
+            "message": "Sie sind als benützer \"{{username}}\" eingeloggt."
         },
-        "question": "Wenn Sie Fragen zu JHipster haben:",
+        "question": "Falls Sie weiteren fragen bei Afripoint haben:",
         "link": {
-            "homepage": "JHipster Hauptseite",
-            "stackoverflow": "JHipster auf Stack Overflow",
-            "bugtracker": "JHipster Fehlereinträge",
-            "chat": "JHipster Chat",
-            "follow": "kontaktieren Sie uns mit @java_hipster auf Twitter"
+            "homepage": "Afripoint homepage",
+            "contact": "Kontaktieren Sie Afripoint unter:",
+            "about": "Lesen Sie mehr über Afripoint",
+            "facebook": "Redet ihr mit uns auf facebook",
+            "twitter": "Folgen Sie @afripoint_vienna auf Twitter"
         },
-        "like": "Wenn Sie JHipster mögen, vergessen Sie nicht uns einen Stern zu geben auf",
-        "github": "GitHub"
+        "businessCallout": "Bereit mit uns Geschäft zu machen? Super! Rufen Sie uns an oder schicken Sie uns ein Email. Wie melden uns bei Ihnen so bald wie möglich!",
+        "learn": "Mehr über uns erfahren...",
+        "partner": "Partner werden!", 
+        "download": "Bitte jetzt herunterladen!",
+        "brochure": "Neue Broschüre ausgabe."
     }
 }

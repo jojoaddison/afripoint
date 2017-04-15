@@ -84,6 +84,7 @@
             if (vm.predicate !== 'id') {
                 result.push('id');
             }
+            console.log("sort: " + result);
             return result;
         }
 

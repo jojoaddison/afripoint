@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.ZonedDateTime;
 
 /**
  * Service Implementation for managing Event.
@@ -17,7 +17,7 @@ import java.util.List;
 public class EventService {
 
     private final Logger log = LoggerFactory.getLogger(EventService.class);
-    
+
     private final EventRepository eventRepository;
 
     public EventService(EventRepository eventRepository) {
@@ -38,7 +38,7 @@ public class EventService {
 
     /**
      *  Get all the events.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -48,6 +48,32 @@ public class EventService {
         return result;
     }
 
+
+    /**
+     *  Get all current events.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    public Page<Event> findAllCurrent(Pageable pageable) {
+        log.debug("Request to get all Events");
+        ZonedDateTime now = ZonedDateTime.now();
+        Page<Event> result = eventRepository.findAllByStartTimeAfter(now, pageable);
+        return result;
+    }
+
+    /**
+     *  Get all historical events.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    public Page<Event> findAllPast(Pageable pageable) {
+        log.debug("Request to get all Events");
+        ZonedDateTime now = ZonedDateTime.now();
+        Page<Event> result = eventRepository.findAllByStartTimeBefore(now, pageable);
+        return result;
+    }
     /**
      *  Get one event by id.
      *
@@ -69,4 +95,5 @@ public class EventService {
         log.debug("Request to delete Event : {}", id);
         eventRepository.delete(id);
     }
+
 }

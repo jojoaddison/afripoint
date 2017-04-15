@@ -82,7 +82,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey) {
+        String imageUrl, String langKey, String imageContentType, byte[] image) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -94,6 +94,8 @@ public class UserService {
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
         newUser.setEmail(email);
+        newUser.setImageContentType(imageContentType);
+        newUser.setImage(image);
         newUser.setImageUrl(imageUrl);
         newUser.setLangKey(langKey);
         // new user is not active
@@ -113,6 +115,8 @@ public class UserService {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
+        user.setImage(userDTO.getImage());
+        user.setImageContentType(userDTO.getImageContentType());
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
             user.setLangKey("en"); // default language
@@ -139,14 +143,16 @@ public class UserService {
     /**
      * Update basic information (first name, last name, email, language) for the current user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageContentType, byte[] image) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
+            user.setImage(image);
+            user.setImageContentType(imageContentType);
             user.setLangKey(langKey);
             userRepository.save(user);
-            log.debug("Changed Information for User: {}", user);
+            log.debug("Changed Information for Current User: {}", user);
         });
     }
 
@@ -161,6 +167,8 @@ public class UserService {
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
                 user.setEmail(userDTO.getEmail());
+                user.setImage(userDTO.getImage());
+                user.setImageContentType(userDTO.getImageContentType());
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
@@ -170,7 +178,7 @@ public class UserService {
                     .map(authorityRepository::findOne)
                     .forEach(managedAuthorities::add);
                 userRepository.save(user);
-                log.debug("Changed Information for User: {}", user);
+                log.debug("Changed Information for Specific User: {}", user);
                 return user;
             })
             .map(UserDTO::new);
@@ -192,7 +200,7 @@ public class UserService {
         });
     }
 
-    
+
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAll(pageable).map(UserDTO::new);
     }

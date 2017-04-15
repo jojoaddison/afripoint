@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('EventController', EventController);
 
-    EventController.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    EventController.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
 
-    function EventController(Event, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function EventController(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
 
         var vm = this;
 
@@ -16,6 +16,7 @@
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.openEvent = PageUtils.openEvent;
 
         loadAll();
 

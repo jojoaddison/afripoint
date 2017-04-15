@@ -68,6 +68,49 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-8">
+				<div class="form-group">
+					<label class="control-label" data-translate="afripointApp.partner.notes" for="field_notes">Notes</label>
+					<textarea class="form-control" name="notes" id="field_notes" ng-model="vm.partner.notes"> {{vm.partner.notes}}</textarea>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group" ngf-drop ngf-change="vm.setBytes($file)" ngf-pattern="'image/*'">
+					<label class="control-label" data-translate="afripointApp.partner.photo" for="field_photo">Photo</label>
+					<div style="height: 200px; overflow: hidden;" ng-if="vm.partner.image">
+						<div class="row">
+							<div class="col-sm-10">
+								<img data-ng-src="{{'data:' + vm.partner.imageContentType + ';base64,' + vm.partner.image}}" style="width: auto; height:170px;" ng-if="vm.partner.image" alt="partner image"/>
+							</div>
+							<div class="col-sm-2">
+								<button type="button" ng-click="vm.partner.image=null;vm.partner.imageContentType=null;"
+								class="btn btn-default btn-xs pull-right">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>
+							</div>
+						</div>
+						<div ng-if="vm.partner.image" class="help-block clearfix">
+							<span class="pull-left">{{vm.partner.imageContentType}}, {{vm.byteSize(vm.partner.image)}}</span>
+						</div>
+					</div>
+
+					<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.partner.image==null"
+					ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.addimage">
+						Add image
+					</button>
+					<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.partner.image!=null"
+					ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.changeimage">
+						Change image
+					</button>
+					<input type="hidden" class="form-control" name="bytes" id="field_bytes"
+					ng-model="vm.partner.image"
+					/>
+					<input type="hidden" class="form-control" name="bytesContentType" id="field_bytesContentType"
+					ng-model="vm.partner.imageContentType" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-2 form-group">
 				<div class="input-group">
 					<h4 class="control-label" data-translate="afripointApp.partner.address">Address</h4>
@@ -81,6 +124,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div id="addressGroup" ng-if="vm.showAddress==true">
 			<div class="form-group">
 				<label class="control-label" data-translate="afripointApp.partner.streetAddress" for="field_streetAddress">Street Address</label>
@@ -129,13 +173,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="control-label" data-translate="afripointApp.partner.notes" for="field_notes">Notes</label>
-			<textarea class="form-control" name="notes" id="field_notes"
-			ng-model="vm.partner.notes"
-			>{{vm.partner.notes}}
-		</textarea>
-		</div>
+
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

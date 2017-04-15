@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -102,6 +103,7 @@ public class UserResource {
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use"))
                 .body(null);
         } else {
+        	managedUserVM.setLastModifiedDate(ZonedDateTime.now());
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))

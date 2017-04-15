@@ -145,7 +145,7 @@
 									resetKey : null,
 									authorities : [],
 									image : null,
-									imagetContentType : null
+									imageContentType : null
 								};
 							}
 						}

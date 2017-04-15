@@ -26,7 +26,6 @@
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
-    <!-- Theme CSS -->
     <link rel="stylesheet" href="content/css/creative.css">
 </head>
 <body data-spy="scroll" ng-app="afripointApp" ng-strict-di>
@@ -35,7 +34,7 @@
     <![endif]-->
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container-fluid voffset6">
+    <div class="container voffset7">
         <div ui-view="content">
             <!-- Angular views -->
         </div>
@@ -88,6 +87,8 @@
     <script src="bower_components/angular-bootstrap-material/angular-bootstrap-material.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -111,6 +112,8 @@
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
+    <script src="app/home/pageviewer.state.js"></script>
+    <script src="app/home/pageviewer.controller.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
     <script src="app/entities/partner/partner-dialog.controller.js"></script>
@@ -119,12 +122,25 @@
     <script src="app/entities/partner/partner.state.js"></script>
     <script src="app/entities/partner/partner.service.js"></script>
     <script src="app/entities/partner/partner.controller.js"></script>
+    <script src="app/entities/page/page-dialog.controller.js"></script>
+    <script src="app/entities/page/page-detail.controller.js"></script>
+    <script src="app/entities/page/page-delete-dialog.controller.js"></script>
+    <script src="app/entities/page/page.state.js"></script>
+    <script src="app/entities/page/page.service.js"></script>
+    <script src="app/entities/page/page.controller.js"></script>
     <script src="app/entities/media/media-dialog.controller.js"></script>
     <script src="app/entities/media/media-detail.controller.js"></script>
     <script src="app/entities/media/media-delete-dialog.controller.js"></script>
     <script src="app/entities/media/media.state.js"></script>
     <script src="app/entities/media/media.service.js"></script>
     <script src="app/entities/media/media.controller.js"></script>
+    <script src="app/entities/gallery/gallery-dialog.controller.js"></script>
+    <script src="app/entities/gallery/gallery-detail.controller.js"></script>
+    <script src="app/entities/gallery/gallery-delete-dialog.controller.js"></script>
+    <script src="app/entities/gallery/gallery.state.js"></script>
+    <script src="app/entities/gallery/gallery.service.js"></script>
+    <script src="app/entities/gallery/gallery.controller.js"></script>
+    <script src="app/entities/event/event-home.directive.js"></script>
     <script src="app/entities/event/event-dialog.controller.js"></script>
     <script src="app/entities/event/event-detail.controller.js"></script>
     <script src="app/entities/event/event-delete-dialog.controller.js"></script>
@@ -132,12 +148,32 @@
     <script src="app/entities/event/event.service.js"></script>
     <script src="app/entities/event/event.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
+    <script src="app/entities/article/article-dialog.controller.js"></script>
+    <script src="app/entities/article/article-detail.controller.js"></script>
+    <script src="app/entities/article/article-delete-dialog.controller.js"></script>
+    <script src="app/entities/article/article-create.controller.js"></script>
+    <script src="app/entities/article/article.state.js"></script>
+    <script src="app/entities/article/article.service.js"></script>
+    <script src="app/entities/article/article.controller.js"></script>
+    <script src="app/entities/album/album-dialog.controller.js"></script>
+    <script src="app/entities/album/album-detail.controller.js"></script>
+    <script src="app/entities/album/album-delete-dialog.controller.js"></script>
+    <script src="app/entities/album/album.state.js"></script>
+    <script src="app/entities/album/album.service.js"></script>
+    <script src="app/entities/album/album.controller.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service-dialog.controller.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service-detail.controller.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service-delete-dialog.controller.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service.state.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service.service.js"></script>
+    <script src="app/entities/afripoint-service/afripoint-service.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
     <script src="app/components/util/sort.directive.js"></script>
     <script src="app/components/util/parse-links.service.js"></script>
     <script src="app/components/util/pagination-util.service.js"></script>
+    <script src="app/components/util/page.service.js"></script>
     <script src="app/components/util/jhi-item-count.directive.js"></script>
     <script src="app/components/util/date-validation.js"></script>
     <script src="app/components/util/date-util.service.js"></script>

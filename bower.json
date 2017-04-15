@@ -38,7 +38,10 @@
     "angular-bootstrap-material": "*",
     "angular-animate": "1.5.8",
     "angular-messages": "1.5.8",
-    "angular-socialshare": "angularjs-socialshare#^2.3.7"
+    "angular-socialshare": "angularjs-socialshare#^2.3.7",
+    "angular-touch": "1.5.*",
+    "tinymce": "^4.5.6",
+    "angular-ui-tinymce": "^0.0.18"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8"
@@ -72,6 +75,7 @@
   },
   "resolutions": {
     "jquery": "3.1.0",
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "angular-touch": "1.5.*"
   }
 }

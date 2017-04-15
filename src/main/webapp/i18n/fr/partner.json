@@ -30,6 +30,7 @@
             "continent": "Continent",
             "notes": "Notes",
             "address": "Address",
+            "photo": "Photo",
             "titles": {
             	"mr": "Mr.",
             	"mrs": "Mrs.",
@@ -37,7 +38,8 @@
             	"dr": "Dr.",
             	"ms": "Ms.",
             	"ing": "Eng.",
-            	"prof": "Prof."
+            	"prof": "Prof.",
+            	"mas": "Master"
             }
         }
     }

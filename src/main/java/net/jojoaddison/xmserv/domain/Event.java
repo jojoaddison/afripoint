@@ -24,6 +24,9 @@ public class Event implements Serializable {
 
     @Field("title")
     private String title;
+    
+    @Field("gate_fee")
+    private double gateFee;
 
     @Field("owner")
     private Partner owner;
@@ -78,6 +81,19 @@ public class Event implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Double getGateFee() {
+        return gateFee;
+    }
+
+    public Event gateFee(Double gateFee) {
+        this.gateFee = gateFee;
+        return this;
+    }
+
+    public void setGateFee(Double gateFee) {
+        this.gateFee = gateFee;
     }
 
     public Partner getOwner() {

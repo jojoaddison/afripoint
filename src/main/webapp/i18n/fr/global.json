@@ -15,6 +15,11 @@
                 "partner": "Partner",
                 "media": "Media",
                 "authority": "Authority",
+                "gallery": "Gallery",
+                "album": "Album",
+                "afripointService": "Service",
+                "page": "Page",
+                "article": "Article",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -52,6 +57,8 @@
             "email.placeholder": "Votre email"
         },
         "messages": {
+        	"from": "À partir du",
+        	"to": "Jusqu'à",
             "info": {
                 "authenticated": "Si vous voulez vous <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">connecter</a>, vous pouvez utiliser les comptes par défaut : <br/> - Administrateur (nom d'utilisateur=\"admin\" et mot de passe =\"admin\") <br/> - Utilisateur (nom d'utilisateur=\"user\" et mot de passe =\"user\").",
                 "register": "Vous n'avez pas encore de compte ? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Créer un compte</a>"
@@ -97,7 +104,8 @@
             "delete": "Supprimer",
             "open": "Ouvrir",
             "save": "Sauvegarder",
-            "view": "Voir"
+            "view": "Voir",
+            "close": "Fermer"
         },
         "detail": {
             "field": "Champs",

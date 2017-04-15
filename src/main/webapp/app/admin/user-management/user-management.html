@@ -12,20 +12,39 @@
         <table class="table table-striped">
             <thead>
             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                
                 <th jh-sort-by="id"><span data-translate="global.field.id">ID</span><span class="glyphicon glyphicon-sort"></span></th>
+              
                 <th jh-sort-by="login"><span data-translate="userManagement.login">Login</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="email"><span data-translate="userManagement.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th></th>
-                <th  jh-sort-by="langKey"> <span data-translate="userManagement.langKey">Lang Key</span> <span class="glyphicon glyphicon-sort"></span></th>                <th><span data-translate="userManagement.profiles">Profiles</span></th>                <th jh-sort-by="createdDate"><span data-translate="userManagement.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <!--
+                <th  jh-sort-by="langKey"> <span data-translate="userManagement.langKey">Lang Key</span> <span class="glyphicon glyphicon-sort"></span></th>   
+                -->             
+                <th><span data-translate="userManagement.roles">Profiles</span></th>         
+                <!--       
+                <th jh-sort-by="createdDate"><span data-translate="userManagement.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="lastModifiedBy"><span data-translate="userManagement.lastModifiedBy">Last Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="lastModifiedDate"><span data-translate="userManagement.lastModifiedDate">Last Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                -->
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="user in vm.users track by user.id">
-                <td><a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a></td>
-                <td>{{user.login}}</td>
+            	
+                <td>
+                	<a ui-sref="user-management-detail({login:user.login})" ng-if="user.image != null">
+                	 <img data-ng-src="{{'data:' + user.imageContentType + ';base64,' + user.image}}" style="max-height: 80px;" alt="user photo"/>                	
+                	</a>
+                </td>
+                <td>
+                	Login: {{user.login}}<br />
+                	Created: {{user.createdDate | date:'dd/MM/yy HH:mm'}}<br />
+                	Last modified: {{user.lastModifiedBy}}<br />
+                	Date modified: {{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}
+                	
+                </td>
                 <td>{{user.email}}</td>
                 <td>
                     <span class="label label-danger hand" ng-click="vm.setActive(user, true)" ng-show="!user.activated"
@@ -33,15 +52,17 @@
                     <span class="label label-success hand" ng-click="vm.setActive(user, false)" ng-show="user.activated"
                           data-translate="userManagement.activated">Activated</span>
                 </td>
-                <td>{{user.langKey}}</td>
+                <!-- <td>{{user.langKey}}</td> -->
                 <td>
                     <div ng-repeat="authority in user.authorities">
                         <span class="label label-info">{{ authority }}</span>
                     </div>
                 </td>
+                <!--
                 <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
                 <td>{{user.lastModifiedBy}}</td>
                 <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
+                -->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

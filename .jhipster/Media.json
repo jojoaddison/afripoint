@@ -7,20 +7,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "url",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "bytes",
+            "fieldName": "image",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
         },
         {
-            "fieldName": "description",
+            "fieldName": "imageContentType",
             "fieldType": "String"
         },
         {
@@ -30,14 +22,6 @@
         {
             "fieldName": "modifiedDate",
             "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldName": "type",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "size",
-            "fieldType": "Long"
         }
     ],
     "dto": "no",

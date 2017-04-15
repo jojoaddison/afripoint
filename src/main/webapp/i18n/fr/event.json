@@ -13,20 +13,20 @@
                 "question": "Etes-vous certain de vouloir supprimer le Event {{ id }} ?"
             },
             "detail": {
-                "title": "Event"
+                "title": "un événement"
             },
-            "title": "Title",
-            "owner": "Owner",
-            "description": "Description",
+            "title": "Titre",
+            "owner": "Partenaire",
+            "description": "La description",
             "photo": "Photo",
-            "startDate": "Start Date",
-            "endDate": "End Date",
-            "createdDate": "Created Date",
-            "modifiedDate": "Modified Date",
-            "createdBy": "Created By",
-            "modifiedBy": "Modified By",
-            "startTime": "Start Time",
-            "endTime": "End Time"
+            "createdDate": "Date créée",
+            "modifiedDate": "Date modifiée",
+            "createdBy": "Créé par",
+            "modifiedBy": "Modifié par",
+            "startTime": "Début",
+            "endTime": "Fin",
+            "free": "libre",
+            "entry": "Entrée"
         }
     }
 }

@@ -1,55 +1,83 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('afripointApp')
-        .controller('HomeController', HomeController);
+	angular
+		.module('afripointApp')
+		.controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$timeout'];
+	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'Media', 'PageUtils' ];
 
-    function HomeController ($scope, Principal, LoginService, $state, $timeout) {
-        var vm = this;
+	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, Media, PageUtils) {
+		var vm = this;
 
-        vm.account = null;
-        vm.isAuthenticated = null;
-        vm.login = LoginService.open;
-        vm.register = register;
-        $scope.$on('authenticationSuccess', function() {
-            getAccount();
-        });
+		vm.account = null;
+		vm.isAuthenticated = null;
+		vm.login = LoginService.open;
+		vm.register = register;
+		vm.slideInterval = 10000;
+		vm.noWrapSlides = false;
+		vm.active = 0;
+		vm.openEvent = PageUtils.openEvent;
+		vm.openLearn = PageUtils.openLearn;
+		vm.openPartner = PageUtils.openPartner;
+		vm.mod = mod;
+		
+		function mod(x, y){
+			var r=(x%y);
+			//console.log("mod: "+r);
+			return r;
+		}
+	
 
-        vm.images = [
-            {src: "http://placekitten.com/g/200/300, title: 'Cute kitten'"},
-        {src: "http://placekitten.com/g/300/300, title: 'Cuter kitten'"},
-        {src: "http://placekitten.com/g/400/400, title: 'Cutest kitten'"}
-            ];
-        getAccount();
+		$scope.$on('authenticationSuccess', function() {
+			getAccount();
+		});
 
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.account = account;
-                vm.isAuthenticated = Principal.isAuthenticated;
-            });
-        }
-        function register () {
-            $state.go('register');
-        }
 
-        $scope.$watch("images", function (newValue, oldValue) {
-            $timeout(function() {
-                $('.gallery').each(function() {
-                    $(this).magnificPopup({
-                        delegate: '.slide',
-                        type:'slide',
-                        gallery: {
-                            enabled: true
-                        },
-                        titleSrc: function(item){
-                            return item.el.attr('title');
-                        }
-                    });
-                });
-            });
-        });
-    }
+		$timeout(function() {
+			getAccount();
+			loadEvents();
+			loadMedia();
+		});
+
+		function loadMedia() {
+			Media.query({}, function(data) {
+				vm.media = data;
+			});
+		}
+
+		function loadEvents() {
+			Event.current({}, 
+						function(data) {
+						vm.events = data;
+			});
+		}
+
+		function getAccount() {
+			Principal.identity().then(function(account) {
+				vm.account = account;
+				vm.isAuthenticated = Principal.isAuthenticated;
+			});
+		}
+		function register() {
+			$state.go('register');
+		}
+
+		$scope.$watch("images", function(newValue, oldValue) {
+			$timeout(function() {
+				$('.gallery').each(function() {
+					$(this).magnificPopup({
+						delegate : '.slide',
+						type : 'slide',
+						gallery : {
+							enabled : true
+						},
+						titleSrc : function(item) {
+							return item.el.attr('title');
+						}
+					});
+				});
+			});
+		});
+	}
 })();

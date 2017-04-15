@@ -1,4 +1,4 @@
-(function() {
+  (function() {
 	'use strict';
 
 	angular
@@ -115,6 +115,7 @@
 				resolve : {
 					translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
 						$translatePartialLoader.addPart('event');
+						$translatePartialLoader.addPart('global');
 						return $translate.refresh();
 					} ],
 					entity : [ '$stateParams', 'Event', function($stateParams, Event) {

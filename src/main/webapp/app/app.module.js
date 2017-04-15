@@ -14,6 +14,9 @@
             'ui.bootstrap',
             'ui.bootstrap.datetimepicker',
             'ui.router',
+            'ngAnimate',
+            'ngTouch',
+            'ui.tinymce',
             'infinite-scroll',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',

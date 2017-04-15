@@ -56,6 +56,8 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/angular-bootstrap-material/angular-bootstrap-material.js',
             'src/main/webapp/bower_components/angular-animate/angular-animate.js',
             'src/main/webapp/bower_components/angular-messages/angular-messages.js',
+            'src/main/webapp/bower_components/angular-touch/angular-touch.js',
+            'src/main/webapp/bower_components/angular-ui-tinymce/src/tinymce.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'src/main/webapp/app/app.module.js',

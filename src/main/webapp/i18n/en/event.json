@@ -16,17 +16,17 @@
                 "title": "Event"
             },
             "title": "Title",
-            "owner": "Owner",
+            "owner": "Partner",
             "description": "Description",
             "photo": "Photo",
-            "startDate": "Start Date",
-            "endDate": "End Date",
             "createdDate": "Created Date",
             "modifiedDate": "Modified Date",
             "createdBy": "Created By",
             "modifiedBy": "Modified By",
-            "startTime": "Start Time",
-            "endTime": "End Time"
+            "startTime": "Start",
+            "endTime": "End",
+            "free": "Free",
+            "entry": "Entry"
         }
     }
 }

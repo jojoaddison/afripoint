@@ -23,17 +23,11 @@ public class Media implements Serializable {
     @Field("caption")
     private String caption;
 
-    @Field("url")
-    private String url;
+    @Field("image")
+    private byte[] image;
 
-    @Field("name")
-    private String name;
-
-    @Field("bytes")
-    private byte[] bytes;
-
-    @Field("bytes_content_type")
-    private String bytesContentType;
+    @Field("image_content_type")
+    private String imageContentType;
 
     @Field("description")
     private String description;
@@ -43,12 +37,6 @@ public class Media implements Serializable {
 
     @Field("modified_date")
     private ZonedDateTime modifiedDate;
-
-    @Field("type")
-    private String type;
-
-    @Field("size")
-    private Long size;
 
     public String getId() {
         return id;
@@ -71,56 +59,30 @@ public class Media implements Serializable {
         this.caption = caption;
     }
 
-    public String getUrl() {
-        return url;
+    public byte[] getImage() {
+        return image;
     }
 
-    public Media url(String url) {
-        this.url = url;
+    public Media image(byte[] image) {
+        this.image = image;
         return this;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getImageContentType() {
+        return imageContentType;
     }
 
-    public Media name(String name) {
-        this.name = name;
+    public Media imageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public byte[] getBytes() {
-        return bytes;
-    }
-
-    public Media bytes(byte[] bytes) {
-        this.bytes = bytes;
-        return this;
-    }
-
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
-    }
-
-    public String getBytesContentType() {
-        return bytesContentType;
-    }
-
-    public Media bytesContentType(String bytesContentType) {
-        this.bytesContentType = bytesContentType;
-        return this;
-    }
-
-    public void setBytesContentType(String bytesContentType) {
-        this.bytesContentType = bytesContentType;
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 
     public String getDescription() {
@@ -162,32 +124,6 @@ public class Media implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public Media type(String type) {
-        this.type = type;
-        return this;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-    public Media size(Long size) {
-        this.size = size;
-        return this;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -213,15 +149,11 @@ public class Media implements Serializable {
         return "Media{" +
             "id=" + id +
             ", caption='" + caption + "'" +
-            ", url='" + url + "'" +
-            ", name='" + name + "'" +
-            ", bytes='" + bytes + "'" +
-            ", bytesContentType='" + bytesContentType + "'" +
+            ", image='" + image + "'" +
+            ", imageContentType='" + imageContentType + "'" +
             ", description='" + description + "'" +
             ", createdDate='" + createdDate + "'" +
             ", modifiedDate='" + modifiedDate + "'" +
-            ", type='" + type + "'" +
-            ", size='" + size + "'" +
             '}';
     }
 }

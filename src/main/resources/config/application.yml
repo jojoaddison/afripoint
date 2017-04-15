@@ -36,6 +36,12 @@ spring:
             enabled: false
     thymeleaf:
         mode: XHTML
+    http:
+        multipart:
+          enabled: true
+          file-size-threshold: 10MB
+          max-file-size: 5MB
+          max-request-size: 50MB
 
 security:
     basic:
@@ -62,25 +68,25 @@ jhipster:
         max-pool-size: 50
         queue-capacity: 10000
     # By default CORS is disabled. Uncomment to enable.
-    #cors:
-        #allowed-origins: "*"
-        #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
-        #allowed-headers: "*"
+    cors:
+        allowed-origins: "*"
+        allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+        allowed-headers: "*"
         #exposed-headers:
-        #allow-credentials: true
-        #max-age: 1800
+        allow-credentials: true
+        max-age: 1800
     mail:
-        from: afripoint@localhost
+        from: it@afripoint.at
     swagger:
         default-include-pattern: /api/.*
-        title: afripoint API
-        description: afripoint API documentation
+        title: AfriPoint API
+        description: AfriPoint API documentation
         version: 0.0.1
         terms-of-service-url:
-        contact-name:
-        contact-url:
-        contact-email:
-        license:
+        contact-name: Kojo Ampia
+        contact-url: http://www.jojoaddison.net
+        contact-email: jojo@jojoaddison.net
+        license: Apache 2
         license-url:
     ribbon:
         display-on-active-profiles: dev

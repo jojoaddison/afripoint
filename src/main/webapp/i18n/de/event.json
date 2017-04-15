@@ -15,18 +15,18 @@
             "detail": {
                 "title": "Event"
             },
-            "title": "Title",
-            "owner": "Owner",
-            "description": "Description",
-            "photo": "Photo",
-            "startDate": "Start Date",
-            "endDate": "End Date",
-            "createdDate": "Created Date",
-            "modifiedDate": "Modified Date",
-            "createdBy": "Created By",
-            "modifiedBy": "Modified By",
-            "startTime": "Start Time",
-            "endTime": "End Time"
+            "title": "Titel",
+            "owner": "Partner",
+            "description": "Beschreibung",
+            "photo": "Foto",
+            "createdDate": "Erstellt am",
+            "modifiedDate": "Modifitiert am",
+            "createdBy": "Erstellt",
+            "modifiedBy": "Modifitiert",
+            "startTime": "Start",
+            "endTime": "Ende",
+            "free": "Gratis",
+            "entry": "Eintritt"
         }
     }
 }

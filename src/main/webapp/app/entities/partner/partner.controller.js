@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('PartnerController', PartnerController);
 
-    PartnerController.$inject = ['Partner', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    PartnerController.$inject = ['Partner', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'Country'];
 
-    function PartnerController(Partner, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function PartnerController(Partner, ParseLinks, AlertService, paginationConstants, pagingParams, Country) {
 
         var vm = this;
 
@@ -16,15 +16,21 @@
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.searchCountry = searchCountry;
 
         loadAll();
+        
+        function searchCountry(val) {
+        	return Country.search(val);
+        }
 
         function loadAll () {
             Partner.query({
-                page: pagingParams.page - 1,
-                size: vm.itemsPerPage,
-                sort: sort()
-            }, onSuccess, onError);
+	                page: pagingParams.page - 1,
+	                size: vm.itemsPerPage,
+	                sort: sort()
+            	}, onSuccess, onError);
+            
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

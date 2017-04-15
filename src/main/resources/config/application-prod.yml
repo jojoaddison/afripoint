@@ -24,10 +24,10 @@ spring:
             uri: mongodb://localhost:27017
             database: afripoint
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.sprit.org
+        port: 21
+        username: radioafrikasupport01
+        password: RadioAfrika2017!
     thymeleaf:
         cache: true
 
@@ -74,10 +74,10 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: afripoint@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        from: support@radioafrika.net
+        base-url: http://www.afripoint.at # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx.enabled: true
+        jmx.enabled: false
         graphite:
             enabled: false
             host: localhost

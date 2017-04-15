@@ -1,67 +1,133 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-md-2">
+				<button class="btn btn-white btn-sm" ui-sref="{{ vm.previousState }}">
+					<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back" class="ng-scope">Back</span>
+				</button>
+			</div>
+			<div class="col-md-8">
+				<h2 class="text-center"><span data-translate="afripointApp.event.detail.title">Event</span> {{vm.event.title}}</h2>
+			</div>
+			<div class="col-md-2 pull-right">
+				<button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
+					<span class="glyphicon glyphicon-pencil"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container-fluid">
+					<img data-ng-src="{{'data:' + vm.event.imageContentType + ';base64,' + vm.event.image}}"
+					style="margin:auto; height: auto; width: 100%;">
+					<div class="carousel-caption bg-primary bg-transparent" style="bottom: 15%;">
+						<h1>{{vm.event.title}}</h1>
+						<p>
+							{{vm.event.description}}
+							<br>
+							<span data-translate="global.messages.from">from</span> &nbsp;
+							{{vm.event.startTime | date:'medium'}} &nbsp;
+							<span data-translate="global.messages.to">to</span>
+							{{vm.event.endTime | date:'medium'}}
+						</p>
 
-<div>
-    <h2><span data-translate="afripointApp.event.detail.title">Event</span> {{vm.event.id}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="row jh-entity-details">
-        <dt><span data-translate="afripointApp.event.title">Title</span></dt>
-        <dd>
-            <span>{{vm.event.title}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.owner">Owner</span></dt>
-        <dd>
-            <span>{{vm.event.owner}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.description">Description</span></dt>
-        <dd>
-            <span>{{vm.event.description}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.photo">Photo</span></dt>
-        <dd>
-            <span>{{vm.event.photo}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.startDate">Start Date</span></dt>
-        <dd>
-            <span>{{vm.event.startDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.endDate">End Date</span></dt>
-        <dd>
-            <span>{{vm.event.endDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.createdDate">Created Date</span></dt>
-        <dd>
-            <span>{{vm.event.createdDate | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.modifiedDate">Modified Date</span></dt>
-        <dd>
-            <span>{{vm.event.modifiedDate | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.createdBy">Created By</span></dt>
-        <dd>
-            <span>{{vm.event.createdBy}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.modifiedBy">Modified By</span></dt>
-        <dd>
-            <span>{{vm.event.modifiedBy}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.startTime">Start Time</span></dt>
-        <dd>
-            <span>{{vm.event.startTime | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="afripointApp.event.endTime">End Time</span></dt>
-        <dd>
-            <span>{{vm.event.endTime | date:'medium'}}</span>
-        </dd>
-    </dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div>
+					<hr>
+					<jhi-alert-error></jhi-alert-error>
+					<dl class="row jh-entity-details">
+						<dt>
+							<span data-translate="afripointApp.event.title">Title</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.title}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.description">Description</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.description}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.startTime">Start Time</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.startTime | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.endTime">End Time</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.endTime | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.owner">Owner</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.owner.firstname}}&nbsp;{{vm.event.owner.lastname}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.createdDate">Created Date</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.createdDate | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.modifiedDate">Modified Date</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.modifiedDate | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.createdBy">Created By</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.createdBy.firstName}}&nbsp;{{vm.event.createdBy.lastName}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.modifiedBy">Modified By</span>
+						</dt>
+						<dd>
+							<span>{{vm.event.modifiedBy.firstName}}&nbsp;{{vm.event.modifiedBy.lastName}}</span>
+						</dd>
 
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
+					</dl>
+				</div>
+			</div>
 
-    <button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-    </button>
-</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-md-6 text-left">
+					Created: {{vm.event.createdDate | date:'medium'}}
+				</div>
+				<div class="col-md-6 text-right">
+					Last modified:	{{vm.event.modifiedDate | date:'medium'}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--
+
+	<button type="submit"
+	ui-sref="{{ vm.previousState }}"
+	class="btn btn-info">
+	<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+	</button>
+
+	<button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
+	<span class="glyphicon glyphicon-pencil"></span>
+	<span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+	</button>
+	</div>
+	-->

@@ -31,10 +31,10 @@
 				ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.changeimage">
 					Change image
 				</button>
-				<input type="hidden" class="form-control" name="bytes" id="field_bytes"
+				<input type="hidden" class="form-control" name="image" id="field_image"
 				ng-model="vm.user.image"
 				/>
-				<input type="hidden" class="form-control" name="bytesContentType" id="field_bytesContentType"
+				<input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
 				ng-model="vm.user.imageContentType" />
 			</div>
 			<div class="col-md-8">
@@ -196,7 +196,6 @@
 				</div>
 			</div>
 		</div>
-		{{ vm.user | json }}
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
