@@ -1,0 +1,29 @@
+{
+    "afripointApp": {
+        "afripointService" : {
+            "home": {
+                "title": "Afripoint Services",
+                "createLabel": " Service erstellen",
+                "createOrEditLabel": " Service bearbeiten"
+            },
+            "created": " Service erstellt mit ID {{ param }}",
+            "updated": " Service aktualisiert mit ID {{ param }}",
+            "deleted": " Service gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll  Service {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": " Service"
+            },
+            "name": "Name",
+            "description": "Beschreibung",
+            "photo": "Foto",
+            "icon": "Icon",
+            "contact": "Kontakt",
+            "createdDate": "Estellt am",
+            "modifiedDate": "Modifiziert am",
+            "createdBy": "Erstellt von",
+            "modifiedBy": "Modifiziert von"
+        }
+    }
+}

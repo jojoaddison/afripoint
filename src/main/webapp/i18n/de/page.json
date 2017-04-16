@@ -1,0 +1,24 @@
+{
+    "afripointApp": {
+        "page" : {
+            "home": {
+                "title": "Pages",
+                "createLabel": "Page erstellen",
+                "createOrEditLabel": "Page erstellen oder bearbeiten"
+            },
+            "created": "Page erstellt mit ID {{ param }}",
+            "updated": "Page aktualisiert mit ID {{ param }}",
+            "deleted": "Page gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Page {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Page"
+            },
+            "lang": "Lang",
+            "title": "Title",
+            "content": "Content",
+            "created": "Created"
+        }
+    }
+}

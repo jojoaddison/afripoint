@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "Willkommen bei Afripoint!",
+        "title": "Willkommen bei Afripoint! Events, Bar, Advertising, Media, Public Relations, Shop",
         "subtitle": "Hier ist AfriPoint",
         "logged": {
             "message": "Sie sind als benützer \"{{username}}\" eingeloggt."
@@ -15,7 +15,7 @@
         },
         "businessCallout": "Bereit mit uns Geschäft zu machen? Super! Rufen Sie uns an oder schicken Sie uns ein Email. Wie melden uns bei Ihnen so bald wie möglich!",
         "learn": "Mehr über uns erfahren...",
-        "partner": "Partner werden!", 
+        "partner": "Partner werden!",
         "download": "Bitte jetzt herunterladen!",
         "brochure": "Neue Broschüre ausgabe."
     }

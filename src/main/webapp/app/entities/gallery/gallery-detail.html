@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="afripointApp.gallery.detail.title">Gallery</span> {{vm.gallery.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.gallery.name">Name</span></dt>
+        <dd>
+            <span>{{vm.gallery.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.picture">Picture</span></dt>
+        <dd>
+            <div ng-if="vm.gallery.picture">
+                <a ng-click="vm.openFile(vm.gallery.pictureContentType, vm.gallery.picture)">
+                    <img data-ng-src="{{'data:' + vm.gallery.pictureContentType + ';base64,' + vm.gallery.picture}}" style="max-width: 100%;" alt="gallery image"/>
+                </a>
+                {{vm.gallery.pictureContentType}}, {{vm.byteSize(vm.gallery.picture)}}
+            </div>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.album">Album</span></dt>
+        <dd>
+            <span>{{vm.gallery.album}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.gallery.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.gallery.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{vm.gallery.createdBy}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.gallery.modifiedBy">Modified By</span></dt>
+        <dd>
+            <span>{{vm.gallery.modifiedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="gallery-detail.edit({id:vm.gallery.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

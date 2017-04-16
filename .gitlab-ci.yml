@@ -1,0 +1,52 @@
+
+cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+        - node_modules
+        - .maven
+stages:
+    - build
+    - test
+    - package
+    - release
+    - deploy
+
+before_script:
+    - export MAVEN_USER_HOME=`pwd`/.maven
+    - ./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v6.9.4 -DnpmVersion=3.10.9
+    - ./mvnw com.github.eirslett:frontend-maven-plugin:npm
+
+maven-build:
+    stage: build
+    script: ./mvnw compile -Dmaven.repo.local=$MAVEN_USER_HOME
+
+gulp-build:
+    stage: build
+    script:
+        - ./mvnw com.github.eirslett:frontend-maven-plugin:gulp -Dfrontend.gulp.arguments=build
+maven-test:
+    stage: test
+    script:
+        - ./mvnw test -Dmaven.repo.local=$MAVEN_USER_HOME
+    artifacts:
+        paths:
+            - target/surefire-reports/*
+gatling-test:
+    stage: test
+    allow_failure: true
+    script:
+        - ./mvnw gatling:execute -Dmaven.repo.local=$MAVEN_USER_HOME
+    before_script:
+        - ./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v6.9.4 -DnpmVersion=3.10.9
+        - ./mvnw com.github.eirslett:frontend-maven-plugin:npm
+        - ./mvnw &
+    artifacts:
+        paths:
+            - target/gatling/*
+maven-package:
+    stage: package
+    script:
+        - ./mvnw package -Pprod -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
+    artifacts:
+        paths:
+            - target/*.war

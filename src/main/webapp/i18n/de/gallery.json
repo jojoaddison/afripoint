@@ -1,0 +1,27 @@
+{
+    "afripointApp": {
+        "gallery" : {
+            "home": {
+                "title": "Galleries",
+                "createLabel": "Gallery erstellen",
+                "createOrEditLabel": "Gallery erstellen oder bearbeiten"
+            },
+            "created": "Gallery erstellt mit ID {{ param }}",
+            "updated": "Gallery aktualisiert mit ID {{ param }}",
+            "deleted": "Gallery gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Gallery {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Gallery"
+            },
+            "name": "Name",
+            "picture": "Picture",
+            "album": "Album",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "createdBy": "Created By",
+            "modifiedBy": "Modified By"
+        }
+    }
+}

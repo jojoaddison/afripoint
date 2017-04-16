@@ -17,6 +17,11 @@
                     return data;
                 }
             },
+            'byAuthority': {
+              url: 'api/users/authority/:authority',
+              isArray: true,
+              method: 'GET'
+            },
             'save': { method:'POST' },
             'update': { method:'PUT' },
             'delete':{ method:'DELETE'}

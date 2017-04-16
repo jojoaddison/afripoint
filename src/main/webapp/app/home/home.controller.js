@@ -21,13 +21,15 @@
 		vm.openLearn = PageUtils.openLearn;
 		vm.openPartner = PageUtils.openPartner;
 		vm.mod = mod;
-		
+		vm.page = 0;
+		vm.size = 4;
+
 		function mod(x, y){
 			var r=(x%y);
 			//console.log("mod: "+r);
 			return r;
 		}
-	
+
 
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();
@@ -47,7 +49,11 @@
 		}
 
 		function loadEvents() {
-			Event.current({}, 
+			Event.current({
+				page: vm.page,
+				size: vm.size,
+				sort: ['startTime, asc']
+			},
 						function(data) {
 						vm.events = data;
 			});

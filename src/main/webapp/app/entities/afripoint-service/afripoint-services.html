@@ -1,0 +1,68 @@
+<div>
+    <h2 data-translate="afripointApp.afripointService.home.title">Afripoint Services</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="afripoint-service.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="afripointApp.afripointService.home.createLabel">
+                        Create new Afripoint Service
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="afripointApp.afripointService.photo">Photo</span></th>
+                        <th><span data-translate="afripointApp.afripointService.icon">Icon</span></th>
+                    <th><span data-translate="afripointApp.afripointService.name">Name</span></th>
+                    <th><span data-translate="afripointApp.afripointService.description">Description</span></th>
+                    <th><span data-translate="afripointApp.afripointService.contact">Contact</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="afripointService in vm.afripointServices track by afripointService.id">
+                    <td>
+                        <img ng-if="afripointService.photo"
+                        data-ng-src="{{'data:' + afripointService.photoContentType + ';base64,' + afripointService.photo}}"
+                        style="max-height: 30px;" alt="afripointService image" ng-cloak/>
+                    </td>
+                      <td>
+                          <i class="fa fa-4x fa-{{afripointService.icon}} text-primary sr-icons" id="icon_field" ng-if="afripointService.icon"></i>
+                      </td>
+                    <td>{{afripointService.name}}</td>
+                    <td>{{afripointService.description}}</td>
+                    <td>{{afripointService.contact}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="afripoint-service-detail({id:afripointService.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="afripoint-service.edit({id:afripointService.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="afripoint-service.delete({id:afripointService.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

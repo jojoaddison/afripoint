@@ -2,6 +2,7 @@ package net.jojoaddison.xmserv.web.rest;
 
 import net.jojoaddison.xmserv.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+
 import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.UserRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
@@ -28,6 +29,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing users.
@@ -90,7 +92,7 @@ public class UserResource {
     @PostMapping("/users")
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
-    public ResponseEntity createUser(@RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
+    public ResponseEntity<User> createUser(@RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
         log.debug("REST request to save User : {}", managedUserVM);
 
         //Lowercase the user login before comparing with database
@@ -168,6 +170,23 @@ public class UserResource {
         return ResponseUtil.wrapOrNotFound(
             userService.getUserWithAuthoritiesByLogin(login)
                 .map(UserDTO::new));
+    }
+
+
+    /**
+     * GET  /users : get all users by an authority or role.
+     * @param authority to filter on
+     * @return the ResponseEntity with status 200 (OK) and with body all users
+     */
+    @GetMapping(value = "/users/authority/{authority}")
+    @Timed
+    public ResponseEntity<List<UserDTO>> getAllUsersByAuthority(@PathVariable String authority)
+        throws URISyntaxException {
+    	List<User> users = userService.findByAuthority(authority);
+    	 List<UserDTO> managedUserDTOs = users.stream()
+    			 .map(UserDTO::new)
+    			 .collect(Collectors.toList());
+    	return new ResponseEntity<>(managedUserDTOs, HttpStatus.OK);
     }
 
     /**

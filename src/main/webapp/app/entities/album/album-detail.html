@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span data-translate="afripointApp.album.detail.title">Album</span> {{vm.album.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.album.name">Name</span></dt>
+        <dd>
+            <span>{{vm.album.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.description">Description</span></dt>
+        <dd>
+            <span>{{vm.album.description}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{vm.album.createdBy}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.modifiedBy">Modified By</span></dt>
+        <dd>
+            <span>{{vm.album.modifiedBy}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.album.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.album.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.media">Media</span></dt>
+        <dd>
+            <span>{{vm.album.media}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.album.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.album.photo">
+                <a ng-click="vm.openFile(vm.album.photoContentType, vm.album.photo)">
+                    <img data-ng-src="{{'data:' + vm.album.photoContentType + ';base64,' + vm.album.photo}}" style="max-width: 100%;" alt="album image"/>
+                </a>
+                {{vm.album.photoContentType}}, {{vm.byteSize(vm.album.photo)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="album-detail.edit({id:vm.album.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

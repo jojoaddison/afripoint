@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="afripointApp.page.detail.title">Page</span> {{vm.page.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.page.lang">Lang</span></dt>
+        <dd>
+            <span>{{vm.page.lang}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.page.title">Title</span></dt>
+        <dd>
+            <span>{{vm.page.title}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.page.content">Content</span></dt>
+        <dd>
+            <span>{{vm.page.content}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.page.created">Created</span></dt>
+        <dd>
+            <span>{{vm.page.created | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="page-detail.edit({id:vm.page.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

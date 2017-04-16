@@ -1,0 +1,117 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			
+			<div class="col-md-10">
+				<h2 class="text-center"><span data-translate="afripointApp.event.detail.title">Event</span> {{evm.event.title}}</h2>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-white btn-sm" ng-click="evm.close()">
+					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
+				</button>
+			</div>
+			<!--
+			<div class="col-md-2 pull-right">
+				<button type="button" ui-sref="event-detail.edit({id:evm.event.id})" class="btn btn-primary">
+					<span class="glyphicon glyphicon-pencil"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+				</button>
+			</div>
+			-->
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="container-fluid">
+					<img data-ng-src="{{'data:' + evm.event.imageContentType + ';base64,' + evm.event.image}}"
+					style="margin:auto; height: auto; width: 100%;">					
+				</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div>
+					<hr>
+					<jhi-alert-error></jhi-alert-error>
+					<dl class="row jh-entity-details">
+						<dt>
+							<span data-translate="afripointApp.event.title">Title</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.title}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.description">Description</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.description}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.startTime">Start Time</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.startTime | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.endTime">End Time</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.endTime | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.owner">Owner</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.owner.firstname}}&nbsp;{{evm.event.owner.lastname}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.createdDate">Created Date</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.createdDate | date:'medium'}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.event.modifiedDate">Modified Date</span>
+						</dt>
+						<dd>
+							<span>{{evm.event.modifiedDate | date:'medium'}}</span>
+						</dd>
+						<dt>
+							Contact
+						</dt>
+						<dd>
+							<span>{{evm.event.createdBy.firstName}}&nbsp;{{evm.event.createdBy.lastName}}</span><br />
+							<span>{{evm.event.createdBy.email}}</span>
+						</dd>
+
+					</dl>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-md-6 text-left">
+					Created: {{evm.event.createdDate | date:'medium'}}
+				</div>
+				<div class="col-md-6 text-right">
+					Last modified:	{{evm.event.modifiedDate | date:'medium'}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--
+
+	<button type="submit"
+	ui-sref="{{ evm.previousState }}"
+	class="btn btn-info">
+	<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+	</button>
+
+	<button type="button" ui-sref="event-detail.edit({id:evm.event.id})" class="btn btn-primary">
+	<span class="glyphicon glyphicon-pencil"></span>
+	<span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+	</button>
+	</div>
+	-->

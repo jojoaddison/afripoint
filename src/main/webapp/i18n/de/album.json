@@ -1,0 +1,28 @@
+{
+    "afripointApp": {
+        "album" : {
+            "home": {
+                "title": "Albums",
+                "createLabel": "Album erstellen",
+                "createOrEditLabel": "Album erstellen oder bearbeiten"
+            },
+            "created": "Album erstellt mit ID {{ param }}",
+            "updated": "Album aktualisiert mit ID {{ param }}",
+            "deleted": "Album gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Album {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Album"
+            },
+            "name": "Name",
+            "description": "Description",
+            "createdBy": "Created By",
+            "modifiedBy": "Modified By",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "media": "Media",
+            "photo": "Photo"
+        }
+    }
+}

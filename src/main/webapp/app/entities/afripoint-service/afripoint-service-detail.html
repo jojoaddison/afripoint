@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span data-translate="afripointApp.afripointService.detail.title">Afripoint Service</span> {{vm.afripointService.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.afripointService.name">Name</span></dt>
+        <dd>
+            <span>{{vm.afripointService.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.description">Description</span></dt>
+        <dd>
+            <span>{{vm.afripointService.description}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.afripointService.photo">
+                <a ng-click="vm.openFile(vm.afripointService.photoContentType, vm.afripointService.photo)">
+                    <img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" style="max-width: 100%;" alt="afripointService image"/>
+                </a>
+                {{vm.afripointService.photoContentType}}, {{vm.byteSize(vm.afripointService.photo)}}
+            </div>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.contact">Contact</span></dt>
+        <dd>
+            <span>{{vm.afripointService.contact}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.afripointService.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.afripointService.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{vm.afripointService.createdBy}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.afripointService.modifiedBy">Modified By</span></dt>
+        <dd>
+            <span>{{vm.afripointService.modifiedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="afripoint-service-detail.edit({id:vm.afripointService.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

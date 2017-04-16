@@ -1,0 +1,27 @@
+{
+    "afripointApp": {
+        "gallery" : {
+            "home": {
+                "title": "Galleries",
+                "createLabel": "Create a new Gallery",
+                "createOrEditLabel": "Create or edit a Gallery"
+            },
+            "created": "A new Gallery is created with identifier {{ param }}",
+            "updated": "A Gallery is updated with identifier {{ param }}",
+            "deleted": "A Gallery is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Gallery {{ id }}?"
+            },
+            "detail": {
+                "title": "Gallery"
+            },
+            "name": "Name",
+            "picture": "Picture",
+            "album": "Album",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "createdBy": "Created By",
+            "modifiedBy": "Modified By"
+        }
+    }
+}

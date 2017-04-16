@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			
+			<div class="col-md-10">
+				<h2 class="text-center">{{evm.partner.title}}</h2>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-white btn-sm" ng-click="evm.close()">
+					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div>
+					<hr>					
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-md-6 text-left">
+					Created: {{evm.event.createdDate | date:'medium'}}
+				</div>
+				<div class="col-md-6 text-right">
+					Last modified:	{{evm.event.modifiedDate | date:'medium'}}
+				</div>
+			</div>
+
+		</div>
+	</div>
