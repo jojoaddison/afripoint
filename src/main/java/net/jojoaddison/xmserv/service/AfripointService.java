@@ -7,10 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import net.jojoaddison.xmserv.repository.AfripointServiceRepository;
 import net.jojoaddison.xmserv.service.dto.ServiceDTO;
 
+/**
+ * Service Implementation for managing Afripoint.
+ */
+@Service
 public class AfripointService {
 
     private final Logger log = LoggerFactory.getLogger(AfripointService.class);
