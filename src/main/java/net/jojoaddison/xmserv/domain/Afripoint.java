@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 
 @Document(collection = "afripoint_service")
-public class AfripointService implements Serializable {
+public class Afripoint implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,14 +29,14 @@ public class AfripointService implements Serializable {
     @Field("icon")
     private String icon;
 
+    @Field("contact")
+    private String contact;
+
     @Field("photo")
     private byte[] photo;
 
     @Field("photo_content_type")
     private String photoContentType;
-
-    @Field("contact")
-    private String contact;
 
     @Field("created_date")
     private ZonedDateTime createdDate;
@@ -62,7 +62,7 @@ public class AfripointService implements Serializable {
         return name;
     }
 
-    public AfripointService name(String name) {
+    public Afripoint name(String name) {
         this.name = name;
         return this;
     }
@@ -75,7 +75,7 @@ public class AfripointService implements Serializable {
         return description;
     }
 
-    public AfripointService description(String description) {
+    public Afripoint description(String description) {
         this.description = description;
         return this;
     }
@@ -88,7 +88,7 @@ public class AfripointService implements Serializable {
         return photo;
     }
 
-    public AfripointService photo(byte[] photo) {
+    public Afripoint photo(byte[] photo) {
         this.photo = photo;
         return this;
     }
@@ -101,7 +101,7 @@ public class AfripointService implements Serializable {
         return photoContentType;
     }
 
-    public AfripointService photoContentType(String photoContentType) {
+    public Afripoint photoContentType(String photoContentType) {
         this.photoContentType = photoContentType;
         return this;
     }
@@ -114,7 +114,7 @@ public class AfripointService implements Serializable {
         return icon;
     }
 
-    public AfripointService icon(String icon) {
+    public Afripoint icon(String icon) {
         this.icon = icon;
         return this;
     }
@@ -127,7 +127,7 @@ public class AfripointService implements Serializable {
         return contact;
     }
 
-    public AfripointService contact(String contact) {
+    public Afripoint contact(String contact) {
         this.contact = contact;
         return this;
     }
@@ -140,7 +140,7 @@ public class AfripointService implements Serializable {
         return createdDate;
     }
 
-    public AfripointService createdDate(ZonedDateTime createdDate) {
+    public Afripoint createdDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
         return this;
     }
@@ -153,7 +153,7 @@ public class AfripointService implements Serializable {
         return modifiedDate;
     }
 
-    public AfripointService modifiedDate(ZonedDateTime modifiedDate) {
+    public Afripoint modifiedDate(ZonedDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
         return this;
     }
@@ -166,7 +166,7 @@ public class AfripointService implements Serializable {
         return createdBy;
     }
 
-    public AfripointService createdBy(String createdBy) {
+    public Afripoint createdBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
     }
@@ -179,7 +179,7 @@ public class AfripointService implements Serializable {
         return modifiedBy;
     }
 
-    public AfripointService modifiedBy(String modifiedBy) {
+    public Afripoint modifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
@@ -196,7 +196,7 @@ public class AfripointService implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AfripointService afripointService = (AfripointService) o;
+        Afripoint afripointService = (Afripoint) o;
         if (afripointService.id == null || id == null) {
             return false;
         }

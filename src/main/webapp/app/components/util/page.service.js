@@ -6,14 +6,15 @@
         .factory('PageUtils', PageUtils);
 
     	PageUtils.$inject = ['$window', '$sce', '$uibModal'];
-    	
+
     	function PageUtils($window, $sce, $uibModal){
     		var service = {
     			openEvent: openEvent,
     			openLearn: openLearn,
-    			openPartner: openPartner
-    		}
-    		
+    			openPartner: openPartner,
+                openService: openService
+    		};
+
     		return service;
 
 
@@ -21,7 +22,7 @@
     			$uibModal.open(
     				{
     					templateUrl : "app/home/partner.html",
-    					controller : [ '$uibModalInstance', 
+    					controller : [ '$uibModalInstance',
     						function($uibModalInstance) {
     						var evm = this;
     						evm.close = function(){
@@ -43,13 +44,13 @@
     				}
     			);
     		}
-    		
+
 
     		function openLearn() {
     			$uibModal.open(
     				{
     					templateUrl : "app/home/learn.html",
-    					controller : [ '$uibModalInstance', 
+    					controller : [ '$uibModalInstance',
     						function($uibModalInstance) {
     						var evm = this;
     						evm.close = function(){
@@ -70,7 +71,7 @@
     				}
     			);
     		}
-    		
+
     		function openEvent(event) {
     			$uibModal.open(
     				{
@@ -100,7 +101,39 @@
     				}
     			);
     		}
-    		
+
+
+            function openService(service) {
+                $uibModal.open(
+                    {
+                        templateUrl : "app/entities/afripoint-service/afripoint-service-view.html",
+                        controller : [ '$uibModalInstance', 'service',
+                            function($uibModalInstance, service) {
+                                var evm =  this;
+                                evm.service = service;
+                                evm.close = function(){
+                                    $uibModalInstance.dismiss('cancel');
+                                }
+                            }
+                        ],
+                        controllerAs : 'evm',
+                        backdrop : 'static',
+                        size : 'lg',
+                        resolve : {
+                            translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+                                $translatePartialLoader.addPart('afripointService');
+                                $translatePartialLoader.addPart('global');
+                                return $translate.refresh();
+                            } ],
+                            event : [ function() {
+                                return event;
+                            } ]
+                        }
+                    }
+                );
+            }
+
+
     	}
 
 })();

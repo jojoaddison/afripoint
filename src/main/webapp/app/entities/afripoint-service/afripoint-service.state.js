@@ -100,7 +100,7 @@
                     controller: 'AfripointServiceDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
-                    size: 'md',
+                    size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
@@ -109,6 +109,7 @@
                                 photo: null,
                                 photoContentType: null,
                                 contact: null,
+                                icon: null,
                                 createdDate: null,
                                 modifiedDate: null,
                                 createdBy: null,

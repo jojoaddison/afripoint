@@ -11,6 +11,11 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'getAll':{
+            	url:'api/afripoint-services/home',
+            	method: 'GET',
+            	isArray: true
+            },
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

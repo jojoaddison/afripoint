@@ -1,8 +1,8 @@
 package net.jojoaddison.xmserv.service;
 
-import net.jojoaddison.xmserv.domain.User;
+import java.util.Locale;
 
-import io.github.jhipster.config.JHipsterProperties;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
+import io.github.jhipster.config.JHipsterProperties;
+import net.jojoaddison.xmserv.domain.User;
 
 /**
  * Service for sending e-mails.
@@ -69,6 +69,7 @@ public class MailService {
             log.warn("E-mail could not be sent to user '{}'", to, e);
         }
     }
+
 
     @Async
     public void sendActivationEmail(User user) {

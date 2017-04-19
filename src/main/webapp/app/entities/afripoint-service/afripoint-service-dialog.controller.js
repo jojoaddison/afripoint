@@ -19,7 +19,7 @@
         vm.save = save;
         vm.setIcon = setIcon;
         vm.icons = [
-          "cutlery", "diamond", "star", "paper-plane", "shop", "newspaper-o", "newspaper-c", "gold", "heart"
+          "cutlery", "diamond", "star", "paper-plane", "shopping-bag", "newspaper-o", "address-card", "heart", "bullhorn", "microphone", "glass", "beer"
         ];
         vm.contacts = [
           {"id": 1, "name": "Kojo Ampia"},
@@ -34,8 +34,10 @@
           var currentIcon= "fa-"+vm.icon;
           var prevIcon = "fa-"+vm.afripointService.icon;
           vm.afripointService.icon = vm.icon;
-          iconField.removeClass(prevIcon);
-          iconField.addClass(currentIcon);
+          $scope.$apply(function(){
+            iconField.removeClass(prevIcon);
+            iconField.addClass(currentIcon);
+          });
         }
 
         $timeout(function (){
@@ -67,7 +69,7 @@
 
         function save () {
             vm.isSaving = true;
-            var account = "<" + vm.account.firstName + " " + vm.account.lastName + ">" + vm.account.email;
+            var account = vm.account.firstName + " " + vm.account.lastName + "<" + vm.account.email+ ">" ;
             vm.afripointService.modifiedBy = account;
             vm.afripointService.modifiedDate = new Date();
             if (vm.afripointService.id !== null) {

@@ -5,9 +5,9 @@
 		.module('afripointApp')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'Media', 'PageUtils' ];
+	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'Media', 'AfripointService','PageUtils' ];
 
-	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, Media, PageUtils) {
+	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, Media, AfripointService, PageUtils) {
 		var vm = this;
 
 		vm.account = null;
@@ -40,7 +40,14 @@
 			getAccount();
 			loadEvents();
 			loadMedia();
+            loadServices();
 		});
+
+        function loadServices(){
+            AfripointService.getAll({}, function(data){
+                vm.services = data;
+            });
+        }
 
 		function loadMedia() {
 			Media.query({}, function(data) {
