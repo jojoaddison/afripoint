@@ -1,6 +1,7 @@
-<div>
+<div class="well well-md">
 	<h2 data-translate="afripointApp.event.home.title" class="text-left">Events</h2>
 	<br/>
+	<!--
 	<div class="row">
 		<div class="col-md-12" style="margin-right: auto; margin-left: auto; overflow-y: auto;">
 			<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
@@ -14,6 +15,7 @@
 			</div>
 		</div>
 	</div>
+	-->
 	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
 		<div class="col-md-10" >
 			<div class="row" ng-click="vm.openEvent(event)">
@@ -29,7 +31,7 @@
 		<div class="col-md-2 text-center">
 			<a
 			href="#"
-			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}"
+			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
 			socialshare
 			socialshare-provider="twitter"
 			socialshare-text="{{event.title}}"
@@ -40,7 +42,7 @@
 			href="#"
 			socialshare="share"
 			socialshare-provider="facebook"
-			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}"
+			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
 			socialshare-title="{{event.title}}"
 			socialshare-caption="{{event.title}}"
 			socialshare-description="{{event.description}}"

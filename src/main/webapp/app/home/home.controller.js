@@ -20,18 +20,9 @@
 		vm.openEvent = PageUtils.openEvent;
 		vm.openLearn = PageUtils.openLearn;
 		vm.openPartner = PageUtils.openPartner;
-		vm.mod = mod;
+		vm.mod = PageUtils.mod;
 		vm.page = 0;
 		vm.size = 4;
-
-
-
-		function mod(x, y){
-			var r=(x%y);
-			//console.log("mod: "+r);
-			return r;
-		}
-
 
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();
@@ -39,17 +30,17 @@
 
 
 		$timeout(function() {
+			loadServices();
 			getAccount();
 			loadEvents();
 			loadMedia();
-            loadServices();
 		});
 
-        function loadServices(){
-            AfripointService.getAll({}, function(data){
-                vm.services = data;
-            });
-        }
+    function loadServices(){
+        AfripointService.getAll({}, function(data){
+            vm.services = data;
+        });
+    }
 
 		function loadMedia() {
 			Media.query({}, function(data) {

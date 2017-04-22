@@ -3,9 +3,66 @@
 
     angular
         .module('afripointApp')
-        .controller('EventController', EventController);
+        .controller('EventController', EventController)
+        .controller('EventComponent', EventComponent);
 
     EventController.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
+
+    EventComponent.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
+
+    function EventComponent(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils){
+    	 var vm = this;
+         vm.loadPage = loadPage;
+         vm.predicate = pagingParams.predicate;
+         vm.reverse = pagingParams.ascending;
+         vm.transition = transition;
+         vm.itemsPerPage = 1;//paginationConstants.itemsPerPage;
+         vm.openEvent = PageUtils.openEvent;
+         vm.mod = PageUtils.mod;
+     		 vm.active = 0;
+     		 vm.page = 0;
+     		 vm.size = 1;
+
+         loadAll();
+
+        function loadAll () {
+            Event.current({
+                page: pagingParams.page - 1,
+                size: vm.size,
+                sort: sort()
+            }, onSuccess, onError);
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
+            function onSuccess(data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.events = data;
+                vm.page = pagingParams.page;
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
+        }
+
+        function loadPage(page) {
+            vm.page = page;
+            vm.transition();
+        }
+
+        function transition() {
+            $state.transitionTo($state.$current, {
+                page: vm.page,
+                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
+                search: vm.currentSearch
+            });
+        }
+    }
 
     function EventController(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
 
@@ -15,18 +72,16 @@
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
-        vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.itemsPerPage = 1;//paginationConstants.itemsPerPage;
         vm.openEvent = PageUtils.openEvent;
-        vm.mod = mod;
+        vm.mod = PageUtils.mod;
+    		vm.active = 0;
+    		vm.page = 0;
+    		vm.size = 1;
 
         loadAll();
 
 
-		function mod(x, y){
-			var r=(x%y);
-			//console.log("mod: "+r);
-			return r;
-		}
 
 
         function loadAll () {
@@ -67,4 +122,5 @@
             });
         }
     }
+
 })();

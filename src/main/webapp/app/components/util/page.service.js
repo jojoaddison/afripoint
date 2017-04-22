@@ -12,11 +12,15 @@
     			openEvent: openEvent,
     			openLearn: openLearn,
     			openPartner: openPartner,
-                openService: openService
+          openService: openService,
+          mod: mod
     		};
 
     		return service;
 
+    		function mod(x, y){
+    			return (x%y);
+    		}
 
     		function openPartner() {
     			$uibModal.open(
