@@ -21,7 +21,7 @@
 						controller : 'PartnerDialogController',
 						controllerAs : 'vm',
 						backdrop : 'static',
-						size : 'md',
+						size : 'lg',
 						resolve : {
 							translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
 								$translatePartialLoader.addPart('event');
@@ -95,6 +95,83 @@
 						$translatePartialLoader.addPart('event');
 						$translatePartialLoader.addPart('global');
 						return $translate.refresh();
+					} ]
+				}
+			})
+			.state('events', {
+				parent : 'entity',
+				url : '/events?page&sort&search',
+				data : {
+					authorities : [],
+					pageTitle : 'afripointApp.event.home.title'
+				},
+				views : {
+					'content@' : {
+						templateUrl : 'app/entities/event/event-page.html',
+						controller : 'EventController',
+						controllerAs : 'vm'
+					}
+				},
+				params : {
+					page : {
+						value : '1',
+						squash : true
+					},
+					sort : {
+						value : 'startDate,desc',
+						squash : true
+					},
+					search : null
+				},
+				resolve : {
+					pagingParams : [ '$stateParams', 'PaginationUtil', function($stateParams, PaginationUtil) {
+						return {
+							page : PaginationUtil.parsePage($stateParams.page),
+							sort : $stateParams.sort,
+							predicate : PaginationUtil.parsePredicate($stateParams.sort),
+							ascending : PaginationUtil.parseAscending($stateParams.sort),
+							search : $stateParams.search
+						};
+					} ],
+					translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+						$translatePartialLoader.addPart('event');
+						$translatePartialLoader.addPart('global');
+						return $translate.refresh();
+					} ]
+				}
+			})
+			.state('event-view', {
+				parent : 'event',
+				url : '/view/{id}',
+				data : {
+					authorities : [],
+					pageTitle : 'afripointApp.event.detail.title'
+				},
+				views : {
+					'content@' : {
+						templateUrl : 'app/entities/event/event-view.html',
+						controller : 'EventDetailController',
+						controllerAs : 'evm'
+					}
+				},
+				resolve : {
+					translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+						$translatePartialLoader.addPart('event');
+						$translatePartialLoader.addPart('global');
+						return $translate.refresh();
+					} ],
+					entity : [ '$stateParams', 'Event', function($stateParams, Event) {
+						return Event.get({
+							id : $stateParams.id
+						}).$promise;
+					} ],
+					previousState : [ "$state", function($state) {
+						var currentStateData = {
+							name : $state.current.name || 'event',
+							params : $state.params,
+							url : $state.href($state.current.name, $state.params)
+						};
+						return currentStateData;
 					} ]
 				}
 			})

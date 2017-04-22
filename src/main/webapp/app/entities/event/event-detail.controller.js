@@ -9,9 +9,9 @@
 
     function EventDetailController($scope, $rootScope, $stateParams, previousState, entity, Event) {
         var vm = this;
-
         vm.event = entity;
         vm.previousState = previousState.name;
+        var evm = vm;
 
         var unsubscribe = $rootScope.$on('afripointApp:eventUpdate', function(event, result) {
             vm.event = result;

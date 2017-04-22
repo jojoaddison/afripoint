@@ -17,8 +17,17 @@
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.openEvent = PageUtils.openEvent;
+        vm.mod = mod;
 
         loadAll();
+
+
+		function mod(x, y){
+			var r=(x%y);
+			//console.log("mod: "+r);
+			return r;
+		}
+
 
         function loadAll () {
             Event.query({

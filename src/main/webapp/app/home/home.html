@@ -23,25 +23,48 @@
 				<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
 					<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
 					<div class="carousel-caption bg-primary bg-transparent">
-						<!--
-						<button class="btn btn-white btn-sm pull-right" ng-click="vm.openEvent(event)">
-						<span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span data-translate="entity.action.open"></span>
-						</button>
-						-->
-						<h3 ng-click="vm.openEvent(event)">{{event.title}}</h3>
+						<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
 						<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6 color-primary" style="overflow-y: auto;">
-			<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-click="vm.openEvent(event)"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
-				<div class="col-sm-4">
-					<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+			<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
+				<div class="col-md-10" >
+					<div class="row" ng-click="vm.openEvent(event)">
+						<div class="col-sm-4">
+							<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+						</div>
+						<div class="col-sm-8">
+							<h5>{{event.title}}</h5>
+							<h6>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h6>
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-8">
-					<h4>{{event.title}}</h4>
-					<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+				<div class="col-md-2 text-center">
+					<a
+					href="#"
+					socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}"
+					socialshare
+					socialshare-provider="twitter"
+					socialshare-text="{{event.title}}"
+					socialshare-hashtags="afripoint,afripoint-event"
+					><i class="fa fa-twitter" aria-hidden="true"></i></a>
+					&nbsp;&nbsp;&nbsp;
+					<a
+					href="#"
+					socialshare="share"
+					socialshare-provider="facebook"
+					socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}"
+					socialshare-title="{{event.title}}"
+					socialshare-caption="{{event.title}}"
+					socialshare-description="{{event.description}}"
+					socialshare-quote="{{event.description}}"
+					socialshare-text="{{event.title}}"
+					socialshare-hashtags="#afripoint, #afripoint-event"
+					><i class="fa fa-facebook" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</div>
@@ -78,98 +101,35 @@
 </section>
 
 <aside class="container bg-dark" style="position: relative; top: -80px; width: 100%;">
-    <div class="container text-center">
-        <div class="call-to-action">
-            <h2 data-translate="home.brochure">New brochure edition</h2>
-            <a href="content/docs/afripoint_presentation.pdf" target="_blank" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
-        </div>
-    </div>
+	<div class="container text-center">
+		<div class="call-to-action">
+			<h2 data-translate="home.brochure">New brochure edition</h2>
+			<a href="content/docs/afripoint_presentation.pdf" target="_blank" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
+		</div>
+	</div>
 </aside>
 <section class="container" id="services" style="position: relative; top: -80px; width: 100%;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">At Your Service</h2>
-                <hr class="primary">
-            </div>
-        </div>
-    </div>
-    <div class="container" style="padding: 50px;">
-        <div class="row" style="margin:auto;">
-            <div class="col-lg-3 col-md-6 text-center" ng-repeat="service in vm.services track by service.id">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
-                    <h3>{{service.name}}</h3>
-                    <p class="text-muted">
-                        {{service.description}}
-                    </p>
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <hr class="primary">
-                <h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
-                <hr class="primary">
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="container" style="position: relative; top: -80px; width: 100%; padding: 0">
-    <div style="height: 400px; overflow: hidden; margin-top: 20px;" ng-if="vm.media.length>0">
-        <div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides">
-            <div uib-slide ng-repeat="media in vm.media track by media.id" index="$index">
-                <img data-ng-src="{{'data:' + media.imageContentType + ';base64,' + media.image}}" style="margin:auto; height: 400px; width: auto;">
-                <div class="carousel-caption bg-primary bg-transparent">
-                    <h1>{{media.caption}}</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--
-<section class="container" id="services" style="position: relative; top: -80px; width: 100%;">
-
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-					<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-					<h3>Bar</h3>
-					<p class="text-muted">
-						engaging, culture, lounge, anbience, networking.
-					</p>
-				</div>
+			<div class="col-lg-12 text-center">
+				<h2 class="section-heading">At Your Service</h2>
+				<hr class="primary">
 			</div>
-			<div class="col-lg-3 col-md-6 text-center">
+		</div>
+	</div>
+	<div class="container" style="padding: 50px;">
+		<div class="row" style="margin:auto;">
+			<div class="col-lg-3 col-md-6 text-center" ng-repeat="service in vm.services track by service.id">
 				<div class="service-box">
-					<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-					<h3>Shop</h3>
+					<i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
+					<h3>
+						<a ui-sref="{{service.name}}-page">{{service.name}}</a>
+					</h3>
 					<p class="text-muted">
-						explore, discover, taste, fashion, fresh, trendy!
+						{{service.description}}
 					</p>
 				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-					<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-					<h3>Advertise</h3>
-					<p class="text-muted">
-						gallery, image, market, seen, visibility.
-					</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-					<i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-					<h3>Events</h3>
-					<p class="text-muted">
-						old, young, kids, lifestyle, business!
-					</p>
-				</div>
+
 			</div>
 		</div>
 		<div class="row">
@@ -181,6 +141,71 @@
 
 		</div>
 	</div>
+</section>
+
+<section class="container" style="position: relative; top: -80px; width: 100%; padding: 0">
+	<div style="height: 400px; overflow: hidden; margin-top: 20px;" ng-if="vm.media.length>0">
+		<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides">
+			<div uib-slide ng-repeat="media in vm.media track by media.id" index="$index">
+				<img data-ng-src="{{'data:' + media.imageContentType + ';base64,' + media.image}}" style="margin:auto; height: 400px; width: auto;">
+				<div class="carousel-caption bg-primary bg-transparent">
+					<h1>{{media.caption}}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--
+<section class="container" id="services" style="position: relative; top: -80px; width: 100%;">
+
+<div class="container">
+<div class="row">
+<div class="col-lg-3 col-md-6 text-center">
+<div class="service-box">
+<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+<h3>Bar</h3>
+<p class="text-muted">
+engaging, culture, lounge, anbience, networking.
+</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 text-center">
+<div class="service-box">
+<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+<h3>Shop</h3>
+<p class="text-muted">
+explore, discover, taste, fashion, fresh, trendy!
+</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 text-center">
+<div class="service-box">
+<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+<h3>Advertise</h3>
+<p class="text-muted">
+gallery, image, market, seen, visibility.
+</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 text-center">
+<div class="service-box">
+<i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+<h3>Events</h3>
+<p class="text-muted">
+old, young, kids, lifestyle, business!
+</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 text-center">
+<hr class="primary">
+<h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
+<hr class="primary">
+</div>
+
+</div>
+</div>
 </section>
 -->
 <section class="container no-padding" id="portfolio" style="position: relative; top: -80px; width: 100%; padding:0;">
@@ -267,7 +292,6 @@
 		</div>
 	</div>
 </section>
-
 
 <section class="container" id="contact" style="position: relative; top: -80px; width: 100%;">
 	<div class="container">

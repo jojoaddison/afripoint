@@ -18,6 +18,7 @@
             'ngTouch',
             'ui.tinymce',
             'infinite-scroll',
+            '720kb.socialshare',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             'duScroll'

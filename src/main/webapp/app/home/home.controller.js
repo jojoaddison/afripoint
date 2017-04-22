@@ -24,6 +24,8 @@
 		vm.page = 0;
 		vm.size = 4;
 
+
+
 		function mod(x, y){
 			var r=(x%y);
 			//console.log("mod: "+r);
