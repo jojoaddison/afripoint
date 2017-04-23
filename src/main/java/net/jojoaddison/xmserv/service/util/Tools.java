@@ -582,4 +582,11 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 		return null;
 
 	}
+
+	public static void removeFile(String filePath) {
+		File file = new File(filePath);
+		if(file.exists() && file.isFile()){
+			file.delete();
+		}
+	}
 }

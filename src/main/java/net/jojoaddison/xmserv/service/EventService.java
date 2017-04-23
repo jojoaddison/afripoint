@@ -50,7 +50,7 @@ public class EventService {
     }
 
     private Event convertEvent(Event event){
-    	if(event.getPhoto() == null || event.getPhoto().length() < 0){
+    	if(event.getImage() != null){
 			log.info("converting: {}", event);
     		String fileExt = event.getImageContentType().split("/")[1];
     		String root = env.getProperty("client.root");
@@ -62,6 +62,9 @@ public class EventService {
     		try {
 				fullPath = Tools.createDirectory(fullPath);
 				if(fullPath != null){
+					if(event.getPhoto() != null){
+						Tools.removeFile(root.concat(event.getPhoto()));
+					}
 					log.info("full path: {}", fullPath);
 					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
 					log.info("url path: {}", url);
@@ -71,6 +74,7 @@ public class EventService {
 					          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
 					        stream.write(event.getImage());
 					        stream.close();
+					        
 					event.setImage(null);
 					event.setPhoto(url);
 				}
