@@ -20,7 +20,7 @@
 		<div class="col-md-10" >
 			<div class="row" ng-click="vm.openEvent(event)">
 				<div class="col-sm-4">
-					<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+					<img src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
 				</div>
 				<div class="col-sm-8">
 					<h5>{{event.title}}</h5>

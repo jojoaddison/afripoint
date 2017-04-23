@@ -573,7 +573,7 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 			return path.getAbsolutePath();
 		}
 
-		if(!path.exists() && path.createNewFile()){
+		if(!path.exists() && path.mkdirs()){
 			if(path.exists() && path.isDirectory()){
 				return path.getAbsolutePath();
 			}

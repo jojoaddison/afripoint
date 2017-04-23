@@ -29,7 +29,7 @@ public class EventService {
 
     private final Environment env;
 
-    private final String EVENT_PHOTOS = "/app/entities/event/photos/";
+    private final String EVENT_PHOTOS = "/app/entities/event/photos";
 
 
     public EventService(EventRepository eventRepository, Environment env) {
@@ -51,23 +51,31 @@ public class EventService {
 
     private Event convertEvent(Event event){
     	if(event.getPhoto() == null || event.getPhoto().length() < 0){
+			log.info("converting: {}", event);
     		String fileExt = event.getImageContentType().split("/")[1];
     		String root = env.getProperty("client.root");
+			log.info("root path: {}", root);
     		String sep = Tools.getSeparator();
     		String directory = EVENT_PHOTOS.concat(sep).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
     		String fullPath = root.concat(directory);
+			log.info("before create full path: {}", fullPath);
     		try {
 				fullPath = Tools.createDirectory(fullPath);
-				String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
-				String fileName = fullPath.concat(url);
-				BufferedOutputStream stream =
-				          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
-				        stream.write(event.getImage());
-				        stream.close();
-				byte[] image = new byte[0];
-				event.setImage(image);
-				event.setPhoto(url);
+				if(fullPath != null){
+					log.info("full path: {}", fullPath);
+					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
+					log.info("url path: {}", url);
+					String fileName = root.concat(url);
+					log.debug("file name {}", fileName);
+					BufferedOutputStream stream =
+					          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+					        stream.write(event.getImage());
+					        stream.close();
+					event.setImage(null);
+					event.setPhoto(url);
+				}
 			} catch (IOException e) {
+				e.printStackTrace();
 				log.error(e.getMessage(), e.getCause());
 			}
     	}

@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<div class="row">
-			
+
 			<div class="col-md-10">
 				<h2 class="text-center"><span data-translate="afripointApp.event.detail.title">Event</span> {{evm.event.title}}</h2>
 			</div>
@@ -10,21 +10,14 @@
 					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
 				</button>
 			</div>
-			<!--
-			<div class="col-md-2 pull-right">
-				<button type="button" ui-sref="event-detail.edit({id:evm.event.id})" class="btn btn-primary">
-					<span class="glyphicon glyphicon-pencil"></span>
-					<span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-				</button>
-			</div>
-			-->
+
 		</div>
 	</div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="container-fluid">
-					<img data-ng-src="{{'data:' + evm.event.imageContentType + ';base64,' + evm.event.image}}"
-					style="margin:auto; height: auto; width: 100%;">					
+					<img src="{{evm.event.photo}}"
+					style="margin:auto; height: auto; width: 100%;">
 				</div>
 		</div>
 		<div class="row">
