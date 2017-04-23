@@ -106,3 +106,5 @@ jhipster:
 # ===================================================================
 
 application:
+ client:
+   root: /var/www/html/afripoint/www/app/entities/

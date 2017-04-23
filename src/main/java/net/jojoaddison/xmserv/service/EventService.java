@@ -1,14 +1,21 @@
 package net.jojoaddison.xmserv.service;
 
-import net.jojoaddison.xmserv.domain.Event;
-import net.jojoaddison.xmserv.repository.EventRepository;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.ZonedDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import net.jojoaddison.xmserv.domain.Event;
+import net.jojoaddison.xmserv.repository.EventRepository;
+import net.jojoaddison.xmserv.service.util.Tools;
 
 /**
  * Service Implementation for managing Event.
@@ -20,8 +27,14 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public EventService(EventRepository eventRepository) {
+    private final Environment env;
+
+    private final String EVENT_PHOTOS = "/app/entities/event/photos/";
+
+
+    public EventService(EventRepository eventRepository, Environment env) {
         this.eventRepository = eventRepository;
+        this.env = env;
     }
 
     /**
@@ -32,8 +45,33 @@ public class EventService {
      */
     public Event save(Event event) {
         log.debug("Request to save Event : {}", event);
-        Event result = eventRepository.save(event);
+        Event result = eventRepository.save(convertEvent(event));
         return result;
+    }
+
+    private Event convertEvent(Event event){
+    	if(event.getPhoto().equals(null) || event.getPhoto().length() < 0){
+    		String fileExt = event.getImageContentType().split("/")[1];
+    		String root = env.getProperty("application.client.root");
+    		String sep = Tools.getSeparator();
+    		String directory = EVENT_PHOTOS.concat(sep).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
+    		String fullPath = root.concat(directory);
+    		try {
+				fullPath = Tools.createDirectory(fullPath);
+				String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
+				String fileName = fullPath.concat(url);
+				BufferedOutputStream stream =
+				          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+				        stream.write(event.getImage());
+				        stream.close();
+				byte[] image = new byte[0];
+				event.setImage(image);
+				event.setPhoto(url);
+			} catch (IOException e) {
+				log.error(e.getMessage(), e.getCause());
+			}
+    	}
+    	return event;
     }
 
     /**
