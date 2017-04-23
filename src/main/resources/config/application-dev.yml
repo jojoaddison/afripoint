@@ -58,6 +58,9 @@ spring:
 server:
     port: 8080
 
+client:
+ root: /Users/Kojo/workspace/afripoint/webapp/
+
 # ===================================================================
 # JHipster specific properties
 #
@@ -107,5 +110,3 @@ jhipster:
 # ===================================================================
 
 application:
- client:
-   root: /Users/Kojo/workspace/afripoint/webapp/

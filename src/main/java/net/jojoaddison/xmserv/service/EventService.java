@@ -50,9 +50,9 @@ public class EventService {
     }
 
     private Event convertEvent(Event event){
-    	if(event.getPhoto().equals(null) || event.getPhoto().length() < 0){
+    	if(event.getPhoto() == null || event.getPhoto().length() < 0){
     		String fileExt = event.getImageContentType().split("/")[1];
-    		String root = env.getProperty("application.client.root");
+    		String root = env.getProperty("client.root");
     		String sep = Tools.getSeparator();
     		String directory = EVENT_PHOTOS.concat(sep).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
     		String fullPath = root.concat(directory);
