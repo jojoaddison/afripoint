@@ -49,14 +49,14 @@ spring:
 #        keyAlias: afripoint
 # ===================================================================
 server:
-    port: 8080
+    port: 6000
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
         min-response-size: 1024
 
 client:
- root: /var/www/html/afripoint/www/app/entities/
+ root: /var/www/html/afripoint/www/
 # ===================================================================
 # JHipster specific properties
 #

@@ -21,7 +21,7 @@
          vm.mod = PageUtils.mod;
      		 vm.active = 0;
      		 vm.page = 0;
-     		 vm.size = 1;
+     		 vm.size = 4;
 
          loadAll();
 
@@ -77,7 +77,7 @@
         vm.mod = PageUtils.mod;
     		vm.active = 0;
     		vm.page = 0;
-    		vm.size = 1;
+    		vm.size = 4;
 
         loadAll();
 
