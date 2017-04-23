@@ -55,6 +55,8 @@ server:
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
         min-response-size: 1024
 
+client:
+ root: /var/www/html/afripoint/www/app/entities/
 # ===================================================================
 # JHipster specific properties
 #
@@ -106,5 +108,3 @@ jhipster:
 # ===================================================================
 
 application:
- client:
-   root: /var/www/html/afripoint/www/app/entities/
