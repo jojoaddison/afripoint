@@ -5,9 +5,9 @@
 		.module('afripointApp')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'Media', 'AfripointService','PageUtils' ];
+	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'AfripointService','PageUtils' ];
 
-	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, Media, AfripointService, PageUtils) {
+	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, AfripointService, PageUtils) {
 		var vm = this;
 
 		vm.account = null;
@@ -33,7 +33,6 @@
 			loadServices();
 			getAccount();
 			loadEvents();
-			loadMedia();
 		});
 
     function loadServices(){
@@ -41,12 +40,6 @@
             vm.services = data;
         });
     }
-
-		function loadMedia() {
-			Media.query({}, function(data) {
-				vm.media = data;
-			});
-		}
 
 		function loadEvents() {
 			Event.current({
@@ -71,10 +64,12 @@
 
 		$scope.$watch("images", function(newValue, oldValue) {
 			$timeout(function() {
-				$('.gallery').each(function() {
+				$('.popup-gallery').each(function() {
+					console.log($(this));
 					$(this).magnificPopup({
-						delegate : '.slide',
-						type : 'slide',
+						delegate : '.portfolio-box',
+						type : 'image',
+						//type: $(this).el.attr('type'),
 						gallery : {
 							enabled : true
 						},

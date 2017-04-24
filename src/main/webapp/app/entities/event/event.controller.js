@@ -6,29 +6,29 @@
         .controller('EventController', EventController)
         .controller('EventComponent', EventComponent);
 
-    EventController.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
+    EventController.$inject = ['$state', 'Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
 
-    EventComponent.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
+    EventComponent.$inject = ['$state', 'Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
 
-    function EventComponent(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils){
+    function EventComponent($state, Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils){
     	 var vm = this;
          vm.loadPage = loadPage;
          vm.predicate = pagingParams.predicate;
          vm.reverse = pagingParams.ascending;
          vm.transition = transition;
-         vm.itemsPerPage = 1;//paginationConstants.itemsPerPage;
+         vm.itemsPerPage = paginationConstants.itemsPerPage;
          vm.openEvent = PageUtils.openEvent;
          vm.mod = PageUtils.mod;
      		 vm.active = 0;
      		 vm.page = 0;
-     		 vm.size = 4;
+     		 vm.size = 2;
 
          loadAll();
 
         function loadAll () {
-            Event.current({
+            Event.query({
                 page: pagingParams.page - 1,
-                size: vm.size,
+                size: vm.itemsPerPage,
                 sort: sort()
             }, onSuccess, onError);
             function sort() {
@@ -64,7 +64,7 @@
         }
     }
 
-    function EventController(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
+    function EventController($state, Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
 
         var vm = this;
 
@@ -72,12 +72,12 @@
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
-        vm.itemsPerPage = 1;//paginationConstants.itemsPerPage;
+        vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.openEvent = PageUtils.openEvent;
         vm.mod = PageUtils.mod;
     		vm.active = 0;
     		vm.page = 0;
-    		vm.size = 4;
+    		vm.size = 2;
 
         loadAll();
 

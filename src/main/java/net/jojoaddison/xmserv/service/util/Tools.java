@@ -1,13 +1,20 @@
 package net.jojoaddison.xmserv.service.util;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -589,4 +596,52 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 			file.delete();
 		}
 	}
+
+	public static void createFile(String fileName, byte[] fileContent) throws IOException {
+		BufferedOutputStream stream =
+		          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+		        stream.write(fileContent);
+		        stream.close();
+	}
+
+	public static void setPermission(String fileName, Set<PosixFilePermission> perms) throws IOException{
+		if(perms == null) perms = Tools.getPermissions777();
+		Files.setPosixFilePermissions(Paths.get(fileName), perms);
+	}
+
+	public static Set<PosixFilePermission> getPermissions777(){
+		//using PosixFilePermission to set file permissions 777
+        Set<PosixFilePermission> perms = new HashSet<PosixFilePermission>();
+        //add owners permission
+        perms.add(PosixFilePermission.OWNER_READ);
+        perms.add(PosixFilePermission.OWNER_WRITE);
+        perms.add(PosixFilePermission.OWNER_EXECUTE);
+        //add group permissions
+        perms.add(PosixFilePermission.GROUP_READ);
+        perms.add(PosixFilePermission.GROUP_WRITE);
+        perms.add(PosixFilePermission.GROUP_EXECUTE);
+        //add others permissions
+        perms.add(PosixFilePermission.OTHERS_READ);
+        perms.add(PosixFilePermission.OTHERS_WRITE);
+        perms.add(PosixFilePermission.OTHERS_EXECUTE);
+        return perms;
+    }
+
+	public static Set<PosixFilePermission> getPermissions775(){
+		//using PosixFilePermission to set file permissions 775
+        Set<PosixFilePermission> perms = new HashSet<PosixFilePermission>();
+        //add owners permission
+        perms.add(PosixFilePermission.OWNER_READ);
+        perms.add(PosixFilePermission.OWNER_WRITE);
+        perms.add(PosixFilePermission.OWNER_EXECUTE);
+        //add group permissions
+        perms.add(PosixFilePermission.GROUP_READ);
+        perms.add(PosixFilePermission.GROUP_WRITE);
+        perms.add(PosixFilePermission.GROUP_EXECUTE);
+        //add others permissions
+        perms.add(PosixFilePermission.OTHERS_READ);
+        perms.add(PosixFilePermission.OTHERS_EXECUTE);
+        return perms;
+    }
+
 }

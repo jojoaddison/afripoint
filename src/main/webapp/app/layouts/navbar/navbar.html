@@ -26,7 +26,7 @@
 				-->
 				<!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
 				<li ui-sref-active="active">
-					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.about"
+					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.about" ng-click="vm.collapseNavbar()"
 					class="page-scroll" ui-sref="about">About</a>
 				</li>
 				<li ui-sref-active="active">
@@ -34,7 +34,10 @@
 					class="page-scroll" ui-sref="services">Services</a>
 				</li>
 				<li ui-sref-active="active">
-					<a ui-sref="events" ng-click="vm.collapseNavbar()"> <i class="fa fa-cutlery"></i>&nbsp;<span class="hidden-sm" data-translate="global.menu.events">Events</span> </a>
+					<a ui-sref="events" ng-click="vm.collapseNavbar()">
+						<i class="fa fa-cutlery"></i>&nbsp;
+						<span class="hidden-sm" data-translate="global.menu.events">Events</span>
+					</a>
 				</li>
 				<li ui-sref-active="active">
 					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.location"  ng-click="vm.collapseNavbar()"

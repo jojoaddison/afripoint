@@ -70,11 +70,8 @@ public class EventService {
 					log.info("url path: {}", url);
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
-					BufferedOutputStream stream =
-					          new BufferedOutputStream(new FileOutputStream(new File(fileName)));
-					        stream.write(event.getImage());
-					        stream.close();
-					        
+					Tools.createFile(fileName, event.getImage());
+					Tools.setPermission(fileName, Tools.getPermissions775());
 					event.setImage(null);
 					event.setPhoto(url);
 				}
@@ -145,5 +142,7 @@ public class EventService {
         log.debug("Request to delete Event : {}", id);
         eventRepository.delete(id);
     }
+
+
 
 }

@@ -1,22 +1,22 @@
-<div class="well well-md">
+<div class="well well-md" style="position: relative; top: -20px;">
 <header class="hidden-sm hidden-xs" style="width: 100%; position: relative; top: 1px;">
     <div class="header-content">
         <div class="header-content-inner"></div>
     </div>
 </header>
 
-<section class="container" id="services" style="position: relative; top: -80px; width: 100%;">
+<section class="container" id="services" style="position: relative; top: -10px; width: 100%;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-md-11 text-center">
                 <h2 class="section-heading">At Your Service</h2>
                 <hr class="primary">
             </div>
         </div>
     </div>
-    <div class="container" style="padding: 50px;">
+    <div class="container" style="padding-right: 100px; margin-right: auto; margin-left: auto; ">
         <div class="row" style="margin:auto;">
-            <div class="col-lg-3 col-md-6 text-center" ng-repeat="service in vm.services track by service.id">
+            <div class="col-lg-3 col-md-6 text-center" ng-repeat="service in vm.services track by service.id" ngcloak>
                 <div class="service-box">
                     <i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
                     <h3>
@@ -29,6 +29,7 @@
 
             </div>
         </div>
+        <!--
         <div class="row">
             <div class="col-lg-12 text-center">
                 <hr class="primary">
@@ -36,19 +37,8 @@
                 <hr class="primary">
             </div>
         </div>
+      -->
     </div>
-</section>
-
-<section class="container hidden-lg hidden-xl hidden-md bg-dark" ng-if="vm.events.length>0" style="position: relative; top: -30; padding: 0; width: 100%; z-index: 25">
-	<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
-		<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
-			<img src="{{event.photo}}" class="img-responsive" style="margin:auto; height: 400px; width: auto;">
-			<div class="carousel-caption bg-primary bg-transparent">
-				<h3><a ng-click="vm.openEvent(event)">{{event.title}}</a></h3>
-				<h5><span data-translate="global.messages.from">from</span>:&nbsp;{{event.startTime | date:'EEE dd MMM HH:mm'}}&nbsp; <span data-translate="global.messages.to">to</span>:&nbsp;{{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
-			</div>
-		</div>
-	</div>
 </section>
 
 <section class="container hidden-sm hidden-xs bg-dark border-primary-3" style="max-height:400px; position: relative; top: -80px; padding: 0; width: 100%;" ng-if="vm.events.length>0">
@@ -56,7 +46,7 @@
 		<div class="col-md-6" style="margin-right: -15px; overflow-y: auto;">
 			<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
 				<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
-					<img src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+					<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;" ngcloak>
 					<div class="carousel-caption bg-primary bg-transparent">
 						<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
 						<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
@@ -70,7 +60,7 @@
 				<div class="col-md-10" >
 					<div class="row" ng-click="vm.openEvent(event)">
 						<div class="col-sm-4">
-							<img data-ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+							<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;" ngcloak>
 						</div>
 						<div class="col-sm-8">
 							<h5>{{event.title}}</h5>
@@ -105,35 +95,39 @@
 		</div>
 	</div>
 </section>
-
-<section class="container bg-primary" id="about" style="position: relative; top: -80px; width: 100%;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">We've got just what you need!</h2>
-                <hr class="light">
-                <p class="text-faded">
-                    AfriPoint has everything you need to reach your target!
-                </p>
-                <p class="text-faded">
-                    AFRI POINT liegt im stark belebten Kreuzungsbereich bei der U4 Pilgramgasse / Wienzeile, die Werbe- und Infoscreens in den Schaufenstern von AFRI POINT können so rund ½ Million Menschen erreichen und stehen allen AFRI POINT Partnern zur Verfügung.
-                </p>
-                <p class="text-faded">
-                    AFRI POINT ist der Treffpunkt der Kulturen mit Shop, Bar und ausreichendem Platz für Konferenzen und Events - sowie das Studio von AFRIKA TV das Medium, dass Österreich und Afrika verbindet.
-                </p>
-                <p class="text-faded">
-                    Um sich einen guten Werbeplatz zu sichern bitten wir Sie sich möglichst schnell zu entscheiden.
-                </p>
-                <div class="badge bg-dark">
-                    <a data-translate="home.learn" ng-click="vm.openLearn()" class="btn btn-primary btn-xl sr-button">Learn more!</a>
-                </div>
-            </div>
-        </div>
+<section class="bg-primary hidden-sm hidden-xs" id="about">
+  <div class="row center-80" style="height: 80px; min-width: 100%;">
+    <div class="col-md-12 text-center">
+        <h2>We've got just what you need!</h2>
     </div>
+  </div>
+  <div class="row center-80">
+    <div class="col-md-12">
+      <p class="text-faded text-center">
+          AfriPoint has everything you need to reach your target!
+      </p>
+      <p class="text-faded text-center">
+          AFRI POINT liegt im stark belebten Kreuzungsbereich bei der U4 Pilgramgasse / Wienzeile, die Werbe- und Infoscreens in den Schaufenstern von AFRI POINT können so rund ½ Million Menschen erreichen und stehen allen AFRI POINT Partnern zur Verfügung.
+      </p>
+      <p class="text-faded text-center">
+          AFRI POINT ist der Treffpunkt der Kulturen mit Shop, Bar und ausreichendem Platz für Konferenzen und Events - sowie das Studio von AFRIKA TV das Medium, dass Österreich und Afrika verbindet.
+      </p>
+      <p class="text-faded text-center">
+          Um sich einen guten Werbeplatz zu sichern bitten wir Sie sich möglichst schnell zu entscheiden.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="badge bg-dark">
+          <a data-translate="home.learn" ng-click="vm.openLearn()" class="btn btn-primary btn-xl sr-button">Learn more!</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<aside class="container bg-dark" style="position: relative; top: -80px; width: 100%;">
-    <div class="container text-center">
+<aside class="bg-dark hidden-sm hidden-xs" style="position: relative; top: -100px; width: 100%; height: 200px;">
+    <div class="text-center">
         <div class="call-to-action">
             <h2 data-translate="home.brochure">New brochure edition</h2>
             <a href="content/docs/afripoint_presentation.pdf" target="_blank" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
@@ -154,88 +148,94 @@
     </div>
 </section>
 
-<section class="container no-padding" id="portfolio" style="position: relative; top: -80px; width: 100%; padding:0;">
+<section class="container no-padding" id="portfolio" style="position: relative; top: -100px; width: 100%; padding:0;">
     <div class="container-fluid">
         <div class="row no-gutter popup-gallery">
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point1.jpg" class="portfolio-box"> <img src="content/img/opening/thumb1.jpg" class="img-responsive" alt="">
+                <a href="content/img/opening/point1.jpg" class="portfolio-box">
+                  <img src="content/img/opening/thumb1.jpg" class="img-responsive" alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 1
+                                Location
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point2.jpg" class="portfolio-box"> <img src="content/img/opening/thumb2.jpg" class="img-responsive" alt="">
+                <a href="content/img/opening/point2.jpg" class="portfolio-box">
+                  <img src="content/img/opening/thumb2.jpg" class="img-responsive" alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 2
+                                Bar
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point3.jpg" class="portfolio-box"> <img src="content/img/opening/thumb3.jpg" class="img-responsive" alt="">
+                <a href="content/img/opening/point3.jpg" class="portfolio-box">
+                  <img src="content/img/opening/thumb3.jpg" class="img-responsive" alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 3
+                                Shop
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point4.jpg" class="portfolio-box"> <img src="content/img/opening/point4.jpg" class="img-responsive" alt="">
+                <a href="content/img/opening/point4.jpg" class="portfolio-box">
+                  <img src="content/img/opening/point4.jpg" class="img-responsive" alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 4
+                                Shop
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point5.jpg" class="portfolio-box"> <img src="content/img/opening/point5.jpg" class="img-responsive " alt="">
+                <a href="content/img/opening/point5.jpg" class="portfolio-box">
+                  <img src="content/img/opening/point5.jpg" class="img-responsive " alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 5
+                                Event
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="content/img/opening/point6.jpg" class="portfolio-box"> <img src="content/img/opening/point6.jpg" class="img-responsive" alt="">
+                <a href="content/img/opening/point6.jpg" class="portfolio-box">
+                  <img src="content/img/opening/point6.jpg" class="img-responsive" alt="" title="Shop" type="image">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Afri Point Opening
+                                Afri Point
                             </div>
                             <div class="project-name">
-                                Opening 6
+                                Advertising
                             </div>
                         </div>
                     </div>
