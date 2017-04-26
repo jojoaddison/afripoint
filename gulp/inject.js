@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     inject = require('gulp-inject'),
     es = require('event-stream'),
+    sort = require('gulp-sort'),
     naturalSort = require('gulp-natural-sort'),
     angularFilesort = require('gulp-angular-filesort'),
     bowerFiles = require('main-bower-files');
@@ -11,6 +12,7 @@ var gulp = require('gulp'),
 var handleErrors = require('./handle-errors');
 
 var config = require('./config');
+
 
 module.exports = {
     app: app,
@@ -34,11 +36,13 @@ function vendor() {
         .pipe(inject(gulp.src(bowerFiles(), {read: false}), {
             name: 'bower',
             relative: true
-        }))
+        })).pipe(sort())
         .pipe(gulp.dest(config.app));
 
     return stream;
 }
+
+
 
 function test() {
     return gulp.src(config.test + 'karma.conf.js')

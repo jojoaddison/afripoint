@@ -3,7 +3,7 @@ package net.jojoaddison.xmserv.web.websocket.dto;
 /**
  * DTO for storing a user's activity.
  */
-public class ActivityDTO {
+public class ActivityDTO  {
 
     private String sessionId;
 

@@ -6,6 +6,7 @@
             "home": "Home",
             "about": "About",
             "services": "Services",
+            "events": "Events",
             "location": "Location",
             "contact": "Contact",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",

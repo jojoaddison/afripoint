@@ -1,22 +1,32 @@
 package net.jojoaddison.xmserv.web.rest;
 
-import org.springframework.security.access.annotation.Secured;
-import net.jojoaddison.xmserv.security.AuthoritiesConstants;
-import com.codahale.metrics.annotation.Timed;
-import net.jojoaddison.xmserv.domain.AfripointService;
-
-import net.jojoaddison.xmserv.repository.AfripointServiceRepository;
-import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.codahale.metrics.annotation.Timed;
+
+import io.github.jhipster.web.util.ResponseUtil;
+import net.jojoaddison.xmserv.domain.Afripoint;
+import net.jojoaddison.xmserv.repository.AfripointServiceRepository;
+import net.jojoaddison.xmserv.security.AuthoritiesConstants;
+import net.jojoaddison.xmserv.service.AfripointService;
+import net.jojoaddison.xmserv.service.dto.ServiceDTO;
+import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
 
 /**
  * REST controller for managing AfripointService.
@@ -31,8 +41,11 @@ public class AfripointServiceResource {
 
     private final AfripointServiceRepository afripointServiceRepository;
 
-    public AfripointServiceResource(AfripointServiceRepository afripointServiceRepository) {
+    private final AfripointService afripointService;
+
+    public AfripointServiceResource(AfripointServiceRepository afripointServiceRepository, AfripointService afripointService) {
         this.afripointServiceRepository = afripointServiceRepository;
+        this.afripointService = afripointService;
     }
 
     /**
@@ -45,12 +58,12 @@ public class AfripointServiceResource {
     @PostMapping("/afripoint-services")
 	  @Secured({ AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER })
     @Timed
-    public ResponseEntity<AfripointService> createAfripointService(@RequestBody AfripointService afripointService) throws URISyntaxException {
+    public ResponseEntity<Afripoint> createAfripointService(@RequestBody Afripoint afripointService) throws URISyntaxException {
         log.debug("REST request to save AfripointService : {}", afripointService);
         if (afripointService.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new afripointService cannot already have an ID")).body(null);
         }
-        AfripointService result = afripointServiceRepository.save(afripointService);
+        Afripoint result = afripointServiceRepository.save(afripointService);
         return ResponseEntity.created(new URI("/api/afripoint-services/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -68,12 +81,12 @@ public class AfripointServiceResource {
     @PutMapping("/afripoint-services")
 	  @Secured({ AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER })
     @Timed
-    public ResponseEntity<AfripointService> updateAfripointService(@RequestBody AfripointService afripointService) throws URISyntaxException {
+    public ResponseEntity<Afripoint> updateAfripointService(@RequestBody Afripoint afripointService) throws URISyntaxException {
         log.debug("REST request to update AfripointService : {}", afripointService);
         if (afripointService.getId() == null) {
             return createAfripointService(afripointService);
         }
-        AfripointService result = afripointServiceRepository.save(afripointService);
+        Afripoint result = afripointServiceRepository.save(afripointService);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, afripointService.getId().toString()))
             .body(result);
@@ -86,9 +99,22 @@ public class AfripointServiceResource {
      */
     @GetMapping("/afripoint-services")
     @Timed
-    public List<AfripointService> getAllAfripointServices() {
+    public List<Afripoint> getAllAfripointServices() {
         log.debug("REST request to get all AfripointServices");
-        List<AfripointService> afripointServices = afripointServiceRepository.findAll();
+        List<Afripoint> afripointServices = afripointServiceRepository.findAll();
+        return afripointServices;
+    }
+
+    /**
+     * GET  /afripoint-services : get all the afripointServices.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of afripointServices in body
+     */
+    @GetMapping("/afripoint-services/home")
+    @Timed
+    public List<ServiceDTO> getHomeAfripointServices() {
+        log.debug("REST request to get all AfripointServices");
+        List<ServiceDTO> afripointServices = afripointService.getAll();
         return afripointServices;
     }
 
@@ -100,9 +126,9 @@ public class AfripointServiceResource {
      */
     @GetMapping("/afripoint-services/{id}")
     @Timed
-    public ResponseEntity<AfripointService> getAfripointService(@PathVariable String id) {
+    public ResponseEntity<Afripoint> getAfripointService(@PathVariable String id) {
         log.debug("REST request to get AfripointService : {}", id);
-        AfripointService afripointService = afripointServiceRepository.findOne(id);
+        Afripoint afripointService = afripointServiceRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(afripointService));
     }
 

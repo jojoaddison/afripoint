@@ -2,6 +2,8 @@ package net.jojoaddison.xmserv.domain;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +26,9 @@ public class Authority implements Serializable {
     @Field(value="name")
     private String name;
 
+    @Field(value="resources")
+    private Set<Resource> resources = new HashSet<>();
+
     public String getName() {
         return name;
     }
@@ -31,13 +36,26 @@ public class Authority implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public Authority name(String name){
     	this.name = name;
     	return this;
     }
 
-    @Override
+    public Set<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
+
+	public Authority resources(Set<Resource> resources){
+		this.resources = resources;
+		return this;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -3,22 +3,27 @@
 
     angular
         .module('afripointApp')
-        .controller('EventController', EventController);
+        .controller('EventController', EventController)
+        .controller('EventComponent', EventComponent);
 
-    EventController.$inject = ['Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
+    EventController.$inject = ['$state', 'Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
 
-    function EventController(Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
+    EventComponent.$inject = ['$state', 'Event', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'PageUtils'];
 
-        var vm = this;
+    function EventComponent($state, Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils){
+    	 var vm = this;
+         vm.loadPage = loadPage;
+         vm.predicate = pagingParams.predicate;
+         vm.reverse = pagingParams.ascending;
+         vm.transition = transition;
+         vm.itemsPerPage = paginationConstants.itemsPerPage;
+         vm.openEvent = PageUtils.openEvent;
+         vm.mod = PageUtils.mod;
+     		 vm.active = 0;
+     		 vm.page = 0;
+     		 vm.size = 2;
 
-        vm.loadPage = loadPage;
-        vm.predicate = pagingParams.predicate;
-        vm.reverse = pagingParams.ascending;
-        vm.transition = transition;
-        vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.openEvent = PageUtils.openEvent;
-
-        loadAll();
+         loadAll();
 
         function loadAll () {
             Event.query({
@@ -58,4 +63,64 @@
             });
         }
     }
+
+    function EventController($state, Event, ParseLinks, AlertService, paginationConstants, pagingParams, PageUtils) {
+
+        var vm = this;
+
+        vm.loadPage = loadPage;
+        vm.predicate = pagingParams.predicate;
+        vm.reverse = pagingParams.ascending;
+        vm.transition = transition;
+        vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.openEvent = PageUtils.openEvent;
+        vm.mod = PageUtils.mod;
+    		vm.active = 0;
+    		vm.page = 0;
+    		vm.size = 2;
+
+        loadAll();
+
+
+
+
+        function loadAll () {
+            Event.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort()
+            }, onSuccess, onError);
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
+            function onSuccess(data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.events = data;
+                vm.page = pagingParams.page;
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
+        }
+
+        function loadPage(page) {
+            vm.page = page;
+            vm.transition();
+        }
+
+        function transition() {
+            $state.transitionTo($state.$current, {
+                page: vm.page,
+                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
+                search: vm.currentSearch
+            });
+        }
+    }
+
 })();

@@ -1,14 +1,21 @@
 package net.jojoaddison.xmserv.service;
 
-import net.jojoaddison.xmserv.domain.Event;
-import net.jojoaddison.xmserv.repository.EventRepository;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.ZonedDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import net.jojoaddison.xmserv.domain.Event;
+import net.jojoaddison.xmserv.repository.EventRepository;
+import net.jojoaddison.xmserv.service.util.Tools;
 
 /**
  * Service Implementation for managing Event.
@@ -20,8 +27,14 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public EventService(EventRepository eventRepository) {
+    private final Environment env;
+
+    private final String EVENT_PHOTOS = "/app/entities/event/photos";
+
+
+    public EventService(EventRepository eventRepository, Environment env) {
         this.eventRepository = eventRepository;
+        this.env = env;
     }
 
     /**
@@ -32,8 +45,42 @@ public class EventService {
      */
     public Event save(Event event) {
         log.debug("Request to save Event : {}", event);
-        Event result = eventRepository.save(event);
+        Event result = eventRepository.save(convertEvent(event));
         return result;
+    }
+
+    private Event convertEvent(Event event){
+    	if(event.getImage() != null){
+			log.info("converting: {}", event);
+    		String fileExt = event.getImageContentType().split("/")[1];
+    		String root = env.getProperty("client.root");
+			log.info("root path: {}", root);
+    		String sep = Tools.getSeparator();
+    		String directory = EVENT_PHOTOS.concat(sep).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
+    		String fullPath = root.concat(directory);
+			log.info("before create full path: {}", fullPath);
+    		try {
+				fullPath = Tools.createDirectory(fullPath);
+				if(fullPath != null){
+					if(event.getPhoto() != null){
+						Tools.removeFile(root.concat(event.getPhoto()));
+					}
+					log.info("full path: {}", fullPath);
+					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
+					log.info("url path: {}", url);
+					String fileName = root.concat(url);
+					log.debug("file name {}", fileName);
+					Tools.createFile(fileName, event.getImage());
+					Tools.setPermission(fileName, Tools.getPermissions775());
+					event.setImage(null);
+					event.setPhoto(url);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.error(e.getMessage(), e.getCause());
+			}
+    	}
+    	return event;
     }
 
     /**
@@ -95,5 +142,7 @@ public class EventService {
         log.debug("Request to delete Event : {}", id);
         eventRepository.delete(id);
     }
+
+
 
 }

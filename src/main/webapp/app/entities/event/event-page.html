@@ -1,0 +1,59 @@
+<div class="well well-md">
+	<h2 data-translate="afripointApp.event.home.title" class="text-left">Events</h2>
+	<br/>
+	<!--
+	<div class="row">
+		<div class="col-md-12" style="margin-right: auto; margin-left: auto; overflow-y: auto;">
+			<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
+				<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
+					<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+					<div class="carousel-caption bg-primary bg-transparent">
+						<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
+						<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
+		<div class="col-md-10" >
+			<div class="row" ng-click="vm.openEvent(event)">
+				<div class="col-sm-4">
+					<img src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+				</div>
+				<div class="col-sm-8">
+					<h5>{{event.title}}</h5>
+					<h6>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h6>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 text-center">
+			<a
+			href="#"
+			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
+			socialshare
+			socialshare-provider="twitter"
+			socialshare-text="{{event.title}}"
+			socialshare-hashtags="afripoint,afripoint-event"
+			><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			&nbsp;&nbsp;&nbsp;
+			<a
+			href="#"
+			socialshare="share"
+			socialshare-provider="facebook"
+			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
+			socialshare-title="{{event.title}}"
+			socialshare-caption="{{event.title}}"
+			socialshare-description="{{event.description}}"
+			socialshare-quote="{{event.description}}"
+			socialshare-text="{{event.title}}"
+			socialshare-hashtags="#afripoint, #afripoint-event"
+			><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		</div>
+	</div>
+	<div class="text-center">
+		<jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+	</div>
+	<uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

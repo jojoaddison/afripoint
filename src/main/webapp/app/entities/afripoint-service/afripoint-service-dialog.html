@@ -1,103 +1,106 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title page-header" id="afripointServiceLabel" data-translate="afripointApp.afripointService.home.createOrEditLabel" ng-if="vm.afripointService.id!=null">Service management</h4>
-        <h4 class="modal-title page-header" id="editAfripointServiceLabel" data-translate="afripointApp.afripointService.home.createLabel" ng-if="vm.afripointService.id==null">Create a new Service</h4>
-    </div>
-    <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+		ng-click="vm.clear()">
+			&times;
+		</button>
+		<h4 class="modal-title page-header" id="afripointServiceLabel" data-translate="afripointApp.afripointService.home.createOrEditLabel" ng-if="vm.afripointService.id!=null">Service management</h4>
+		<h4 class="modal-title page-header" id="editAfripointServiceLabel" data-translate="afripointApp.afripointService.home.createLabel" ng-if="vm.afripointService.id==null">Create a new Service</h4>
+	</div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
 
-        <div class="row voffset3">
-          <div class="col-md-4" style="border-right:1px solid black;">
-              <div class="row-fluid">
-                <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.afripointService)" ngf-pattern="'image/*'">
-                    <label class="control-label" data-translate="afripointApp.afripointService.photo" for="field_photo">Photo</label>
-                    <button type="button" ng-click="vm.afripointService.photo=null;vm.afripointService.photoContentType=null;"
-                            class="btn btn-default btn-xs pull-right" ng-if="vm.afripointService.photo">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                    <div>
-                        <img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" style="width: 100%; height:auto" ng-if="vm.afripointService.photo" alt="afripointService image"/>
-                        <div ng-if="vm.afripointService.photo" class="help-block clearfix">
-                            <span class="pull-left">{{vm.afripointService.photoContentType}}, {{vm.byteSize(vm.afripointService.photo)}}</span>
-                        </div>
-                        <button type="button" ngf-select class="btn btn-default btn-block" ng-if="!vm.afripointService.photo"
-                                ngf-change="vm.setPhoto($file, vm.afripointService)" accept="image/*" data-translate="entity.action.addimage">
-                            Add image
-                        </button>
-                        <button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.afripointService.photo"
-                                ngf-change="vm.setPhoto($file, vm.afripointService)" accept="image/*" data-translate="entity.action.changeimage">
-                            Change image
-                        </button>
-                    </div>
-                    <input type="hidden" class="form-control" name="photo" id="field_photo"
-                            ng-model="vm.afripointService.photo"
-                            />
-                    <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
-                            ng-model="vm.afripointService.photoContentType" />
-                </div>
-              </div>
-              <div class="row-fluid">
-                <div class="form-group">
-                    <label class="control-label" data-translate="afripointApp.afripointService.contact" for="field_contact">Contact</label>
-                    <select ng-model="vm.afripointService.contact" class="form-control" ng-options="contact.name as contact.name for contact in vm.contacts track by contact.id">
-          						<option value="">--NA--</option>
-          					</select>
-                </div>
-              </div>
-              <div class="row-fluid">
-                <div class="form-group">
-                    <label class="control-label" data-translate="afripointApp.afripointService.icon" for="field_icon">Icon</label>
-                    <select ng-model="vm.afripointService.icon" class="form-control" ng-options="icon as icon for icon in vm.icons track by $index">
-          						<option value="">NA</option>
-          					</select>
-                </div>
-              </div>
-          </div>
-          <div class="col-md-8">
+		<div class="row voffset3">
+			<div class="col-md-4" style="border-right:1px solid black;">
+				<div class="row-fluid">
+					<div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.afripointService)" ngf-pattern="'image/*'">
+						<label class="control-label" data-translate="afripointApp.afripointService.photo" for="field_photo">Photo</label>
+						<button type="button" ng-click="vm.afripointService.photo=null;vm.afripointService.photoContentType=null;"
+						class="btn btn-default btn-xs pull-right" ng-if="vm.afripointService.photo">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<div>
+							<img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" style="width: 100%; height:auto" ng-if="vm.afripointService.photo" alt="afripointService image"/>
+							<div ng-if="vm.afripointService.photo" class="help-block clearfix">
+								<span class="pull-left">{{vm.afripointService.photoContentType}}, {{vm.byteSize(vm.afripointService.photo)}}</span>
+							</div>
+							<button type="button" ngf-select class="btn btn-default btn-block" ng-if="!vm.afripointService.photo"
+							ngf-change="vm.setPhoto($file, vm.afripointService)" accept="image/*" data-translate="entity.action.addimage">
+								Add image
+							</button>
+							<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.afripointService.photo"
+							ngf-change="vm.setPhoto($file, vm.afripointService)" accept="image/*" data-translate="entity.action.changeimage">
+								Change image
+							</button>
+						</div>
+						<input type="hidden" class="form-control" name="photo" id="field_photo"
+						ng-model="vm.afripointService.photo"
+						/>
+						<input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+						ng-model="vm.afripointService.photoContentType" />
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="form-group">
+						<label class="control-label" data-translate="afripointApp.afripointService.contact" for="field_contact">Contact</label>
+						<select id="field_contact" ng-model="vm.afripointService.contact" class="form-control" ng-options="contact.name as contact.name for contact in vm.contacts track by contact.id">
+							<option value="">--NA--</option>
+						</select>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="form-group">
+						<label class="control-label" data-translate="afripointApp.afripointService.icon" for="field_icon">Icon</label>
+						<select id="field_icon" ng-model="vm.afripointService.icon" class="form-control" ng-options="icon for icon in vm.icons track by icon">
+							<option value="">No icon</option>
+						</select>
+                        <input type="text" class="form-control" name="icon" id="field_icon_custom"
+                               ng-model="vm.afripointService.icon" />
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
 
-                    <div class="form-group">
-                        <label class="control-label" data-translate="afripointApp.afripointService.name" for="field_name">Name</label>
-                        <input type="text" class="form-control" name="name" id="field_name"
-                                ng-model="vm.afripointService.name"
-                                />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="afripointApp.afripointService.description" for="field_description">Description</label>
-                        <input type="text" class="form-control" name="description" id="field_description"
-                                ng-model="vm.afripointService.description"
-                                />
-                    </div>
-                    <div class="page-header">
-                      Preview
-                    </div>
-                    <div class="col-md-6 text-center">
-              				<div class="service-box">
-                        <img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" ng-if="vm.afripointService.photo"
-                        style="width: 90%; height:auto" ng-if="vm.afripointService.photo" alt="afripointService image"/>
-              					<i class="fa fa-4x fa-{{vm.afripointService.icon}} text-primary sr-icons" id="icon_field" ng-if="vm.afripointService.icon"></i>
-              					<h3>{{vm.afripointService.name}}</h3>
-              					<p class="text-muted">
-              						{{vm.afripointService.description}}
-              					</p>
-              				</div>
-              			</div>
+				<div class="form-group">
+					<label class="control-label" data-translate="afripointApp.afripointService.name" for="field_name">Name</label>
+					<input type="text" class="form-control" name="name" id="field_name"
+					ng-model="vm.afripointService.name"
+					/>
+				</div>
+				<div class="form-group">
+					<label class="control-label" data-translate="afripointApp.afripointService.description" for="field_description">Description</label>
+					<input type="text" class="form-control" name="description" id="field_description"
+					ng-model="vm.afripointService.description"
+					/>
+				</div>
+				<div class="page-header">
+					Preview
+				</div>
+				<div class="col-md-6 text-center">
+					<div class="service-box">
+						<img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" ng-if="vm.afripointService.photo"
+						style="width: 90%; height:auto" ng-if="vm.afripointService.photo" alt="afripointService image"/>
+						<i class="fa fa-4x fa-{{vm.afripointService.icon}} text-primary sr-icons" id="icon_field" ng-if="vm.afripointService.icon"></i>
+						<h3>{{vm.afripointService.name}}</h3>
+						<p class="text-muted">
+							{{vm.afripointService.description}}
+						</p>
+					</div>
+				</div>
 
-          </div>
+			</div>
 
-        </div>
-        <hr>
+		</div>
+		<hr>
 
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
-        </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
-        </button>
-    </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+			<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+		</button>
+		<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+			<span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+		</button>
+	</div>
 </form>

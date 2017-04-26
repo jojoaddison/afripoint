@@ -56,7 +56,10 @@ spring:
 #        keyAlias: afripoint
 # ===================================================================
 server:
-    port: 8080
+    port: 6000
+
+client:
+ root: /Users/Kojo/workspace/afripoint/webapp/
 
 # ===================================================================
 # JHipster specific properties
@@ -70,7 +73,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: my-secret-token-to-change-in-production
+                secret: adfaGKJLKESFADFDaddfafiouzweklspidfjlWERTZQETZRWWRTZUUREWEWEahdigldhshalkdiochskejdukqehdkjs
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

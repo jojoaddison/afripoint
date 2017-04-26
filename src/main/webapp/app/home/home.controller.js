@@ -5,9 +5,9 @@
 		.module('afripointApp')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'Media', 'PageUtils' ];
+	HomeController.$inject = [ '$scope', 'Principal', 'LoginService', '$state', '$timeout', 'Event', 'AfripointService','PageUtils' ];
 
-	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, Media, PageUtils) {
+	function HomeController($scope, Principal, LoginService, $state, $timeout, Event, AfripointService, PageUtils) {
 		var vm = this;
 
 		vm.account = null;
@@ -20,16 +20,9 @@
 		vm.openEvent = PageUtils.openEvent;
 		vm.openLearn = PageUtils.openLearn;
 		vm.openPartner = PageUtils.openPartner;
-		vm.mod = mod;
+		vm.mod = PageUtils.mod;
 		vm.page = 0;
 		vm.size = 4;
-
-		function mod(x, y){
-			var r=(x%y);
-			//console.log("mod: "+r);
-			return r;
-		}
-
 
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();
@@ -37,16 +30,16 @@
 
 
 		$timeout(function() {
+			loadServices();
 			getAccount();
 			loadEvents();
-			loadMedia();
 		});
 
-		function loadMedia() {
-			Media.query({}, function(data) {
-				vm.media = data;
-			});
-		}
+    function loadServices(){
+        AfripointService.getAll({}, function(data){
+            vm.services = data;
+        });
+    }
 
 		function loadEvents() {
 			Event.current({
@@ -71,10 +64,12 @@
 
 		$scope.$watch("images", function(newValue, oldValue) {
 			$timeout(function() {
-				$('.gallery').each(function() {
+				$('.popup-gallery').each(function() {
+					console.log($(this));
 					$(this).magnificPopup({
-						delegate : '.slide',
-						type : 'slide',
+						delegate : '.portfolio-box',
+						type : 'image',
+						//type: $(this).el.attr('type'),
 						gallery : {
 							enabled : true
 						},
