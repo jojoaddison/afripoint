@@ -1,14 +1,17 @@
 package net.jojoaddison.xmserv.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import net.jojoaddison.xmserv.service.dto.AuditUserDTO;
 
 /**
  * A Album.
@@ -29,10 +32,10 @@ public class Album implements Serializable {
     private String description;
 
     @Field("created_by")
-    private String createdBy;
+    private AuditUserDTO createdBy;
 
     @Field("modified_by")
-    private String modifiedBy;
+    private AuditUserDTO modifiedBy;
 
     @Field("created_date")
     private ZonedDateTime createdDate;
@@ -43,7 +46,9 @@ public class Album implements Serializable {
     @Field("media")
     private Set<Media> media;
 
-    @NotNull
+    @Field("picture_url")
+    private String pictureUrl;
+    
     @Field("photo")
     private byte[] photo;
 
@@ -71,7 +76,20 @@ public class Album implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
+    public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+    public Album pictureUrl(String pictureUrl){
+    	this.pictureUrl = pictureUrl;
+    	return this;
+    }
+    
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
+	public String getDescription() {
         return description;
     }
 
@@ -84,29 +102,29 @@ public class Album implements Serializable {
         this.description = description;
     }
 
-    public String getCreatedBy() {
+    public AuditUserDTO getCreatedBy() {
         return createdBy;
     }
 
-    public Album createdBy(String createdBy) {
+    public Album createdBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
     }
 
-    public String getModifiedBy() {
+    public AuditUserDTO getModifiedBy() {
         return modifiedBy;
     }
 
-    public Album modifiedBy(String modifiedBy) {
+    public Album modifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
 
-    public void setModifiedBy(String modifiedBy) {
+    public void setModifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 

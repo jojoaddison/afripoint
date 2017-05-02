@@ -32,6 +32,7 @@
             "address": "Address",
             "photo": "Photo",
             "titles": {
+            	"org": "Organisation",
             	"mr": "Mr.",
             	"mrs": "Mrs.",
             	"miss": "Miss.",

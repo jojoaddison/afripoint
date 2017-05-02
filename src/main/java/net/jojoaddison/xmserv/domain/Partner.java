@@ -62,6 +62,8 @@ public class Partner implements Serializable {
     @Field("notes")
     private String notes;
     
+    @Field("image_url")
+    private String imageUrl;
 
     @Field("image")
     private byte[] image;
@@ -347,6 +349,19 @@ public class Partner implements Serializable {
 	    }
 
 	    
+	    public String getImageUrl() {
+			return imageUrl;
+		}
+
+		public void setImageUrl(String imageUrl) {
+			this.imageUrl = imageUrl;
+		}
+		
+		public Partner imageUrl(String imageUrl){
+			this.imageUrl = imageUrl;
+			return this;
+		}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -386,4 +401,5 @@ public class Partner implements Serializable {
             ", continent='" + continent + "'" +
             '}';
     }
+
 }

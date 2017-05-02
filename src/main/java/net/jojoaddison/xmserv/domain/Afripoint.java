@@ -1,12 +1,14 @@
 package net.jojoaddison.xmserv.domain;
 
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.io.Serializable;
-import java.time.ZonedDateTime;
-import java.util.Objects;
+import net.jojoaddison.xmserv.service.dto.AuditUserDTO;
 
 /**
  * A AfripointService.
@@ -45,10 +47,10 @@ public class Afripoint implements Serializable {
     private ZonedDateTime modifiedDate;
 
     @Field("created_by")
-    private String createdBy;
+    private AuditUserDTO createdBy;
 
     @Field("modified_by")
-    private String modifiedBy;
+    private AuditUserDTO modifiedBy;
 
     public String getId() {
         return id;
@@ -162,29 +164,29 @@ public class Afripoint implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public String getCreatedBy() {
+    public AuditUserDTO getCreatedBy() {
         return createdBy;
     }
 
-    public Afripoint createdBy(String createdBy) {
+    public Afripoint createdBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
     }
 
-    public String getModifiedBy() {
+    public AuditUserDTO getModifiedBy() {
         return modifiedBy;
     }
 
-    public Afripoint modifiedBy(String modifiedBy) {
+    public Afripoint modifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
 
-    public void setModifiedBy(String modifiedBy) {
+    public void setModifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 

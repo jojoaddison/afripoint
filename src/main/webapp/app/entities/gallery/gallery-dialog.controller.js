@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('GalleryDialogController', GalleryDialogController);
 
-    GalleryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Gallery'];
+    GalleryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Gallery', 'Principal'];
 
-    function GalleryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Gallery) {
+    function GalleryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Gallery, Principal) {
         var vm = this;
 
         vm.gallery = entity;
@@ -17,8 +17,12 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
+        
 
         $timeout(function (){
+        	Principal.identity().then(function(account) {
+				vm.account = account;
+			});
             angular.element('.form-group:eq(1)>input').focus();
         });
 
@@ -29,8 +33,14 @@
         function save () {
             vm.isSaving = true;
             if (vm.gallery.id !== null) {
+            	vm.gallery.modifiedDate = new Date();
+            	vm.gallery.modifiedBy = vm.account;
                 Gallery.update(vm.gallery, onSaveSuccess, onSaveError);
             } else {
+            	vm.gallery.createdDate = new Date();
+            	vm.gallery.modifiedDate = new Date();
+            	vm.gallery.createdBy = vm.account;
+            	vm.gallery.modifiedBy = vm.account;
                 Gallery.save(vm.gallery, onSaveSuccess, onSaveError);
             }
         }

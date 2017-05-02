@@ -7,6 +7,7 @@
             "about": "About",
             "services": "Services",
             "events": "Events",
+            "galleries": "Galleries",
             "location": "Location",
             "contact": "Contact",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
@@ -88,7 +89,8 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id": "ID",
+            "details": "Details"
         },
         "ribbon": {
             "dev":"Development"
@@ -106,7 +108,10 @@
             "open": "Open",
             "save": "Save",
             "view": "View",
-            "close": "Close"
+            "close": "Close",
+            "add": "Add",
+            "new": "New",
+            "addMedia": "Add media"
         },
         "detail": {
             "field": "Field",
@@ -138,5 +143,5 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "&copy;www.afripoint.at&reg;"
 }

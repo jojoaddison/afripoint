@@ -9,6 +9,29 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
+        .state('galleries', {
+            parent: 'app',
+            url: '/galleries',
+            data: {
+                authorities: [],
+                pageTitle: 'afripointApp.gallery.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/gallery/home.html',
+                    controller: 'GalleryHomeController',
+                    controllerAs: 'vm'
+                }
+            },
+            
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('gallery');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
         .state('gallery', {
             parent: 'entity',
             url: '/gallery',
@@ -30,10 +53,54 @@
                     return $translate.refresh();
                 }]
             }
+        })        
+        .state('gallery-album-new', {
+            parent: 'gallery-detail',
+            url: '/album/new',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/album/album-dialog.html',
+                    controller: 'AlbumDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                name: null,
+                                description: null,
+                                createdBy: null,
+                                modifiedBy: null,
+                                createdDate: null,
+                                modifiedDate: null,
+                                media: [],
+                                photo: null,
+                                photoContentType: null,
+                                id: null
+                            };
+                        },
+                        gallery: ['$stateParams', 'Gallery', function($stateParams, Gallery) {
+                            return Gallery.get({id : $stateParams.id}).$promise;
+                        }],
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                            $translatePartialLoader.addPart('gallery');
+                            $translatePartialLoader.addPart('album');
+                            return $translate.refresh();
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', null, { reload: true });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
         })
         .state('gallery-detail', {
             parent: 'gallery',
-            url: '/gallery/{id}',
+            url: '/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'afripointApp.gallery.detail.title'
@@ -48,6 +115,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('gallery');
+                    $translatePartialLoader.addPart('album');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Gallery', function($stateParams, Gallery) {
@@ -75,7 +143,7 @@
                     controller: 'GalleryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
-                    size: 'lg',
+                    size: 'md',
                     resolve: {
                         entity: ['Gallery', function(Gallery) {
                             return Gallery.get({id : $stateParams.id}).$promise;
@@ -100,7 +168,7 @@
                     controller: 'GalleryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
-                    size: 'lg',
+                    size: 'md',
                     resolve: {
                         entity: function () {
                             return {
@@ -135,7 +203,7 @@
                     controller: 'GalleryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
-                    size: 'lg',
+                    size: 'md',
                     resolve: {
                         entity: ['Gallery', function(Gallery) {
                             return Gallery.get({id : $stateParams.id}).$promise;

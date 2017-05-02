@@ -18,10 +18,12 @@
             "name": "Name",
             "picture": "Picture",
             "album": "Album",
-            "createdDate": "Created Date",
-            "modifiedDate": "Modified Date",
-            "createdBy": "Created By",
-            "modifiedBy": "Modified By"
+            "albums": "Albums",
+            "noAlbum": "No album available",
+            "createdDate": "Created Date:&nbsp;",
+            "modifiedDate": "Modified Date:&nbsp;",
+            "createdBy": "Created By:&nbsp;",
+            "modifiedBy": "Modified By:&nbsp;"
         }
     }
 }

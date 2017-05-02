@@ -21,7 +21,7 @@
 			<div class="col-md-4 form-group" ngf-drop ngf-change="vm.setBytes($file)" ngf-pattern="'image/*'">
 				<label class="control-label" data-translate="userManagement.profile" for="field_photo">Profile</label>
 				<div ng-if="vm.user.image" style="max-height: 400px; overflow: hidden;">
-					<img data-ng-src="{{'data:' + vm.user.imageContentType + ';base64,' + vm.user.image}}" style="max-width: 100%; height:auto" ng-if="vm.user.image" alt="user image"/>
+					<img ng-src="{{vm.user.imageUrl}}" style="max-width: 100%; height:auto" ng-if="vm.user.imageUrl" alt="user image"/>
 				</div>
 				<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.user.image==null"
 				ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.addimage">

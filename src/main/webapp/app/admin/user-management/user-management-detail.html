@@ -14,8 +14,8 @@
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-3">
-				<div class="container-fluid" ng-if="vm.user.image!==null">
-					<img data-ng-src="{{'data:' + vm.user.imageContentType + ';base64,' + vm.user.image}}"
+				<div class="container-fluid" ng-if="vm.user.imageUrl!==null">
+					<img ng-src="{{vm.user.imageUrl}}"
 					style="margin:auto; height: auto; width: 100%;">					
 				</div>
 			</div>

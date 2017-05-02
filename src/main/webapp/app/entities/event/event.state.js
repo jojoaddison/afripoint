@@ -76,7 +76,7 @@
                           squash: true
                       },
                       sort: {
-                          value: 'startTime,asc',
+                          value: 'endTime,asc',
                           squash: true
                       },
                       search: null
@@ -118,7 +118,7 @@
                           squash: true
                       },
                       sort: {
-                          value: 'startTime,asc',
+                          value: 'endTime,desc',
                           squash: true
                       },
                       search: null

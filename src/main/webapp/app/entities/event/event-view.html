@@ -14,9 +14,9 @@
 		</div>
 	</div>
 	<div class="panel-body">
-		<div class="row">
+		<div class="row" ng-if="evm.event.photo">
 			<div class="container-fluid">
-					<img src="{{evm.event.photo}}"
+					<img ng-src="{{evm.event.photo}}"
 					style="margin:auto; height: auto; width: 100%;">
 				</div>
 		</div>

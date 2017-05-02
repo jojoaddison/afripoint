@@ -12,6 +12,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import net.jojoaddison.xmserv.service.dto.AuditUserDTO;
+
 /**
  * A Gallery.
  */
@@ -29,7 +31,9 @@ public class Gallery implements Serializable {
     @Field("name")
     private String name;
 
-    @NotNull
+    @Field("picture_url")
+    private String pictureUrl;
+    
     @Field("picture")
     private byte[] picture;
 
@@ -46,10 +50,10 @@ public class Gallery implements Serializable {
     private ZonedDateTime modifiedDate;
 
     @Field("created_by")
-    private User createdBy;
+    private AuditUserDTO createdBy;
 
     @Field("modified_by")
-    private User modifiedBy;
+    private AuditUserDTO modifiedBy;
 
     public String getId() {
         return id;
@@ -72,7 +76,20 @@ public class Gallery implements Serializable {
         this.name = name;
     }
 
-    public byte[] getPicture() {
+    public String getPictureUrl() {
+		return pictureUrl;
+	}
+    
+    public Gallery pictureUrl(String pictureUrl){
+    	this.pictureUrl = pictureUrl;
+    	return this;
+    }
+    	
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
+	public byte[] getPicture() {
         return picture;
     }
 
@@ -137,29 +154,29 @@ public class Gallery implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public User getCreatedBy() {
+    public AuditUserDTO getCreatedBy() {
         return createdBy;
     }
 
-    public Gallery createdBy(User createdBy) {
+    public Gallery createdBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(AuditUserDTO createdBy) {
         this.createdBy = createdBy;
     }
 
-    public User getModifiedBy() {
+    public AuditUserDTO getModifiedBy() {
         return modifiedBy;
     }
 
-    public Gallery modifiedBy(User modifiedBy) {
+    public Gallery modifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
 
-    public void setModifiedBy(User modifiedBy) {
+    public void setModifiedBy(AuditUserDTO modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 

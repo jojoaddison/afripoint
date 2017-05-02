@@ -6,6 +6,7 @@
             "home": "Accueil",
             "about": "Sur",
             "services": "Un service",
+            "galleries": "Galerie",
             "events": "Events",
             "location": "Emplacement",
             "contact": "Contact",
@@ -88,7 +89,8 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id": "ID",
+            "details": "Details"
         },
         "ribbon": {
             "dev":"Développement"
@@ -106,7 +108,10 @@
             "open": "Ouvrir",
             "save": "Sauvegarder",
             "view": "Voir",
-            "close": "Fermer"
+            "close": "Fermer",
+            "add": "Ajouter",
+            "new": "Nouveau",
+            "addMedia": "Ajouter media"
         },
         "detail": {
             "field": "Champs",
@@ -138,5 +143,5 @@
         "emailexists": "Email déja utilisé !",
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
     },
-    "footer": "Ceci est votre pied de page"
+    "footer": "&copy;www.afripoint.at&reg;"
 }

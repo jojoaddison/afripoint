@@ -582,6 +582,7 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 
 		if(!path.exists() && path.mkdirs()){
 			if(path.exists() && path.isDirectory()){
+				Tools.setPermission(path.getAbsolutePath(), Tools.getPermissions775());
 				return path.getAbsolutePath();
 			}
 		}
@@ -643,5 +644,23 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
         perms.add(PosixFilePermission.OTHERS_EXECUTE);
         return perms;
     }
+
+	public static void setPermissions(String dir, Set<PosixFilePermission> perms) throws IOException {
+		// Set permissions recursively
+		File path = new File(dir);
+		if(path.isDirectory()){
+			Tools.setPermissions(path, perms);
+		}
+		
+	}
+	
+	public static void setPermissions(File dir, Set<PosixFilePermission> perms) throws IOException{
+		Tools.setPermission(dir.getAbsolutePath(), perms);
+		for(File d: dir.listFiles()){
+			if(d.isDirectory()){
+				Tools.setPermissions(d, perms);
+			}
+		}
+	}
 
 }

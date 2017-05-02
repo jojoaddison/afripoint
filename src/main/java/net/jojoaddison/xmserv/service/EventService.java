@@ -1,8 +1,5 @@
 package net.jojoaddison.xmserv.service;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 
@@ -57,7 +54,7 @@ public class EventService {
 			log.info("root path: {}", root);
     		String sep = Tools.getSeparator();
     		String directory = EVENT_PHOTOS.concat(sep).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
-    		String fullPath = root.concat(directory);
+    		String fullPath = root.concat(directory).toLowerCase();
 			log.info("before create full path: {}", fullPath);
     		try {
 				fullPath = Tools.createDirectory(fullPath);
@@ -66,12 +63,13 @@ public class EventService {
 						Tools.removeFile(root.concat(event.getPhoto()));
 					}
 					log.info("full path: {}", fullPath);
-					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt);
+					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt).toLowerCase();
 					log.info("url path: {}", url);
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, event.getImage());
 					Tools.setPermission(fileName, Tools.getPermissions775());
+					Tools.setPermissions(root.concat(EVENT_PHOTOS), Tools.getPermissions775());
 					event.setImage(null);
 					event.setPhoto(url);
 				}

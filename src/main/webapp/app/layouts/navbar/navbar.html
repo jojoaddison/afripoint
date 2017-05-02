@@ -25,52 +25,65 @@
 				</li>
 				-->
 				<!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-				<li ui-sref-active="active">
-					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.about" ng-click="vm.collapseNavbar()"
-					class="page-scroll" ui-sref="about">About</a>
+				
+				<li ui-sref-active="active" ng-switch-when="false">
+					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"
+					class="page-scroll" ui-sref="services">
+						<i class="fa fa-users"></i>&nbsp;
+						<span class="hidden-sm" data-translate="global.menu.services">Services</span>
+				</a>
 				</li>
-				<li ui-sref-active="active">
-					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.services"  ng-click="vm.collapseNavbar()"
-					class="page-scroll" ui-sref="services">Services</a>
-				</li>
-				<li ui-sref-active="active">
+				<li ui-sref-active="active"  ng-switch-when="false">
 					<a ui-sref="events" ng-click="vm.collapseNavbar()">
-						<i class="fa fa-cutlery"></i>&nbsp;
+						<i class="fa fa-birthday-cake"></i>&nbsp;
 						<span class="hidden-sm" data-translate="global.menu.events">Events</span>
 					</a>
 				</li>
-				<li ui-sref-active="active">
-					<a du-smooth-scroll du-scrollspy offset="50" data-translate="global.menu.location"  ng-click="vm.collapseNavbar()"
-					class="page-scroll" ui-sref="location">Location</a>
+				<li ui-sref-active="active"  ng-switch-when="false">
+					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"
+					class="page-scroll" ui-sref="location">
+					<i class="fa fa-handshake-o"></i>&nbsp;
+					<span class="hidden-sm" data-translate="global.menu.location" >Location</span>
+				</a>
 				</li>
-				<li ui-sref-active="active">
-					<a du-smooth-scroll du-scrollspy offset="30" data-translate="global.menu.contact"  ng-click="vm.collapseNavbar()"
-					class="page-scroll" ui-sref="contact">Contact</a>
+				<li ui-sref-active="active"  ng-switch-when="false">
+					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"
+					class="page-scroll" ui-sref="galleries">
+					<i class="fa fa-photo"></i>&nbsp;
+					<span class="hidden-sm" data-translate="global.menu.galleries">Galleries</span>
+				</a>
+				</li>
+				<li ui-sref-active="active"  ng-switch-when="false">
+					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"
+					class="page-scroll" ui-sref="about">
+					<i class="fa fa-bullhorn"></i>&nbsp;
+					<span class="hidden-sm" data-translate="global.menu.about">About</span>
+				</a>
+				</li>
+				<li ui-sref-active="active"  ng-switch-when="false">
+					<a du-smooth-scroll du-scrollspy offset="30" ng-click="vm.collapseNavbar()"
+					class="page-scroll" ui-sref="contact">
+					<i class="fa fa-envelope-open"></i>&nbsp;
+					<span class="hidden-sm" data-translate="global.menu.contact">Contact</span></a>
 				</li>
 
-				<li ng-class="{active: vm.$state.includes('entity')}" uib-dropdown class="dropdown pointer" ng-switch-when="true">
+				<li ng-class="{active: vm.$state.includes('entity')}" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer" ng-switch-when="true">
 					<a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu"> <span> <span class="glyphicon glyphicon-th-list"></span> <span class="hidden-sm" data-translate="global.menu.entities.main"> Entities </span> <b class="caret"></b> </span> </a>
 					<ul class="dropdown-menu" uib-dropdown-menu>
 						<li ui-sref-active="active">
-							<a ui-sref="event" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.event">Event</span> </a>
-						</li>
+							<a ui-sref="afripoint-service" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.afripointService">Afripoint Service</span> </a>
+						</li>	
 						<li ui-sref-active="active">
 							<a ui-sref="partner" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.partner">Partner</span> </a>
-						</li>
+						</li>					
 						<li ui-sref-active="active">
-							<a ui-sref="media" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.media">Partner</span> </a>
+							<a ui-sref="event" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.event">Event</span> </a>
 						</li>
 						<li ui-sref-active="active">
 							<a ui-sref="gallery" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.gallery">Gallery</span> </a>
 						</li>
 						<li ui-sref-active="active">
 							<a ui-sref="album" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.album">Album</span> </a>
-						</li>
-						<li ui-sref-active="active">
-							<a ui-sref="afripoint-service" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.afripointService">Afripoint Service</span> </a>
-						</li>
-						<li ui-sref-active="active">
-							<a ui-sref="page" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.page">Page</span> </a>
 						</li>
 						<li ui-sref-active="active">
 							<a ui-sref="article" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-asterisk"></span>&nbsp; <span data-translate="global.menu.entities.article">Article</span> </a>
@@ -127,9 +140,11 @@
 						<li ui-sref-active="active" ng-switch-when="false">
 							<a href="" ng-click="vm.login()" id="login"> <span class="glyphicon glyphicon-log-in"></span>&nbsp; <span data-translate="global.menu.account.login">Sign in</span> </a>
 						</li>
-						<li ui-sref-active="active" ng-switch-when="false">
+						<!--
+						<li ui-sref-active="active" ng-switch-when="true" has-authority="ROLE_ADMIN">
 							<a ui-sref="register" ng-click="vm.collapseNavbar()"> <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; <span data-translate="global.menu.account.register">Register</span> </a>
 						</li>
+						-->
 					</ul>
 				</li>
 				<li ui-sref-active="active" uib-dropdown class="dropdown pointer" ng-controller="JhiLanguageController as languageVm">

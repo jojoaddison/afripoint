@@ -23,7 +23,27 @@
             "createdDate": "Estellt am",
             "modifiedDate": "Modifiziert am",
             "createdBy": "Erstellt von",
-            "modifiedBy": "Modifiziert von"
+            "modifiedBy": "Modifiziert von",
+            "events": {
+              "name": "Veranstaltungen",
+              "description": "Essen, Feste, Hochzeiten, Verlobung, Filme, Presentationen, Leben, Geschäfte"
+            },
+            "shop": {
+              "name": "Shop",
+              "description": "Entdecken, Suchen, Geschmack, Fashion, Frisches, Trendy!"
+            },
+            "bar": {
+              "name": "Bar",
+              "description": "Engagement, Kulture, Ambience, Networking, Lounge, Treffpunkt!"
+            },
+            "advertise": {
+              "name": "Werbung",
+              "description": "Galerie, Image, Werbung, Markt, Publikum, Visibilität"
+            },
+            "academy": {
+              "name": "",
+              "description": ""
+            }
         }
     }
 }

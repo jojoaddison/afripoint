@@ -20,10 +20,11 @@
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="container-fluid">
-					<img src="{{vm.event.photo}}"
+				<div class="container-fluid" ng-if="vm.event.photo">
+					<img ng-src="{{vm.event.photo}}"
 					style="margin:auto; height: auto; width: 100%;">
 					<div class="carousel-caption bg-primary bg-transparent" style="bottom: 15%;">
+						
 						<h1>{{vm.event.title}}</h1>
 						<p>
 							{{vm.event.description}}

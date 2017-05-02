@@ -23,6 +23,9 @@ public class Media implements Serializable {
     @Field("caption")
     private String caption;
 
+    @Field("image_url")
+    private String imageUrl;
+
     @Field("image")
     private byte[] image;
 
@@ -59,7 +62,20 @@ public class Media implements Serializable {
         this.caption = caption;
     }
 
-    public byte[] getImage() {
+    public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	public Media imageUrl(String imageUrl){
+		this.imageUrl = imageUrl;
+		return this;
+	}
+
+	public byte[] getImage() {
         return image;
     }
 

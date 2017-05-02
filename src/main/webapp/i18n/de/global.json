@@ -6,21 +6,22 @@
             "home": "Startseite",
             "about": "Wir über uns",
             "services": "Dienste",
-            "events": "Events",
+            "galleries": "Galerien",
+            "events": "Veranstaltungen",
             "location": "Standort",
             "contact": "Kontakt",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Aktivitäten",
-                "event": "Event",
+                "event": "Veranstaltungen",
                 "partner": "Partner",
                 "media": "Medien",
                 "authority": "Authority",
-                "gallery": "Gallery",
-                "album": "Album",
+                "gallery": "Galerie",
+                "album": "Alben",
                 "afripointService": "Service",
-                "page": "Page",
-                "article": "Article",
+                "page": "Seite",
+                "article": "Artikel",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -88,7 +89,8 @@
             }
         },
         "field": {
-            "id" : "ID"
+            "id" : "ID",
+            "details": "Details"
         },
         "ribbon": {
             "dev":"Development"
@@ -106,7 +108,10 @@
             "open": "Open",
             "save": "Speichern",
             "view": "Details",
-            "close": "Schließen"
+            "close": "Schließen",
+            "add": "Hinzüfügen",
+            "new": "Neu",
+            "addMedia": "Media hinzufügen"
         },
         "detail": {
             "field": "Feld",
@@ -138,5 +143,5 @@
         "emailexists": "E-mail wird bereits verwendet!",
         "idexists": "Ein neuer {{entityName}} kann noch keine ID haben"
     },
-    "footer": "Dies ist Ihre Fußzeile"
+    "footer": "&copy;www.afripoint.at&reg;"
 }

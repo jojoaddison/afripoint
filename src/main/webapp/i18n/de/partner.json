@@ -30,7 +30,9 @@
             "continent": "Continent",
             "notes": "Notizen",
             "address": "Adresse",
+            "photo": "Photo",
             "titles": {
+            	"org": "Organisation",
             	"mr": "Herr",
             	"mrs": "Frau",
             	"miss": "Fr.",

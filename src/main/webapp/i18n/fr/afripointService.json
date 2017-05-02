@@ -24,6 +24,26 @@
             "modifiedDate": "Date modifiée",
             "createdBy": "Créé par",
             "modifiedBy": "Modifié par",
+            "events": {
+              "name": "Events",
+              "description": "feasts, festivals, weddings, engagements, film shows, lifestyle, business!"
+            },
+            "shop": {
+              "name": "Shop",
+              "description": "explore, discover, taste, fashion, fresh, trendy!"
+            },
+            "bar": {
+              "name": "Bar",
+              "description": "engaging, culture, lounge, ambience, networking, meeting point"
+            },
+            "advertise": {
+              "name": "Advertise",
+              "description": "gallery, image, market, publicity, visibility"
+            },
+            "academy": {
+              "name": "",
+              "description": ""
+            }
         }
     }
 }

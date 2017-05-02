@@ -1,73 +1,50 @@
 <div class="well well-md">
-    <h2 data-translate="afripointApp.gallery.home.title">Galleries</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="gallery.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="afripointApp.gallery.home.createLabel">
-                        Create new Gallery
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="afripointApp.gallery.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="picture"><span data-translate="afripointApp.gallery.picture">Picture</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="album"><span data-translate="afripointApp.gallery.album">Album</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="createdDate"><span data-translate="afripointApp.gallery.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="modifiedDate"><span data-translate="afripointApp.gallery.modifiedDate">Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="createdBy"><span data-translate="afripointApp.gallery.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="modifiedBy"><span data-translate="afripointApp.gallery.modifiedBy">Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="gallery in vm.galleries track by gallery.id">
-                    <td><a ui-sref="gallery-detail({id:gallery.id})">{{gallery.id}}</a></td>
-                    <td>{{gallery.name}}</td>
-                    <td>
-                        <a ng-if="gallery.picture" ng-click="vm.openFile(gallery.pictureContentType, gallery.picture)">
-                            <img data-ng-src="{{'data:' + gallery.pictureContentType + ';base64,' + gallery.picture}}" style="max-height: 30px;" alt="gallery image"/>
-                        </a>
-                        <span ng-if="gallery.picture">{{gallery.pictureContentType}}, {{vm.byteSize(gallery.picture)}}</span>
-                    </td>
-                    <td>{{gallery.album}}</td>
-                    <td>{{gallery.createdDate | date:'medium'}}</td>
-                    <td>{{gallery.modifiedDate | date:'medium'}}</td>
-                    <td>{{gallery.createdBy}}</td>
-                    <td>{{gallery.modifiedBy}}</td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="gallery-detail({id:gallery.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="gallery.edit({id:gallery.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="gallery.delete({id:gallery.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+	<h2 data-translate="afripointApp.gallery.home.title">Galleries</h2>
+	<jhi-alert></jhi-alert>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4 no-padding-left">
+				<button class="btn btn-primary" ui-sref="gallery.new" >
+					<span class="glyphicon glyphicon-plus"></span>
+					<span  data-translate="afripointApp.gallery.home.createLabel"> Create new Gallery </span>
+				</button>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-12 well well-sm" ng-repeat="gallery in vm.galleries track by gallery.id" style="margin-left:5px; max-width:280px;  max-height: 350px; overflow-y: auto;">
+			<a ng-if="gallery.pictureUrl" ui-sref="gallery-view({id:gallery.id})"> <img ng-src="{{gallery.pictureUrl}}" style="max-height: 100px;" alt="gallery image"/> </a>
+			<br>
+			<h5><strong>{{gallery.name}}</strong></h5>
+			<h5><strong>{{gallery.albumSize>0?gallery.albumSize:""}}&nbsp;<span data-translate="afripointApp.gallery.{{gallery.albumLabel}}"></span></strong></h5>
+			<h6><span data-translate="afripointApp.gallery.createdDate"></span> {{gallery.createdDate | date:'medium'}}</h6>
+			<h6><span data-translate="afripointApp.gallery.modifiedDate"></span> {{gallery.modifiedDate | date:'medium'}}</h6>
+			<h6><span data-translate="afripointApp.gallery.createdBy"></span> {{gallery.createdBy.lastName}}</h6>
+			<h6><span data-translate="afripointApp.gallery.modifiedBy"></span> {{gallery.modifiedBy.lastName}}</h6>
+			<div class="btn-group flex-btn-group-container">
+				<button type="submit"
+				ui-sref="gallery-detail({id:gallery.id})"
+				class="btn btn-info btn-sm">
+					<span class="glyphicon glyphicon-eye-open"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.view"></span>
+				</button>
+				<button type="submit"
+				ui-sref="gallery.edit({id:gallery.id})"
+				class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-pencil"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+				</button>
+				<button type="submit"
+				ui-sref="gallery.delete({id:gallery.id})"
+				class="btn btn-danger btn-sm">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

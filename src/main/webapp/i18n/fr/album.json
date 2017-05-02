@@ -4,7 +4,7 @@
             "home": {
                 "title": "Albums",
                 "createLabel": "Créer un nouveau Album",
-                "createOrEditLabel": "Créer ou éditer un Album"
+                "createOrEditLabel": "Éditer un Album"
             },
             "created": "Un nouveau Album a été créé avec l'identifiant {{ param }}",
             "updated": "Le Album avec l'identifiant {{ param }} a été mis à jour",
@@ -22,6 +22,8 @@
             "createdDate": "Created Date",
             "modifiedDate": "Modified Date",
             "media": "Media",
+            "medien": "Medien",
+            "noMedia": "No media found",
             "photo": "Photo"
         }
     }

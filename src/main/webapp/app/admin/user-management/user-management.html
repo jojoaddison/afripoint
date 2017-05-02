@@ -34,8 +34,8 @@
             <tr ng-repeat="user in vm.users track by user.id">
 
                 <td>
-                	<a ui-sref="user-management-detail({login:user.login})" ng-if="user.image != null">
-                	 <img data-ng-src="{{'data:' + user.imageContentType + ';base64,' + user.image}}" style="max-height: 80px;" alt="user photo"/>
+                	<a ui-sref="user-management-detail({login:user.login})" ng-if="user.imageUrl">
+                	 <img data-ng-src="{{user.imageUrl}}" style="max-height: 80px;" alt="user photo"/>
                 	</a>
                 </td>
                 <td>

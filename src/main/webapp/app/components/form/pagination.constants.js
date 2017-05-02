@@ -4,6 +4,6 @@
     angular
         .module('afripointApp')
         .constant('paginationConstants', {
-            'itemsPerPage': 5
+            'itemsPerPage': 10
         });
 })();

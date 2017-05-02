@@ -19,13 +19,13 @@
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-md-6" ng-if="vm.partner.image!=null">
+			<div class="col-md-6" ng-if="vm.partner.imageUrl">
 				<div class="container-fluid">
-					<img data-ng-src="{{'data:' + vm.partner.imageContentType + ';base64,' + vm.partner.image}}"
+					<img ng-src="{{vm.partner.imageUrl}}"
 					style="margin:auto; height: auto; width: 100%;">
 				</div>
 			</div>
-			<div class="col-md-2" ng-if="vm.partner.image==null">
+			<div class="col-md-2" ng-if="vm.partner.imageUrl">
 				<p>&nbsp;</p>
 			</div>
 			<div class="col-md-6">

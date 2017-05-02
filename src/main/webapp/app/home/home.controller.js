@@ -22,7 +22,7 @@
 		vm.openPartner = PageUtils.openPartner;
 		vm.mod = PageUtils.mod;
 		vm.page = 0;
-		vm.size = 4;
+		vm.size = 10;
 
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();
@@ -36,16 +36,40 @@
 		});
 
     function loadServices(){
+				vm.services = [
+					{
+						"id": 1,
+						"name": "bar",
+						"icon": "glass"
+					},
+					{
+						"id": 2,
+						"name": "shop",
+						"icon": "shopping-bag"
+					},
+					{
+						"id": 3,
+						"name": "advertise",
+						"icon": "newspaper-o"
+					},
+					{
+						"id": 4,
+						"name": "events",
+						"icon": "heart"						
+					}
+				];
+				/*
         AfripointService.getAll({}, function(data){
             vm.services = data;
         });
+				*/
     }
 
 		function loadEvents() {
 			Event.current({
 				page: vm.page,
 				size: vm.size,
-				sort: ['startTime, asc']
+				sort: ['endTime, asc']
 			},
 						function(data) {
 						vm.events = data;

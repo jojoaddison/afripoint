@@ -53,7 +53,7 @@
         })
         .state('album-detail', {
             parent: 'album',
-            url: '/album/{id}',
+            url: '/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'afripointApp.album.detail.title'
@@ -130,7 +130,7 @@
                                 modifiedBy: null,
                                 createdDate: null,
                                 modifiedDate: null,
-                                media: null,
+                                media: [],
                                 photo: null,
                                 photoContentType: null,
                                 id: null

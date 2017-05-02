@@ -26,7 +26,7 @@
          loadAll();
 
         function loadAll () {
-            Event.query({
+            Event.current({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
                 sort: sort()

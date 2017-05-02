@@ -7,16 +7,19 @@ import net.jojoaddison.xmserv.repository.UserRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.security.SecurityUtils;
 import net.jojoaddison.xmserv.service.util.RandomUtil;
+import net.jojoaddison.xmserv.service.util.Tools;
 import net.jojoaddison.xmserv.service.dto.UserDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -33,11 +36,16 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
+    
+    private final Environment env;
+    
+    private final String USER_PHOTOS = "/app/admin/user-management/photos";
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, Environment env) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.env = env;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -104,7 +112,7 @@ public class UserService {
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
+        userRepository.save(convert(newUser));
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
@@ -135,7 +143,7 @@ public class UserService {
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(ZonedDateTime.now());
         user.setActivated(true);
-        userRepository.save(user);
+        userRepository.save(convert(user));
         log.debug("Created Information for User: {}", user);
         return user;
     }
@@ -151,9 +159,45 @@ public class UserService {
             user.setImage(image);
             user.setImageContentType(imageContentType);
             user.setLangKey(langKey);
-            userRepository.save(user);
+            userRepository.save(convert(user));
             log.debug("Changed Information for Current User: {}", user);
         });
+    }
+    
+    private User convert(User user){
+    	if(user.getImage() != null){
+			log.info("converting: {}", user);
+    		String fileExt = user.getImageContentType().split("/")[1];
+    		String root = env.getProperty("client.root");
+			log.info("root path: {}", root);
+    		String sep = Tools.getSeparator();
+    		String userDir = Tools.removeSpaces(user.getLogin()).concat(sep);
+    		String directory = USER_PHOTOS.concat(sep).concat(userDir).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
+    		String fullPath = root.concat(directory).toLowerCase();
+			log.info("before create full path: {}", fullPath);
+    		try {
+				fullPath = Tools.createDirectory(fullPath);
+				if(fullPath != null){
+					if(user.getImageUrl() != null){
+						Tools.removeFile(root.concat(user.getImageUrl()));
+					}
+					log.info("full path: {}", fullPath);
+					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt).toLowerCase();
+					log.info("url path: {}", url);
+					String fileName = root.concat(url);
+					log.debug("file name {}", fileName);
+					Tools.createFile(fileName, user.getImage());
+					Tools.setPermission(fileName, Tools.getPermissions775());
+					Tools.setPermissions(root.concat(USER_PHOTOS), Tools.getPermissions775());
+					user.setImage(null);
+					user.setImageUrl(url);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.error(e.getMessage(), e.getCause());
+			}
+    	}   
+    	return user;
     }
 
     /**
@@ -177,7 +221,7 @@ public class UserService {
                 userDTO.getAuthorities().stream()
                     .map(authorityRepository::findOne)
                     .forEach(managedAuthorities::add);
-                userRepository.save(user);
+                userRepository.save(convert(user));
                 log.debug("Changed Information for Specific User: {}", user);
                 return user;
             })
