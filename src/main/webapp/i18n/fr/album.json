@@ -16,6 +16,7 @@
                 "title": "Album"
             },
             "name": "Name",
+            "details": "Details",
             "description": "Description",
             "createdBy": "Created By",
             "modifiedBy": "Modified By",

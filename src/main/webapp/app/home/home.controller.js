@@ -59,9 +59,9 @@
 					}
 				];
 				/*
-        AfripointService.getAll({}, function(data){
-            vm.services = data;
-        });
+		        AfripointService.getAll({}, function(data){
+		            vm.services = data;
+		        });
 				*/
     }
 

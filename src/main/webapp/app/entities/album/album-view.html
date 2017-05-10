@@ -1,0 +1,48 @@
+<div class="panel panel-primary well well-sm">
+	<div class="panel-heading">
+		<button type="submit" class="btn btn-material-brown btn-sm pull-right" data-dismiss="modal" aria-hidden="true" ui-sref="{{ vm.previousState }}">
+			<span data-translate="entity.action.back"></span>
+		</button>
+		<h3 class="primary"> {{vm.album.name}} </h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<img ng-src="{{vm.album.pictureUrl}}" class="img-responsive"  style="max-width: 280px; height: auto"/>
+				<hr class="primary" />
+				<p>
+					{{vm.album.description}}
+				</p>
+			</div>
+			<div class="col-md-8 col-sm-6 col-xs-12 " style="border-left: 2px solid #795548;">
+				<div class="row no-gutter popup-gallery">
+					<div  ng-repeat="media in vm.album.media track by media.id" class="col-md-6 col-xs-12" >
+						<a href="{{media.imageUrl}}" class="portfolio-box"> <img ng-src="{{media.imageUrl}}" class="img-responsive" alt="{{media.description}}" title="{{media.description}}" type="image">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									{{media.caption}}
+								</div>
+								<div class="project-name">
+									{{media.description}}
+								</div>
+							</div>
+						</div> </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-6 text-left">
+				<h6><span data-translate="afripointApp.gallery.createdDate"></span> {{vm.album.createdDate | date:'medium'}}</h6>
+				<h6><span data-translate="afripointApp.gallery.modifiedDate"></span> {{vm.album.modifiedDate | date:'medium'}}</h6>
+			</div>
+			<div class="col-md-6 text-right">
+				<h6><span data-translate="afripointApp.gallery.createdBy"></span> {{vm.album.createdBy.lastName}}</h6>
+				<h6><span data-translate="afripointApp.gallery.modifiedBy"></span> {{vm.album.modifiedBy.lastName}}</h6>
+			</div>
+		</div>
+	</div>
+</div>

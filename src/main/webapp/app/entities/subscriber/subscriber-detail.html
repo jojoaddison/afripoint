@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="afripointApp.subscriber.detail.title">Subscriber</span> {{vm.subscriber.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.subscriber.email">Email</span></dt>
+        <dd>
+            <span>{{vm.subscriber.email}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.subscriber.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.subscriber.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.subscriber.active">Active</span></dt>
+        <dd>
+            <span>{{vm.subscriber.active}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="subscriber-detail.edit({id:vm.subscriber.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

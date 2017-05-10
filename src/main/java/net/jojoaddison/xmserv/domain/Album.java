@@ -30,7 +30,13 @@ public class Album implements Serializable {
 
     @Field("description")
     private String description;
-
+    
+    @Field("directory")
+    private String directory;
+    
+    @Field("group_id")
+    private String groupId;
+    
     @Field("created_by")
     private AuditUserDTO createdBy;
 
@@ -102,7 +108,35 @@ public class Album implements Serializable {
         this.description = description;
     }
 
-    public AuditUserDTO getCreatedBy() {
+    public String getDirectory() {
+		return directory;
+	}
+
+	public Album directory(String directory){
+		this.directory = directory;
+		return this;
+	}
+	
+	public void setDirectory(String directory) {
+		this.directory = directory;
+	}
+	
+
+	public String getGroupId() {
+		return groupId;
+	}
+	
+
+	public Album groupId(String groupId){
+		this.groupId = groupId;
+		return this;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
+	public AuditUserDTO getCreatedBy() {
         return createdBy;
     }
 

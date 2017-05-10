@@ -25,9 +25,12 @@
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
+    <link rel="stylesheet" href="content/css/component.css">
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="content/css/creative.css">
+    <link rel="stylesheet" href="content/css/creative.css">    
+	<script src="content/js/modernizr.custom.js"></script>  
+	<script src="content/js/toucheffects.js"></script>
 </head>
 <body data-spy="scroll" ng-app="afripointApp" ng-strict-di>
     <!--[if lt IE 9]>
@@ -118,6 +121,12 @@
     <script src="app/home/pageviewer.controller.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/entities/subscriber/subscriber-dialog.controller.js"></script>
+    <script src="app/entities/subscriber/subscriber-detail.controller.js"></script>
+    <script src="app/entities/subscriber/subscriber-delete-dialog.controller.js"></script>
+    <script src="app/entities/subscriber/subscriber.state.js"></script>
+    <script src="app/entities/subscriber/subscriber.service.js"></script>
+    <script src="app/entities/subscriber/subscriber.controller.js"></script>
     <script src="app/entities/partner/partner-dialog.controller.js"></script>
     <script src="app/entities/partner/partner-detail.controller.js"></script>
     <script src="app/entities/partner/partner-delete-dialog.controller.js"></script>
@@ -139,6 +148,7 @@
     <script src="app/entities/gallery/gallery-dialog.controller.js"></script>
     <script src="app/entities/gallery/gallery-detail.controller.js"></script>
     <script src="app/entities/gallery/gallery-delete-dialog.controller.js"></script>
+    <script src="app/entities/gallery/gallery-album.controller.js"></script>
     <script src="app/entities/gallery/gallery.state.js"></script>
     <script src="app/entities/gallery/gallery.service.js"></script>
     <script src="app/entities/gallery/gallery.controller.js"></script>
@@ -220,6 +230,13 @@
     <script src="app/admin/tracker/tracker.state.js"></script>
     <script src="app/admin/tracker/tracker.service.js"></script>
     <script src="app/admin/tracker/tracker.controller.js"></script>
+    <script src="app/admin/role-management/role-management-dialog.controller.js"></script>
+    <script src="app/admin/role-management/role-management-detail.controller.js"></script>
+    <script src="app/admin/role-management/role-management-delete-dialog.controller.js"></script>
+    <script src="app/admin/role-management/role-management.state.js"></script>
+    <script src="app/admin/role-management/role-management.controller.js"></script>
+    <script src="app/admin/role-management/role.service.js"></script>
+    <script src="app/admin/role-management/role.resources.service.js"></script>
     <script src="app/admin/metrics/metrics.state.js"></script>
     <script src="app/admin/metrics/metrics.service.js"></script>
     <script src="app/admin/metrics/metrics.modal.controller.js"></script>

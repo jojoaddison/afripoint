@@ -22,6 +22,7 @@
                 "afripointService": "Service",
                 "page": "Page",
                 "article": "Article",
+                "subscriber": "Subscriber",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

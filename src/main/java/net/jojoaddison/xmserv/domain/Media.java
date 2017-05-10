@@ -34,6 +34,9 @@ public class Media implements Serializable {
 
     @Field("description")
     private String description;
+    
+    @Field("fileName")
+    private String fileName;
 
     @Field("created_date")
     private ZonedDateTime createdDate;
@@ -101,7 +104,15 @@ public class Media implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public String getDescription() {
+    public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getDescription() {
         return description;
     }
 
@@ -165,9 +176,10 @@ public class Media implements Serializable {
         return "Media{" +
             "id=" + id +
             ", caption='" + caption + "'" +
-            ", image='" + image + "'" +
+            ", imageUrl='" + imageUrl + "'" +
             ", imageContentType='" + imageContentType + "'" +
             ", description='" + description + "'" +
+            ", fileName='" + fileName + "'" +
             ", createdDate='" + createdDate + "'" +
             ", modifiedDate='" + modifiedDate + "'" +
             '}';

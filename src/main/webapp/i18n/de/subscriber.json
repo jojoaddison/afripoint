@@ -1,0 +1,23 @@
+{
+    "afripointApp": {
+        "subscriber" : {
+            "home": {
+                "title": "Subscribers",
+                "createLabel": "Subscriber erstellen",
+                "createOrEditLabel": "Subscriber erstellen oder bearbeiten"
+            },
+            "created": "Subscriber erstellt mit ID {{ param }}",
+            "updated": "Subscriber aktualisiert mit ID {{ param }}",
+            "deleted": "Subscriber gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Subscriber {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Subscriber"
+            },
+            "email": "Email",
+            "createdDate": "Created Date",
+            "active": "Active"
+        }
+    }
+}

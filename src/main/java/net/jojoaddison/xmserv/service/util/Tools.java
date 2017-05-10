@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.text.ParseException;
@@ -605,10 +606,6 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 		        stream.close();
 	}
 
-	public static void setPermission(String fileName, Set<PosixFilePermission> perms) throws IOException{
-		if(perms == null) perms = Tools.getPermissions777();
-		Files.setPosixFilePermissions(Paths.get(fileName), perms);
-	}
 
 	public static Set<PosixFilePermission> getPermissions777(){
 		//using PosixFilePermission to set file permissions 777
@@ -663,4 +660,16 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 		}
 	}
 
+	public static void setPermission(String fileName, Set<PosixFilePermission> perms) throws IOException{
+		if(perms == null) perms = Tools.getPermissions777();
+		Map<String, Object> owner = Files.readAttributes(Paths.get(fileName), "posix:owner", LinkOption.NOFOLLOW_LINKS);
+		for(String key: owner.keySet()){
+			String value = String.valueOf(owner.get(key));
+			logger.info(key + ": " + value);
+			if(value.toLowerCase().contains("tomcat")){
+				Files.setPosixFilePermissions(Paths.get(fileName), perms);
+				break;
+			}
+		}
+	}
 }

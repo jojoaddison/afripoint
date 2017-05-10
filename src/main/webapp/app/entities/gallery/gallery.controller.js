@@ -24,6 +24,8 @@
         vm.galleries = [];
 
         loadAll();
+        
+        
 
         function loadAll () {
             Gallery.query({

@@ -3,8 +3,10 @@ package net.jojoaddison.xmserv.web.rest;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -30,6 +32,7 @@ import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import net.jojoaddison.xmserv.domain.Album;
+import net.jojoaddison.xmserv.domain.Media;
 import net.jojoaddison.xmserv.repository.AlbumRepository;
 import net.jojoaddison.xmserv.service.util.Tools;
 import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
@@ -45,6 +48,8 @@ public class AlbumResource {
     private final Logger log = LoggerFactory.getLogger(AlbumResource.class);
 
     private static final String ENTITY_NAME = "album";
+
+	private static final int MAX_DIRECTORY_LENGTH = 16;
         
     private final AlbumRepository albumRepository;
 
@@ -71,13 +76,16 @@ public class AlbumResource {
         if (album.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new album cannot already have an ID")).body(null);
         }
-        Album result = albumRepository.save(createAlbumImage(album));
+        Album toSave = createAlbumImage(album);
+        toSave = createMedia(album);
+        Album result = albumRepository.save(toSave);
         return ResponseEntity.created(new URI("/api/albums/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
-    /**
+
+	/**
      * PUT  /albums : Updates an existing album.
      *
      * @param album the album to update
@@ -93,7 +101,9 @@ public class AlbumResource {
         if (album.getId() == null) {
             return createAlbum(album);
         }
-        Album result = albumRepository.save(createAlbumImage(album));
+        Album toSave = createAlbumImage(album);
+        toSave = createMedia(album);
+        Album result = albumRepository.save(toSave);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, album.getId().toString()))
             .body(result);
@@ -146,13 +156,16 @@ public class AlbumResource {
     
 
     private Album createAlbumImage(Album album){
+    	if(album.getDirectory()==null){
+    		album = setAlbumDirectory(album);
+    	}
     	if(album.getPhoto() != null){
 			log.info("converting: {}", album);
     		String fileExt = album.getPhotoContentType().split("/")[1];
     		String root = env.getProperty("client.root");
 			log.info("root path: {}", root);
-    		String sep = Tools.getSeparator();
-    		String albumDir = Tools.removeSpaces(album.getName()).toLowerCase().concat(sep);
+    		String sep = Tools.getSeparator();    		
+    		String albumDir = album.getDirectory();
     		String directory = ALBUM_PHOTOS .concat(sep).concat(albumDir).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
     		String fullPath = root.concat(directory).toLowerCase();
 			log.info("before create full path: {}", fullPath);
@@ -180,6 +193,86 @@ public class AlbumResource {
     	}
     	return album;
     	
+    }
+
+    private Album setAlbumDirectory(Album album) {		
+		String directory = "";
+		int i = 0;
+		String[] nameParts = album.getName().split("\\s"); 
+		do{
+			if(i > 0) directory = directory.concat("_");
+			directory = directory.concat((nameParts[i]).toLowerCase().trim());
+			i++;
+		}while(i < nameParts.length && directory.length() < MAX_DIRECTORY_LENGTH);
+		
+		album.setDirectory(directory);
+		
+		return album;
+	}
+
+	private Album createMedia(Album album) {
+    	Set<Media> albumMedia = new HashSet<>();
+    	for(Media m: album.getMedia()){
+    		albumMedia.add(createMediaItem(m, album));
+    	}
+    	album.setMedia(albumMedia);
+		return album;
+	}
+    
+    private Media createMediaItem(Media media, Album album){
+    	if(media.getImage() != null){
+    		media = setMediaName(media);
+			log.info("converting: {}", media);
+    		String fileExt = media.getImageContentType().split("/")[1];
+    		String root = env.getProperty("client.root");
+			log.info("root path: {}", root);
+    		String sep = Tools.getSeparator();
+    		String albumDir = album.getDirectory().concat(sep).concat("media").concat(sep);
+    		String directory = ALBUM_PHOTOS .concat(sep).concat(albumDir).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
+    		String fullPath = root.concat(directory).toLowerCase();
+			log.info("before create full path: {}", fullPath);
+    		try {
+				fullPath = Tools.createDirectory(fullPath);
+				if(fullPath != null){
+					if(media.getImageUrl() != null){
+						Tools.removeFile(root.concat(media.getImageUrl()));
+					}
+					log.info("full path: {}", fullPath);
+					log.info("image name: {}", media.getFileName());
+					String url = directory.concat(sep).concat(media.getFileName()).concat("_").concat(Tools.getDate()).concat(".").concat(fileExt).toLowerCase();
+					log.info("url path: {}", url);
+					String fileName = root.concat(url);
+					log.debug("file name {}", fileName);
+					Tools.createFile(fileName, media.getImage());
+					Tools.setPermission(fileName, Tools.getPermissions775());
+					Tools.setPermissions(root.concat(ALBUM_PHOTOS), Tools.getPermissions775());
+					media.setImage(null);
+					media.setImageUrl(url);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.error(e.getMessage(), e.getCause());
+			}    	
+    	}
+    	log.info("media converted: {}", media);
+    	return media;
+    	
+    }
+    
+    private Media setMediaName(Media media){
+    		String mediaName = media.getFileName();
+    		if(mediaName == null || mediaName.trim().length() == 0){
+    			try{
+    			mediaName = media.getCaption().split(".")[0];
+    			}catch(Exception e){
+    				mediaName = null;
+    			}
+    		}
+    		if(mediaName == null || mediaName.trim().length() == 0){
+    			mediaName = media.getId();
+    		}
+    		media.setFileName(Tools.removeSpaces(mediaName).toLowerCase());
+    	return media;
     }
 
 }

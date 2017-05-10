@@ -13,7 +13,8 @@
             abbreviate: abbreviate,
             byteSize: byteSize,
             openFile: openFile,
-            toBase64: toBase64
+            toBase64: toBase64,
+            base64File: base64File
         };
 
         return service;
@@ -68,6 +69,14 @@
             fileReader.onload = function (e) {
                 var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
                 cb(base64Data);
+            };
+        }
+        function base64File (file, cb) {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+                file.base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);                
+                cb(file);
             };
         }
     }

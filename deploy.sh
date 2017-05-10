@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mvn clean package -DskipTests
+./mvnw -Pprod clean package -DskipTests
 
 mv target/afripointserver.war target/afripointserver.jar
 
