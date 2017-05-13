@@ -1,13 +1,15 @@
 package net.jojoaddison.xmserv.service.mapper;
 
-import net.jojoaddison.xmserv.domain.Authority;
-import net.jojoaddison.xmserv.domain.User;
-import net.jojoaddison.xmserv.service.dto.UserDTO;
-import org.mapstruct.*;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import net.jojoaddison.xmserv.domain.Authority;
+import net.jojoaddison.xmserv.domain.User;
+import net.jojoaddison.xmserv.service.dto.UserDTO;
 
 /**
  * Mapper for the entity User and its DTO UserDTO.

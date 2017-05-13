@@ -1,14 +1,15 @@
 package net.jojoaddison.xmserv.domain;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import javax.validation.constraints.NotNull;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator

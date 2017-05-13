@@ -1,17 +1,17 @@
 package net.jojoaddison.xmserv.service.dto;
 
-import net.jojoaddison.xmserv.config.Constants;
-
-import net.jojoaddison.xmserv.domain.Authority;
-import net.jojoaddison.xmserv.domain.User;
-
-import org.hibernate.validator.constraints.Email;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import net.jojoaddison.xmserv.config.Constants;
+import net.jojoaddison.xmserv.domain.Authority;
+import net.jojoaddison.xmserv.domain.User;
 
 /**
  * A DTO representing a user, with his authorities.

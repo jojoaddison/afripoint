@@ -1,7 +1,10 @@
 package net.jojoaddison.xmserv.security;
 
-import net.jojoaddison.xmserv.domain.User;
-import net.jojoaddison.xmserv.repository.UserRepository;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import net.jojoaddison.xmserv.domain.User;
+import net.jojoaddison.xmserv.repository.UserRepository;
 
 /**
  * Authenticate a user from the database.

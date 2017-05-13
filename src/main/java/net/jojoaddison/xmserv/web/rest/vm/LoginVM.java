@@ -1,9 +1,10 @@
 package net.jojoaddison.xmserv.web.rest.vm;
 
-import net.jojoaddison.xmserv.config.Constants;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import net.jojoaddison.xmserv.config.Constants;
 
 /**
  * View Model object for storing a user's credentials.

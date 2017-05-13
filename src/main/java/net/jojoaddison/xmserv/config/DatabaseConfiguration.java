@@ -1,18 +1,16 @@
 package net.jojoaddison.xmserv.config;
 
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.domain.util.JSR310DateConverters.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.mongodb.Mongo;
-import com.github.mongobee.Mongobee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
@@ -20,8 +18,12 @@ import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventL
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.mongobee.Mongobee;
+import com.mongodb.Mongo;
+
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
+import io.github.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
 
 @Configuration
 @Profile("!" + JHipsterConstants.SPRING_PROFILE_CLOUD)

@@ -1,8 +1,8 @@
 package net.jojoaddison.xmserv.repository;
 
-import net.jojoaddison.xmserv.domain.Subscriber;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import net.jojoaddison.xmserv.domain.Subscriber;
 
 /**
  * Spring Data MongoDB repository for the Subscriber entity.

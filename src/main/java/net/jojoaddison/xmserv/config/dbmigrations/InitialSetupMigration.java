@@ -1,12 +1,14 @@
 package net.jojoaddison.xmserv.config.dbmigrations;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.github.mongobee.changeset.ChangeLog;
 import com.github.mongobee.changeset.ChangeSet;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-
-import java.util.*;
 
 /**
  * Creates the initial database setup

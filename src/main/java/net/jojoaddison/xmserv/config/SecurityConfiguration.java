@@ -1,9 +1,6 @@
 package net.jojoaddison.xmserv.config;
 
-import net.jojoaddison.xmserv.security.*;
-import net.jojoaddison.xmserv.security.jwt.*;
-
-import io.github.jhipster.security.*;
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +20,10 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
-import javax.annotation.PostConstruct;
+import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
+import net.jojoaddison.xmserv.security.AuthoritiesConstants;
+import net.jojoaddison.xmserv.security.jwt.JWTConfigurer;
+import net.jojoaddison.xmserv.security.jwt.TokenProvider;
 
 @Configuration
 @EnableWebSecurity

@@ -1,9 +1,9 @@
 package net.jojoaddison.xmserv.security;
 
-import net.jojoaddison.xmserv.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
+
+import net.jojoaddison.xmserv.config.Constants;
 
 /**
  * Implementation of AuditorAware based on Spring Security.

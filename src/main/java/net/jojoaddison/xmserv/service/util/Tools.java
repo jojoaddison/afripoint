@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.text.ParseException;
@@ -16,6 +15,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,11 +32,11 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -47,7 +47,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public final class Tools {
 
-	private static Logger logger = Logger.getLogger(Tools.class);
+	private static Logger logger = LoggerFactory.getLogger(Tools.class);
 
 
 	public static String toUppercaseFirst(String word){		;
@@ -488,7 +488,7 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 	}
 
 	public static void logMessage(Level level, final String msg) {
-		logger.log(level, msg);
+//		logger.log(level, msg);
 	}
 
 
@@ -641,6 +641,16 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
         perms.add(PosixFilePermission.OTHERS_EXECUTE);
         return perms;
     }
+	
+
+	public static Set<PosixFilePermission> getReadPermissions(){
+		//using PosixFilePermission to set file permissions 775
+        Set<PosixFilePermission> perms = new HashSet<PosixFilePermission>();
+        //add others permissions
+        perms.add(PosixFilePermission.OTHERS_READ);
+        perms.add(PosixFilePermission.OTHERS_EXECUTE);
+        return perms;
+    }
 
 	public static void setPermissions(String dir, Set<PosixFilePermission> perms) throws IOException {
 		// Set permissions recursively
@@ -653,15 +663,23 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 	
 	public static void setPermissions(File dir, Set<PosixFilePermission> perms) throws IOException{
 		Tools.setPermission(dir.getAbsolutePath(), perms);
-		for(File d: dir.listFiles()){
-			if(d.isDirectory()){
-				Tools.setPermissions(d, perms);
+		if(dir != null){
+			for(File d: dir.listFiles()){
+				if(d != null && d.isDirectory()){
+					Tools.setPermissions(d, perms);
+				}
 			}
-		}
+		}		
 	}
 
 	public static void setPermission(String fileName, Set<PosixFilePermission> perms) throws IOException{
 		if(perms == null) perms = Tools.getPermissions777();
+		logger.info("Set permission for {}", fileName);
+		for(PosixFilePermission p: perms){
+			logger.info("permission {}", p);
+		}
+		Files.setPosixFilePermissions(Paths.get(fileName), perms);
+		/**
 		Map<String, Object> owner = Files.readAttributes(Paths.get(fileName), "posix:owner", LinkOption.NOFOLLOW_LINKS);
 		for(String key: owner.keySet()){
 			String value = String.valueOf(owner.get(key));
@@ -671,5 +689,6 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 				break;
 			}
 		}
+		*/
 	}
 }

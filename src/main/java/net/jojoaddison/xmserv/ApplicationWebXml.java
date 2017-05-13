@@ -1,8 +1,9 @@
 package net.jojoaddison.xmserv;
 
-import net.jojoaddison.xmserv.config.DefaultProfileUtil;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+
+import net.jojoaddison.xmserv.config.DefaultProfileUtil;
 
 /**
  * This is a helper Java class that provides an alternative to creating a web.xml.

@@ -1,14 +1,11 @@
 package net.jojoaddison.xmserv.service;
 
-import net.jojoaddison.xmserv.domain.Authority;
-import net.jojoaddison.xmserv.domain.User;
-import net.jojoaddison.xmserv.repository.AuthorityRepository;
-import net.jojoaddison.xmserv.repository.UserRepository;
-import net.jojoaddison.xmserv.security.AuthoritiesConstants;
-import net.jojoaddison.xmserv.security.SecurityUtils;
-import net.jojoaddison.xmserv.service.util.RandomUtil;
-import net.jojoaddison.xmserv.service.util.Tools;
-import net.jojoaddison.xmserv.service.dto.UserDTO;
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +16,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.util.*;
+import net.jojoaddison.xmserv.domain.Authority;
+import net.jojoaddison.xmserv.domain.User;
+import net.jojoaddison.xmserv.repository.AuthorityRepository;
+import net.jojoaddison.xmserv.repository.UserRepository;
+import net.jojoaddison.xmserv.security.AuthoritiesConstants;
+import net.jojoaddison.xmserv.security.SecurityUtils;
+import net.jojoaddison.xmserv.service.dto.UserDTO;
+import net.jojoaddison.xmserv.service.util.RandomUtil;
+import net.jojoaddison.xmserv.service.util.Tools;
 
 /**
  * Service class for managing users.

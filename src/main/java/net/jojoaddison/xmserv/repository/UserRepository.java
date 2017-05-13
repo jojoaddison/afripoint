@@ -1,12 +1,12 @@
 package net.jojoaddison.xmserv.repository;
 
-import net.jojoaddison.xmserv.domain.User;
-
 import java.time.ZonedDateTime;
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import net.jojoaddison.xmserv.domain.User;
 
 /**
  * Spring Data MongoDB repository for the User entity.

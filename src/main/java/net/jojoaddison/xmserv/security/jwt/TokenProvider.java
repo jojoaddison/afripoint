@@ -1,9 +1,10 @@
 package net.jojoaddison.xmserv.security.jwt;
 
-import io.github.jhipster.config.JHipsterProperties;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 import java.util.stream.Collectors;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -15,7 +16,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.*;
+import io.github.jhipster.config.JHipsterProperties;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 
 @Component
 public class TokenProvider {

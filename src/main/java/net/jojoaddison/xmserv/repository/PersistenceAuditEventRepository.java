@@ -1,13 +1,13 @@
 package net.jojoaddison.xmserv.repository;
 
-import net.jojoaddison.xmserv.domain.PersistentAuditEvent;
-
 import java.time.LocalDateTime;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
+import net.jojoaddison.xmserv.domain.PersistentAuditEvent;
 
 /**
  * Spring Data MongoDB repository for the PersistentAuditEvent entity.

@@ -1,8 +1,8 @@
 package net.jojoaddison.xmserv.repository;
 
-import net.jojoaddison.xmserv.domain.Album;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import net.jojoaddison.xmserv.domain.Album;
 
 /**
  * Spring Data MongoDB repository for the Album entity.

@@ -51,15 +51,17 @@ public class GalleryService {
         log.debug("Request to save Gallery : {}", gallery);
         Set<Album> albums = new HashSet<>();
         int i =0;
-        for(Album album: gallery.getAlbums()){
-        	i++;
-    		String id = String.valueOf(Double.valueOf(Tools.getDate(null)) + i);
-    		album.setId(id);
-    		album = createAlbumImage(album);
-    		album = createMedia(album);
-        	albums.add(album);
+        if(gallery.getAlbums() != null){
+            for(Album album: gallery.getAlbums()){
+            	i++;
+        		String id = String.valueOf(Double.valueOf(Tools.getDate(null)) + i);
+        		album.setId(id);
+        		album = createAlbumImage(album);
+        		album = createMedia(album);
+            	albums.add(album);
+            }
+            gallery.setAlbums(albums);
         }
-        gallery.setAlbums(albums);
         Gallery result = galleryRepository.save(createGalleryImage(gallery));
         return result;
     }
@@ -71,7 +73,7 @@ public class GalleryService {
      *  @return the list of entities
      */
     public Page<Gallery> findAll(Pageable pageable) {
-        log.debug("Request to get all Events");
+        log.debug("Request to get all Galleries");
         Page<Gallery> result = galleryRepository.findAll(pageable);
         return result;
     }
@@ -113,6 +115,7 @@ public class GalleryService {
     		try {
 				fullPath = Tools.createDirectory(fullPath);
 				if(fullPath != null){
+					Tools.setPermissions(root.concat(GALLERY_PHOTOS), Tools.getReadPermissions());
 					if(gallery.getPictureUrl() != null){
 						Tools.removeFile(root.concat(gallery.getPictureUrl()));
 					}
@@ -122,8 +125,7 @@ public class GalleryService {
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, gallery.getPicture());
-					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(GALLERY_PHOTOS), Tools.getPermissions775());
+					Tools.setPermission(fileName, Tools.getReadPermissions());
 					gallery.setPicture(null);
 					gallery.setPictureUrl(url);
 				}
@@ -153,6 +155,7 @@ public class GalleryService {
     		try {
 				fullPath = Tools.createDirectory(fullPath);
 				if(fullPath != null){
+					Tools.setPermissions(root.concat(ALBUM_PHOTOS), Tools.getReadPermissions());
 					if(album.getPictureUrl() != null){
 						Tools.removeFile(root.concat(album.getPictureUrl()));
 					}
@@ -164,8 +167,7 @@ public class GalleryService {
 					Tools.createFile(fileName, album.getPhoto());
 					album.setPhoto(null);
 					album.setPictureUrl(url);
-					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(ALBUM_PHOTOS), Tools.getPermissions775());
+					Tools.setPermission(fileName, Tools.getReadPermissions());
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -209,12 +211,13 @@ public class GalleryService {
 			log.info("root path: {}", root);
     		String sep = Tools.getSeparator();
     		String albumDir = album.getDirectory().concat(sep).concat("media").concat(sep);
-    		String directory = ALBUM_PHOTOS .concat(sep).concat(albumDir).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
+    		String directory = ALBUM_PHOTOS.concat(sep).concat(albumDir).concat(Tools.getYear()).concat(sep).concat(Tools.getMonth()).concat(sep).concat(Tools.getDay());
     		String fullPath = root.concat(directory).toLowerCase();
 			log.info("before create full path: {}", fullPath);
     		try {
 				fullPath = Tools.createDirectory(fullPath);
 				if(fullPath != null){
+					Tools.setPermissions(root.concat(ALBUM_PHOTOS), Tools.getReadPermissions());
 					if(media.getImageUrl() != null){
 						Tools.removeFile(root.concat(media.getImageUrl()));
 					}
@@ -225,8 +228,7 @@ public class GalleryService {
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, media.getImage());
-					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(ALBUM_PHOTOS), Tools.getPermissions775());
+					Tools.setPermission(fileName, Tools.getReadPermissions());
 					media.setImage(null);
 					media.setImageUrl(url);
 				}
