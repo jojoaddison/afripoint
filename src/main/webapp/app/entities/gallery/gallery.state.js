@@ -43,7 +43,7 @@
 		})
 		.state('gallery-album-view', {
 			parent : 'gallery-detail',
-			url : '/{albumId}/view',
+			url : '/view/{albumId}',
 			data : {
 				authorities : [ 'ROLE_USER' ]
 			},
@@ -73,7 +73,7 @@
 		})
 			.state('gallery-album-delete', {
 				parent : 'gallery-detail',
-				url : '/{albumId}/delete',
+				url : '/delete/{albumId}',
 				data : {
 					authorities : [ 'ROLE_USER' ]
 				},
@@ -101,7 +101,7 @@
 			})
 			.state('gallery-album-edit', {
 				parent : 'gallery-detail',
-				url : '/{albumId}/edit',
+				url : '/edit-album/{albumId}',
 				data : {
 					authorities : [ 'ROLE_USER' ]
 				},
@@ -121,8 +121,8 @@
 							} ]
 						}
 					}).result.then(function() {
-						$state.go('album', null, {
-							reload : 'album'
+						$state.go('gallery-detail', null, {
+							reload : true
 						});
 					}, function() {
 						$state.go('^');
@@ -249,7 +249,7 @@
 			})
 			.state('gallery-detail.edit', {
 				parent : 'gallery-detail',
-				url : '/detail/edit',
+				url : '/edit/{id}',
 				data : {
 					authorities : [ 'ROLE_USER' ]
 				},
@@ -315,7 +315,7 @@
 			})
 			.state('gallery.edit', {
 				parent : 'gallery',
-				url : '/{id}/edit',
+				url : '/edit/{id}',
 				data : {
 					authorities : [ 'ROLE_USER' ]
 				},
@@ -380,7 +380,7 @@
 				views : {
 					'content@' : {
 						templateUrl : 'app/entities/gallery/home.html',
-						controller : 'GalleryHomeController',
+						controller : 'GalleryController',
 						controllerAs : 'vm'
 					}
 				},

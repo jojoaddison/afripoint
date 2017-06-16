@@ -592,11 +592,12 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 
 	}
 
-	public static void removeFile(String filePath) {
+	public static boolean removeFile(String filePath) {
 		File file = new File(filePath);
 		if(file.exists() && file.isFile()){
-			file.delete();
-		}
+			return file.delete();
+		}		
+		return false;
 	}
 
 	public static void createFile(String fileName, byte[] fileContent) throws IOException {
@@ -691,4 +692,13 @@ public static ArrayList<String> parseFilePaths(String xmlFilePath, String filter
 		}
 		*/
 	}
+	
+	public static void setReadPermissions(String dir) throws IOException, InterruptedException{
+    	String command = "chmod a+rx -R " + dir;
+    	logger.debug("Execute: {}", command);
+    	Process permProcess = Runtime.getRuntime().exec(command);
+    	if(permProcess.waitFor() == 0){
+    		logger.debug("completed");
+    	}
+    }
 }

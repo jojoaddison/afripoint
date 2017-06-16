@@ -19,16 +19,18 @@
             'ui.tinymce',
             'infinite-scroll',
             '720kb.socialshare',
-            // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
-            'duScroll'
+            'duScroll',
+            'indexedDB'
+            // jhipster-needle-angularjs-add-module JHipster will add new module here
         ])
         .run(run);
 
-    run.$inject = ['stateHandler', 'translationHandler'];
+    run.$inject = ['stateHandler', 'translationHandler', 'dataHandler'];
 
-    function run(stateHandler, translationHandler) {
+    function run(stateHandler, translationHandler, dataHandler) {
         stateHandler.initialize();
         translationHandler.initialize();
+        dataHandler.initialize();
     }
 })();

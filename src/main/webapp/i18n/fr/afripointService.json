@@ -26,7 +26,7 @@
             "modifiedBy": "Modifié par",
             "events": {
               "name": "Events",
-              "description": "feasts, festivals, weddings, engagements, film shows, lifestyle, business!"
+              "description": "feasts, festivals, weddings, engagements, film shows, business roundtable!"
             },
             "shop": {
               "name": "Shop",
@@ -41,8 +41,12 @@
               "description": "gallery, image, market, publicity, visibility"
             },
             "academy": {
-              "name": "",
+              "name": "Acamedy",
               "description": ""
+            },
+            "location": {
+              "name": "Location",
+              "description": "Event hall, Promotions, Entertainment, Training, Parties"
             }
         }
     }

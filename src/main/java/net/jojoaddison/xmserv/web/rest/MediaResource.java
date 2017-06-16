@@ -28,8 +28,8 @@ import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import net.jojoaddison.xmserv.domain.Media;
-import net.jojoaddison.xmserv.repository.MediaRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
+import net.jojoaddison.xmserv.service.MediaService;
 import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
 import net.jojoaddison.xmserv.web.rest.util.PaginationUtil;
 
@@ -44,10 +44,10 @@ public class MediaResource {
 
     private static final String ENTITY_NAME = "media";
         
-    private final MediaRepository mediaRepository;
+    private final MediaService mediaService;
 
-    public MediaResource(MediaRepository mediaRepository) {
-        this.mediaRepository = mediaRepository;
+    public MediaResource(MediaService mediaService) {
+        this.mediaService = mediaService;
     }
 
     /**
@@ -67,7 +67,7 @@ public class MediaResource {
         }
         media.setCreatedDate(ZonedDateTime.now());
         media.setModifiedDate(ZonedDateTime.now());
-        Media result = mediaRepository.save(media);
+        Media result = mediaService.saveOnly(media);
         return ResponseEntity.created(new URI("/api/media/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -91,7 +91,7 @@ public class MediaResource {
             return createMedia(media);
         }
         media.setModifiedDate(ZonedDateTime.now());
-        Media result = mediaRepository.save(media);
+        Media result = mediaService.save(media);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, media.getId().toString()))
             .body(result);
@@ -109,7 +109,7 @@ public class MediaResource {
     public ResponseEntity<List<Media>> getAllMedia(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Media");
-        Page<Media> page = mediaRepository.findAll(pageable);
+        Page<Media> page = mediaService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/media");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -124,7 +124,7 @@ public class MediaResource {
     @Timed
     public ResponseEntity<Media> getMedia(@PathVariable String id) {
         log.debug("REST request to get Media : {}", id);
-        Media media = mediaRepository.findOne(id);
+        Media media = mediaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(media));
     }
 
@@ -138,8 +138,8 @@ public class MediaResource {
     @Timed
 	@Secured({ AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER })
     public ResponseEntity<Void> deleteMedia(@PathVariable String id) {
-        log.debug("REST request to delete Media : {}", id);
-        mediaRepository.delete(id);
+        log.debug("REST request to delete Media : {}", id);        
+        mediaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

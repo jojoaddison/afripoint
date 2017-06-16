@@ -57,6 +57,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/angular-touch/angular-touch.js',
             'src/main/webapp/bower_components/angular-ui-tinymce/src/tinymce.js',
             'src/main/webapp/bower_components/cropper/dist/cropper.js',
+            'src/main/webapp/bower_components/angular-indexedDB/angular-indexed-db.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             'src/main/webapp/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js',
             'src/main/webapp/bower_components/angular-bootstrap-material/angular-bootstrap-material.js',

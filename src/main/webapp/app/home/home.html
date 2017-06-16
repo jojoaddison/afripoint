@@ -39,8 +39,12 @@
 		</div>
 	</section>
 
-	<section class="container hidden-sm hidden-xs bg-dark border-primary-3" style="overflow-y: auto; max-height:400px; position: relative; top: -80px; padding: 0; width: 100%;" ng-if="vm.events.length>0">
-		<div class="row">
+	<section class="container hidden-sm hidden-xs bg-dark border-primary-3 text-center"
+	style="overflow-y: auto; max-height:400px; position: relative; top: -80px; padding: 0; width: 100%;">
+		<div style="width: 100%" ng-if="vm.galleries.length < 1" class="text-center">
+			<img src="content/images/robottt.gif" class="img-responsive text-center" style="margin-left: auto; margin-right: auto; width: 60%; height: auto;"/>
+		</div>
+		<div class="row" ng-if="vm.events.length > 0">
 			<div class="col-md-6" style="margin-right: -15px; overflow-y: auto;">
 				<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
 					<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
@@ -66,17 +70,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-2 text-center">
-						<a
+					<div class="col-md-2 text-center">						
+						<a class="btn btn-primary btn-sm"
 						href="#"
 						socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
 						socialshare
 						socialshare-provider="twitter"
 						socialshare-text="{{event.title}}"
-						socialshare-hashtags="afripoint,afripoint-event"
+						socialshare-hashtags="#afripoint, #afripointEvent"
+						socialshare-popup-height="800"
+						socialshare-popup-width="800"
 						><i class="fa fa-twitter" aria-hidden="true"></i></a>
-						&nbsp;&nbsp;&nbsp;
-						<a
+						<a class="btn btn-primary btn-sm"
 						href="#"
 						socialshare="share"
 						socialshare-provider="facebook"
@@ -86,7 +91,9 @@
 						socialshare-description="{{event.description}}"
 						socialshare-quote="{{event.description}}"
 						socialshare-text="{{event.title}}"
-						socialshare-hashtags="#afripoint, #afripoint-event"
+						socialshare-hashtags="#afripoint, #afripointEvent"
+						socialshare-popup-height="800"
+						socialshare-popup-width="800"
 						><i class="fa fa-facebook" aria-hidden="true"></i></a>
 					</div>
 				</div>
@@ -99,13 +106,13 @@
 			<div class="col-md-6 col-sm-12 col-xs-12 text-center">
 				<div class="call-to-action">
 					<h2 data-translate="home.brochure">New brochure edition</h2>
-					<a href="content/docs/afripoint_presentation.pdf" target="_blank" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
+					<a ng-click="vm.openPage(vm.currentBrochure)" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12 text-center">
 				<div class="call-to-action">
 					<h2 data-translate="home.currentEvents">Current Events</h2>
-					<a href="content/docs/afripoint-events.pdf" target="_blank" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
+					<a ng-click="vm.openPage(vm.currentEvents)"  class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
 				</div>
 			</div>
 		</div>
@@ -155,7 +162,7 @@
 		</div>
 	</section>
 
-	<section class="container no-padding" id="portfolio" style="position: relative; top: -50px; width: 100%; padding:0;">
+	<section class="container no-padding" id="location" style="position: relative; top: -50px; width: 100%; padding:0;">
 		<div class="container-fluid">
 			<div class="row no-gutter popup-gallery">
 				<div class="col-lg-4 col-sm-6">
@@ -224,8 +231,7 @@
 					</div> </a>
 				</div>
 				<div class="col-lg-4 col-sm-6">
-					<a href="content/img/opening/point6.jpg" class="portfolio-box"> 
-						<img src="content/img/opening/point6.jpg" class="img-responsive" alt="" title="Shop" type="image">
+					<a href="content/img/opening/point6.jpg" class="portfolio-box"> <img src="content/img/opening/point6.jpg" class="img-responsive" alt="" title="Shop" type="image">
 					<div class="portfolio-box-caption">
 						<div class="portfolio-box-caption-content">
 							<div class="project-category text-faded">
@@ -235,8 +241,7 @@
 								Advertising
 							</div>
 						</div>
-					</div> 
-					</a>
+					</div> </a>
 				</div>
 			</div>
 		</div>
@@ -255,7 +260,7 @@
 				<div class="col-lg-4 col-lg-offset-2 text-center">
 					<i class="fa fa-phone fa-3x sr-contact"></i>
 					<p>
-						+43 1 943 7045
+						+43 1 581 9186
 					</p>
 				</div>
 				<div class="col-lg-4 text-center">
@@ -272,17 +277,24 @@
 				</div>
 			</div>
 			<div class="row text-center">
-				<div class="col-md-4 col-md-offset-5 col-xs-10 col-sm-10">					
+				<div class="col-md-4 col-md-offset-5 col-xs-10 col-sm-10">
 					<p class="text-left">
-						Montag:        14:00 – 18:00 Uhr<br>
-						Dienstag:      14:00 – 18:00 Uhr<br>
-						Wednesday: 14:00 – 18:00 Uhr<br>
-						Donnerstag: 14:00 – 18:00 Uhr<br>
-						Freitag:          14:00 – 18:00 Uhr<br>
-						Samstag:     Bei Veranstaltungen<br>
-					</p>					
+						Montag:        14:00 – 18:00 Uhr
+						<br>
+						Dienstag:      14:00 – 18:00 Uhr
+						<br>
+						Wednesday: 14:00 – 18:00 Uhr
+						<br>
+						Donnerstag: 14:00 – 18:00 Uhr
+						<br>
+						Freitag:          14:00 – 18:00 Uhr
+						<br>
+						Samstag:     Bei Veranstaltungen
+						<br>
+					</p>
 				</div>
 			</div>
+
 		</div>
 	</section>
 </div>

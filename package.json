@@ -66,6 +66,7 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "angular-async-local-storage": "^1.4.0",
     "jimp": "^0.2.27"
   }
 }

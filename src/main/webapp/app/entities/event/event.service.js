@@ -50,4 +50,20 @@
             }
         });
     }
+
+    
+    function EventService(StorageDB, StorageUtils, Event){
+    	var es = this;
+    	es.CURR_EVENTSDB = "current_eventsdb";
+    	es.EVENTSDB = "eventsdb";
+		var service = {
+				
+		};
+		
+		return service;		
+		
+		
+    }
+    
+
 })();

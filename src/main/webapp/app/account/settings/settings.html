@@ -1,6 +1,24 @@
 <div class="well well-md">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+				<div class="col-md-3 form-group" ngf-drop ngf-change="vm.setBytes($file)" ngf-pattern="'image/*'">
+				<div ng-if="vm.settingsAccount.imageUrl">
+					<img ng-src="{{vm.settingsAccount.imageUrl}}" class="img-circle img-responsive" ng-if="vm.settingsAccount.imageUrl" alt="user image"/>
+				</div>
+				<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.settingsAccount.image==null | vm.settingsAccount.imageUrl==null"
+				ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.addimage">
+					Add image
+				</button>
+				<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.settingsAccount.image!==null || vm.settingsAccount.imageUrl!==null"
+				ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.changeimage">
+					Change image
+				</button>
+				<input type="hidden" class="form-control" name="image" id="field_image"
+				ng-model="vm.settingsAccount.image"
+				/>
+				<input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+				ng-model="vm.user.imageContentType" />
+			</div>
+        <div class="col-md-8">
             <h2 data-translate="settings.title" translate-values="{username: '{{vm.settingsAccount.login}}'}">User settings for [<b>{{vm.settingsAccount.login}}</b>]</h2>
 
             <div class="alert alert-success" ng-show="vm.success" data-translate="settings.messages.success">

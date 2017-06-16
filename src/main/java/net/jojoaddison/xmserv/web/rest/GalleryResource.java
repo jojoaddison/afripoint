@@ -93,7 +93,7 @@ public class GalleryResource {
         }
         Gallery result = galleryService.save(gallery);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gallery.getId().toString()))
+            //.headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gallery.getId().toString()))
             .body(result);
     }
 

@@ -52,6 +52,9 @@ public class Album implements Serializable {
 
     @Field("picture_url")
     private String pictureUrl;
+
+    @Field("thumbnail")
+    private String thumbnail;
     
     @Field("photo")
     private byte[] photo;
@@ -91,6 +94,14 @@ public class Album implements Serializable {
     
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public String getDescription() {

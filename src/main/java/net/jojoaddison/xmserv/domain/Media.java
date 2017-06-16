@@ -25,6 +25,9 @@ public class Media implements Serializable {
 
     @Field("image_url")
     private String imageUrl;
+    
+    @Field("thumbnail")
+    private String thumbnail;
 
     @Field("image")
     private byte[] image;
@@ -34,6 +37,9 @@ public class Media implements Serializable {
 
     @Field("description")
     private String description;
+    
+    @Field("directory")
+    private String directory;
     
     @Field("fileName")
     private String fileName;
@@ -76,6 +82,14 @@ public class Media implements Serializable {
 	public Media imageUrl(String imageUrl){
 		this.imageUrl = imageUrl;
 		return this;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public byte[] getImage() {
@@ -125,7 +139,20 @@ public class Media implements Serializable {
         this.description = description;
     }
 
-    public ZonedDateTime getCreatedDate() {
+    public String getDirectory() {
+		return directory;
+	}
+    
+    public Media directory(String directory){
+    	this.directory = directory;
+    	return this;
+    }
+
+	public void setDirectory(String directory) {
+		this.directory = directory;
+	}
+
+	public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
@@ -179,6 +206,7 @@ public class Media implements Serializable {
             ", imageUrl='" + imageUrl + "'" +
             ", imageContentType='" + imageContentType + "'" +
             ", description='" + description + "'" +
+            ", directory='" + directory + "'" +
             ", fileName='" + fileName + "'" +
             ", createdDate='" + createdDate + "'" +
             ", modifiedDate='" + modifiedDate + "'" +

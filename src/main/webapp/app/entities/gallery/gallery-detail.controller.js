@@ -13,6 +13,7 @@
         vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
+        vm.deleteAlbum = deleteAlbum;
         
         setAlbum();
     	
@@ -37,5 +38,23 @@
             vm.gallery = result;
         });
         $scope.$on('$destroy', unsubscribe);
+        
+        function deleteAlbum(id){
+        	angular.forEach(vm.gallery.albums, function(album, k){
+    			if(album.id == id){
+    				vm.gallery.albums.splice(k,1);
+    			}
+        	}
+        	);
+        	Gallery.update(vm.gallery, onDeleteSuccess, onDeleteFailed);
+        }
+        
+        function onDeleteSuccess(result){
+        	vm.gallery = result;
+        	setAlbum();
+        }
+        function onDeleteFailed(err){
+        		console.log(err);
+        }
     }
 })();

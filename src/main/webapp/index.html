@@ -4,9 +4,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>afripoint</title>
-    <meta name="description" content="">
+    <meta name="description" content="African Events location and meeting point">
     <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+	<link rel="manifest" href="icons/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -92,6 +110,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
     <script src="bower_components/cropper/dist/cropper.js"></script>
+    <script src="bower_components/angular-indexedDB/angular-indexed-db.js"></script>
     <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
     <script src="bower_components/angular-bootstrap-material/angular-bootstrap-material.js"></script>
     <!-- endinject -->
@@ -181,6 +200,8 @@
     <script src="app/entities/afripoint-service/afripoint-service.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
+    <script src="app/components/util/storage-util.js"></script>
+    <script src="app/components/util/storage-db.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
     <script src="app/components/util/sort.directive.js"></script>
     <script src="app/components/util/parse-links.service.js"></script>
@@ -212,6 +233,7 @@
     <script src="app/blocks/interceptor/auth.interceptor.js"></script>
     <script src="app/blocks/handlers/translation.handler.js"></script>
     <script src="app/blocks/handlers/state.handler.js"></script>
+    <script src="app/blocks/handlers/data.handler.js"></script>
     <script src="app/blocks/config/uib-pagination.config.js"></script>
     <script src="app/blocks/config/uib-pager.config.js"></script>
     <script src="app/blocks/config/translation-storage.provider.js"></script>

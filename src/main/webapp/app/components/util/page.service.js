@@ -9,11 +9,12 @@
 
     	function PageUtils($window, $sce, $uibModal){
     		var service = {
-    			openEvent: openEvent,
-    			openLearn: openLearn,
-    			openPartner: openPartner,
-          openService: openService,
-          mod: mod
+				openEvent: openEvent,
+				openLearn: openLearn,
+				openPartner: openPartner,
+	            openService: openService,
+	            openPage: openPage,
+	            mod: mod
     		};
 
     		return service;
@@ -137,6 +138,36 @@
                 );
             }
 
+
+            function openPage(page) {       	
+                $uibModal.open(
+                    {
+                        templateUrl : "app/home/document.html",
+                        controller : [ '$uibModalInstance', 'page',
+                            function($uibModalInstance, page) {
+                                var dvm =  this;
+                                dvm.src = page;
+                                dvm.close = function(){
+                                    $uibModalInstance.dismiss('cancel');
+                                }
+                            }
+                        ],
+                        controllerAs : 'dvm',
+                        backdrop : 'static',
+                        size : 'lg',
+                        resolve : {
+                            translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+                                $translatePartialLoader.addPart('home');
+                                $translatePartialLoader.addPart('global');
+                                return $translate.refresh();
+                            } ],
+                            page : [ function() {
+                                return page;
+                            } ]
+                        }
+                    }
+                );
+            }
 
     	}
 

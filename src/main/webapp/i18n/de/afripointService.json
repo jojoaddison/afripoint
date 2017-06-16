@@ -42,7 +42,11 @@
             },
             "academy": {
               "name": "",
-              "description": ""
+              "description": "Kultur, Koch, Geschichte, Tourismus, Menschen & Lände"
+            },
+            "location": {
+              "name": "Standort",
+              "description": "Veranstaltungshalle, Promotionen, Unterhaltung, Training, Parties"
             }
         }
     }

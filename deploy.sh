@@ -8,7 +8,7 @@ mv target/afripointserver.war.original target/afripointserver.war
 
 scp target/afripointserver.war kojo@smartxms:/home/kojo/webroot/afripoint/.
 
-rsync -azr webapp/* kojo@smartxms:/home/kojo/webroot/afripoint/dev/.
+rsync -azr webapp/* --exclude='data' kojo@smartxms:/home/kojo/webroot/afripoint/dev/.
 
-#rsync -azr webapp/* kojo@smartxms:/home/kojo/webroot/afripoint/www/.
+#rsync -azr webapp/* --exclude='data' kojo@smartxms:/home/kojo/webroot/afripoint/www/.
 

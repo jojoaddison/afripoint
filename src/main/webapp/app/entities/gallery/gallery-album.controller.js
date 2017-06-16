@@ -6,10 +6,10 @@
 		.controller('GalleryAlbumController', GalleryAlbumController)
 		.controller('GalleryAlbumViewController', GalleryAlbumViewController);
 
-	GalleryAlbumController.$inject = [ '$timeout', '$scope', '$stateParams', 'DataUtils', 'entity', '$uibModalInstance', 'Album', 'Principal', 'Gallery' ];
+	GalleryAlbumController.$inject = [ '$timeout', '$scope', '$stateParams', 'DataUtils', 'entity', '$uibModalInstance', 'Album', 'Principal', 'Gallery', 'Media' ];
 	GalleryAlbumViewController.$inject = [ '$timeout', '$scope', '$stateParams', 'DataUtils', 'entity', 'previousState', 'Album', 'Principal', 'Gallery' ];
 	
-	function GalleryAlbumController($timeout, $scope, $stateParams, DataUtils, entity, $uibModalInstance, Album, Principal, Gallery) {
+	function GalleryAlbumController($timeout, $scope, $stateParams, DataUtils, entity, $uibModalInstance, Album, Principal, Gallery, Media) {
 		var vm = this;
 		vm.slideInterval = 10000;
 		vm.noWrapSlides = false;
@@ -20,7 +20,8 @@
 		vm.openFile = DataUtils.openFile;
 		vm.save = save;
         vm.clear = clear;
-		
+        vm.addMedia = addMedia;
+        vm.removeMedia = removeMedia;		
 
 		$timeout(function() {
 			angular.element('.form-group:eq(1)>input').focus();
@@ -40,7 +41,8 @@
 				vm.gallery = gallery;
 				if(entity==null){
 					console.log("AlbumID: " + $stateParams.albumId);
-					vm.album = getAlbum($stateParams.albumId);
+					var albumId = $stateParams.albumId;
+					vm.album = getAlbum(albumId);					
 				}
 				console.log(gallery);
 			}, function(err) {
@@ -59,31 +61,41 @@
 			return album;
 		}
 
-
 		function save() {
-			vm.isSaving = true;
-			if (vm.gallery.albums == null) {
-				vm.gallery.albums = [];
-			}
+			vm.isSaving = true;			
+			
 			if (vm.album.id !== null) {
 				vm.album.modifiedDate = new Date();
 				vm.album.modifiedBy = vm.account;
-				vm.gallery.albums.push(vm.album);
-				Gallery.update(vm.gallery, onGallerySaveSuccess, onSaveError);
-			} else {
-				var id =  (getRandomInt(1111, 99999999)).toString();
-				vm.album.id = id;
+				console.log("saving album...");
+				Album.update(vm.album, onAlbumSaveSuccess, onSaveError);
+			} else {				
 				vm.album.createdDate = new Date();
 				vm.album.modifiedDate = new Date();
 				vm.album.createdBy = vm.account;
 				vm.album.modifiedBy = vm.account;
-				vm.gallery.albums.push(vm.album);
-				Gallery.update(vm.gallery, onGallerySaveSuccess, onSaveError);
+				Album.save(vm.album, onAlbumSaveSuccess, onSaveError);
 			}
+		}
+		
+		function onAlbumSaveSuccess(result){
+			console.log("album saved.");
+			console.log(result);
+
+			if (vm.gallery.albums == null) {
+				vm.gallery.albums = [];				
+			}
+
+			removeAlbum(result.id, vm.gallery.albums);			
+			vm.gallery.albums.push(result);
+			
+			console.log("updating gallery.");
+			console.log(vm.gallery);
+			Gallery.update(vm.gallery, onGallerySaveSuccess, onSaveError);
 		}
 
 		function onGallerySaveSuccess(result) {
-			$scope.$emit('afripointApp:galleryUpdate', result);
+			//$scope.$emit('afripointApp:galleryUpdate', result);
 			$uibModalInstance.close(result);
 			vm.isSaving = false;
 		}
@@ -110,57 +122,69 @@
 			}
 		};
 
-		vm.addMedia = function($files, media) {
+		function addMedia ($files, media) {
 			if (media == null)
 				media = vm.album.media;
-			console.log(media);
-			var num = 0;
 			for (var i = 0; i < $files.length; i++) {
-				var file = $files[i];
+				var file = $files[i];				
 				
 				if (file && file.$error === 'pattern') {
 					return;
 				}
 				
 				if (file) {
-					DataUtils.base64File(file, function(file64) {
-						var photo = getPhoto(file64);	
+					DataUtils.base64File(file, function(file64) {						
 						$scope.$apply(function() {
+							var photo = getPhoto(file64);	
+							console.log("----- <media> --------");
+							console.log(photo);
+							console.log("----- </media> --------");
 							media.push(photo);
+							console.log(media);
 						});
 					});
 					
 				}
 			}
 
-		};
-		vm.removeMedia = function(id, media){
+		}
+		
+		function removeMedia (id, media){
+			var delMedia = null;
 			for(var i =0; i< media.length; i++){
-				var m = media[i];
-				if(m && id == m.id){
+				var albumMedia = media[i];
+				if(albumMedia && id == albumMedia.id){
+					delMedia = copyMedia(albumMedia);
 					media.splice(i,1);
 				}
 			}
+			if(delMedia != null && delMedia.imageUrl){
+				vm.state="removeMedia";
+				console.log(delMedia);
+				Album.deleteMedia(delMedia);
+			}
+		}
+		
+		function copyMedia(media){
+			return {
+				id: media.id,
+				imageUrl: media.imageUrl
+			};
 		}
 		
 		function getPhoto(file){
-			console.log(file);
-			var id =  (getRandomInt(1111, 99999999)).toString();
-			if(file.lastModified){
-				id=file.lastModified;
-			}		
+			//console.log(file);
 			var photo = {};
 			photo.image = file.base64Data;
-			photo.id = id;
 			photo.imageContentType = file.type;
 			photo.caption = file.name;
 			photo.fileName = file.name;
 			photo.createdDate = new Date();
 			photo.modifiedDate = new Date();
+			photo.id = DataUtils.uuid();
 			console.log(photo);
 			return photo;
 		}
-
 		
 		function exist(id, media){
 			for(var i =0; i< media.length; i++){
@@ -172,11 +196,13 @@
 			return false;
 		}
 		
-
-		function getRandomInt(min, max) {
-			min = Math.ceil(min);
-			max = Math.floor(max);
-			return Math.floor(Math.random() * (max - min)) + min;
+		function removeAlbum(id, albums){
+			for(var i=0; i<albums.length; i++){
+				var album = albums[i];
+				if(album && album.id == id){
+					albums.splice(i, 1);
+				}
+			}
 		}
 		
 		$scope.$watch("images", function(newValue, oldValue) {

@@ -14,10 +14,19 @@
             byteSize: byteSize,
             openFile: openFile,
             toBase64: toBase64,
-            base64File: base64File
+            base64File: base64File,
+            uuid: uuid
         };
 
         return service;
+        
+        function uuid(){        	
+        	function chr4(){
+                return Math.random().toString(16).slice(-4);
+            }        	
+            var id = chr4() + chr4() + '-' + chr4() + '-' + chr4() + '-' + chr4() + '-' + chr4() + chr4() + chr4();
+            return id;
+        }
 
         function abbreviate (text) {
             if (!angular.isString(text)) {

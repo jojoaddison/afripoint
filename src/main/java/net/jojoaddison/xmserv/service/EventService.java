@@ -9,7 +9,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Event;
 import net.jojoaddison.xmserv.repository.EventRepository;
 import net.jojoaddison.xmserv.service.util.Tools;
@@ -26,7 +28,10 @@ public class EventService {
 
     private final Environment env;
 
-    private final String EVENT_PHOTOS = "/app/entities/event/photos";
+    private final String EVENT_PHOTOS = "data/event/photos";
+    private final String DATA = "data/";
+    private final int HEIGHT = 120;
+    private final int WIDTH = 120;
 
 
     public EventService(EventRepository eventRepository, Environment env) {
@@ -58,22 +63,31 @@ public class EventService {
 			log.info("before create full path: {}", fullPath);
     		try {
 				fullPath = Tools.createDirectory(fullPath);
+				log.info("full path: {}", fullPath);
 				if(fullPath != null){
 					if(event.getPhoto() != null){
 						Tools.removeFile(root.concat(event.getPhoto()));
 					}
-					log.info("full path: {}", fullPath);
 					String url = directory.concat(sep).concat(Tools.getDate()).concat(".").concat(fileExt).toLowerCase();
 					log.info("url path: {}", url);
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, event.getImage());
+					String thumb = directory.concat(sep).concat(Tools.getDate()).concat("_thumb").concat(".").concat(fileExt).toLowerCase();
+					String thumbFileName = root.concat(thumb);
+					Thumbnails.of(fileName).size(WIDTH, HEIGHT)
+					.outputQuality(0.7)
+					.outputFormat(fileExt)
+					.toFile(thumbFileName);
+					Tools.setReadPermissions(root.concat(DATA));
 					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(EVENT_PHOTOS), Tools.getPermissions775());
 					event.setImage(null);
 					event.setPhoto(url);
 				}
 			} catch (IOException e) {
+				e.printStackTrace();
+				log.error(e.getMessage(), e.getCause());
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 				log.error(e.getMessage(), e.getCause());
 			}
@@ -103,7 +117,7 @@ public class EventService {
     public Page<Event> findAllCurrent(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeAfter(now, pageable);
+        Page<Event> result = eventRepository.findAllByStartTimeAfter(now.minusDays(1), pageable);
         return result;
     }
 
@@ -141,6 +155,18 @@ public class EventService {
         eventRepository.delete(id);
     }
 
-
+    public String createCurrentEvent(MultipartFile file){
+    	try{
+    		String path = "content/docs/afripoint-events.pdf";
+    		String sep = Tools.getSeparator();
+    	    String root = env.getProperty("client.root").concat(sep).concat(path);
+    	    Tools.createFile(root, file.getBytes());
+    	    return root;
+    	}catch(Exception e){
+    		log.error(e.getMessage(), e.getCause());
+    	}
+    	
+    	return null;
+    }
 
 }

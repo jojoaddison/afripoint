@@ -22,7 +22,11 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'deleteMedia': {
+            	url: '/api/albums/media',
+            	method: 'POST'            	
+            }
         });
     }
 })();

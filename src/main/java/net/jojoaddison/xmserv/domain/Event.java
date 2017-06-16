@@ -38,6 +38,9 @@ public class Event implements Serializable {
 
     @Field("photo")
     private String photo;
+    
+    @Field("thumbnail")
+    private String thumbnail;
 
     @Field("image")
     private byte[] image;
@@ -137,7 +140,19 @@ public class Event implements Serializable {
         this.photo = photo;
     }
 
-    public ZonedDateTime getCreatedDate() {
+    public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public void setGateFee(double gateFee) {
+		this.gateFee = gateFee;
+	}
+
+	public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 

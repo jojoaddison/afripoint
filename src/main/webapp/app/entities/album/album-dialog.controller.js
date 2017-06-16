@@ -63,13 +63,13 @@
 			if (vm.album.id !== null) {
 				vm.album.modifiedDate = new Date();
 				vm.album.modifiedBy = vm.account;
-				Album.update(vm.album, onSaveSuccess, onSaveError);
+				//Album.update(vm.album, onSaveSuccess, onSaveError);
 			} else {
 				vm.album.createdDate = new Date();
 				vm.album.modifiedDate = new Date();
 				vm.album.createdBy = vm.account;
 				vm.album.modifiedBy = vm.account;
-				Album.save(vm.album, onSaveSuccess, onSaveError);
+				//Album.save(vm.album, onSaveSuccess, onSaveError);
 			}
 		}
 
@@ -83,8 +83,8 @@
 		}
 
 		function onGallerySaveSuccess(result) {
-			$scope.$emit('afripointApp:albumUpdate', vm.album);
-			$scope.$emit('afripointApp:galleryUpdate', result);
+			// $scope.$emit('afripointApp:albumUpdate', vm.album);
+			// $scope.$emit('afripointApp:galleryUpdate', result);
 			$uibModalInstance.close(result);
 			vm.isSaving = false;
 		}
@@ -137,11 +137,7 @@
 		
 		
 		function getPhoto(file){
-			console.log(file);
-			var id =  (getRandomInt(1111, 99999999)).toString();
-			if(file.lastModified){
-				id=file.lastModified;
-			}		
+			var id =  DataUtils.uuid();
 			var photo = {};
 			photo.image = file.base64Data;
 			photo.id = id;

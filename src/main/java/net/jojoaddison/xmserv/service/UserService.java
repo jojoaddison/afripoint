@@ -42,7 +42,7 @@ public class UserService {
     
     private final Environment env;
     
-    private final String USER_PHOTOS = "/app/admin/user-management/photos";
+    private final String USER_PHOTOS = "data/user-management/photos";
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, Environment env) {
         this.userRepository = userRepository;

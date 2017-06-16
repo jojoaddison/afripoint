@@ -26,18 +26,18 @@
 				-->
 				<!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
 				
+				<li ui-sref-active="active"  ng-switch-when="false">
+					<a ui-sref="events" ng-click="vm.collapseNavbar()">
+						<i class="fa fa-birthday-cake"></i>&nbsp;
+						<span class="hidden-sm" data-translate="global.menu.events">Events</span>
+					</a>
+				</li>
 				<li ui-sref-active="active" ng-switch-when="false">
 					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"
 					class="page-scroll" ui-sref="services">
 						<i class="fa fa-users"></i>&nbsp;
 						<span class="hidden-sm" data-translate="global.menu.services">Services</span>
 				</a>
-				</li>
-				<li ui-sref-active="active"  ng-switch-when="false">
-					<a ui-sref="events" ng-click="vm.collapseNavbar()">
-						<i class="fa fa-birthday-cake"></i>&nbsp;
-						<span class="hidden-sm" data-translate="global.menu.events">Events</span>
-					</a>
 				</li>
 				<li ui-sref-active="active"  ng-switch-when="false">
 					<a du-smooth-scroll du-scrollspy offset="50" ng-click="vm.collapseNavbar()"

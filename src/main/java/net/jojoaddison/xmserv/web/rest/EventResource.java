@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codahale.metrics.annotation.Timed;
 
@@ -51,7 +52,14 @@ public class EventResource {
     public EventResource(EventService eventService) {
         this.eventService = eventService;
     }
-
+    
+    @PostMapping("/events/file")
+    @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER})
+    public ResponseEntity<String> createEventFile(@RequestBody MultipartFile file){
+    	String result = eventService.createCurrentEvent(file);    	
+    	return ResponseEntity.ok().body(result);
+    }
     /**
      * POST  /events : Create a new event.
      *

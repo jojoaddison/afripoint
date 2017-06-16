@@ -177,7 +177,7 @@
               })
               .state('event-detail', {
                   parent: 'event',
-                  url: '/event/{id}',
+                  url: '/{id}',
                   data: {
                       authorities: ['ROLE_USER'],
                       pageTitle: 'afripointApp.event.detail.title'

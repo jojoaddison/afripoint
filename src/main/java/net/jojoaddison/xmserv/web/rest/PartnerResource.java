@@ -50,7 +50,7 @@ public class PartnerResource {
     
     private final Environment env;
 
-    private final String PARTNER_PHOTOS = "/app/entities/partner/photos";
+    private final String PARTNER_PHOTOS = "data/partner/photos";
 
     public PartnerResource(PartnerRepository partnerRepository, Environment env) {
         this.partnerRepository = partnerRepository;

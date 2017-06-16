@@ -34,6 +34,9 @@ public class Gallery implements Serializable {
     @Field("picture_url")
     private String pictureUrl;
     
+    @Field("thumbnail")
+    private String thumbnail;
+    
     @Field("picture")
     private byte[] picture;
 
@@ -87,6 +90,14 @@ public class Gallery implements Serializable {
     	
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public byte[] getPicture() {
@@ -213,4 +224,5 @@ public class Gallery implements Serializable {
             ", modifiedBy='" + modifiedBy + "'" +
             '}';
     }
+
 }

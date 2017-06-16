@@ -8,7 +8,6 @@
 
     function Gallery ($resource, DateUtils) {
         var resourceUrl =  'api/galleries/:id';
-
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
