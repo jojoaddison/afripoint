@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -81,6 +82,7 @@ public class MediaService {
             		media.setDirectory(album.getDirectory());
         			if(media.getImage() != null){
                 		media = createMediaItem(media); 
+                		media = createThumbnail(media); 
         			}
         			md.add(media);
         		}
@@ -137,6 +139,26 @@ public class MediaService {
     	}
     	return mediaRepository.save(media);
     	
+    }
+    
+
+    public Media createThumbnail(Media media){
+    	if(media.getThumbnail() == null && media.getImageUrl() != null){
+    		String fileExt = media.getImageContentType().split("/")[1].toLowerCase();
+    		String photoUrl = media.getImageUrl();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		media.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			}
+    	}
+    	return media;
     }
     
 

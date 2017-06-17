@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -16,7 +17,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Authority;
+import net.jojoaddison.xmserv.domain.Media;
 import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.AuthorityRepository;
 import net.jojoaddison.xmserv.repository.UserRepository;
@@ -43,6 +46,8 @@ public class UserService {
     private final Environment env;
     
     private final String USER_PHOTOS = "data/user-management/photos";
+    private final int HEIGHT = 120;
+    private final int WIDTH = 120;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, Environment env) {
         this.userRepository = userRepository;
@@ -115,7 +120,9 @@ public class UserService {
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        userRepository.save(convert(newUser));
+        newUser = convert(newUser);
+        newUser = createThumbnail(newUser);
+        userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
@@ -146,7 +153,9 @@ public class UserService {
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(ZonedDateTime.now());
         user.setActivated(true);
-        userRepository.save(convert(user));
+        user = convert(user);
+        user = createThumbnail(user);
+        userRepository.save(user);
         log.debug("Created Information for User: {}", user);
         return user;
     }
@@ -162,7 +171,9 @@ public class UserService {
             user.setImage(image);
             user.setImageContentType(imageContentType);
             user.setLangKey(langKey);
-            userRepository.save(convert(user));
+            user = convert(user);
+            user = createThumbnail(user);
+            userRepository.save(user);
             log.debug("Changed Information for Current User: {}", user);
         });
     }
@@ -200,6 +211,25 @@ public class UserService {
 				log.error(e.getMessage(), e.getCause());
 			}
     	}   
+    	return user;
+    }
+
+    public User createThumbnail(User user){
+    	if(user.getThumbnail() == null && user.getImageUrl() != null){
+    		String fileExt = user.getImageContentType().split("/")[1].toLowerCase();
+    		String photoUrl = user.getImageUrl();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		user.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			}
+    	}
     	return user;
     }
 

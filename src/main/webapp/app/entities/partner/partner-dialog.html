@@ -99,7 +99,14 @@
 			<span class="pull-left">{{vm.partner.imageContentType}}, {{vm.byteSize(vm.partner.image)}}</span>
 		</div>
 	</div>
-
+	
+	<div ng-if="vm.partner.thumbnail">
+		<div class="row">
+				<div class="col-sm-12">
+				<img id="thumbnail" ng-src="{{vm.partner.thumbnail}}" class="img-responsive" ng-if="vm.partner.thumbnail" alt="partner thumbnail"/>
+			</div>
+		</div>
+	</div>
 
 	<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.partner.image==null"
 	ngf-change="vm.setBytes($file)" accept="image/*" data-translate="entity.action.addimage">

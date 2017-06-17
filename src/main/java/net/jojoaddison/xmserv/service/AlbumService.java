@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -50,7 +51,8 @@ public class AlbumService {
     
 	public Album save(Album album){
 		log.debug("Request to save an album {}", album);		
-		album = createAlbumImage(album);
+		album = createAlbumImage(album);    	
+    	album = createThumbnail(album);
 		Album result = albumRepository.save(album);
 		return result;
 	}
@@ -100,6 +102,7 @@ public class AlbumService {
 				log.error(e.getMessage(), e.getCause());
 			}    	
     	}
+
     	return album;
     	
     }
@@ -124,6 +127,24 @@ public class AlbumService {
 	}
 
 
+    public Album createThumbnail(Album album){
+    	if(album.getThumbnail() == null && album.getPictureUrl() != null){
+    		String fileExt = album.getPhotoContentType().split("/")[1].toLowerCase();
+    		String photoUrl = album.getPictureUrl();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		album.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			}
+    	}
+    	return album;
+    }
     
     
 }

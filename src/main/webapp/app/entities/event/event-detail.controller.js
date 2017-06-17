@@ -8,13 +8,11 @@
     EventDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Event'];
 
     function EventDetailController($scope, $rootScope, $stateParams, previousState, entity, Event) {
-        var vm = this;
-        vm.event = entity;
-        vm.previousState = previousState.name;
-        var evm = vm;
-
+        var evm = this;
+        evm.event = entity;
+        evm.previousState = previousState.name;
         var unsubscribe = $rootScope.$on('afripointApp:eventUpdate', function(event, result) {
-            vm.event = result;
+            evm.event = result;
         });
         $scope.$on('$destroy', unsubscribe);
     }

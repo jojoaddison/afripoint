@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-4 no-padding-left">
-				<button class="btn btn-primary" ui-sref="gallery.new" >
+				<button class="btn btn-primary btn-sm" ui-sref="gallery.new" >
 					<span class="glyphicon glyphicon-plus"></span>
 					<span  data-translate="afripointApp.gallery.home.createLabel"> Create new Gallery </span>
 				</button>
@@ -17,7 +17,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-xs-12 well well-sm" ng-repeat="gallery in vm.galleries track by gallery.id" style="margin-left:5px; max-width:280px;  max-height: 350px; overflow-y: auto;">
-			<a ng-if="gallery.pictureUrl" ui-sref="gallery-view({id:gallery.id})"> <img ng-src="{{gallery.pictureUrl}}" style="max-height: 100px;" alt="gallery image"/> </a>
+			<a ng-if="gallery.thumbnail" ui-sref="gallery-view({id:gallery.id})"> <img ng-src="{{gallery.thumbnail}}" style="max-height: 100px;" alt="gallery image"/> </a>
 			<br>
 			<h5><strong>{{gallery.name}}</strong></h5>
 			<h5><strong>{{gallery.albumSize>0?gallery.albumSize:""}}&nbsp;<span data-translate="afripointApp.gallery.{{gallery.albumLabel}}"></span></strong></h5>

@@ -53,13 +53,13 @@
         
         function remove(collectionName, key, cb){
         	$indexedDB.openStore(collectionName, function(store){
-        		store.delete(key).tthen(cb(value));
+        		if(key)store.delete(key).then(cb());
         	});
         }
         
         function clear(collectionName, cb){
         	$indexedDB.openStore(collectionName, function(store){
-        		store.clear().then(cb(value));
+        		store.clear().then(cb());
         	});
         }
         

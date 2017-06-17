@@ -47,8 +47,8 @@
 		<div class="row" ng-if="vm.events.length > 0">
 			<div class="col-md-6" style="margin-right: -15px; overflow-y: auto;">
 				<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
-					<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
-						<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;" ngcloak>
+					<div uib-slide ng-repeat="event in vm.events | orderBy: 'startTime' track by event.id" index="$index">
+						<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height:400px; width: 100%;" ngcloak>
 						<div class="carousel-caption bg-primary bg-transparent">
 							<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
 							<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
@@ -58,11 +58,11 @@
 				</div>
 			</div>
 			<div class="col-md-6 color-primary" style="overflow-y: auto;">
-				<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
+				<div class="row row-primary-1" ng-repeat="(e, event) in vm.events | orderBy: 'startTime' track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
 					<div class="col-md-10" >
 						<div class="row" ng-click="vm.openEvent(event)">
 							<div class="col-sm-4">
-								<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;" ngcloak>
+								<img ng-src="{{event.thumbnail}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;" ngcloak>
 							</div>
 							<div class="col-sm-8">
 								<h5>{{event.title}}</h5>

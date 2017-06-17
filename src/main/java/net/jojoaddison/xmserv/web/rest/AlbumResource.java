@@ -1,10 +1,8 @@
 package net.jojoaddison.xmserv.web.rest;
 
 import java.net.URISyntaxException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -71,6 +69,7 @@ public class AlbumResource {
             return updateAlbum(album);
         }
         Album result = albumService.createAlbumImage(album);
+        result = albumService.createThumbnail(result);
         result = mediaService.handleMedia(result);
         result = albumService.justSave(result); 
         return result;
@@ -94,6 +93,7 @@ public class AlbumResource {
             return createAlbum(album);
         }
         Album result = albumService.createAlbumImage(album);
+        result = albumService.createThumbnail(result);
         result = mediaService.handleMedia(result);
         result = albumService.justSave(result); 
         return (result);

@@ -60,6 +60,13 @@ public class EventResource {
     	String result = eventService.createCurrentEvent(file);    	
     	return ResponseEntity.ok().body(result);
     }
+    @PutMapping("/events/file")
+    @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER})
+    public ResponseEntity<String> updateEventFile(@RequestBody MultipartFile file){
+    	String result = eventService.createCurrentEvent(file);    	
+    	return ResponseEntity.ok().body(result);
+    }
     /**
      * POST  /events : Create a new event.
      *

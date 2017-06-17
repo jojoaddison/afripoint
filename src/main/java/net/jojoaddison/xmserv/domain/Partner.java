@@ -70,6 +70,9 @@ public class Partner implements Serializable {
 
     @Field("image_content_type")
     private String imageContentType;
+
+    @Field("thumbnail")
+    private String thumbnail;
     
     @Field("created_date")
     private ZonedDateTime createdDate;
@@ -359,6 +362,19 @@ public class Partner implements Serializable {
 		
 		public Partner imageUrl(String imageUrl){
 			this.imageUrl = imageUrl;
+			return this;
+		}
+
+		public String getThumbnail() {
+			return thumbnail;
+		}
+
+		public void setThumbnail(String thumbnail) {
+			this.thumbnail = thumbnail;
+		}
+		
+		public Partner thumbnail(String thumbnail){
+			this.thumbnail = thumbnail;
 			return this;
 		}
 

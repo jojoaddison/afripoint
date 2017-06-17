@@ -3,8 +3,24 @@
 		<jhi-alert></jhi-alert>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-4 no-padding-right pull-right">
-					<button class="btn btn-primary" ui-sref="event.new" >
+				<div class="col-xs-8 no-padding-right pull-right">
+					<button class="btn btn-primary btn-sm" ng-click="vm.showCurrent()"  ng-if="vm.mode=='ALL'" >
+						<span class="glyphicon glyphicon-th-list"></span>
+						<span data-translate="afripointApp.event.home.showCurrent">show all</span>
+					</button>
+					<button class="btn btn-primary btn-sm" ng-click="vm.showAll()"  ng-if="vm.mode=='CURRENT'" >
+						<span class="glyphicon glyphicon-th-list"></span>
+						<span data-translate="afripointApp.event.home.showAll">show all</span>
+					</button>
+					<button class="btn btn-primary btn-sm" ng-click="vm.showHistory()">
+						<span class="glyphicon glyphicon-tasks"></span>
+						<span data-translate="afripointApp.event.home.showHistory">show history</span>
+					</button>
+					<button class="btn btn-primary btn-sm" ng-click="vm.refresh()">
+						<span class="glyphicon glyphicon-refresh"></span>
+						<span data-translate="afripointApp.event.home.refresh">Refresh</span>
+					</button>
+					<button class="btn btn-primary btn-sm" ui-sref="events-management.new" >
 						<span class="glyphicon glyphicon-plus"></span>
 						<span  data-translate="afripointApp.event.home.createLabel"> Create new Event </span>
 					</button>
@@ -25,26 +41,26 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="event in vm.events track by event.id">
-					<td><a ng-if="event.photo"> <img ng-src="{{event.photo}}" class="img-responsive" style="max-height: 100px;" alt="event image"/> </a></td>
+					<td><a ng-if="event.photo"> <img ng-src="{{event.thumbnail}}" class="img-responsive" style="max-height: 100px;" alt="event image"/> </a></td>
 					<td>{{event.title}}</td>
 					<td> {{event.startTime | date:'dd-MM-yyyy HH:mm:ss'}}</td>
 					<td><a ui-sref="partner-detail({id:event.owner.id})">{{event.owner.firstname}}&nbsp;{{event.owner.lastname}}</a></td>
 					<td class="text-right">
 					<div class="btn-group flex-btn-group-container">
 						<button type="submit"
-						ui-sref="event-detail({id:event.id})"
+						ui-sref="events-management-detail({id:event.id})"
 						class="btn btn-info btn-sm">
 							<span class="glyphicon glyphicon-eye-open"></span>
 							<span class="hidden-sm-down" data-translate="entity.action.view"></span>
 						</button>
 						<button type="submit"
-						ui-sref="event.edit({id:event.id})"
+						ui-sref="events-management.edit({id:event.id})"
 						class="btn btn-primary btn-sm">
 							<span class="glyphicon glyphicon-pencil"></span>
 							<span class="hidden-sm-down" data-translate="entity.action.edit"></span>
 						</button>
 						<button type="submit"
-						ui-sref="event.delete({id:event.id})"
+						ui-sref="events-management.delete({id:event.id})"
 						class="btn btn-danger btn-sm">
 							<span class="glyphicon glyphicon-remove-circle"></span>
 							<span class="hidden-sm-down" data-translate="entity.action.delete"></span>

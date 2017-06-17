@@ -83,6 +83,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("image_content_type")
     private String imageContentType;
     
+    @Field("thumbnail")
+    private String thumbnail;
+    
 
     public byte[] getImage() {
         return image;
@@ -168,7 +171,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public boolean getActivated() {
+    public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public boolean getActivated() {
         return activated;
     }
 
@@ -252,4 +263,5 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activationKey='" + activationKey + '\'' +
             "}";
     }
+
 }

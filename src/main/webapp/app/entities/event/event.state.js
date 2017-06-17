@@ -56,48 +56,6 @@
                       });
                   }]
               })
-              .state('event', {
-                  parent: 'entity',
-                  url: '/event?page&sort&search',
-                  data: {
-                      authorities: ['ROLE_USER'],
-                      pageTitle: 'afripointApp.event.home.title'
-                  },
-                  views: {
-                      'content@': {
-                          templateUrl: 'app/entities/event/events.html',
-                          controller: 'EventController',
-                          controllerAs: 'vm'
-                      }
-                  },
-                  params: {
-                      page: {
-                          value: '1',
-                          squash: true
-                      },
-                      sort: {
-                          value: 'endTime,asc',
-                          squash: true
-                      },
-                      search: null
-                  },
-                  resolve: {
-                      pagingParams: ['$stateParams', 'PaginationUtil', function($stateParams, PaginationUtil) {
-                          return {
-                              page: PaginationUtil.parsePage($stateParams.page),
-                              sort: $stateParams.sort,
-                              predicate: PaginationUtil.parsePredicate($stateParams.sort),
-                              ascending: PaginationUtil.parseAscending($stateParams.sort),
-                              search: $stateParams.search
-                          };
-                      }],
-                      translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-                          $translatePartialLoader.addPart('event');
-                          $translatePartialLoader.addPart('global');
-                          return $translate.refresh();
-                      }]
-                  }
-              })
               .state('events', {
                   parent: 'entity',
                   url: '/events?page&sort&search',
@@ -141,7 +99,7 @@
                   }
               })
               .state('event-view', {
-                  parent: 'event',
+                  parent: 'events',
                   url: '/view/{id}',
                   data: {
                       authorities: [],
@@ -174,9 +132,51 @@
                           return currentStateData;
                       }]
                   }
+              })              
+              .state('events-management', {
+                  parent: 'entity',
+                  url: '/events-management?page&sort&search',
+                  data: {
+                      authorities: ['ROLE_USER'],
+                      pageTitle: 'afripointApp.event.home.title'
+                  },
+                  views: {
+                      'content@': {
+                          templateUrl: 'app/entities/event/events.html',
+                          controller: 'EventController',
+                          controllerAs: 'vm'
+                      }
+                  },
+                  params: {
+                      page: {
+                          value: '1',
+                          squash: true
+                      },
+                      sort: {
+                          value: 'endTime,asc',
+                          squash: true
+                      },
+                      search: null
+                  },
+                  resolve: {
+                      pagingParams: ['$stateParams', 'PaginationUtil', function($stateParams, PaginationUtil) {
+                          return {
+                              page: PaginationUtil.parsePage($stateParams.page),
+                              sort: $stateParams.sort,
+                              predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                              ascending: PaginationUtil.parseAscending($stateParams.sort),
+                              search: $stateParams.search
+                          };
+                      }],
+                      translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+                          $translatePartialLoader.addPart('event');
+                          $translatePartialLoader.addPart('global');
+                          return $translate.refresh();
+                      }]
+                  }
               })
-              .state('event-detail', {
-                  parent: 'event',
+              .state('events-management-detail', {
+                  parent: 'events-management',
                   url: '/{id}',
                   data: {
                       authorities: ['ROLE_USER'],
@@ -239,8 +239,8 @@
                       });
                   }]
               })
-              .state('event.new', {
-                  parent: 'event',
+              .state('events-management.new', {
+                  parent: 'events-management',
                   url: '/new',
                   data: {
                       authorities: ['ROLE_USER']
@@ -276,16 +276,16 @@
                               }
                           }
                       }).result.then(function() {
-                          $state.go('event', null, {
-                              reload: 'event'
+                          $state.go('events-management', null, {
+                              reload: 'events-management'
                           });
                       }, function() {
-                          $state.go('event');
+                          $state.go('events-management');
                       });
                   }]
               })
-              .state('event.edit', {
-                  parent: 'event',
+              .state('events-management.edit', {
+                  parent: 'events-management',
                   url: '/{id}/edit',
                   data: {
                       authorities: ['ROLE_USER']
@@ -305,16 +305,16 @@
                               }]
                           }
                       }).result.then(function() {
-                          $state.go('event', null, {
-                              reload: 'event'
+                          $state.go('events-management', null, {
+                              reload: 'events-management'
                           });
                       }, function() {
                           $state.go('^');
                       });
                   }]
               })
-              .state('event.delete', {
-                  parent: 'event',
+              .state('events-management.delete', {
+                  parent: 'events-management',
                   url: '/{id}/delete',
                   data: {
                       authorities: ['ROLE_USER']
@@ -333,8 +333,8 @@
                               }]
                           }
                       }).result.then(function() {
-                          $state.go('event', null, {
-                              reload: 'event'
+                          $state.go('events-management', null, {
+                              reload: 'events-management'
                           });
                       }, function() {
                           $state.go('^');

@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.coobird.thumbnailator.Thumbnails;
+import net.jojoaddison.xmserv.domain.Album;
 import net.jojoaddison.xmserv.domain.Gallery;
 import net.jojoaddison.xmserv.repository.GalleryRepository;
 import net.jojoaddison.xmserv.service.util.Tools;
@@ -45,8 +47,10 @@ public class GalleryService {
      * @return the persisted entity
      */
     public Gallery save(Gallery gallery) {
-        log.debug("Request to save Gallery : {}", gallery);        
-        Gallery result = galleryRepository.save(createGalleryImage(gallery));
+        log.debug("Request to save Gallery : {}", gallery);      
+        gallery = createGalleryImage(gallery);
+        gallery = createThumbnail(gallery);
+        Gallery result = galleryRepository.save(gallery);
         return result;
     }
     
@@ -143,6 +147,24 @@ public class GalleryService {
     }
 
 
+    public Gallery createThumbnail(Gallery gallery){
+    	if(gallery.getThumbnail() == null && gallery.getPictureUrl() != null){
+    		String fileExt = gallery.getPictureContentType().split("/")[1].toLowerCase();
+    		String photoUrl = gallery.getPictureUrl();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		gallery.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			}
+    	}
+    	return gallery;
+    }
     
 
 }

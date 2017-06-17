@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 
@@ -47,14 +48,16 @@ public class EventService {
      */
     public Event save(Event event) {
         log.debug("Request to save Event : {}", event);
-        Event result = eventRepository.save(convertEvent(event));
+        event = convertEvent(event);
+        event = createThumbnail(event);        
+        Event result = eventRepository.save(event);
         return result;
     }
 
     private Event convertEvent(Event event){
     	if(event.getImage() != null){
 			log.info("converting: {}", event);
-    		String fileExt = event.getImageContentType().split("/")[1];
+			String fileExt = event.getImageContentType().split("/")[1];
     		String root = env.getProperty("client.root");
 			log.info("root path: {}", root);
     		String sep = Tools.getSeparator();
@@ -81,6 +84,7 @@ public class EventService {
 					.toFile(thumbFileName);
 					Tools.setReadPermissions(root.concat(DATA));
 					Tools.setPermission(fileName, Tools.getPermissions775());
+					event.setThumbnail(thumb);
 					event.setImage(null);
 					event.setPhoto(url);
 				}
@@ -90,6 +94,25 @@ public class EventService {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				log.error(e.getMessage(), e.getCause());
+			}
+    	}
+    	return event;
+    }
+    
+    private Event createThumbnail(Event event){
+    	if(event.getThumbnail() == null && event.getPhoto() != null){
+    		String fileExt = event.getImageContentType().split("/")[1].toLowerCase();
+    		String photoUrl = event.getPhoto();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		event.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
 			}
     	}
     	return event;
@@ -117,7 +140,7 @@ public class EventService {
     public Page<Event> findAllCurrent(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeAfter(now.minusDays(1), pageable);
+        Page<Event> result = eventRepository.findAllByStartTimeAfter(now.minusDays(2), pageable);
         return result;
     }
 

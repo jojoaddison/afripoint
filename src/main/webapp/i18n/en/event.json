@@ -4,7 +4,11 @@
             "home": {
                 "title": "Events",
                 "createLabel": "Create a new Event",
-                "createOrEditLabel": "Event editor"
+                "createOrEditLabel": "Event editor",
+                "showAll": "Show All",
+                "showHistory": "Show History",
+                "refresh": "Refresh",
+                "showCurrent": "Show Current"
             },
             "created": "A new Event is created with identifier {{ param }}",
             "updated": "A Event is updated with identifier {{ param }}",

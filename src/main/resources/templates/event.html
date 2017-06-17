@@ -1,0 +1,123 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Afripoint-Events</title>
+    <meta name="description" content="feasts, festivals, weddings, engagements, film shows, lifestyle, business!">
+    <meta name="google" value="notranslate">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="refresh" content="1;URL=/#/events">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css content/css/vendor.css -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Custom Fonts -->
+    <link href="content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" th:href="@{/content/vendor/font-awesome/css/font-awesome.min.css}">
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" th:href="@{/bower_components/angular-loading-bar/build/loading-bar.css}">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}">
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:css content/css/main.css -->
+    <link rel="stylesheet" href="content/css/main.css" th:href="@{/content/css/main.css}">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="content/css/creative.css" th:href="@{/content/css/creative.css}">
+</head>
+<body>
+	<div class="container well well-sm">
+    <div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+
+			<div class="col-md-10">
+				<h2 th:text="#{event.title}">Event title</h2>
+			</div>
+
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row" ng-if="evm.event.photo">
+			<div class="container-fluid">
+					<img th:src="#{event.photo}"
+					style="margin:auto; height: auto; width: 100%;">
+				</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div>
+					<hr>
+					<dl class="row jh-entity-details">
+						<dt>
+							<span>Title</span>
+						</dt>
+						<dd>
+							<span th:text="#{event.title}">Title</span>
+						</dd>
+						<dt>
+							<span>Description</span>
+						</dt>
+						<dd>
+							<span th:text="#{event.description}">Description</span>
+						</dd>
+						<dt>
+							<span>Start Time</span>
+						</dt>
+						<dd>
+							<span th:text="${#calendars.format(event.startTime, 'HH:mm')}"></span>
+						</dd>
+						<dt>
+							<span>End Time</span>
+						</dt>
+						<dd>
+							<span th:text="${#calendars.format(event.endTime, 'HH:mm')}"></span>
+						</dd>
+						<dt>
+							<span>Owner</span>
+						</dt>
+						<dd>
+							<span th:utext="#{event.owner.lastname}&nbsp;#{event.owner.lastname}"></span>
+						</dd>
+						<dt>
+							<span>Created Date</span>
+						</dt>
+						<dd>
+							<span th:text="${#calendars.format(event.createdDate, 'dd MMMM yyyy')}"></span>
+						</dd>
+						<dt>
+							<span>Modified Date</span>
+						</dt>
+						<dd>
+							<span th:text="${#calendars.format(event.modifiedDate, 'dd MMMM yyyy')}"></span>
+						</dd>
+						<dt>
+							Contact
+						</dt>
+						<dd>
+							<span th:text="#{event.createdBy.firstName}&nbsp;#{event.createdBy.lastName}"></span><br />
+							<span th:text="#{event.createdBy.email}"></span>
+						</dd>
+
+					</dl>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-md-6 text-left">
+					Created: {{evm.event.createdDate | date:'medium'}}
+				</div>
+				<div class="col-md-6 text-right">
+					Last modified:	{{evm.event.modifiedDate | date:'medium'}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

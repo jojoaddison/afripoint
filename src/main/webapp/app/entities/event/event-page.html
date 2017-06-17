@@ -19,8 +19,8 @@
 	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
 		<div class="col-md-10" >
 			<div class="row" ng-click="vm.openEvent(event)">
-				<div class="col-sm-4">
-					<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+				<div class="col-sm-2">
+					<img ng-src="{{event.thumbnail}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
 				</div>
 				<div class="col-sm-8">
 					<h5>{{event.title}}</h5>

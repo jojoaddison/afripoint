@@ -1,5 +1,6 @@
 package net.jojoaddison.xmserv.web.rest;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,7 +29,9 @@ import com.codahale.metrics.annotation.Timed;
 
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
+import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Partner;
+import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.PartnerRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.service.util.Tools;
@@ -51,6 +54,8 @@ public class PartnerResource {
     private final Environment env;
 
     private final String PARTNER_PHOTOS = "data/partner/photos";
+    private final int HEIGHT = 120;
+    private final int WIDTH = 120;
 
     public PartnerResource(PartnerRepository partnerRepository, Environment env) {
         this.partnerRepository = partnerRepository;
@@ -71,8 +76,9 @@ public class PartnerResource {
         if (partner.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new partner cannot already have an ID")).body(null);
         }
-        
-        Partner result = partnerRepository.save(convert(partner));
+        partner = convert(partner);
+        partner = createThumbnail(partner);
+        Partner result = partnerRepository.save(partner);
         return ResponseEntity.created(new URI("/api/partners/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -94,7 +100,9 @@ public class PartnerResource {
         if (partner.getId() == null) {
             return createPartner(partner);
         }
-        Partner result = partnerRepository.save(convert(partner));
+        partner = convert(partner);
+        partner = createThumbnail(partner);
+        Partner result = partnerRepository.save(partner);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, partner.getId().toString()))
             .body(result);
@@ -180,6 +188,25 @@ public class PartnerResource {
 			}
     	}
     	
+    	return partner;
+    }
+
+    public Partner createThumbnail(Partner partner){
+    	if(partner.getThumbnail() == null && partner.getImageUrl() != null){
+    		String fileExt = partner.getImageContentType().split("/")[1].toLowerCase();
+    		String photoUrl = partner.getImageUrl();
+    		String thumbnail = photoUrl.substring(0, photoUrl.lastIndexOf('.')).concat("_thumb").concat(".").concat(fileExt);
+    		partner.setThumbnail(thumbnail);
+    		String root = env.getProperty("client.root");
+    		String thumbFilename = root.concat(thumbnail);
+    		String photoFile = root.concat(photoUrl);
+    		try {
+				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			}
+    	}
     	return partner;
     }
 }

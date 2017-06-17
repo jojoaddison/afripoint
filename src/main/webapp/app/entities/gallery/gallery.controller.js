@@ -5,10 +5,10 @@
         .module('afripointApp')
         .controller('GalleryController', GalleryController);
 
-    GalleryController.$inject = ['$timeout','DataUtils', 'Gallery', 'ParseLinks', 'AlertService', 'paginationConstants', 'StorageDB', 'StorageUtils'];
+    GalleryController.$inject = ['$rootScope', '$timeout','DataUtils', 'Gallery', 'ParseLinks', 'AlertService', 'paginationConstants', 'StorageDB', 'StorageUtils'];
        
 
-    function GalleryController($timeout, DataUtils, Gallery, ParseLinks, AlertService, paginationConstants, StorageDB, StorageUtils) {
+    function GalleryController($rootScope, $timeout, DataUtils, Gallery, ParseLinks, AlertService, paginationConstants, StorageDB, StorageUtils) {
 
         var vm = this;
         vm.preloaded = false;
@@ -26,13 +26,27 @@
         vm.byteSize = DataUtils.byteSize;
         var GALLERIESDB = "galleriesdb";
         var lastUpdatedGallery = "lastGalleryUpdated";
+     	vm.refresh = refresh;
         
         loadAll();
         
-        $timeout(function(){
-        	reloadGalleries();
-        }, 15000);
 
+     	$rootScope.$on("afripointApp:galleryUpdate", function(evt, gallery){
+     		console.log("afripointApp:galleryUpdate");
+     		console.log(evt);
+     		console.log(gallery);
+     		console.log("afripointApp:galleryUpdate");
+     		refresh();
+     	});
+
+     	function refresh(){
+     		StorageUtils.remove(lastUpdatedGallery);
+ 			StorageDB.clear(GALLERIESDB, function(){
+ 				reloadGalleries();
+ 			});
+     	}
+
+     	
         function loadAll () {
         	StorageDB.getAll(GALLERIESDB, function(galleries){
             	if(!galleries || galleries.length == 0)galleries = undefined;

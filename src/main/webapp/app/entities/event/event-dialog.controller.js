@@ -89,10 +89,7 @@
         function setDatepickerOptions(){
             var endTime = getDate(vm.event.endTime) ? null : new Date();
             var startTime = getDate(vm.event.startTime) ? null : new Date() ;
-            
-            console.log("start-time: " + startTime);
-            console.log("end-time: " + endTime);
-        	
+                    	
             vm.startDatepickerOptions = {
             		"maxDate": null,
             		"minDate": getToday()

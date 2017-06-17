@@ -67,7 +67,7 @@
 				Event.current({
 					page: vm.page,
 					size: vm.size,
-					sort: ['endTime, asc']
+					sort: ['startTime, asc']
 				},
 				function(data) {
 				 console.log(data);		

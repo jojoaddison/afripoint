@@ -4,7 +4,11 @@
             "home": {
                 "title": "Events",
                 "createLabel": "Event erstellen",
-                "createOrEditLabel": "Event bearbeiten"
+                "createOrEditLabel": "Event bearbeiten",
+                "showAll": "Alle Anzeigen",
+                "showHistory": "Historie Anzeigen",
+                "refresh": "Neu laden",
+                "showCurrent": "Aktuelles Anzeigen"
             },
             "created": "Event erstellt mit ID {{ param }}",
             "updated": "Event aktualisiert mit ID {{ param }}",
