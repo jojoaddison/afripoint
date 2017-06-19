@@ -1,0 +1,26 @@
+{
+    "afripointApp": {
+        "locationItem" : {
+            "home": {
+                "title": "Geschäfte",
+                "createLabel": "Geschäft erstellen",
+                "createOrEditLabel": "Geschäft erstellen oder bearbeiten"
+            },
+            "created": "Geschäft erstellt mit ID {{ param }}",
+            "updated": "Geschäft aktualisiert mit ID {{ param }}",
+            "deleted": "Geschäft gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Location item {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Geschäfte"
+            },
+            "category": "Kategorie",
+            "service": "Leistung",
+            "description": "Beschreibung",
+            "period": "Zeitraum",
+            "price": "Preis",
+            "member": "Mitgliederpreis"
+        }
+    }
+}

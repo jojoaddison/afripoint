@@ -19,10 +19,11 @@
                 "authority": "Authority",
                 "gallery": "Gallery",
                 "album": "Album",
-                "afripointService": "Service",
+                "afripointService": "Afripoint",
                 "page": "Page",
                 "article": "Article",
                 "subscriber": "Subscriber",
+                "locationItem": "Location ",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

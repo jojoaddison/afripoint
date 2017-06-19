@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.coobird.thumbnailator.Thumbnails;
-import net.jojoaddison.xmserv.domain.Album;
 import net.jojoaddison.xmserv.domain.Gallery;
 import net.jojoaddison.xmserv.repository.GalleryRepository;
 import net.jojoaddison.xmserv.service.util.Tools;
@@ -158,7 +157,8 @@ public class GalleryService {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
-			} catch (IOException e) {
+				Tools.setReadPermissions(root.concat(DATA));
+			} catch (Exception e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}

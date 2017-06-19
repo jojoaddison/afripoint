@@ -21,6 +21,7 @@
 		vm.openLearn = PageUtils.openLearn;
 		vm.openPartner = PageUtils.openPartner;
 		vm.openPage = PageUtils.openPage;
+		vm.openLocation = PageUtils.openLocation;
 		vm.mod = PageUtils.mod;
 		vm.page = 0;
 		vm.size = 10;

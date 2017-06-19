@@ -1,7 +1,6 @@
 package net.jojoaddison.xmserv.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Authority;
-import net.jojoaddison.xmserv.domain.Media;
 import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.AuthorityRepository;
 import net.jojoaddison.xmserv.repository.UserRepository;
@@ -46,6 +44,7 @@ public class UserService {
     private final Environment env;
     
     private final String USER_PHOTOS = "data/user-management/photos";
+    private final String DATA = "data/";
     private final int HEIGHT = 120;
     private final int WIDTH = 120;
 
@@ -201,12 +200,11 @@ public class UserService {
 					String fileName = root.concat(url);
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, user.getImage());
-					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(USER_PHOTOS), Tools.getPermissions775());
+					Tools.setReadPermissions(root.concat(DATA));
 					user.setImage(null);
 					user.setImageUrl(url);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				log.error(e.getMessage(), e.getCause());
 			}
@@ -225,7 +223,8 @@ public class UserService {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
-			} catch (IOException e) {
+				Tools.setReadPermissions(root.concat(DATA));
+			} catch (Exception e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}

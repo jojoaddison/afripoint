@@ -4,6 +4,6 @@
     angular
         .module('afripointApp')
         .constant('VERSION', "0.0.1")
-        .constant('DEBUG_INFO_ENABLED', false)
+        .constant('DEBUG_INFO_ENABLED', true)
 ;
 })();

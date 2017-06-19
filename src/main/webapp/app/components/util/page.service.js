@@ -8,12 +8,14 @@
     	PageUtils.$inject = ['$window', '$sce', '$uibModal'];
 
     	function PageUtils($window, $sce, $uibModal){
+    		
     		var service = {
 				openEvent: openEvent,
 				openLearn: openLearn,
 				openPartner: openPartner,
 	            openService: openService,
 	            openPage: openPage,
+	            openLocation: openLocation,
 	            mod: mod
     		};
 
@@ -23,6 +25,54 @@
     			return (x%y);
     		}
 
+    		
+    		function openLocation() {
+    			$uibModal.open(
+        				{
+        					templateUrl : "app/home/location.html",
+        					controller : ['$uibModalInstance', 'businesses',
+    			    						function($uibModalInstance, businesses) {
+    			    						var vm = this;
+    				    						vm.services = businesses;
+    			    							console.log(vm.services);
+    				    						vm.close = function(){
+    				    							$uibModalInstance.dismiss('cancel');
+    				    						}
+    			    						}
+    		    						],
+        					controllerAs : 'vm',
+        					backdrop : 'static',
+        					size : 'lg',
+        					resolve : {
+        						businesses: ['LocationItem', 
+          						           function(LocationItem){
+        											var result = LocationItem.query(
+                  									 		{
+                  	    					                page: 1,
+                  	    					                size: 20,
+                  	    					                sort: {
+              	    	    					                	value: 'id,desc',
+              	    	    					                    squash: true
+                  	    					                	  }
+                  		    					            }, function onSuccess(data) {
+                  		    					                return data;
+                  		    					            }, function onError(error) {
+                  		    					                return error;
+                  		    					            });
+        											return result.$promise;
+          									}    						           
+          								],
+        						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+        							$translatePartialLoader.addPart('locationItem');
+        							$translatePartialLoader.addPart('home');
+        							$translatePartialLoader.addPart('global');
+        							return $translate.refresh();
+        						} ]
+        					}
+        				}
+        			);
+    		}
+    		
     		function openPartner() {
     			$uibModal.open(
     				{
@@ -49,7 +99,6 @@
     				}
     			);
     		}
-
 
     		function openLearn() {
     			$uibModal.open(
@@ -107,7 +156,6 @@
     			);
     		}
 
-
             function openService(service) {
                 $uibModal.open(
                     {
@@ -138,10 +186,9 @@
                 );
             }
 
-
             function openPage(page) {       	
-                $uibModal.open(
-                    {
+                	$uibModal.open(
+                		{
                         templateUrl : "app/home/document.html",
                         controller : [ '$uibModalInstance', 'page',
                             function($uibModalInstance, page) {
@@ -167,8 +214,7 @@
                         }
                     }
                 );
-            }
-
-    	}
+            }    	
+    }
 
 })();

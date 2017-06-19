@@ -110,7 +110,11 @@ public class EventService {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+				Tools.setReadPermissions(root.concat(DATA));
 			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}
@@ -140,7 +144,7 @@ public class EventService {
     public Page<Event> findAllCurrent(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeAfter(now.minusDays(2), pageable);
+        Page<Event> result = eventRepository.findAllByEndTimeAfter(now.minusDays(2), pageable);
         return result;
     }
 
@@ -153,7 +157,7 @@ public class EventService {
     public Page<Event> findAllPast(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeBefore(now, pageable);
+        Page<Event> result = eventRepository.findAllByEndTimeBefore(now, pageable);
         return result;
     }
     /**

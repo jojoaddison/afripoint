@@ -31,7 +31,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Partner;
-import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.PartnerRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.service.util.Tools;
