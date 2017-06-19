@@ -30,38 +30,22 @@
     			$uibModal.open(
         				{
         					templateUrl : "app/home/location.html",
-        					controller : ['$uibModalInstance', 'businesses',
-    			    						function($uibModalInstance, businesses) {
-    			    						var vm = this;
-    				    						vm.services = businesses;
-    			    							console.log(vm.services);
-    				    						vm.close = function(){
-    				    							$uibModalInstance.dismiss('cancel');
-    				    						}
-    			    						}
-    		    						],
+        					controller : 'LocationItemListController',
         					controllerAs : 'vm',
         					backdrop : 'static',
         					size : 'lg',
+        		            params: {
+        		                page: {
+        		                    value: '1',
+        		                    squash: true
+        		                },
+        		                sort: {
+        		                    value: 'id,desc',
+        		                    squash: true
+        		                },
+        		                search: null
+        		            },
         					resolve : {
-        						businesses: ['LocationItem', 
-          						           function(LocationItem){
-        											var result = LocationItem.query(
-                  									 		{
-                  	    					                page: 1,
-                  	    					                size: 20,
-                  	    					                sort: {
-              	    	    					                	value: 'id,desc',
-              	    	    					                    squash: true
-                  	    					                	  }
-                  		    					            }, function onSuccess(data) {
-                  		    					                return data;
-                  		    					            }, function onError(error) {
-                  		    					                return error;
-                  		    					            });
-        											return result.$promise;
-          									}    						           
-          								],
         						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
         							$translatePartialLoader.addPart('locationItem');
         							$translatePartialLoader.addPart('home');

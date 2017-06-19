@@ -13,7 +13,11 @@
 		</div>
 	</div>
 	<div class="panel-body">		
-		<div class="well well-lg col-xs-8" style="margin-left: 20px; margin-right: 1px; min-width: 97%;" ng-repeat="locationItem in vm.services track by locationItem.id">
+		<h1>Bla bla</h1>
+		<p>
+		{{vm.locationItems}}
+		</p>
+		<div class="well well-lg col-xs-8" style="margin-left: 20px; margin-right: 1px; min-width: 97%;" ng-repeat="locationItem in vm.locationItems track by locationItem.id">
 			<dl class="row jh-entity-details text-left">
 				<dt>
 					<span data-translate="afripointApp.locationItem.category">Category</span>
