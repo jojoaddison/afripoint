@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="afripointApp.locationItem.detail.title">Location Order</span> {{vm.locationItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.locationItem.category">Category</span></dt>
+        <dd>
+            <span>{{vm.locationItem.category}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.locationItem.service">Service</span></dt>
+        <dd>
+            <span>{{vm.locationItem.service}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.locationItem.description">Description</span></dt>
+        <dd>
+            <span>{{vm.locationItem.description}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.locationItem.period">Period</span></dt>
+        <dd>
+            <span data-translate="{{'afripointApp.Periods.' + vm.locationItem.period}}">{{vm.locationItem.period}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.locationItem.price">Price</span></dt>
+        <dd>
+            <span>{{vm.locationItem.price}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="location-order-detail.edit({id:vm.locationItem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

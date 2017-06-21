@@ -1,10 +1,10 @@
-<div class="well well-md">
+<div class="well well-sm">
     <h2 data-translate="afripointApp.partner.home.title">Partners</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="partner.new" >
+        <div class="row text-right">
+            <div class="col-xs-11 no-padding-right">
+                <button class="btn btn-primary btn-sm" ui-sref="partner.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span  data-translate="afripointApp.partner.home.createLabel">
                         Create new Partner
@@ -18,49 +18,27 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                	<!--
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                   -->
+                    <th jh-sort-by="type"><span data-translate="global.field.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span data-translate="afripointApp.partner.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="firstname"><span data-translate="afripointApp.partner.firstname">Firstname</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastname"><span data-translate="afripointApp.partner.lastname">Lastname</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="email"><span data-translate="afripointApp.partner.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="mobileNumber"><span data-translate="afripointApp.partner.mobileNumber">Mobile Number</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="telephoneNumber"><span data-translate="afripointApp.partner.telephoneNumber">Telephone Number</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <!--
-                    <th jh-sort-by="streetAddress"><span data-translate="afripointApp.partner.streetAddress">Street Address</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="zipcode"><span data-translate="afripointApp.partner.zipcode">Zipcode</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="city"><span data-translate="afripointApp.partner.city">City</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="state"><span data-translate="afripointApp.partner.state">State</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="country"><span data-translate="afripointApp.partner.country">Country</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="region"><span data-translate="afripointApp.partner.region">Region</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="continent"><span data-translate="afripointApp.partner.continent">Continent</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    -->
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="partner in vm.partners track by partner.id">
-                	<!--
-                    <td><a ui-sref="partner-detail({id:partner.id})">{{partner.id}}</a></td>
-                   -->
+                    <td>{{partner.type}}</td>
                     <td>{{partner.title}}</td>
                     <td>{{partner.firstname}}</td>
                     <td>{{partner.lastname}}</td>
                     <td>{{partner.email}}</td>
                     <td>{{partner.mobileNumber}}</td>
                     <td>{{partner.telephoneNumber}}</td>
-                    <!--
-                    <td>{{partner.streetAddress}}</td>
-                    <td>{{partner.zipcode}}</td>
-                    <td>{{partner.city}}</td>
-                    <td>{{partner.state}}</td>
-                    <td>{{partner.country}}</td>
-                    <td>{{partner.region}}</td>
-                    <td>{{partner.continent}}</td>
-                    -->
                     <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
+                        <div class="btn-group btn-group-vertical">
                             <button type="submit"
                                     ui-sref="partner-detail({id:partner.id})"
                                     class="btn btn-info btn-sm">

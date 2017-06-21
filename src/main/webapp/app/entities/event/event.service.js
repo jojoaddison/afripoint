@@ -21,6 +21,11 @@
 		    			method: 'GET', 
 		    			isArray: true
     				},
+            'documents': { 
+		    			url: 'api/events/documents',
+		    			method: 'GET', 
+		    			isArray: true
+    				},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -32,6 +37,14 @@
                         data.endTime = DateUtils.convertDateTimeFromServer(data.endTime);
                     }
                     return data;
+                }
+            },
+            'upload': {
+                method: 'POST',
+                url: 'api/events/upload',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    return angular.toJson(copy);
                 }
             },
             'update': {

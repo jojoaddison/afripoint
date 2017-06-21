@@ -21,7 +21,8 @@
             '720kb.socialshare',
             'angular-loading-bar',
             'duScroll',
-            'indexedDB'
+            'indexedDB',
+            'ngCart'
             // jhipster-needle-angularjs-add-module JHipster will add new module here
         ])
         .run(run);

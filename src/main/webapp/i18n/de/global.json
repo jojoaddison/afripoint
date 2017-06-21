@@ -1,6 +1,8 @@
 {
     "global": {
         "title": "Afripoint",
+        "currency": "eur",
+        "congratulation": "Gratulieren {{ info }}!",
         "browsehappy": "Sie benutzen einen <strong>veralteten</strong> Browser. Bitte <a href=\"http://browsehappy.com/?locale=de/\">aktualisieren Sie Ihren Browser</a>, um die Benutzerfreundlichkeit zu erhöhen.",
         "menu": {
             "home": "Startseite",
@@ -19,10 +21,11 @@
                 "authority": "Authority",
                 "gallery": "Galerie",
                 "album": "Alben",
-                "afripointService": "Service",
+                "afripointService": "Afripoint",
                 "page": "Seite",
                 "article": "Artikel",
                 "subscriber": "Subscriber",
+                "locationItem": "Location",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -91,7 +94,8 @@
         },
         "field": {
             "id" : "ID",
-            "details": "Details"
+            "details": "Details",
+            "type": "Typ"
         },
         "ribbon": {
             "dev":"Development"
@@ -102,16 +106,18 @@
             "addblob": "Blob hinzufügen",
             "addimage": "Bild hinzufügen",
             "changeimage": "Bild ändern",
+            "change": "Ändern",
             "back": "Zurück",
             "cancel": "Abbrechen",
             "delete": "Löschen",
             "edit": "Bearbeiten",
-            "open": "Open",
+            "open": "Öffnen",
             "save": "Speichern",
             "view": "Details",
             "close": "Schließen",
             "add": "Hinzüfügen",
             "new": "Neu",
+            "upload": "Hochladen",
             "addMedia": "Media hinzufügen"
         },
         "detail": {
@@ -143,6 +149,10 @@
         "userexists": "Benutzername bereits vergeben!",
         "emailexists": "E-mail wird bereits verwendet!",
         "idexists": "Ein neuer {{entityName}} kann noch keine ID haben"
+    },
+    "ngcart": {
+    	"added": "HINGEFÜGT",
+    	"checkout": "KASSA"
     },
     "footer": "&copy;www.afripoint.at&reg;"
 }

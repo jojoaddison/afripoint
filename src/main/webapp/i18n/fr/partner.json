@@ -1,47 +1,58 @@
 {
-    "afripointApp": {
-        "partner" : {
-            "home": {
-                "title": "Partners",
-                "createLabel": "Créer un nouveau Partner",
-                "createOrEditLabel": "Éditer un Partner"
-            },
-            "created": "Un nouveau Partner a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Partner avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Partner avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Partner {{ id }} ?"
-            },
-            "detail": {
-                "title": "Partner"
-            },
-            "firstname": "Firstname",
-            "lastname": "Lastname",
-            "title": "Title",
-            "email": "Email",
-            "mobileNumber": "Mobile",
-            "telephoneNumber": "Telephone",
-            "streetAddress": "Street",
-            "zipcode": "Zipcode",
-            "city": "City",
-            "state": "State",
-            "country": "Country",
-            "region": "Region",
-            "continent": "Continent",
-            "notes": "Notes",
-            "address": "Address",
-            "photo": "Photo",
-            "titles": {
-            	"org": "Organisation",
-            	"mr": "Mr.",
-            	"mrs": "Mrs.",
-            	"miss": "Miss.",
-            	"dr": "Dr.",
-            	"ms": "Ms.",
-            	"ing": "Eng.",
-            	"prof": "Prof.",
-            	"mas": "Master"
-            }
-        }
-    }
+	"afripointApp": {
+		"partner": {
+			"home": {
+				"title": "Les partenaires",
+				"createLabel": "Créer un nouveau Partenaire",
+				"createOrEditLabel": "Éditer un Partenaire"
+			},
+			"congratulation": "Félicitation {{ info }}!",
+			"thank": {
+				"partner": "Merci {{nom}} pour vous inscrire pour être un partenaire {{type}}"
+			},
+			"become": "Devenir un partenaire",
+			"created": "Un nouveau Partenaire a été créé avec l'identifiant {{ param }}",
+			"updated": "Le Partenaire avec l'identifiant {{ param }} a été mis à jour",
+			"deleted": "Le Partenaire avec l'identifiant {{ param }} a été supprimé",
+			"delete": {
+				"question": "Etes-vous certain de vouloir supprimer le Partenaire {{ id }} ?"
+			},
+			"detail": {
+				"title": "Partenaire"
+			},
+			"firstname": "Prénom",
+			"lastname": "Nom de famille",
+			"title": "Titre",
+			"email": "Email",
+			"mobileNumber": "Mobile",
+			"telephoneNumber": "Téléphone",
+			"streetAddress": "rue",
+			"zipcode": "Code postal",
+			"city": "Ville",
+			"state": "Etat",
+			"country": "Pays",
+			"region": "Région",
+			"continent": "Continent",
+			"notes": "Remarques",
+			"address": "Adresse",
+			"photo": "Photo",
+			"titles": {
+				"org": "Organisation",
+				"mr": "M.",
+				"mrs": "Madame.",
+				"miss": "Mademoiselle.",
+				"dr": "Dr.",
+				"ms": "Mme.",
+				"ing": "Ing.",
+				"prof": "Prof.",
+				"mas": "Maîtriser"
+			},
+			"type": "Choisissez le type de partenaire",
+			"types": {
+				"classic": "classique",
+				"gold": "d'Or",
+				"platinum": "platine"
+			}
+		}
+	}
 }

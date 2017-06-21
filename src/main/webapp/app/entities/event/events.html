@@ -1,9 +1,9 @@
-<div class="well well-md">
+<div class="well well-lg">
 	<h2 data-translate="afripointApp.event.home.title" class="text-left">Events</h2>
 		<jhi-alert></jhi-alert>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-8 no-padding-right pull-right">
+				<div class="col-xs-12 text-right">
 					<button class="btn btn-primary btn-sm" ng-click="vm.showCurrent()"  ng-if="vm.mode=='ALL'" >
 						<span class="glyphicon glyphicon-th-list"></span>
 						<span data-translate="afripointApp.event.home.showCurrent">show all</span>
@@ -19,6 +19,10 @@
 					<button class="btn btn-primary btn-sm" ng-click="vm.refresh()">
 						<span class="glyphicon glyphicon-refresh"></span>
 						<span data-translate="afripointApp.event.home.refresh">Refresh</span>
+					</button>
+					<button class="btn btn-primary btn-sm" ui-sref="events-management.upload" >
+						<span class="glyphicon glyphicon-cloud"></span>
+						<span  data-translate="entity.action.upload"> Upload </span>
 					</button>
 					<button class="btn btn-primary btn-sm" ui-sref="events-management.new" >
 						<span class="glyphicon glyphicon-plus"></span>
@@ -46,7 +50,7 @@
 					<td> {{event.startTime | date:'dd-MM-yyyy HH:mm:ss'}}</td>
 					<td><a ui-sref="partner-detail({id:event.owner.id})">{{event.owner.firstname}}&nbsp;{{event.owner.lastname}}</a></td>
 					<td class="text-right">
-					<div class="btn-group flex-btn-group-container">
+					<div class="btn-group btn-group-vertical">
 						<button type="submit"
 						ui-sref="events-management-detail({id:event.id})"
 						class="btn btn-info btn-sm">

@@ -239,6 +239,48 @@
                       });
                   }]
               })
+              .state('events-management.upload', {
+                  parent: 'events-management',
+                  url: '/upload',
+                  data: {
+                      authorities: ['ROLE_USER']
+                  },
+                  onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                      $uibModal.open({
+                          templateUrl: 'app/entities/event/event-upload.html',
+                          controller: 'EventUploadController',
+                          controllerAs: 'vm',
+                          backdrop: 'static',
+                          size: 'lg',
+                          resolve: {
+                              translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+                                  $translatePartialLoader.addPart('media');
+                                  return $translate.refresh();
+                              }],
+                              entity: function() {
+                                  return {
+                                      title: null,
+                                      src: null,
+                                      version: null,
+                                      document: null,
+                                      contentType: null,
+                                      createdDate: null,
+                                      modifiedDate: null,
+                                      createdBy: null,
+                                      modifiedBy: null,
+                                      id: null
+                                  };
+                              }
+                          }
+                      }).result.then(function() {
+                          $state.go('events-management', null, {
+                              reload: 'events-management'
+                          });
+                      }, function() {
+                          $state.go('events-management');
+                      });
+                  }]
+              })
               .state('events-management.new', {
                   parent: 'events-management',
                   url: '/new',

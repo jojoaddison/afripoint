@@ -6,6 +6,11 @@
                 "createLabel": "Partner erstellen",
                 "createOrEditLabel": "Partner bearbeiten"
             },
+        	"congratulation": "Gratulation {{ param }} Partner!",
+			"thank": {
+				"partner": "Danke für die Anmeldung als {{ type }} Partner!"
+			},
+            "become": "Partner werden",
             "created": "Partner erstellt mit ID {{ param }}",
             "updated": "Partner aktualisiert mit ID {{ param }}",
             "deleted": "Partner gelöscht mit ID {{ param }}",
@@ -15,9 +20,9 @@
             "detail": {
                 "title": "Partner"
             },
-            "firstname": "Firstname",
-            "lastname": "Lastname",
-            "title": "Title",
+            "firstname": "Vorname",
+            "lastname": "Nachname",
+            "title": "Titel",
             "email": "Email",
             "mobileNumber": "Mobil",
             "telephoneNumber": "Telefon",
@@ -30,7 +35,7 @@
             "continent": "Continent",
             "notes": "Notizen",
             "address": "Adresse",
-            "photo": "Photo",
+            "photo": "Foto",
             "titles": {
             	"org": "Organisation",
             	"mr": "Herr",
@@ -41,6 +46,12 @@
             	"ing": "Ing.",
             	"prof": "Prof.",
             	"mas": "Magister"
+            },
+            "type": "Partner Typ Auswählen",
+            "types": {
+            	"classic": "Klassich",
+            	"gold": "Gold",
+            	"platinum": "Platinum"
             }
         }
     }

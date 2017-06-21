@@ -3,17 +3,17 @@
 	<br/>
 	<!--
 	<div class="row">
-		<div class="col-md-12" style="margin-right: auto; margin-left: auto; overflow-y: auto;">
-			<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
-				<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
-					<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
-					<div class="carousel-caption bg-primary bg-transparent">
-						<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
-						<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="col-md-12" style="margin-right: auto; margin-left: auto; overflow-y: auto;">
+	<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
+	<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
+	<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
+	<div class="carousel-caption bg-primary bg-transparent">
+	<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
+	<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+	</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	-->
 	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
@@ -29,26 +29,25 @@
 			</div>
 		</div>
 		<div class="col-md-2 text-center">
-			<a
+			<a class="btn btn-primary btn-sm"
 			href="#"
-			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
+			socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
 			socialshare
 			socialshare-provider="twitter"
 			socialshare-text="{{event.title}}"
-			socialshare-hashtags="afripoint,afripoint-event"
+			socialshare-hashtags="#afripoint, #afripointEvent"
+			socialshare-popup-height="800"
+			socialshare-popup-width="800"
 			><i class="fa fa-twitter" aria-hidden="true"></i></a>
-			&nbsp;&nbsp;&nbsp;
-			<a
+			<a class="btn btn-primary btn-sm"
 			href="#"
 			socialshare="share"
 			socialshare-provider="facebook"
-			socialshare-url="http://www.afripoint.at/#/event/view/{{event.id}}/"
-			socialshare-title="{{event.title}}"
-			socialshare-caption="{{event.title}}"
-			socialshare-description="{{event.description}}"
-			socialshare-quote="{{event.description}}"
+			socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
 			socialshare-text="{{event.title}}"
-			socialshare-hashtags="#afripoint, #afripoint-event"
+			socialshare-hashtags="#afripoint, #afripointEvent"
+			socialshare-popup-height="800"
+			socialshare-popup-width="800"
 			><i class="fa fa-facebook" aria-hidden="true"></i></a>
 		</div>
 	</div>

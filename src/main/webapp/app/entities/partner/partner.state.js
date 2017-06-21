@@ -29,7 +29,7 @@
                     squash: true
                 },
                 sort: {
-                    value: 'id,asc',
+                    value: 'id,desc',
                     squash: true
                 },
                 search: null
@@ -128,6 +128,8 @@
                                 lastname: null,
                                 title: null,
                                 email: null,
+                                type: null,
+                                image: null,
                                 mobileNumber: null,
                                 telephoneNumber: null,
                                 streetAddress: null,

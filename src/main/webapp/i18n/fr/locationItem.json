@@ -1,0 +1,26 @@
+{
+    "afripointApp": {
+        "locationItem" : {
+            "home": {
+                "title": "Locationitems",
+                "createLabel": "Créer un nouveau Location item",
+                "createOrEditLabel": "Créer ou éditer un Location item"
+            },
+            "created": "Un nouveau Location item a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Location item avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Location item avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Location item {{ id }} ?"
+            },
+            "detail": {
+                "title": "Location item"
+            },
+            "category": "Category",
+            "service": "Service",
+            "description": "Description",
+            "period": "Period",
+            "price": "Price",
+            "member": "Members price"
+        }
+    }
+}

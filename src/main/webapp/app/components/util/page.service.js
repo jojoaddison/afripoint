@@ -8,37 +8,90 @@
     	PageUtils.$inject = ['$window', '$sce', '$uibModal'];
 
     	function PageUtils($window, $sce, $uibModal){
+    		
     		var service = {
 				openEvent: openEvent,
 				openLearn: openLearn,
 				openPartner: openPartner,
 	            openService: openService,
 	            openPage: openPage,
+	            openLocation: openLocation,
+	            partnerRegistered: partnerRegistered,
+	            checkBasket: checkBasket,
 	            mod: mod
     		};
 
     		return service;
+    		
+    		function checkBasket(){
+    			console.log("Doing checkBasket...");
+    		}
 
     		function mod(x, y){
     			return (x%y);
     		}
-
+    		
+    		function openLocation() {
+    			$uibModal.open(
+        				{
+        					templateUrl : 'app/home/location.html',
+        					controller : 'LocationItemListController',
+        					controllerAs : 'vm',
+        					backdrop : 'static',
+        					size : 'lg',
+        		            params: {
+        		                page: {
+        		                    value: '1',
+        		                    squash: true
+        		                },
+        		                sort: {
+        		                    value: 'id,desc',
+        		                    squash: true
+        		                },
+        		                search: null
+        		            },
+        					resolve : {
+        						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+        							$translatePartialLoader.addPart('locationItem');
+        							$translatePartialLoader.addPart('home');
+        							$translatePartialLoader.addPart('global');
+        							return $translate.refresh();
+        						} ]
+        					}
+        				}
+        			);
+    		}
+    		
     		function openPartner() {
     			$uibModal.open(
     				{
     					templateUrl : "app/home/partner.html",
-    					controller : [ '$uibModalInstance',
-    						function($uibModalInstance) {
-    						var evm = this;
-    						evm.close = function(){
-    							$uibModalInstance.dismiss('cancel');
-    						}
-    					}
-    					],
+    					controller : 'BecomePartnerController',
     					controllerAs : 'evm',
     					backdrop : 'static',
     					size : 'lg',
     					resolve : {
+    						entity: function () {
+                                return {
+                                    firstname: null,
+                                    lastname: null,
+                                    title: null,
+                                    email: null,
+                                    type: null,
+                                    image: null,
+                                    mobileNumber: null,
+                                    telephoneNumber: null,
+                                    streetAddress: null,
+                                    zipcode: null,
+                                    city: "Vienna",
+                                    state: "Vienna",
+                                    country: "Austria",
+                                    region: "Western",
+                                    continent: "Europe",
+                                    notes: null,
+                                    id: null
+                                };
+                            },
     						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
     							$translatePartialLoader.addPart('partner');
     							$translatePartialLoader.addPart('home');
@@ -49,7 +102,6 @@
     				}
     			);
     		}
-
 
     		function openLearn() {
     			$uibModal.open(
@@ -107,7 +159,6 @@
     			);
     		}
 
-
             function openService(service) {
                 $uibModal.open(
                     {
@@ -138,10 +189,9 @@
                 );
             }
 
-
             function openPage(page) {       	
-                $uibModal.open(
-                    {
+                	$uibModal.open(
+                		{
                         templateUrl : "app/home/document.html",
                         controller : [ '$uibModalInstance', 'page',
                             function($uibModalInstance, page) {
@@ -167,8 +217,37 @@
                         }
                     }
                 );
-            }
-
+            }    	
+    
+            function partnerRegistered(partner){
+    			$uibModal.open(
+        				{
+        					templateUrl : "app/entities/partner/thank-you.html",
+        					controller : [ '$uibModalInstance', 'partner',
+        						function($uibModalInstance, partner) {
+        						var vm =  this;
+        						vm.partner = partner;
+        						vm.close = function(){
+        							$uibModalInstance.dismiss('cancel');
+        						}
+        					}
+        					],
+        					controllerAs : 'pvm',
+        					backdrop : 'static',
+        					size : 'lg',
+        					resolve : {
+        						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+        							$translatePartialLoader.addPart('partner');
+        							$translatePartialLoader.addPart('global');
+        							return $translate.refresh();
+        						} ],
+        						partner : [ function() {
+        							return partner;
+        						} ]
+        					}
+        				}
+        			);
+        		}
     	}
 
 })();

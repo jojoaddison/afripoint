@@ -1,0 +1,59 @@
+<div id="gcart">
+<div class="container-fluid">
+<br />
+<div class="alert btn-primary" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    Your cart is empty
+</div>
+
+<div class="table-responsive" ng-show="ngCart.getTotalItems() > 0">
+
+        <table class="jh-table table table-striped ngCart cart">
+        <thead>
+        <tr align="right">
+            <th>&nbsp;</th>
+            <th><div class="text-center">Item</div></th>
+            <th><div class="text-center">Quantity</div></th>
+            <th><div class="text-center">Amount</div></th>
+            <th><div class="text-center">Total</div></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in ngCart.getCart().items track by $index">
+            <td>
+                <div class="text-center">
+                    <span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span>
+                </div>
+            </td>
+            <td>
+                <div class="text-center">{{ item.getName() }}</div>
+            </td>
+            <td>
+                            <span class="glyphicon glyphicon-minus"
+                                  ng-class="{'disabled':item.getQuantity()==1}"
+                                  ng-click="item.setQuantity(-1, true)">
+                            </span>&nbsp;&nbsp;
+                {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span>
+            </td>
+            <td align="center">{{ item.getPrice() | currency : "&euro;"}}</td>
+            <td align="center">{{ item.getTotal() | currency  : "&euro;"}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td>{{ ngCart.totalCost() | currency : "&euro;" }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+<div class="pull-right" >
+    <a class="btn btn-primary" ui-sref="checkout" ng-disabled="!ngCart.getTotalItems()" >Checkout</a>
+</div>
+
+</div>
+</div>
+</div>

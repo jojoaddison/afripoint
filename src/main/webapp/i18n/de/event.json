@@ -3,6 +3,7 @@
         "event" : {
             "home": {
                 "title": "Events",
+                "eventManager": "Event Verwaltung",
                 "createLabel": "Event erstellen",
                 "createOrEditLabel": "Event bearbeiten",
                 "showAll": "Alle Anzeigen",
@@ -23,6 +24,7 @@
             "owner": "Partner",
             "description": "Beschreibung",
             "photo": "Foto",
+            "document": "Dokument",
             "createdDate": "Erstellt am",
             "modifiedDate": "Modifitiert am",
             "createdBy": "Erstellt",

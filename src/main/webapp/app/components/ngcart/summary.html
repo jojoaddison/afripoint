@@ -1,0 +1,7 @@
+<span class="label label-primary">
+<span class="glyphicon glyphicon-shopping-cart"></span>
+<span ng-show=" ngCart.getTotalItems() > 0 ">
+{{ ngCart.getTotalItems() }} <span data-translate="ngcart.checkout">Checkout</span>
+{{ ngCart.totalCost() | currency : "&euro;"}}
+</span>
+</span>

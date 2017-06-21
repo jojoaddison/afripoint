@@ -3,6 +3,7 @@
         "event" : {
             "home": {
                 "title": "Events",
+                "eventManager": "Event Manager",
                 "createLabel": "Create a new Event",
                 "createOrEditLabel": "Event editor",
                 "showAll": "Show All",
@@ -23,6 +24,7 @@
             "owner": "Partner",
             "description": "Description",
             "photo": "Photo",
+            "document": "Document",
             "createdDate": "Created Date",
             "modifiedDate": "Modified Date",
             "createdBy": "Created By",

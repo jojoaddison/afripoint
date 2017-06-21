@@ -1,6 +1,8 @@
 {
     "global": {
         "title": "Afripoint",
+        "currency": "eur",
+        "congratulation": "Congratulations {{ info }}!",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
@@ -19,10 +21,11 @@
                 "authority": "Authority",
                 "gallery": "Gallery",
                 "album": "Album",
-                "afripointService": "Service",
+                "afripointService": "Afripoint",
                 "page": "Page",
                 "article": "Article",
                 "subscriber": "Subscriber",
+                "locationItem": "Location",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -91,7 +94,8 @@
         },
         "field": {
             "id": "ID",
-            "details": "Details"
+            "details": "Details",
+            "type": "Type"
         },
         "ribbon": {
             "dev":"Development"
@@ -101,6 +105,7 @@
         "action": {
             "addblob": "Add blob",
             "changeimage": "Change image",
+            "change": "Change",
             "addimage": "Add image",
             "back": "Back",
             "cancel": "Cancel",
@@ -111,6 +116,7 @@
             "view": "View",
             "close": "Close",
             "add": "Add",
+            "upload": "Upload",
             "new": "New",
             "addMedia": "Add media"
         },
@@ -143,6 +149,10 @@
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
+    },
+    "ngcart": {
+    	"added": "ADDED",
+    	"checkout": "CHECKOUT"
     },
     "footer": "&copy;www.afripoint.at&reg;"
 }

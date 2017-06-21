@@ -1,0 +1,12 @@
+{
+    "afripointApp": {
+        "Periods" : {
+            "null": "",
+            "HOUR": "STUNDE",
+            "DAY": "TAG",
+            "WEEK": "WOCHE",
+            "MONTH": "MONAT",
+            "EVENT": "PRO-EVENT"
+        }
+    }
+}

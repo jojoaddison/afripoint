@@ -16,10 +16,11 @@
     vm.showAddress = false;
     vm.toggleShowAddress = toggleShowAddress;
     vm.titles = [];
+    vm.types = [];
     vm.byteSize = DataUtils.byteSize;
     vm.setPhoto = setPhoto;
     vm.updatePhoto = updatePhoto;
-
+    var types = ["classic","gold","platinum"];
     var titles =["mr","mrs","miss","dr","ms","ing","prof"];
 
     $scope.translateTitle = translateTitle;
@@ -89,6 +90,13 @@
           vm.titles.push(value);
         });
       });
+
+      angular.forEach(types, function(type){
+          var key = "afripointApp.partner.types."+type;
+          $translate(key).then(function(value){
+            vm.types.push(value);
+          });
+        });
       angular.element('.form-group:eq(1)>input').focus();
     });
 

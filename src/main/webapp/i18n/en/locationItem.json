@@ -1,0 +1,26 @@
+{
+    "afripointApp": {
+        "locationItem" : {
+            "home": {
+                "title": "Business service",
+                "createLabel": "New business service",
+                "createOrEditLabel": "Business service manager"
+            },
+            "created": "A new business is created with identifier {{ param }}",
+            "updated": "A business is updated with identifier {{ param }}",
+            "deleted": "A business is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete business {{ id }}?"
+            },
+            "detail": {
+                "title": "Business Service"
+            },
+            "category": "Category",
+            "service": "Service",
+            "description": "Description",
+            "period": "Period",
+            "price": "Price",
+            "member": "Members Price"
+        }
+    }
+}

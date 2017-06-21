@@ -5,7 +5,7 @@
 		</div>
 	</header>
 
-	<section class="container" id="services" style="position: relative; top: -10px; width: 100%;">
+	<section class="container text-center" id="services" style="position: relative; top: -10px; width: 100%;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-11 text-center">
@@ -13,10 +13,8 @@
 					<hr class="primary">
 				</div>
 			</div>
-		</div>
-		<div class="container" style="padding-right: 100px; margin-right: auto; margin-left: auto; ">
-			<div class="row" style="margin:auto;">
-				<div class="col-lg-3 col-md-6 text-center" ng-repeat="service in vm.services track by service.id" ngcloak>
+			<div class="row">
+				<div class="col-md-3 text-center" style="margin-left: -20px;" ng-repeat="service in vm.services track by service.id" ngcloak>
 					<div class="service-box">
 						<i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
 						<h3><a ui-sref="{{service.name}}" data-translate="afripointApp.afripointService.{{service.name}}.name">{{service.name}}</a></h3>
@@ -24,22 +22,30 @@
 							{{service.description}}
 						</p>
 					</div>
-
 				</div>
 			</div>
-			<!--
 			<div class="row">
-			<div class="col-lg-12 text-center">
-			<hr class="primary">
-			<h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
-			<hr class="primary">
+				<div class="col-md-11 text-center">
+					<hr class="primary">
+				</div>
 			</div>
+			<div class="row text-center">
+				<div class="col-md-6 text-center">
+					<h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
+				</div>
+				<div class="col-md-5 text-center">
+					<h2 class="section-heading"><a data-translate="home.location" ng-click="vm.openLocation()" class="btn btn-primary btn-xl sr-button">Book our location!</a></h2>
+				</div>
 			</div>
-			-->
+			<div class="row">
+				<div class="col-md-11 text-center">
+					<hr class="primary">
+				</div>
+			</div>
 		</div>
 	</section>
 
-	<section class="container hidden-sm hidden-xs bg-dark border-primary-3 text-center"
+	<section class="container bg-dark border-primary-3 text-center"
 	style="overflow-y: auto; max-height:400px; position: relative; top: -80px; padding: 0; width: 100%;">
 		<div style="width: 100%" ng-if="vm.galleries.length < 1" class="text-center">
 			<img src="content/images/robottt.gif" class="img-responsive text-center" style="margin-left: auto; margin-right: auto; width: 60%; height: auto;"/>
@@ -70,7 +76,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-2 text-center">						
+					<div class="col-md-2 text-center">
 						<a class="btn btn-primary btn-sm"
 						href="#"
 						socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
@@ -101,15 +107,15 @@
 		</div>
 	</section>
 
-	<aside class="bg-dark border-primary-3" style="position: relative; top: -100px; width: 100%; height: 200px;">
+	<aside class="bg-dark border-primary-3" style="position: relative; top: -100px; width: 100%; height: auto;">
 		<div class="row text-center">
-			<div class="col-md-6 col-sm-12 col-xs-12 text-center">
+			<div class="col-md-6 text-center">
 				<div class="call-to-action">
 					<h2 data-translate="home.brochure">New brochure edition</h2>
 					<a ng-click="vm.openPage(vm.currentBrochure)" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-12 col-xs-12 text-center">
+			<div class="col-md-6 text-center">
 				<div class="call-to-action">
 					<h2 data-translate="home.currentEvents">Current Events</h2>
 					<a ng-click="vm.openPage(vm.currentEvents)"  class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
@@ -249,21 +255,21 @@
 
 	<section class="container" id="contact" style="position: relative; top: -80px; width: 100%;">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 text-center">
+			<div class="row text-center">
+				<div class="col-lg-10 text-center">
 					<h2 class="section-heading">Get In Touch!</h2>
 					<hr class="primary">
 					<p data-translate="home.businessCallout">
 						Ready to do business with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!
 					</p>
 				</div>
-				<div class="col-lg-4 col-lg-offset-2 text-center">
+				<div class="col-lg-5 text-center">
 					<i class="fa fa-phone fa-3x sr-contact"></i>
 					<p>
 						+43 1 581 9186
 					</p>
 				</div>
-				<div class="col-lg-4 text-center">
+				<div class="col-lg-5 text-center">
 					<i class="fa fa-envelope-o fa-3x sr-contact"></i>
 					<p>
 						<a href="mailto:feedback@afripoint.at">office@afripoint.at</a>
@@ -271,13 +277,13 @@
 				</div>
 			</div>
 			<div class="row text-center">
-				<div class="col-md-8 col-md-offset-2 col-xs-12 text-center">
+				<div class="col-md-10 text-center">
 					<h3 class="text-danger">Shop Öffnungszeiten:</h3>
 					<hr class="primary" />
 				</div>
 			</div>
 			<div class="row text-center">
-				<div class="col-md-4 col-md-offset-5 col-xs-10 col-sm-10">
+				<div class="col-md-5 col-md-offset-4 col-xs-10 col-sm-10">
 					<p class="text-left">
 						Montag:        14:00 – 18:00 Uhr
 						<br>

@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+		ng-click="vm.clear()">
+			&times;
+		</button>
+		<h4 class="modal-title page-header" id="eventManagerLabel" data-translate="afripointApp.event.home.eventManager" ng-if="vm.event.id==null">Event Manager</h4>
+	</div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
+		<div class="row voffset5">
+			<div class="col-md-8 form-group">
+				<label class="control-label" data-translate="afripointApp.event.title" for="field_title">Title</label>
+				<input type="text" class="form-control" name="title" id="field_title"
+				ng-model="vm.event.title"
+				/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="form-group" ngf-drop ngf-change="vm.setBytes($file)" ngf-pattern="'pdf/*'">
+					
+					<label class="control-label" data-translate="afripointApp.event.document" for="field_document">Document</label>
+					
+					<div style="height: 60px; overflow: hidden;" ng-if="vm.event.document">
+						
+						<button type="button" ng-click="vm.event.document=null;vm.event.contentType=null;"
+						class="btn btn-default btn-xs pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						
+						<div ng-if="vm.event.document" class="help-block clearfix">
+							<span class="pull-left">{{vm.event.name}}, {{vm.event.contentType}}, {{vm.byteSize(vm.event.document)}}</span>
+						</div>
+						<!--
+						<embed id="pdf" name="plugin" ng-src="{{'data:' + vm.event.contentType + ';base64,' + vm.event.document}}" 
+						pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
+						type="{{vm.event.contentType}}" width="100%" height="400px"></embed>
+						-->
+					</div>
+					
+					<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.event.document==null"
+					ngf-change="vm.setBytes($file)" accept="pdf/*" data-translate="entity.action.add">
+						Add Document
+					</button>
+					
+					<button type="button" ngf-select class="btn btn-default btn-block" ng-if="vm.event.document!==null"
+					ngf-change="vm.setBytes($file)" accept="pdf/*" data-translate="entity.action.change">
+						Change Document
+					</button>
+					
+					<input type="hidden" class="form-control" name="bytes" id="field_bytes"
+					ng-model="vm.event.image"
+					/>
+					
+					<input type="hidden" class="form-control" name="bytesContentType" id="field_bytesContentType"
+					ng-model="vm.event.contentType" />
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+				<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+			</button>
+			<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+				<span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+			</button>
+		</div>
+</form>

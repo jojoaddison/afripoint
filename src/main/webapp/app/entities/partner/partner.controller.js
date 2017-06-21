@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('PartnerController', PartnerController);
 
-    PartnerController.$inject = ['Partner', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'Country'];
+    PartnerController.$inject = ['$state', 'Partner', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'Country'];
 
-    function PartnerController(Partner, ParseLinks, AlertService, paginationConstants, pagingParams, Country) {
+    function PartnerController($state, Partner, ParseLinks, AlertService, paginationConstants, pagingParams, Country) {
 
         var vm = this;
 

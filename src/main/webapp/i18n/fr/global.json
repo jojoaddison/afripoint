@@ -1,6 +1,8 @@
 {
     "global": {
         "title": "Afripoint",
+        "currency": "eur",
+        "congratulation": "Félicitation {{ info }}!",
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
@@ -19,10 +21,11 @@
                 "authority": "Authority",
                 "gallery": "Gallery",
                 "album": "Album",
-                "afripointService": "Service",
+                "afripointService": "Afripoint",
                 "page": "Page",
                 "article": "Article",
                 "subscriber": "Subscriber",
+                "locationItem": "Location ",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -91,7 +94,8 @@
         },
         "field": {
             "id": "ID",
-            "details": "Details"
+            "details": "Details",
+            "type": "Type"
         },
         "ribbon": {
             "dev":"Développement"
@@ -102,6 +106,7 @@
             "addblob": "Ajouter blob",
             "addimage": "Ajouter image",
             "changeimage": "Remplacer image",
+            "change": "Remplacer",
             "back": "Retour",
             "cancel": "Annuler",
             "edit": "Editer",
@@ -111,6 +116,7 @@
             "view": "Voir",
             "close": "Fermer",
             "add": "Ajouter",
+            "upload": "Télécharger",
             "new": "Nouveau",
             "addMedia": "Ajouter media"
         },
@@ -143,6 +149,10 @@
         "userexists": "Login déja utilisé !",
         "emailexists": "Email déja utilisé !",
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
+    },
+    "ngcart": {
+    	"added": "AJOUTÉE",
+    	"checkout": "CHECK-OUT"
     },
     "footer": "&copy;www.afripoint.at&reg;"
 }
