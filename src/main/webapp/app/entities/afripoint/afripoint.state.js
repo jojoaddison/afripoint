@@ -18,7 +18,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/afripoint-service/afripoint-services.html',
+                    templateUrl: 'app/entities/afripoint/afripoint.html',
                     controller: 'AfripointServiceController',
                     controllerAs: 'vm'
                 }
@@ -31,8 +31,8 @@
                 }]
             }
         })
-        .state('afripoint-service-detail', {
-            parent: 'afripoint-service',
+        .state('afripoint-detail', {
+            parent: 'afripoint',
             url: '/afripoint-service/{id}',
             data: {
                 authorities: ['ROLE_ADMIN'],
@@ -40,7 +40,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/afripoint-service/afripoint-service-detail.html',
+                    templateUrl: 'app/entities/afripoint/afripoint-detail.html',
                     controller: 'AfripointServiceDetailController',
                     controllerAs: 'vm'
                 }
@@ -55,7 +55,7 @@
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'afripoint-service',
+                        name: $state.current.name || 'afripoint',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,15 +63,15 @@
                 }]
             }
         })
-        .state('afripoint-service-detail.edit', {
-            parent: 'afripoint-service-detail',
+        .state('afripoint-detail.edit', {
+            parent: 'afripoint-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/afripoint-service/afripoint-service-dialog.html',
+                    templateUrl: 'app/entities/afripoint/afripoint-dialog.html',
                     controller: 'AfripointServiceDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -96,7 +96,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/afripoint-service/afripoint-service-dialog.html',
+                    templateUrl: 'app/entities/afripoint/afripoint-dialog.html',
                     controller: 'AfripointServiceDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -119,9 +119,9 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('afripoint-service', null, { reload: 'afripoint-service' });
+                    $state.go('afripoint', null, { reload: 'afripoint' });
                 }, function() {
-                    $state.go('afripoint-service');
+                    $state.go('afripoint');
                 });
             }]
         })
@@ -133,7 +133,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/afripoint-service/afripoint-service-dialog.html',
+                    templateUrl: 'app/entities/afripoint/afripoint-dialog.html',
                     controller: 'AfripointServiceDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -144,21 +144,21 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('afripoint-service', null, { reload: 'afripoint-service' });
+                    $state.go('afripoint', null, { reload: 'afripoint' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('afripoint-service.delete', {
-            parent: 'afripoint-service',
+        .state('afripoint.delete', {
+            parent: 'afripoint',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/afripoint-service/afripoint-service-delete-dialog.html',
+                    templateUrl: 'app/entities/afripoint/afripoint-delete-dialog.html',
                     controller: 'AfripointServiceDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
@@ -168,7 +168,7 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('afripoint-service', null, { reload: 'afripoint-service' });
+                    $state.go('afripoint', null, { reload: 'afripoint' });
                 }, function() {
                     $state.go('^');
                 });

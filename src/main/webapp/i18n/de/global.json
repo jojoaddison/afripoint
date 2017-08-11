@@ -6,6 +6,9 @@
         "browsehappy": "Sie benutzen einen <strong>veralteten</strong> Browser. Bitte <a href=\"http://browsehappy.com/?locale=de/\">aktualisieren Sie Ihren Browser</a>, um die Benutzerfreundlichkeit zu erhöhen.",
         "menu": {
             "home": "Startseite",
+            "shop": "Shop",
+            "advertise": "Advertise",
+            "screen": "Screen",
             "about": "Wir über uns",
             "services": "Dienste",
             "galleries": "Galerien",
@@ -14,7 +17,7 @@
             "contact": "Kontakt",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Aktivitäten",
+                "main": "Dashboard",
                 "event": "Veranstaltungen",
                 "partner": "Partner",
                 "media": "Medien",
@@ -26,6 +29,8 @@
                 "article": "Artikel",
                 "subscriber": "Subscriber",
                 "locationItem": "Location",
+                "infoScreen": "Info Screen",
+                "product": "Product",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -90,16 +95,20 @@
                     "minlength": "Ihre E-Mail Adresse muss mindestens 5 Zeichen lang sein",
                     "maxlength": "Ihre E-Mail Adresse darf nicht länger als 50 Zeichen sein"
                 }
-            }
+            },
+        	"acceptCookies": "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies.<br> Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu.<br> Weitere Informationen zu Cookies erhalten Sie in unserer Cookie policy."
         },
         "field": {
             "id" : "ID",
-            "details": "Details",
+            "details": "Details", 
             "type": "Typ"
         },
         "ribbon": {
             "dev":"Development"
-        }
+        },
+        "information": "Information",
+        "register": "Anmeldung",
+        "registerPlease": "Bitte anmelden"
     },
     "entity": {
         "action": {
@@ -118,7 +127,11 @@
             "add": "Hinzüfügen",
             "new": "Neu",
             "upload": "Hochladen",
-            "addMedia": "Media hinzufügen"
+            "addMedia": "Media hinzufügen",
+            "next": "Weiter",
+            "confirm": "Bestätigen",
+            "checkout": "Zur Kassa",
+            "paynow": "Jetzt zahlen"
         },
         "detail": {
             "field": "Feld",
@@ -151,8 +164,16 @@
         "idexists": "Ein neuer {{entityName}} kann noch keine ID haben"
     },
     "ngcart": {
+    	"options": {
+    	 "cash": "Bar",
+    	 "check": "Erlagschein",
+    	 "bank": "Bank überweisung",
+    	 "paypal": "Paypal",
+    	 "sofort": "Sofort"
+    	},
     	"added": "HINGEFÜGT",
-    	"checkout": "KASSA"
+    	"checkout": "kassa",
+    	"checkoutButton": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"QWSRGT8293CVU\"><input type=\"image\" src=\"https://www.afripoint.at\//zahlen.png\" border=\"0\" name=\"submit\" alt=\"Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>"
     },
     "footer": "&copy;www.afripoint.at&reg;"
 }

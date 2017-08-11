@@ -1,0 +1,11 @@
+{
+    "afripointApp": {
+        "ShopCategory" : {
+            "null": "",
+            "CLOTHING": "CLOTHING",
+            "ACCESSORIES": "ACCESSORIES",
+            "SHOES": "SHOES",
+            "JEWELRY": "JEWELRY"
+        }
+    }
+}

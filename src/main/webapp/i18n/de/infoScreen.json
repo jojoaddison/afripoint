@@ -1,0 +1,25 @@
+{
+    "afripointApp": {
+        "infoScreen" : {
+            "home": {
+                "title": "Info Screens",
+                "createLabel": "Info Screen erstellen",
+                "createOrEditLabel": "Info Screen erstellen oder bearbeiten"
+            },
+            "created": "Info Screen erstellt mit ID {{ param }}",
+            "updated": "Info Screen aktualisiert mit ID {{ param }}",
+            "deleted": "Info Screen gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Info Screen {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Info Screen"
+            },
+            "screenUrl": "Screen Url",
+            "caption": "Caption",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "lastModifiedBy": "Last Modified By"
+        }
+    }
+}

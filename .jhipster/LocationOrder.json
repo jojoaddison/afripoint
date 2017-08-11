@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "category",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "service",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "period",
+            "fieldType": "Periods",
+            "fieldValues": "HOUR,DAY,WEEK,MONTH"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "location_order",
+    "pagination": "pager"
+}

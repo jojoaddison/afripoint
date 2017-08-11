@@ -1,0 +1,95 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myProductLabel" data-translate="afripointApp.product.home.createOrEditLabel">Create or edit a Product</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.product.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.product.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.product.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.category" for="field_category">Category</label>
+            <select class="form-control" name="category" ng-model="vm.product.category" id="field_category">
+                <option value="WOMEN" data-translate="afripointApp.ProductCategory.WOMEN">WOMEN</option>
+                <option value="MEN" data-translate="afripointApp.ProductCategory.MEN">MEN</option>
+                <option value="CHILDREN" data-translate="afripointApp.ProductCategory.CHILDREN">CHILDREN</option>
+                <option value="UNISEX_ADULTS" data-translate="afripointApp.ProductCategory.UNISEX_ADULTS">UNISEX_ADULTS</option>
+                <option value="UNISEX_CHILDREN" data-translate="afripointApp.ProductCategory.UNISEX_CHILDREN">UNISEX_CHILDREN</option>
+                <option value="TEEN_GIRLS" data-translate="afripointApp.ProductCategory.TEEN_GIRLS">TEEN_GIRLS</option>
+                <option value="TEEN_BOYS" data-translate="afripointApp.ProductCategory.TEEN_BOYS">TEEN_BOYS</option>
+                <option value="UNISEX_TEEN" data-translate="afripointApp.ProductCategory.UNISEX_TEEN">UNISEX_TEEN</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                    ng-model="vm.product.price"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.size" for="field_size">Size</label>
+            <input type="text" class="form-control" name="size" id="field_size"
+                    ng-model="vm.product.size"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.quantity" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                    ng-model="vm.product.quantity"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.shopId" for="field_shopId">Shop Id</label>
+            <input type="text" class="form-control" name="shopId" id="field_shopId"
+                    ng-model="vm.product.shopId"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.createdDate" for="field_createdDate">Created Date</label>
+                <div class="input-group">
+                    <input id="field_createdDate" type="text" class="form-control" name="createdDate" datetime-picker="{{dateformat}}" ng-model="vm.product.createdDate" is-open="vm.datePickerOpenStatus.createdDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('createdDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.modifiedDate" for="field_modifiedDate">Modified Date</label>
+                <div class="input-group">
+                    <input id="field_modifiedDate" type="text" class="form-control" name="modifiedDate" datetime-picker="{{dateformat}}" ng-model="vm.product.modifiedDate" is-open="vm.datePickerOpenStatus.modifiedDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('modifiedDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="afripointApp.product.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+            <input type="text" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"
+                    ng-model="vm.product.lastModifiedBy"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

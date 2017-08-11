@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="afripointApp.infoScreen.detail.title">Info Screen</span> {{vm.infoScreen.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.infoScreen.screenUrl">Screen Url</span></dt>
+        <dd>
+            <span>{{vm.infoScreen.screenUrl}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.infoScreen.caption">Caption</span></dt>
+        <dd>
+            <span>{{vm.infoScreen.caption}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.infoScreen.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.infoScreen.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.infoScreen.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.infoScreen.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.infoScreen.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+            <span>{{vm.infoScreen.lastModifiedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="info-screen-detail.edit({id:vm.infoScreen.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

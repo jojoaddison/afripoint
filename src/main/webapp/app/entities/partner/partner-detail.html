@@ -19,17 +19,14 @@
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-md-6" ng-if="vm.partner.imageUrl">
+			<div class="col-md-2" ng-if="vm.partner.thumbnail">
 				<div class="container-fluid">
-					<img ng-src="{{vm.partner.imageUrl}}"
-					style="margin:auto; height: auto; width: 100%;">
+					<img ng-src="{{vm.partner.thumbnail}}">
 				</div>
-			</div>
-			<div class="col-md-2" ng-if="vm.partner.imageUrl">
-				<p>&nbsp;</p>
-			</div>
-			<div class="col-md-6">
-				<div>
+			</div>			
+			<div class="col-md-1" ng-if="!vm.partner.thumbnail"></div>
+			<div class="col-md-10">
+				<div class="pad">
 					<hr>
 					<jhi-alert-error></jhi-alert-error>
 

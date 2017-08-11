@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "owner",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "products",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "physicalAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "virtualAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "modifiedDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "category",
+            "fieldType": "ShopCategory",
+            "fieldValues": "CLOTHING,ACCESSORIES,SHOES,JEWELRY"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "shop",
+    "pagination": "pager"
+}

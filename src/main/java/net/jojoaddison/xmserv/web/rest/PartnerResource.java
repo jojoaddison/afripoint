@@ -31,7 +31,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Partner;
-import net.jojoaddison.xmserv.domain.User;
 import net.jojoaddison.xmserv.repository.PartnerRepository;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.service.util.Tools;
@@ -54,6 +53,7 @@ public class PartnerResource {
     private final Environment env;
 
     private final String PARTNER_PHOTOS = "data/partner/photos";
+    private final String DATA = "data/";
     private final int HEIGHT = 120;
     private final int WIDTH = 120;
 
@@ -178,11 +178,11 @@ public class PartnerResource {
 					log.debug("file name {}", fileName);
 					Tools.createFile(fileName, partner.getImage());
 					Tools.setPermission(fileName, Tools.getPermissions775());
-					Tools.setPermissions(root.concat(PARTNER_PHOTOS), Tools.getPermissions775());
+					Tools.setReadPermissions(root.concat(DATA));
 					partner.setImage(null);
 					partner.setImageUrl(url);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				log.error(e.getMessage(), e.getCause());
 			}
@@ -202,7 +202,8 @@ public class PartnerResource {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
-			} catch (IOException e) {
+				Tools.setReadPermissions(root.concat(DATA));
+			} catch (Exception e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}

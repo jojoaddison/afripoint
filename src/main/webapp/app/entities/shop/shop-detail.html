@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="afripointApp.shop.detail.title">Shop</span> {{vm.shop.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.shop.name">Name</span></dt>
+        <dd>
+            <span>{{vm.shop.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.owner">Owner</span></dt>
+        <dd>
+            <span>{{vm.shop.owner}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.products">Products</span></dt>
+        <dd>
+            <span>{{vm.shop.products}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.physicalAddress">Physical Address</span></dt>
+        <dd>
+            <span>{{vm.shop.physicalAddress}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.virtualAddress">Virtual Address</span></dt>
+        <dd>
+            <span>{{vm.shop.virtualAddress}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.shop.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.shop.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.shop.category">Category</span></dt>
+        <dd>
+            <span data-translate="{{'afripointApp.ShopCategory.' + vm.shop.category}}">{{vm.shop.category}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="shop-detail.edit({id:vm.shop.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

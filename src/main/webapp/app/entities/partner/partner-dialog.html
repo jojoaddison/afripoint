@@ -85,7 +85,7 @@
 						<!--
 						<label class="control-label" data-translate="afripointApp.partner.type" for="field_type">Type</label>
 						-->
-						<select id="field_type" class="form-control btn btn-sm" name="type" ng-model="vm.partner.type" ng-options="type for type in vm.types track by type">
+						<select id="field_type" class="form-control btn btn-sm" name="type" ng-model="vm.partner.type" ng-options="type as type.value for type in vm.types track by type">
 							<option value="" data-translate="afripointApp.partner.type"></option>
 						</select>
 					</div>

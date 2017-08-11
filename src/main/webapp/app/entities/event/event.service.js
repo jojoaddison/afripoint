@@ -4,9 +4,9 @@
         .module('afripointApp')
         .factory('Event', Event);
 
-    Event.$inject = ['$resource', 'DateUtils'];
+    Event.$inject = ['$resource', 'DateUtils', 'StorageDB'];
 
-    function Event ($resource, DateUtils) {
+    function Event ($resource, DateUtils, StorageDB) {
         var resourceUrl =  'api/events/:id';
 
         return $resource(resourceUrl, {}, {

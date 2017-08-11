@@ -12,11 +12,9 @@
     		var service = {
 				openEvent: openEvent,
 				openLearn: openLearn,
-				openPartner: openPartner,
 	            openService: openService,
 	            openPage: openPage,
 	            openLocation: openLocation,
-	            partnerRegistered: partnerRegistered,
 	            checkBasket: checkBasket,
 	            mod: mod
     		};
@@ -52,6 +50,7 @@
         		            },
         					resolve : {
         						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+        							$translatePartialLoader.addPart('periods');
         							$translatePartialLoader.addPart('locationItem');
         							$translatePartialLoader.addPart('home');
         							$translatePartialLoader.addPart('global');
@@ -62,46 +61,6 @@
         			);
     		}
     		
-    		function openPartner() {
-    			$uibModal.open(
-    				{
-    					templateUrl : "app/home/partner.html",
-    					controller : 'BecomePartnerController',
-    					controllerAs : 'evm',
-    					backdrop : 'static',
-    					size : 'lg',
-    					resolve : {
-    						entity: function () {
-                                return {
-                                    firstname: null,
-                                    lastname: null,
-                                    title: null,
-                                    email: null,
-                                    type: null,
-                                    image: null,
-                                    mobileNumber: null,
-                                    telephoneNumber: null,
-                                    streetAddress: null,
-                                    zipcode: null,
-                                    city: "Vienna",
-                                    state: "Vienna",
-                                    country: "Austria",
-                                    region: "Western",
-                                    continent: "Europe",
-                                    notes: null,
-                                    id: null
-                                };
-                            },
-    						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-    							$translatePartialLoader.addPart('partner');
-    							$translatePartialLoader.addPart('home');
-    							$translatePartialLoader.addPart('global');
-    							return $translate.refresh();
-    						} ]
-    					}
-    				}
-    			);
-    		}
 
     		function openLearn() {
     			$uibModal.open(
@@ -162,17 +121,23 @@
             function openService(service) {
                 $uibModal.open(
                     {
-                        templateUrl : "app/entities/afripoint-service/afripoint-service-view.html",
+                        templateUrl : "app/entities/afripoint/afripoint-view.html",
                         controller : [ '$uibModalInstance', 'service',
                             function($uibModalInstance, service) {
                                 var evm =  this;
                                 evm.service = service;
+                                evm.service.header = "afripointApp.afripointService." + service.name + ".name";
+                                evm.service.description = "afripointApp.afripointService." + service.name + ".description";
+                                evm.service.url = "data/afripoint/" + service.name + ".pdf";
                                 evm.close = function(){
+                                    $uibModalInstance.dismiss('cancel');
+                                }
+                                evm.clear = function(){
                                     $uibModalInstance.dismiss('cancel');
                                 }
                             }
                         ],
-                        controllerAs : 'evm',
+                        controllerAs : 'vm',
                         backdrop : 'static',
                         size : 'lg',
                         resolve : {
@@ -181,8 +146,8 @@
                                 $translatePartialLoader.addPart('global');
                                 return $translate.refresh();
                             } ],
-                            event : [ function() {
-                                return event;
+                            service : [ function() {
+                                return service;
                             } ]
                         }
                     }
@@ -219,35 +184,7 @@
                 );
             }    	
     
-            function partnerRegistered(partner){
-    			$uibModal.open(
-        				{
-        					templateUrl : "app/entities/partner/thank-you.html",
-        					controller : [ '$uibModalInstance', 'partner',
-        						function($uibModalInstance, partner) {
-        						var vm =  this;
-        						vm.partner = partner;
-        						vm.close = function(){
-        							$uibModalInstance.dismiss('cancel');
-        						}
-        					}
-        					],
-        					controllerAs : 'pvm',
-        					backdrop : 'static',
-        					size : 'lg',
-        					resolve : {
-        						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-        							$translatePartialLoader.addPart('partner');
-        							$translatePartialLoader.addPart('global');
-        							return $translate.refresh();
-        						} ],
-        						partner : [ function() {
-        							return partner;
-        						} ]
-        					}
-        				}
-        			);
-        		}
+            s
     	}
 
 })();

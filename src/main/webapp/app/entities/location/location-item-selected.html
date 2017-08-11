@@ -1,14 +1,15 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<div class="row text-center">
-			<div class="col-md-10">
+			<div class="col-md-8">
 				<h2 class="text-center">Book a service</h2>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-4 text-right">
 				<div class="btn-group btn-group-vertical">
 					<button class="btn btn-white btn-sm" ng-click="vm.close()">
 						<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
 					</button>
+					<label class="btn btn-md btn-primary btn-raised"> <ngcart-summary template-url="app/components/ngcart/summary.html"></ngcart-summary> </label>
 				</div>
 			</div>
 		</div>
@@ -16,65 +17,98 @@
 	<div class="panel-body">
 		<div class=" text-center">
 			<div class="well well-lg col-md-11 row-primary-1" style="margin-left: 20px; margin-right: 1px; min-width: 96%;"  ng-class="{'row-primary-2': vm.mod(e,2)==0}"
-			ng-repeat="locationItem in vm.locationItemsSelected track by locationItem.id">
-				<dl class="row jh-entity-details text-left">
-					<dt>
-						<span data-translate="afripointApp.locationItem.category">Category</span>
-					</dt>
-					<dd>
-						<span>{{locationItem.category}}</span>
-					</dd>
-					<dt>
-						<span data-translate="afripointApp.locationItem.service">Service</span>
-					</dt>
-					<dd>
-						<span>{{locationItem.service}}</span>
-					</dd>
-					<dt>
-						<span data-translate="afripointApp.locationItem.description">Description</span>
-					</dt>
-					<dd>
-						<span>{{locationItem.description}}</span>
-					</dd>
-					<dt>
-						<span data-translate="afripointApp.locationItem.period">Period</span>
-					</dt>
-					<dd>
-						<span data-translate="{{'afripointApp.Periods.' + locationItem.period}}">{{locationItem.period}}</span>
-					</dd>
-					<dt>
-						<span data-translate="afripointApp.locationItem.price">Price</span>
-					</dt>
-					<dd>
-						<span>{{locationItem.price}}</span>
-					</dd>
-					<dt>
-						<span data-translate="afripointApp.locationItem.member">Member Price</span>
-					</dt>
-					<dd>
-						<span>{{locationItem.memberPrice}}</span>
-					</dd>
-				</dl>
-				<hr />
-				<div class="row text-center">
-					<div >
-						<ngcart-addtocart class="btn btn-primary"
-						id="{{locationItem.id}}" name="{{locationItem.category }}" price="{{locationItem.price}}"
-						template-url="app/components/ngcart/addtocart.html" quantity="1" data="location">
-							<span translate="entity.action.add">Add</span>
-							<span class="glyphicon glyphicon-plus"></span>
-							<span> <b>{{locationItem.price}}</b> <i class="glyphicon glyphicon-{{global.currency}}"></i> </span>
-						</ngcart-addtocart>
-					</div>
+			ng-repeat="locationItem in vm.locationItemsSelected track by $index">
+				<div class="col-xs-8">
+					<dl class="row jh-entity-details text-left">
+						<dt>
+							<span data-translate="afripointApp.locationItem.category">Category</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.category}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.service">Service</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.service}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.description">Description</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.description}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.period">Period</span>
+						</dt>
+						<dd>
+							<span data-translate="{{'afripointApp.Periods.' + locationItem.period}}">{{locationItem.period}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.price">Price</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.price}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.member">Member Price</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.memberPrice}}</span>
+						</dd>
+					</dl>
 				</div>
+
+				<div class="col-xs-4">
+					<img ng-src="{{locationItem.imageUrl}}" class="img-responsive" ng-if="locationItem.imageUrl" ngcloak />
+				</div>
+				<hr />
 			</div>
 		</div>
 	</div>
 	<div class="panel-footer">
 		<div class="row text-center">
-			<button ng-click="" class="btn btn-success btn-sm">
-				<span data-translate="entity.action.next">Next</span>
-			</button>
+
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" ng-if="vm.lang=='en'">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="MA6KJE7YLBM9A">
+				<input type="image" src="https://www.afripoint.at/paynow.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				<input type="hidden" name="lc" value="AT">
+				<input type="hidden" name="item_name" value="AFRIPOINT-SERVICE">
+				<input type="hidden" name="button_subtype" value="services">
+				<input type="hidden" name="no_note" value="1">
+				<input type="hidden" name="no_shipping" value="1">
+				<input type="hidden" name="amount" value="{{ ngCart.totalCost() }}" readonly="readonly">
+				<input type="hidden" name="rm" value="1">
+			</form>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" ng-if="vm.lang=='fr'">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="VU3RSBZTQ98VY">
+				<input type="image" src="https://www.afripoint.at/payer.png" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				<input type="hidden" name="lc" value="AT">
+				<input type="hidden" name="item_name" value="AFRIPOINT-SERVICE">
+				<input type="hidden" name="button_subtype" value="services">
+				<input type="hidden" name="no_note" value="1">
+				<input type="hidden" name="no_shipping" value="1">
+				<input type="hidden" name="amount" value="{{ ngCart.totalCost() }}" readonly="readonly">
+				<input type="hidden" name="rm" value="1">
+			</form>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" ng-if="vm.lang=='de'">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="QWSRGT8293CVU">
+				<input type="image" src="https://www.afripoint.at/zahlen.png" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				<input type="hidden" name="lc" value="AT">
+				<input type="hidden" name="item_name" value="AFRIPOINT-SERVICE">
+				<input type="hidden" name="button_subtype" value="services">
+				<input type="hidden" name="no_note" value="1">
+				<input type="hidden" name="no_shipping" value="1">
+				<input type="hidden" name="amount" value="{{ ngCart.totalCost() }}" readonly="readonly">
+				<input type="hidden" name="rm" value="1">
+			</form>
+
 		</div>
 	</div>
 </div>

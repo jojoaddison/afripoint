@@ -1,10 +1,15 @@
 package net.jojoaddison.xmserv.web.rest;
 
-import net.jojoaddison.xmserv.AfripointApp;
-import net.jojoaddison.xmserv.config.audit.AuditEventConverter;
-import net.jojoaddison.xmserv.domain.PersistentAuditEvent;
-import net.jojoaddison.xmserv.repository.PersistenceAuditEventRepository;
-import net.jojoaddison.xmserv.service.AuditEventService;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +24,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import net.jojoaddison.xmserv.AfripointApp;
+import net.jojoaddison.xmserv.config.audit.AuditEventConverter;
+import net.jojoaddison.xmserv.domain.PersistentAuditEvent;
+import net.jojoaddison.xmserv.repository.PersistenceAuditEventRepository;
+import net.jojoaddison.xmserv.service.AuditEventService;
 
 /**
  * Test class for the AuditResource REST controller.

@@ -2,10 +2,10 @@
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-md-10">
-				<h2 class="text-center" data-translate="afripointApp.partner.congratulation" translate-values="{info: '{{pvm.partner.type}}'}"></h2>
+				<h2 class="text-center" data-translate="afripointApp.partner.congratulation" translate-values="{param: '{{vm.partner.type}}'}"></h2>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-white btn-sm" ng-click="pvm.close()">
+				<button class="btn btn-white btn-sm" ng-click="vm.close()">
 					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
 				</button>
 			</div>
@@ -15,8 +15,54 @@
 		<div class="row text-center">
 			<div class="col-md-12">
 				<h3 data-translate="afripointApp.partner.thank.partner" 
-				translate-values="{name: '{{pvm.partner.title}} {{pvm.partner.firstname}} {{pvm.partner.lastname}}', type: '{{pvm.partner.type}}'}"></h3>
+				translate-values="{name: '{{vm.partner.title}} {{vm.partner.firstname}} {{vm.partner.lastname}}', type: '{{vm.partner.type}}'}"></h3>
 			</div>
+			<div class="row">
+			<div class="col-md-3" ng-if="vm.partner.thumbnail">
+				<img ng-src="{{vm.partner.thumbnail}}" />
+			</div>
+			<div class="col-md-1" ng-if="!vm.partner.thumbnail">
+			</div>
+			<div class="col-md-9 text-left">
+				<div class="text-left">
+					<hr>
+					<jhi-alert-error></jhi-alert-error>
+
+					<dl class="row jh-entity-details">
+
+						<dt>
+							<span data-translate="afripointApp.partner.name">Name</span>
+						</dt>
+						<dd>
+							<span>{{vm.partner.title}}</span>&nbsp;<span>{{vm.partner.firstname}}</span>&nbsp;<span>{{vm.partner.lastname}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.partner.email">Email</span>
+						</dt>
+						<dd>
+							<span>{{vm.partner.email}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.partner.numbers">Numbers</span>
+						</dt>
+						<dd>
+							M: <span>{{vm.partner.mobileNumber}}</span>&nbsp;T:<span>{{vm.partner.telephoneNumber}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.partner.address">Address</span>
+						</dt>
+						<dd>
+							<span>{{vm.partner.streetAddress}}</span> <br />
+							<span>{{vm.partner.zipcode}}</span>&nbsp; <span>{{vm.partner.city}}</span><br />
+							<span>{{vm.partner.state}}</span><br />
+							<span>{{vm.partner.country}}</span><br />
+							<span>{{vm.partner.region}}</span>&nbsp;<span>{{vm.partner.continent}}</span>
+						</dd>
+					</dl>
+
+				</div>
+			</div>
+		</div>
 		</div>
 		<div class="panel-footer">
 			<div class="row">

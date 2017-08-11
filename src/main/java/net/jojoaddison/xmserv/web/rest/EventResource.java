@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.codahale.metrics.annotation.Timed;
 
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import net.jojoaddison.xmserv.domain.Event;
+import net.jojoaddison.xmserv.domain.EventDocument;
 import net.jojoaddison.xmserv.security.AuthoritiesConstants;
 import net.jojoaddison.xmserv.service.EventService;
 import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
@@ -53,20 +53,16 @@ public class EventResource {
         this.eventService = eventService;
     }
     
-    @PostMapping("/events/file")
+    @PostMapping("/events/upload")
     @Timed
     @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER})
-    public ResponseEntity<String> createEventFile(@RequestBody MultipartFile file){
-    	String result = eventService.createCurrentEvent(file);    	
+    public ResponseEntity<EventDocument> createEventUpload(@RequestBody EventDocument event){
+        event.setCreatedDate(ZonedDateTime.now());
+        event.setModifiedDate(ZonedDateTime.now());
+    	EventDocument result = eventService.save(event);    	
     	return ResponseEntity.ok().body(result);
     }
-    @PutMapping("/events/file")
-    @Timed
-    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER})
-    public ResponseEntity<String> updateEventFile(@RequestBody MultipartFile file){
-    	String result = eventService.createCurrentEvent(file);    	
-    	return ResponseEntity.ok().body(result);
-    }
+    
     /**
      * POST  /events : Create a new event.
      *
@@ -131,6 +127,22 @@ public class EventResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /events : get all the event documents.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of events in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/events/documents")
+    @Timed
+    public ResponseEntity<List<EventDocument>> getAllEventDocuments(@ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Events");
+        Page<EventDocument> page = eventService.findAllDocuments(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/events/documents");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /events : get all the events.

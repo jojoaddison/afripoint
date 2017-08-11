@@ -1,0 +1,15 @@
+{
+    "afripointApp": {
+        "ProductCategory" : {
+            "null": "",
+            "WOMEN": "WOMEN",
+            "MEN": "MEN",
+            "CHILDREN": "CHILDREN",
+            "UNISEX_ADULTS": "UNISEX_ADULTS",
+            "UNISEX_CHILDREN": "UNISEX_CHILDREN",
+            "TEEN_GIRLS": "TEEN_GIRLS",
+            "TEEN_BOYS": "TEEN_BOYS",
+            "UNISEX_TEEN": "UNISEX_TEEN"
+        }
+    }
+}

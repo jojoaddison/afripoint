@@ -2,7 +2,7 @@
     "afripointApp": {
         "event" : {
             "home": {
-                "title": "Events",
+                "title": "Veranstaltungen im Afripoint",
                 "eventManager": "Event Verwaltung",
                 "createLabel": "Event erstellen",
                 "createOrEditLabel": "Event bearbeiten",

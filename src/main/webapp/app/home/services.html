@@ -1,0 +1,66 @@
+<div class="well well-md" style="position: relative; top: -20px;">
+
+	<section id="advertise" class="no-padding center">
+		<div class="row bg-white pad text-center">
+			<a ui-sref="events"> <h2><i class="fa fa-television"></i>&nbsp; <span class="hidden-sm" data-translate="home.screenTitle">Screen</span></h2> </a>
+		</div>
+		<!-- vm.advertiseServices -->
+		<div class="row bg-white">
+			<div class="col-md-4 well well-sm" ng-repeat="screen in vm.screens track by screen.id">
+				<div style="position:relative;height:0; padding-bottom:56.25%; margin-left: auto; margin-right: auto;">
+					<iframe ng-src="{{screen.src}}" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="row bg-white">
+			<div class="col-md-12 text-center">
+				<hr class="primary">
+			</div>
+		</div>
+	</section>
+
+	
+	<section id="services" class="no-padding center">
+		<div class="row text-center pad">
+			<div class="col-md-12">
+				<a ui-sref="services"> <h2><i class="fa fa-shopping-cart"></i>&nbsp; <span class="hidden-sm" data-translate="home.serviceTitle">Services</span></h2> </a>
+			</div>
+		</div>
+		<!-- vm.locationItems -->
+			<div class="row text-center">
+				<div class="col-md-4 well well-sm" ng-repeat="offer in vm.serviceOffers track by offer.id" style="margin-bottom: 30px; height: 400px;">
+					<div class="row" style="height: 300px; overflow: hidden">
+						<div class="col-md-12">
+							<img ng-src="{{offer.imageUrl}}" class="img-responsive" style="margin:auto; height: 300px; width: auto;" ngcloak>
+						</div>
+					</div>
+					<div class="row text-center bg-primary bg-transparent" style="position: relative; top: -60px; width: auto; margin: auto; height: 120px;">
+						<div class="col-md-12 text-left bg-primary bg-transparent">
+							<h4>{{offer.category}}</h4>
+							<h6>{{offer.service}}</h6>
+							<b>{{offer.price | currency}}</b>&nbsp;<span class="glyphicon glyphicon-{{global.currency}}"></span>/
+							<span data-translate="{{'afripointApp.Periods.' + offer.period}}">{{offer.period}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bg-primary pad">
+				<div class="col-md-12 text-center">
+					<div class="call-to-action">
+						<div class="badge bg-dark">
+							<a data-translate="home.services" ng-click="vm.openService(vm.service)" class="btn btn-primary btn-xl sr-button">Business Services!</a>
+						</div>
+						<div class="badge bg-dark">
+							<a data-translate="home.location" ng-click="vm.openLocation()" class="btn btn-primary btn-xl sr-button">Book a service!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="row bg-white">
+			<div class="col-md-12 text-center">
+				<hr class="primary">
+			</div>
+		</div>
+	</section>
+</div>

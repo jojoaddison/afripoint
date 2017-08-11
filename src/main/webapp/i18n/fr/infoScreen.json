@@ -1,0 +1,25 @@
+{
+    "afripointApp": {
+        "infoScreen" : {
+            "home": {
+                "title": "InfoScreens",
+                "createLabel": "Créer un nouveau Info Screen",
+                "createOrEditLabel": "Créer ou éditer un Info Screen"
+            },
+            "created": "Un nouveau Info Screen a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Info Screen avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Info Screen avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Info Screen {{ id }} ?"
+            },
+            "detail": {
+                "title": "Info Screen"
+            },
+            "screenUrl": "Screen Url",
+            "caption": "Caption",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "lastModifiedBy": "Last Modified By"
+        }
+    }
+}

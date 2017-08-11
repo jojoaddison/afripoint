@@ -1,0 +1,21 @@
+<div class="well well-md" style="position: relative; top: -20px;">
+	<section id="advertise" class="no-padding center">
+		<div class="row bg-white pad text-center">
+			<a ui-sref="events"> <h2><i class="fa fa-television"></i>&nbsp; <span class="hidden-sm" data-translate="home.screenTitle">Screen</span></h2> </a>
+		</div>
+		<!-- vm.advertiseServices -->
+		<div class="row bg-white">
+			<div class="col-md-4 well well-sm" ng-repeat="screen in vm.screens track by screen.id">
+				<div style="position:relative;height:0; padding-bottom:56.25%; margin-left: auto; margin-right: auto;">
+					<iframe ng-src="{{screen.src}}" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="row bg-white">
+			<div class="col-md-12 text-center">
+				<hr class="primary">
+			</div>
+		</div>
+	</section>
+</div>

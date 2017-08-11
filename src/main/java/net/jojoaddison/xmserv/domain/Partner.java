@@ -29,6 +29,9 @@ public class Partner implements Serializable {
     @Field("title")
     private String title;
 
+    @Field("type")
+    private String type;
+
     @Field("email")
     private String email;
 
@@ -135,7 +138,20 @@ public class Partner implements Serializable {
         this.title = title;
     }
 
-    public String getEmail() {
+    public String getType() {
+		return type;
+	}
+    
+    public Partner type(String type){
+    	this.type = type;
+    	return this;
+    }
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getEmail() {
         return email;
     }
 

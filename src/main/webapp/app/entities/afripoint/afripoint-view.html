@@ -1,10 +1,9 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-
-            <div class="col-md-10">
-                <h2> {{vm.afripointService.name}}</h2>
-                <h5>{{vm.afripointService.description}}</h5>
+            <div class="col-md-10 text-center">
+                <h2> {{vm.service.header | translate }}</h2>
+                <h5>{{vm.service.description | translate }}</h5>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-white btn-sm" ng-click="vm.clear()" >
@@ -15,36 +14,17 @@
     </div>
 <div class="panel-body">
     <jhi-alert-error></jhi-alert-error>
-    <div class="row">
-        <div class="col-md-6" ng-if="vm.afripointService.photo">
-            <img data-ng-src="{{'data:' + vm.afripointService.photoContentType + ';base64,' + vm.afripointService.photo}}" style="max-width: 100%;" alt="afripointService image"/>
-        </div>
-        <div class="col-md-3" ng-if="vm.afripointService.photo==null"></div>
-        <div class="col-md-6">
-            <dl class="row jh-entity-details">
-                <dt><span data-translate="afripointApp.afripointService.contact">Contact</span></dt>
-                <dd>
-                    <span>{{vm.afripointService.contact}}</span>
-                </dd>
-                <dt><span data-translate="afripointApp.afripointService.createdBy">Created By</span></dt>
-                <dd>
-                    <span>{{vm.afripointService.createdBy}}</span>
-                </dd>
-                <dt><span data-translate="afripointApp.afripointService.modifiedBy">Modified By</span></dt>
-                <dd>
-                    <span>{{vm.afripointService.modifiedBy}}</span>
-                </dd>
-            </dl>
-        </div>
+    <div class="pad" ng-if="vm.service.url">
+    	<iframe ng-src="{{vm.service.url}}" frameborder="0" scrolling="auto" style="min-width:100%; min-height: 800px; margin-height:1px; margin-width:1px;" allowfullscreen="true"></iframe>	
     </div>
 </div>
 <div class="panel-footer">
     <div class="row">
-        <div class="col-md-6 text-left">
-            Created: {{vm.afripointService.createdDate | date:'medium'}}
+        <div class="col-md-6 text-left" ng-if="vm.service.createdDate">
+            Created: {{vm.service.createdDate | date:'medium'}}
         </div>
-        <div class="col-md-6 text-right">
-            Last modified:	{{vm.afripointService.modifiedDate | date:'medium'}}
+        <div class="col-md-6 text-right"  ng-if="vm.service.modifiedDate">
+            Last modified:	{{vm.service.modifiedDate | date:'medium'}}
         </div>
     </div>
 

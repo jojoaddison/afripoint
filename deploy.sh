@@ -12,3 +12,5 @@ rsync -azr webapp/* --exclude='data' kojo@smartxms:/home/kojo/webroot/afripoint/
 
 #rsync -azr webapp/* --exclude='data' kojo@smartxms:/home/kojo/webroot/afripoint/www/.
 
+# rsync -azr webapp/* --exclude='data' --exclude='app/admin/user-management/photos' kojo@smartxms:/home/kojo/webroot/afripoint/www/.
+

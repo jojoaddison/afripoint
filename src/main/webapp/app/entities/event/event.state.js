@@ -66,7 +66,7 @@
                   views: {
                       'content@': {
                           templateUrl: 'app/entities/event/event-page.html',
-                          controller: 'EventComponent',
+                          controller: 'EventPageController',
                           controllerAs: 'vm'
                       }
                   },
@@ -76,7 +76,7 @@
                           squash: true
                       },
                       sort: {
-                          value: 'endTime,desc',
+                          value: 'startTime,asc',
                           squash: true
                       },
                       search: null
@@ -108,7 +108,7 @@
                   views: {
                       'content@': {
                           templateUrl: 'app/entities/event/event-view.html',
-                          controller: 'EventDetailController',
+                          controller: 'EventViewController',
                           controllerAs: 'evm'
                       }
                   },
@@ -122,14 +122,6 @@
                           return Event.get({
                               id: $stateParams.id
                           }).$promise;
-                      }],
-                      previousState: ["$state", function($state) {
-                          var currentStateData = {
-                              name: $state.current.name || 'event',
-                              params: $state.params,
-                              url: $state.href($state.current.name, $state.params)
-                          };
-                          return currentStateData;
                       }]
                   }
               })              

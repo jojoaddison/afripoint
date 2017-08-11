@@ -7,6 +7,9 @@
         "menu": {
             "home": "Accueil",
             "about": "Sur",
+            "shop": "Shop",
+            "advertise": "Advertise",
+            "screen": "Screen",
             "services": "Un service",
             "galleries": "Galerie",
             "events": "Events",
@@ -14,7 +17,7 @@
             "contact": "Contact",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Activités",
+                "main": "Dashboard",
                 "event": "Event",
                 "partner": "Partner",
                 "media": "Media",
@@ -26,6 +29,8 @@
                 "article": "Article",
                 "subscriber": "Subscriber",
                 "locationItem": "Location ",
+                "infoScreen": "Info Screen",
+                "product": "Product",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -90,7 +95,8 @@
                     "maxlength": "Votre email ne doit pas comporter plus de 50 caractères.",
                     "invalid": "Votre email n'est pas valide."
                 }
-            }
+            },
+           	"acceptCookies": "We use cookies to ensure that we give you the best experience on our website. Our website uses cookies, which could include also third party cookies, to send advertising that is relevant to you. Our website includes also third parties’ cookies."            
         },
         "field": {
             "id": "ID",
@@ -99,7 +105,10 @@
         },
         "ribbon": {
             "dev":"Développement"
-        }
+        },
+        "information": "Information",
+        "register": "Registration",
+        "registerPlease": "Please register"
     },
     "entity": {
         "action": {
@@ -118,7 +127,11 @@
             "add": "Ajouter",
             "upload": "Télécharger",
             "new": "Nouveau",
-            "addMedia": "Ajouter media"
+            "addMedia": "Ajouter media",
+            "next": "Prochain",
+            "confirm": "Confirmer",
+            "checkout": "Check-out",
+            "paynow": "payer"
         },
         "detail": {
             "field": "Champs",
@@ -151,8 +164,16 @@
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
     },
     "ngcart": {
+		"options": {
+			"cash": "en espèces",
+			"check": "le chèque",
+			"bank": "virement",
+			"paypal": "Paypal",
+			"sofort": "Sofort"
+		},
     	"added": "AJOUTÉE",
-    	"checkout": "CHECK-OUT"
+    	"checkout": "check-out",
+    	"checkoutButton": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"VU3RSBZTQ98VY\"><input type=\"image\" src=\"http://www.afripoint.at/payer.png\" border=\"0\" name=\"submit\" alt=\"PayPal, le réflexe sécurité pour payer en ligne\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>"
     },
     "footer": "&copy;www.afripoint.at&reg;"
 }

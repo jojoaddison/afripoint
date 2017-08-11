@@ -138,7 +138,11 @@ public class AlbumService {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+				Tools.setReadPermissions(root.concat(DATA));
 			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}

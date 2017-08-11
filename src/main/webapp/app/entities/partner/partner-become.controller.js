@@ -1,162 +1,154 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-  .module('afripointApp')
-  .controller('BecomePartnerController', BecomePartnerController);
+	angular
+		.module('afripointApp')
+		.controller('BecomePartnerController', BecomePartnerController);
 
-  BecomePartnerController.$inject = ['$rootScope', '$timeout', '$scope', '$stateParams', '$translate', '$uibModalInstance', 'entity',  'Partner', 'DataUtils', 'Principal', 'PageUtils'];
+	BecomePartnerController.$inject = [ '$sce', '$rootScope', '$timeout', '$scope', '$stateParams', '$translate', '$uibModalInstance', 'entity', 'Partner', 'DataUtils', 'Principal', 'PartnerFactory' ];
 
-  function BecomePartnerController ($rootScope, $timeout, $scope, $stateParams, $translate, $uibModalInstance, entity, Partner, DataUtils, Principal, PageUtils) {
-    var vm = this;
-    vm.partner = entity;
-    vm.clear = clear;
-    vm.save = save;
-    vm.showAddress = false;
-    vm.toggleShowAddress = toggleShowAddress;
-    vm.titles = [];
-    vm.types = [];
-    vm.byteSize = DataUtils.byteSize;
-    vm.setPhoto = setPhoto;
-    vm.updatePhoto = updatePhoto;
-    
-
-    var titles = ["mr","mrs","miss","dr","ms","ing","prof"];
-    var types = ["classic","gold","platinum"];
-
-    $scope.translateTitle = translateTitle;
-    
-    loadLists();
-    
-    function loadLists(){
-        angular.forEach(titles, function(title){
-          var key = "afripointApp.partner.titles."+title;
-          $translate(key).then(function(value){
-            vm.titles.push(value);
-          });
-        });
-        angular.forEach(types, function(type){
-            var key = "afripointApp.partner.types."+type;
-            $translate(key).then(function(value){
-              vm.types.push(value);
-            });
-          });
-    }
-    
-    $timeout(function () {
-      $('#image').cropper({
-        aspectRatio: 16 / 9,
-        crop: function(e) {
-          // Output the result data for cropping image.
-          /**
-          console.log(e.x);
-          console.log(e.y);
-          console.log(e.width);
-          console.log(e.height);
-          console.log(e.rotate);
-          console.log(e.scaleX);
-          console.log(e.scaleY);
-          **/
-          console.log(e);
-        }
-      });
-    }, 1000);
+	function BecomePartnerController($sce, $rootScope, $timeout, $scope, $stateParams, $translate, $uibModalInstance, entity, Partner, DataUtils, Principal, PartnerFactory) {
+		var vm = this;
+		vm.partner = entity;
+		vm.clear = clear;
+		vm.save = save;
+		vm.showAddress = false;
+		vm.toggleShowAddress = toggleShowAddress;
+		vm.byteSize = DataUtils.byteSize;
+		vm.setPhoto = setPhoto;
+		vm.updatePhoto = updatePhoto;
+		vm.showPage = 'infos';
+		vm.switchTo = switchTo;
+		vm.changeCatalog = changeCatalog;
 
 
 
-    function setPhoto(photo){
-      vm.photoChanged = true;
-      console.log("PhotoSet: " + vm.photoChanged);
-      vm.photo = photo;
-      //$scope.$apply();
-    }
+		function changeCatalog() {
+			var type = vm.partner.type;
+			if (type.key) {
+				type = type.key;
+			}
+			console.log(type);
+			if (type) {
+				vm.currentCatalog = PartnerFactory.getCatalog(type);
+				console.log(vm.currentCatalog)
+			}
+		}
 
-    function updatePhoto(){
-      vm.photoChanged = true;
-      console.log("PhotoUpdated: " + vm.photoChanged);
-      //console.log(photo)
-      var imageData = $().cropper('getImageData');
-      vm.partner.image = imageData;
-      loadPhoto();
-    }
 
-    function translateTitle(title){
-      var key = "afripointApp.partner.titles."+title;
-      $translate(key).then(function(value){
-        return value;
-      });
-    }
 
-    function toggleShowAddress(){
-      vm.showAddress = !vm.showAddress;
-    }
+		loadLists();
 
-    function loadPhoto(){
-      if(vm.partner.image != null){
-        var photo =  'data:'+ vm.partner.imageContentType + ';base64,' + vm.partner.image;
-        //vm.photo =  vm.partner.photo;
-        setPhoto(photo);
-      }
-    }
+		function loadLists() {
+			vm.titles = PartnerFactory.getTitles();
+			vm.types = PartnerFactory.getTypes();
+			vm.states = PartnerFactory.getStates();
+		}
 
-    $timeout(function (){
-      getAccount();
-      //console.log(vm.partner);
-      loadPhoto();
-      angular.element('.form-group:eq(1)>input').focus();
-    });
+		$timeout(function() {
+			changeCatalog();
+		}, 2000);
 
-    function getAccount() {
-      Principal.identity().then(function(account) {
-        vm.account = account;
-        vm.isAuthenticated = Principal.isAuthenticated;
-      });
-    }
-    function clear () {
-      $uibModalInstance.dismiss('cancel');
-    }
+		function switchTo(page) {
+			vm.showPage = page;
+		}
 
-    function save () {
-      vm.isSaving = true;
-      console.log(vm.partner);
-      if (vm.partner.id !== null) {
-        vm.partner.modifiedBy = vm.account;
-        vm.partner.modifiedDate = new Date();
-        Partner.update(vm.partner, onSaveSuccess, onSaveError);
-      } else {
-        vm.partner.modifiedBy = vm.account;
-        vm.partner.createdBy = vm.account;
-        vm.partner.modifiedDate = new Date();
-        vm.partner.createdDate = new Date();
-        Partner.save(vm.partner, onSaveSuccess, onSaveError);
-      }
-    }
 
-    function onSaveSuccess (result) {
-      $scope.$emit('afripointApp:partnerUpdate', result);
-      $uibModalInstance.close(result);
-      vm.isSaving = false;
-      PageUtils.partnerRegistered(result);
-    }
+		function setPhoto(photo) {
+			vm.photoChanged = true;
+			console.log("PhotoSet: " + vm.photoChanged);
+			vm.photo = photo;
+		//$scope.$apply();
+		}
 
-    function onSaveError () {
-      vm.isSaving = false;
-    }
+		function updatePhoto() {
+			vm.photoChanged = true;
+			console.log("PhotoUpdated: " + vm.photoChanged);
+			//console.log(photo)
+			var imageData = $().cropper('getImageData');
+			vm.partner.image = imageData;
+			loadPhoto();
+		}
 
-    vm.setBytes = function ($file) {
-      if ($file && $file.$error === 'pattern') {
-        return;
-      }
-      if ($file) {
-        DataUtils.toBase64($file, function(base64Data) {
-          $scope.$apply(function() {
-            vm.partner.image = base64Data;
-            vm.partner.imageContentType = $file.type;
-            loadPhoto();
-          });
-        });
-      }
-    };
 
-  }
+		function toggleShowAddress() {
+			vm.showAddress = !vm.showAddress;
+		}
+
+		function loadPhoto() {
+			if (vm.partner.image != null) {
+				var photo = 'data:' + vm.partner.imageContentType + ';base64,' + vm.partner.image;
+				//vm.photo =  vm.partner.photo;
+				setPhoto(photo);
+			}
+		}
+
+		$timeout(function() {
+			getAccount();
+			//console.log(vm.partner);
+			loadPhoto();
+			angular.element('.form-group:eq(1)>input').focus();
+		});
+
+		function getAccount() {
+			Principal.identity().then(function(account) {
+				vm.account = account;
+				vm.isAuthenticated = Principal.isAuthenticated;
+			});
+		}
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function save() {
+			if (vm.showPage == 'register') {
+				vm.isSaving = true;
+				console.log(vm.partner);
+				vm.partner.type = vm.partner.type.key;
+				if (vm.partner.id !== null) {
+					console.log("updating...");
+					vm.partner.modifiedBy = vm.account;
+					vm.partner.modifiedDate = new Date();
+					Partner.update(vm.partner, onSaveSuccess, onSaveError);
+				} else {
+					console.log("saving...");
+					vm.partner.modifiedBy = vm.account;
+					vm.partner.createdBy = vm.account;
+					vm.partner.modifiedDate = new Date();
+					vm.partner.createdDate = new Date();
+					Partner.save(vm.partner, onSaveSuccess, onSaveError);
+				}
+			}
+		}
+
+		function onSaveSuccess(result) {
+			console.log("success...");
+			$scope.$emit('afripointApp:partnerUpdate', result);
+			$uibModalInstance.close(result);
+			vm.isSaving = false;
+			console.log(result);
+			PartnerFactory.partnerRegistered(result);
+		}
+
+		function onSaveError() {
+			console.log("failure...")
+			vm.isSaving = false;
+		}
+
+		vm.setBytes = function($file) {
+			if ($file && $file.$error === 'pattern') {
+				return;
+			}
+			if ($file) {
+				DataUtils.toBase64($file, function(base64Data) {
+					$scope.$apply(function() {
+						vm.partner.image = base64Data;
+						vm.partner.imageContentType = $file.type;
+						loadPhoto();
+					});
+				});
+			}
+		};
+
+	}
 })();

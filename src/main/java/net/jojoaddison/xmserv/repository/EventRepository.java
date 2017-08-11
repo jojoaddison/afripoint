@@ -17,4 +17,8 @@ public interface EventRepository extends MongoRepository<Event,String> {
 
 	Page<Event> findAllByStartTimeAfter(ZonedDateTime minusDays, Pageable pageable); // Future upcoming
 
+	Page<Event> findAllByEndTimeBefore(ZonedDateTime now, Pageable pageable);
+
+	Page<Event> findAllByEndTimeAfter(ZonedDateTime minusDays, Pageable pageable);
+
 }

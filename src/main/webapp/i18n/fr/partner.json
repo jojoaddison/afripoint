@@ -3,27 +3,29 @@
 		"partner": {
 			"home": {
 				"title": "Les partenaires",
-				"createLabel": "Créer un nouveau Partenaire",
-				"createOrEditLabel": "Éditer un Partenaire"
+				"createLabel": "Créer un nouveau Membre",
+				"createOrEditLabel": "Éditer un Membre"
 			},
 			"congratulation": "Félicitation {{ info }}!",
 			"thank": {
-				"partner": "Merci {{nom}} pour vous inscrire pour être un partenaire {{type}}"
+				"partner": "Merci {{nom}} pour vous inscrire pour être un membre {{type}}"
 			},
-			"become": "Devenir un partenaire",
-			"created": "Un nouveau Partenaire a été créé avec l'identifiant {{ param }}",
-			"updated": "Le Partenaire avec l'identifiant {{ param }} a été mis à jour",
-			"deleted": "Le Partenaire avec l'identifiant {{ param }} a été supprimé",
+			"become": "Devenir un membre",
+			"created": "Un nouveau Membre a été créé avec l'identifiant {{ param }}",
+			"updated": "Le Membre avec l'identifiant {{ param }} a été mis à jour",
+			"deleted": "Le Membre avec l'identifiant {{ param }} a été supprimé",
 			"delete": {
-				"question": "Etes-vous certain de vouloir supprimer le Partenaire {{ id }} ?"
+				"question": "Etes-vous certain de vouloir supprimer le Membre {{ id }} ?"
 			},
 			"detail": {
-				"title": "Partenaire"
+				"title": "Membre"
 			},
+			"name": "Nom",
 			"firstname": "Prénom",
 			"lastname": "Nom de famille",
 			"title": "Titre",
 			"email": "Email",
+			"numbers": "Nombres",
 			"mobileNumber": "Mobile",
 			"telephoneNumber": "Téléphone",
 			"streetAddress": "rue",
@@ -47,12 +49,44 @@
 				"prof": "Prof.",
 				"mas": "Maîtriser"
 			},
-			"type": "Choisissez le type de partenaire",
+			"type": "Choisissez le type de membre",
 			"types": {
 				"classic": "classique",
 				"gold": "d'Or",
 				"platinum": "platine"
-			}
+			},
+			"terms": "J'ai lu et j'accepte les termes et conditions générales",
+            "register": {
+            	"title": "Veuillez compléter tout - Tous les champs requis",
+            	"messages": {
+            		"validate": {
+            			"firstname": {
+            				"required": "Votre Prénom est obligatoire."
+            			},
+            			"lastname": {
+            				"required": "Votre nom de famille est obligatoire."
+            			},
+            			"mobileNumber": {
+            				"required": "Votre Mobile est obligatoire."
+            			},
+            			"streetAddress": {
+            				"required": "Votre rue est obligatoire."
+            			},
+            			"zipcode": {
+            				"required": "Votre code postal est obligatoire."
+            			},
+            			"city": {
+            				"required": "Votre Ville est obligatoire."
+            			},
+            			"state": {
+            				"required": "Votre Etat est obligatoire."
+            			},
+            			"country": {
+            				"required": "Votre Pays est obligatoire."
+            			}
+            		}
+            	}
+            }
 		}
 	}
 }

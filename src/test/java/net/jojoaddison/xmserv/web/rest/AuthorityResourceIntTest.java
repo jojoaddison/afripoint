@@ -1,10 +1,16 @@
 package net.jojoaddison.xmserv.web.rest;
 
-import net.jojoaddison.xmserv.AfripointApp;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import net.jojoaddison.xmserv.domain.Authority;
-import net.jojoaddison.xmserv.repository.AuthorityRepository;
-import net.jojoaddison.xmserv.web.rest.errors.ExceptionTranslator;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,12 +25,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import net.jojoaddison.xmserv.AfripointApp;
+import net.jojoaddison.xmserv.domain.Authority;
+import net.jojoaddison.xmserv.repository.AuthorityRepository;
+import net.jojoaddison.xmserv.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the AuthorityResource REST controller.

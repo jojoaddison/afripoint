@@ -13,12 +13,19 @@
             "facebook": "Redet ihr mit uns auf facebook",
             "twitter": "Folgen Sie @afripoint_vienna auf Twitter"
         },
-        "businessCallout": "Bereit mit uns Geschäft zu machen? Super! Rufen Sie uns an oder schicken Sie uns ein Email. Wie melden uns bei Ihnen so bald wie möglich!",
+        "businessCallout": "Bereit mit uns Geschäft zu machen? Super!<br/>Rufen Sie uns an oder schicken Sie uns ein Email.<br/>Wie melden uns bei Ihnen so bald wie möglich!",
         "learn": "Mehr über uns erfahren...",
-        "partner": "Partner werden",
+        "partner": "Mitglied werden",
         "location": "Service bestellen",
         "download": "Bitte jetzt herunterladen!",
-        "brochure": "Neue Broschüre ausgabe.",
-        "currentEvents": "Aktuelle Veranstaltungen."
+        "brochure": "Informationsbroschüre.",
+        "currentEvents": "Aktuelle Veranstaltungen.",
+        "services": "Service Angebote",
+        "screenTitle": "Werbe auf Afripoint InfoScreen",
+        "locationTitle": "Geschäfte im Afripoint",
+        "serviceTitle": "Bestellen Sie ihren Service bei uns",
+        "eventTitle": "Planen sie ihre Veranstaltungen mit uns",
+        "openTimes": "Öffnungszeiten",
+        "address": "Hofmühlgasse 2, A-1060 Wien"
     }
 }

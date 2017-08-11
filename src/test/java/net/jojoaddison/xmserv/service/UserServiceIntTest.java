@@ -1,20 +1,21 @@
 package net.jojoaddison.xmserv.service;
 
-import net.jojoaddison.xmserv.AfripointApp;
-import net.jojoaddison.xmserv.domain.User;
-import net.jojoaddison.xmserv.repository.UserRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.ZonedDateTime;
-import net.jojoaddison.xmserv.service.util.RandomUtil;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Optional;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
+import net.jojoaddison.xmserv.AfripointApp;
+import net.jojoaddison.xmserv.domain.User;
+import net.jojoaddison.xmserv.repository.UserRepository;
+import net.jojoaddison.xmserv.service.util.RandomUtil;
 
 /**
  * Test class for the UserResource REST controller.

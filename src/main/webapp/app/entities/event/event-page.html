@@ -1,22 +1,26 @@
 <div class="well well-md">
-	<h2 data-translate="afripointApp.event.home.title" class="text-left">Events</h2>
-	<br/>
-	<!--
 	<div class="row">
-	<div class="col-md-12" style="margin-right: auto; margin-left: auto; overflow-y: auto;">
-	<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
-	<div uib-slide ng-repeat="event in vm.events track by event.id" index="$index">
-	<img data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="img-responsive" style="margin:auto; height: auto; width: 100%;">
-	<div class="carousel-caption bg-primary bg-transparent">
-	<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
-	<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+		<div class="col-md-12 text-center">
+			<h2 data-translate="afripointApp.event.home.title">Events</h2>
+			<hr class="primary" />
+		</div>
+	</div>	
+	<div class="row" ng-if="vm.events.length > 0">
+		<div class="col-md-12" >
+			<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
+				<div uib-slide ng-repeat="event in vm.events | orderBy: 'startTime' track by event.id" index="$index">
+					<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height:800px; width: auto;" ngcloak>
+					<div class="carousel-caption bg-primary bg-transparent">
+						<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
+						<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	-->
-	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events track by event.id"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
+
+	<div class="row row-primary-1" ng-repeat="(e, event) in vm.events  track by event.id | orderBy:'startTime'"  ng-class="{'row-primary-2': vm.mod(e,2)==0}">
 		<div class="col-md-10" >
 			<div class="row" ng-click="vm.openEvent(event)">
 				<div class="col-sm-2">

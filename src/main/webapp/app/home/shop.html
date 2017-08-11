@@ -1,0 +1,100 @@
+<div class="well well-md panel panel-primary" style="margin-bottom: 50px;">
+	<div class="panel-heading">
+		<div class="row text-center">
+			<div class="col-md-8">
+				<h2 class="text-center">Book a service</h2>
+			</div>
+			<div class="col-md-4">
+				<div class="btn-group btn-group-vertical">
+					<button ui-sref-active="active" ng-if="vm.showItemsSelected == true" on-click="vm.checkLocationItemsSelected()">
+						<label class="btn btn-md btn-primary btn-raised"> <ngcart-summary template-url="app/components/ngcart/summary.html"></ngcart-summary> </label>
+					</button>
+					<button ng-click="vm.checkLocationItemsSelected()" class="btn btn-primary btn-md" ng-if="vm.showItemsSelected == true">
+						<span data-translate="entity.action.checkout">Checkout</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class=" text-center">
+			<div class="well well-lg col-md-11 row-primary-1" style="margin-left: 20px; margin-right: 1px; min-width: 96%;"  ng-class="{'row-primary-2': vm.mod(e,2)==0}"
+			ng-repeat="locationItem in vm.locationItems track by locationItem.id">
+				<div class="col-md-8">
+					<dl class="row jh-entity-details text-left">
+						<dt>
+							<span data-translate="afripointApp.locationItem.category">Category</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.category}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.service">Service</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.service}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.description">Description</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.description}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.period">Period</span>
+						</dt>
+						<dd>
+							<span data-translate="{{'afripointApp.Periods.' + locationItem.period}}">{{locationItem.period}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.price">Price</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.price}}</span>
+						</dd>
+						<dt>
+							<span data-translate="afripointApp.locationItem.member">Member Price</span>
+						</dt>
+						<dd>
+							<span>{{locationItem.memberPrice}}</span>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="col-xs-4">
+					<img ng-src="{{locationItem.imageUrl}}" class="img-responsive" ng-if="locationItem.imageUrl" ngcloak />
+				</div>
+				<hr />
+				<div class="row text-center">
+					<div class="col-md-12 text-center">
+						<ngcart-addtocart class="btn btn-primary"
+						id="{{locationItem.id}}" name="{{locationItem.category }}" price="{{locationItem.price}}"
+						template-url="app/components/ngcart/addtocart.html" quantity="1" data="location">
+							<span translate="entity.action.add">Add</span>
+							<span class="glyphicon glyphicon-plus"></span>
+							<span> <b>{{locationItem.price}}</b> <i class="glyphicon glyphicon-{{global.currency}}"></i> </span>
+						</ngcart-addtocart>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row text-center">
+			
+			<div class="col-md-6 text-center">
+				<button class="btn btn-md btn-primary btn-sm" ui-sref-active="active" ng-if="vm.showItemsSelected == true" on-click="vm.checkLocationItemsSelected()">
+					<ngcart-summary template-url="app/components/ngcart/summary.html"></ngcart-summary>
+				</button>
+			</div>
+			<div class="col-md-6 text-right">
+				<button ng-click="vm.checkLocationItemsSelected()" class="btn btn-primary btn-sm" ng-if="vm.showItemsSelected == true">
+					<span data-translate="entity.action.checkout">Checkout</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	
+<hr class="primary" />
+
+</div>

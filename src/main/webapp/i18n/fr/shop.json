@@ -1,0 +1,28 @@
+{
+    "afripointApp": {
+        "shop" : {
+            "home": {
+                "title": "Shops",
+                "createLabel": "Créer un nouveau Shop",
+                "createOrEditLabel": "Créer ou éditer un Shop"
+            },
+            "created": "Un nouveau Shop a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Shop avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Shop avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Shop {{ id }} ?"
+            },
+            "detail": {
+                "title": "Shop"
+            },
+            "name": "Name",
+            "owner": "Owner",
+            "products": "Products",
+            "physicalAddress": "Physical Address",
+            "virtualAddress": "Virtual Address",
+            "createdDate": "Created Date",
+            "modifiedDate": "Modified Date",
+            "category": "Category"
+        }
+    }
+}

@@ -13,12 +13,19 @@
             "facebook": "Dialogue avec nous sur Facebook",
             "twitter": "Suivez @afripoint_vienna sur Twitter"
         },
-        "businessCallout": "Prêt à faire affaire avec nous? C'est génial! Appelez-nous ou envoyez-nous un courrielEt nous vous répondrons dans les plus brefs délais!",
+        "businessCallout": "Prêt à faire affaire avec nous?<br/>C'est génial! Appelez-nous ou envoyez-nous un courrielEt nous vous répondrons dans les plus brefs délais!",
         "learn": "Apprendre encore plus...",
-        "partner": "Devenir un partenaire!",
+        "partner": "Devenir un membre!",
         "location": "Book a service",
         "download": "Téléchargez maintenant!",
         "brochure": "Nouvelle édition de brochure.",
-        "currentEvents": "Nouvelle Events."
+        "currentEvents": "Nouvelle Events.",
+        "services": "Service d'affaires",
+        "screenTitle": "la publicité sur Afripoint InfoScreen",
+        "locationTitle": "boutiques dans Afripoint",
+        "serviceTitle": "Commandez votre service avec nous",
+        "eventTitle": "Planifiez vos événements avec nous",
+        "openTimes": "Horaires ouverts",
+        "address": "Hofmühlgasse 2, A-1060 Wien"
     }
 }

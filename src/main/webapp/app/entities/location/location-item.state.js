@@ -126,6 +126,8 @@
                     resolve: {
                         entity: function () {
                             return {
+                            	image: null,
+                            	contentType: null,
                                 category: null,
                                 service: null,
                                 description: null,

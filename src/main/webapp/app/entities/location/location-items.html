@@ -14,9 +14,10 @@
 </div>
 
 <div class="well well-sm well-primary">
-	<div class="row text-center">
+	<div class="row text-center">		
 		<div class="well well-lg col-xs-8" style="margin-left: 20px; margin-right: 1px; min-width: 97%;" ng-repeat="locationItem in vm.locationItems track by locationItem.id">
-			<dl class="row jh-entity-details text-left">
+			<div class="col-md-8">
+				<dl class="row jh-entity-details text-left">
 				<dt>
 					<span data-translate="afripointApp.locationItem.category">Category</span>
 				</dt>
@@ -54,6 +55,11 @@
 					<span>{{locationItem.memberPrice}}</span>
 				</dd>
 			</dl>
+			</div>
+			<div class="col-xs-4">
+				<img ng-src="{{locationItem.imageUrl}}" class="img-responsive" />
+			</div>
+			
 			<hr />
 			<div class="row text-center">
 				<button type="submit"
@@ -78,57 +84,4 @@
 		</div>
 	</div>
 </div>
-<!--
-<div class="well well-sm">
-<div class="table-responsive">
-<table class="jh-table table table-striped">
-<thead>
-<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-<th jh-sort-by="category"><span data-translate="afripointApp.locationItem.category">Category</span><span class="glyphicon glyphicon-sort"></span></th>
-<th jh-sort-by="service"><span data-translate="afripointApp.locationItem.service">Service</span><span class="glyphicon glyphicon-sort"></span></th>
-<th jh-sort-by="description"><span data-translate="afripointApp.locationItem.description">Description</span><span class="glyphicon glyphicon-sort"></span></th>
-<th jh-sort-by="period"><span data-translate="afripointApp.locationItem.period">Period</span><span class="glyphicon glyphicon-sort"></span></th>
-<th jh-sort-by="price"><span data-translate="afripointApp.locationItem.price">Price</span><span class="glyphicon glyphicon-sort"></span></th>
-<th jh-sort-by="price"><span data-translate="afripointApp.locationItem.member">Member Price</span><span class="glyphicon glyphicon-sort"></span></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="locationItem in vm.locationItems track by locationItem.id">
-<td>{{locationItem.category}}</td>
-<td>{{locationItem.service}}</td>
-<td>{{locationItem.description}}</td>
-<td data-translate="{{'afripointApp.Periods.' + locationItem.period}}">{{locationItem.period}}</td>
-<td>{{locationItem.price}}</td>
-<td>{{locationItem.memberPrice}}</td>
-<td class="text-right">
-<div class="btn-group flex-btn-group-container">
-<button type="submit"
-ui-sref="location-item-detail({id:locationItem.id})"
-class="btn btn-info btn-sm">
-<span class="glyphicon glyphicon-eye-open"></span>
-<span class="hidden-sm-down" data-translate="entity.action.view"></span>
-</button>
-<button type="submit"
-ui-sref="location-item.edit({id:locationItem.id})"
-class="btn btn-primary btn-sm">
-<span class="glyphicon glyphicon-pencil"></span>
-<span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-</button>
-<button type="submit"
-ui-sref="location-item.delete({id:locationItem.id})"
-class="btn btn-danger btn-sm">
-<span class="glyphicon glyphicon-remove-circle"></span>
-<span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-</button>
-</div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="text-center">
-<jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-</div>
-<uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
-</div>
--->
+

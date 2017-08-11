@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="afripointApp.product.detail.title">Product</span> {{vm.product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="afripointApp.product.name">Name</span></dt>
+        <dd>
+            <span>{{vm.product.name}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.category">Category</span></dt>
+        <dd>
+            <span data-translate="{{'afripointApp.ProductCategory.' + vm.product.category}}">{{vm.product.category}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.price">Price</span></dt>
+        <dd>
+            <span>{{vm.product.price}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.size">Size</span></dt>
+        <dd>
+            <span>{{vm.product.size}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{vm.product.quantity}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.shopId">Shop Id</span></dt>
+        <dd>
+            <span>{{vm.product.shopId}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.product.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.modifiedDate">Modified Date</span></dt>
+        <dd>
+            <span>{{vm.product.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="afripointApp.product.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+            <span>{{vm.product.lastModifiedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="product-detail.edit({id:vm.product.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

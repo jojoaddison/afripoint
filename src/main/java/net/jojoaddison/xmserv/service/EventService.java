@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.Event;
+import net.jojoaddison.xmserv.domain.EventDocument;
+import net.jojoaddison.xmserv.repository.EventDocumentRepository;
 import net.jojoaddison.xmserv.repository.EventRepository;
 import net.jojoaddison.xmserv.service.util.Tools;
 
@@ -26,19 +28,34 @@ public class EventService {
     private final Logger log = LoggerFactory.getLogger(EventService.class);
 
     private final EventRepository eventRepository;
+    private final EventDocumentRepository eventDocumentRepository;
 
     private final Environment env;
 
     private final String EVENT_PHOTOS = "data/event/photos";
+    private final String EVENT_DOCS = "data/event/docs";
+    private final String CURRENT_DOC = "afripoint-events.pdf";
     private final String DATA = "data/";
     private final int HEIGHT = 120;
     private final int WIDTH = 120;
 
 
-    public EventService(EventRepository eventRepository, Environment env) {
+    public EventService(EventRepository eventRepository, EventDocumentRepository eventDocumentRepository, Environment env) {
         this.eventRepository = eventRepository;
+        this.eventDocumentRepository = eventDocumentRepository;
         this.env = env;
     }
+    
+    
+    public EventDocument save(EventDocument eventDocument){
+    	createCurrentEvent(eventDocument.getDocument(), CURRENT_DOC);
+    	String path = createCurrentEvent(eventDocument.getDocument(), eventDocument.getName());
+    	eventDocument.setSrc(path);
+    	eventDocument.setVersion(eventDocumentRepository.count() + 1);
+    	
+    	return eventDocumentRepository.save(eventDocument);
+    }
+    
 
     /**
      * Save a event.
@@ -110,12 +127,22 @@ public class EventService {
     		String photoFile = root.concat(photoUrl);
     		try {
 				Thumbnails.of(new File(photoFile)).size(WIDTH, HEIGHT).outputQuality(0.7).outputFormat(fileExt).toFile(thumbFilename);
+				Tools.setReadPermissions(root.concat(DATA));
 			} catch (IOException e) {
+				e.printStackTrace();
+				log.debug(e.getMessage(), e.getCause());
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 				log.debug(e.getMessage(), e.getCause());
 			}
     	}
     	return event;
+    }
+    
+	public Page<EventDocument> findAllDocuments(Pageable pageable) {
+        log.debug("Request to get all Events");
+        Page<EventDocument> result = eventDocumentRepository.findAll(pageable);
+        return result;
     }
 
     /**
@@ -140,7 +167,7 @@ public class EventService {
     public Page<Event> findAllCurrent(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeAfter(now.minusDays(2), pageable);
+        Page<Event> result = eventRepository.findAllByEndTimeAfter(now.minusDays(2), pageable);
         return result;
     }
 
@@ -153,7 +180,7 @@ public class EventService {
     public Page<Event> findAllPast(Pageable pageable) {
         log.debug("Request to get all Events");
         ZonedDateTime now = ZonedDateTime.now();
-        Page<Event> result = eventRepository.findAllByStartTimeBefore(now, pageable);
+        Page<Event> result = eventRepository.findAllByEndTimeBefore(now, pageable);
         return result;
     }
     /**
@@ -178,18 +205,31 @@ public class EventService {
         eventRepository.delete(id);
     }
 
-    public String createCurrentEvent(MultipartFile file){
+    /**
+     * Create current event
+     * @param file
+     * @return
+     */
+    public String createCurrentEvent(byte[] file, String name){
     	try{
-    		String path = "content/docs/afripoint-events.pdf";
+    		
     		String sep = Tools.getSeparator();
-    	    String root = env.getProperty("client.root").concat(sep).concat(path);
-    	    Tools.createFile(root, file.getBytes());
-    	    return root;
+    		
+    		String path = EVENT_DOCS.concat(sep).concat(Tools.removeSpaces(name));
+    	    String root = env.getProperty("client.root");
+    	    String directory = root.concat(sep).concat(path);
+    	    Tools.createFile(directory, file);
+    	    
+			Tools.setReadPermissions(root.concat(DATA));
+			
+    	    return path;
+    	    
     	}catch(Exception e){
     		log.error(e.getMessage(), e.getCause());
     	}
     	
     	return null;
     }
+
 
 }

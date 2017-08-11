@@ -3,23 +3,25 @@
         "partner" : {
             "home": {
                 "title": "Partners",
-                "createLabel": "Partner erstellen",
-                "createOrEditLabel": "Partner bearbeiten"
+                "createLabel": "Mitglied erstellen",
+                "createOrEditLabel": "Mitglied bearbeiten"
             },
-        	"congratulation": "Gratulation {{ param }} Partner!",
+        	"congratulation": "Gratulation {{ param }} Mitglied!",
 			"thank": {
-				"partner": "Danke für die Anmeldung als {{ type }} Partner!"
+				"partner": "Danke für die Anmeldung als {{ type }} Mitglied!"
 			},
-            "become": "Partner werden",
-            "created": "Partner erstellt mit ID {{ param }}",
-            "updated": "Partner aktualisiert mit ID {{ param }}",
-            "deleted": "Partner gelöscht mit ID {{ param }}",
+            "become": "Mitglied werden",
+            "created": "Mitglied erstellt mit ID {{ param }}",
+            "updated": "Mitglied aktualisiert mit ID {{ param }}",
+            "deleted": "Mitglied gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Partner {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Mitglied {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Partner"
+                "title": "Mitglied"
             },
+			"name": "Name",
+			"numbers": "Nummern",
             "firstname": "Vorname",
             "lastname": "Nachname",
             "title": "Titel",
@@ -47,11 +49,43 @@
             	"prof": "Prof.",
             	"mas": "Magister"
             },
-            "type": "Partner Typ Auswählen",
+            "type": "Mitglied Typ Auswählen",
             "types": {
             	"classic": "Klassich",
             	"gold": "Gold",
             	"platinum": "Platinum"
+            },
+            "terms": "ich habe die allgemeine geschäftsbedingungen gelesen und akzeptiere diese",
+            "register": {
+            	"title": "Bitte alles ausfullen - Alle Felder werden benötigt",
+            	"messages": {
+            		"validate": {
+            			"firstname": {
+            				"required": "Ihr Vorname wird benötigt."
+            			},
+            			"lastname": {
+            				"required": "Ihr Nachname wird benötigt."
+            			},
+            			"mobileNumber": {
+            				"required": "Ihr Mobilnummer wird benötigt."
+            			},
+            			"streetAddress": {
+            				"required": "Ihr Straßenadresse wird benötigt."
+            			},
+            			"zipcode": {
+            				"required": "Ihr PLZ wird benötigt."
+            			},
+            			"city": {
+            				"required": "Ihr Stadt wird benötigt."
+            			},
+            			"state": {
+            				"required": "Ihr Bundesland wird benötigt."
+            			},
+            			"country": {
+            				"required": "Ihr Land wird benötigt."
+            			}
+            		}
+            	}
             }
         }
     }

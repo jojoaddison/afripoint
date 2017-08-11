@@ -1,16 +1,15 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<div class="row">
-
-			<div class="col-md-10">
+			<div class="col-md-10 text-center">
 				<h2 class="text-center"><span data-translate="afripointApp.event.detail.title">Event</span> {{evm.event.title}}</h2>
 			</div>
-			<div class="col-md-2">
-				<button class="btn btn-white btn-sm" ng-click="evm.close()">
-					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
+			<div class="col-md-2 text-center">
+				<button type="button" ng-click="evm.close()" class="btn btn-primary">
+					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;
+					<span class="hidden-sm-down" data-translate="entity.action.close">Close</span>
 				</button>
 			</div>
-
 		</div>
 	</div>
 	<div class="panel-body">

@@ -5,9 +5,9 @@
   .module('afripointApp')
   .controller('PartnerDialogController', PartnerDialogController);
 
-  PartnerDialogController.$inject = ['$rootScope', '$timeout', '$scope', '$stateParams', '$translate', '$uibModalInstance', 'entity', 'Partner', 'DataUtils', 'Principal'];
+  PartnerDialogController.$inject = ['$rootScope', '$timeout', '$scope', '$stateParams', '$translate', '$uibModalInstance', 'entity', 'Partner', 'DataUtils', 'Principal', 'PartnerFactory'];
 
-  function PartnerDialogController ($rootScope, $timeout, $scope, $stateParams, $translate, $uibModalInstance, entity, Partner, DataUtils, Principal) {
+  function PartnerDialogController ($rootScope, $timeout, $scope, $stateParams, $translate, $uibModalInstance, entity, Partner, DataUtils, Principal, PartnerFactory) {
     var vm = this;
 
     vm.partner = entity;
@@ -20,24 +20,12 @@
     vm.byteSize = DataUtils.byteSize;
     vm.setPhoto = setPhoto;
     vm.updatePhoto = updatePhoto;
-    var types = ["classic","gold","platinum"];
-    var titles =["mr","mrs","miss","dr","ms","ing","prof"];
 
     $scope.translateTitle = translateTitle;
     $timeout(function () {
       $('#image').cropper({
         aspectRatio: 16 / 9,
         crop: function(e) {
-          // Output the result data for cropping image.
-          /**
-          console.log(e.x);
-          console.log(e.y);
-          console.log(e.width);
-          console.log(e.height);
-          console.log(e.rotate);
-          console.log(e.scaleX);
-          console.log(e.scaleY);
-          **/
           console.log(e);
         }
       });
@@ -61,13 +49,6 @@
       loadPhoto();
     }
 
-    function translateTitle(title){
-      var key = "afripointApp.partner.titles."+title;
-      $translate(key).then(function(value){
-        return value;
-      });
-    }
-
     function toggleShowAddress(){
       vm.showAddress = !vm.showAddress;
     }
@@ -84,19 +65,9 @@
       getAccount();
       //console.log(vm.partner);
       loadPhoto();
-      angular.forEach(titles, function(title){
-        var key = "afripointApp.partner.titles."+title;
-        $translate(key).then(function(value){
-          vm.titles.push(value);
-        });
-      });
-
-      angular.forEach(types, function(type){
-          var key = "afripointApp.partner.types."+type;
-          $translate(key).then(function(value){
-            vm.types.push(value);
-          });
-        });
+      vm.titles = PartnerFactory.getTitles();
+      vm.types = PartnerFactory.getTypes();
+      vm.states = PartnerFactory.getStates();
       angular.element('.form-group:eq(1)>input').focus();
     });
 

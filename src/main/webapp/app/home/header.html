@@ -1,0 +1,47 @@
+<div class="well well-md" style="position: relative; top: -20px;">
+	<header class="hidden-sm hidden-xs center" style="width: 100%; position: relative; top: 1px;">
+		<div class="header-content">
+			<div class="header-content-inner"></div>
+		</div>
+	</header>
+
+	<section class="text-center no-padding-bottom center" id="services" style="position: relative; top: -10px;">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2 class="section-heading">At Your Service</h2>
+				<hr class="primary">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 text-center" ng-repeat="service in vm.services track by service.id" ngcloak>
+				<div class="service-box">
+					<i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
+					<h3><a ui-sref="{{service.name}}" data-translate="afripointApp.afripointService.{{service.name}}.name">{{service.name}}</a></h3>
+					<p class="text-muted" data-translate="afripointApp.afripointService.{{service.name}}.description">
+						{{service.description}}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<hr class="primary">
+			</div>
+		</div>
+		<!--
+		<div class="row text-center">
+		<div class="col-md-6 text-center">
+		<h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
+		</div>
+		<div class="col-md-5 text-center">
+		<h2 class="section-heading"><a data-translate="home.location" ng-click="vm.openLocation()" class="btn btn-primary btn-xl sr-button">Book our location!</a></h2>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-11 text-center">
+		<hr class="primary">
+		</div>
+		</div>
+		-->
+	</section>
+</div>

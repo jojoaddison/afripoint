@@ -5,9 +5,9 @@
 		.module('afripointApp')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = [ '$scope', 'Socialshare', 'Principal', 'LoginService', '$state', '$timeout', 'Gallery', 'Event', 'AfripointService', 'PageUtils', 'StorageUtils', 'StorageDB' ];
+	HomeController.$inject = [ '$scope', 'Socialshare', 'Principal', 'LoginService', '$state', '$timeout', 'LocationItem', 'Gallery', 'Event', 'AfripointService', 'PageUtils', 'StorageUtils', 'StorageDB', 'PartnerFactory', '$sce' ];
 
-	function HomeController($scope, Socialshare, Principal, LoginService, $state, $timeout, Gallery, Event, AfripointService, PageUtils, StorageUtils, StorageDB) {
+	function HomeController($scope, Socialshare, Principal, LoginService, $state, $timeout, LocationItem, Gallery, Event, AfripointService, PageUtils, StorageUtils, StorageDB, PartnerFactory, $sce) {
 		var vm = this;
 
 		vm.account = null;
@@ -15,29 +15,38 @@
 		vm.login = LoginService.open;
 		vm.register = register;
 		vm.slideInterval = 10000;
+		vm.videoInterval = 300000;
 		vm.noWrapSlides = false;
 		vm.active = 0;
 		vm.openEvent = PageUtils.openEvent;
 		vm.openLearn = PageUtils.openLearn;
-		vm.openPartner = PageUtils.openPartner;
+		vm.openPartner = PartnerFactory.openPartner;
 		vm.openPage = PageUtils.openPage;
 		vm.openLocation = PageUtils.openLocation;
 		vm.mod = PageUtils.mod;
+		vm.openService = PageUtils.openService;
 		vm.page = 0;
 		vm.size = 10;
 		var EVENTSDB = "current_eventsdb";
+		vm.service = null;
+		vm.setService = setService;
+		vm.cookiesAccepted = true;
+		vm.acceptCookies = acceptCookies; 
 		
         var GALLERIESDB = "galleriesdb";
         vm.predicate = 'id';
         var lastUpdatedGallery = "lastGalleryUpdated";
         
-        vm.currentEvents = "content/docs/afripoint-events.pdf";
+        var servicesGallery = null;
+        
+        vm.currentEvents = "data/event/docs/afripoint-events.pdf";
         
         vm.currentBrochure = "content/docs/afripoint_presentation.pdf";
 
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();
 		});
+	
 
 		getAccount();
 		loadServices();
@@ -45,22 +54,29 @@
 		$timeout(function(){
 		loadEvents();
 		loadGalleries();
+		checkCookies();
 		});
 		
 		$timeout(function() {
 			reloadEvents();
 		}, 5000);
 
+		
+		function setService(service){
+			vm.service = service;
+		}
 
+		
 		function loadEvents() {
+			setCurrentEvents(undefined);
+			/*
 			StorageDB.getAll(EVENTSDB, 
 					function(data){
-				console.log(EVENTSDB);
-				console.log(data);
 				if(data && data.length < 1) data = undefined;
 				  setCurrentEvents(data);
 				}
 			);		
+			*/
 		}
 		
 		function setCurrentEvents(events){
@@ -105,6 +121,20 @@
         		}
         	} 
         }
+        
+        function checkCookies(){
+        	var cookiesAccepted = StorageUtils.get('cookiesAccepted', false);
+        	if(cookiesAccepted){
+        		vm.cookiesAccepted = true;
+        	}else{
+        		vm.cookiesAccepted = false;
+        	}
+        }
+        
+        function acceptCookies(){
+        	StorageUtils.set('cookiesAccepted', true);
+        	vm.cookiesAccepted = true;
+        }
 
 		function getAccount() {
 			Principal.identity().then(function(account) {
@@ -138,6 +168,9 @@
             	gallery.albumLabel = gallery.albumSize > 1? "albums" : "album";
             	if(gallery.albumSize == 0) gallery.albumLabel="noAlbum";
                 vm.galleries.push(gallery);
+                if(gallery.name == 'services'){
+                	servicesGallery = gallery;
+                }
             }
             StorageDB.set(GALLERIESDB, vm.galleries, function(res){
             	console.log(res);
@@ -152,6 +185,12 @@
         	}
         }
 
+        function setServiceGallery(){
+        	if(servicesGallery){
+        		var album = servicesGallery; //TODO: get the first album and the first media
+        	}
+        }
+        
         function loadServices(){
 				vm.services = [
 					{
@@ -180,7 +219,76 @@
 		            vm.services = data;
 		        });
 				*/
+				vm.service =  vm.services[0];
+				vm.screens = [
+		        	                   {
+		        	                	   "id": 1,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/pRjqZTmxdxo?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   },
+		        	                   {
+		        	                	   "id": 2,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/-h1h1koEDp0?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   },
+		        	                   {
+		        	                	   "id": 3,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/UGBcYnxRKPs?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   },
+		        	                   {
+		        	                	   "id": 4,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/6jOvHRnZBD4?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   },
+		        	                   {
+		        	                	   "id": 5,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/fSPy4vVv33Q?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   },
+		        	                   {
+		        	                	   "id": 6,
+		        	                	   "src": $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/OAarK0qHVdw?ecver=2&autoplay=1&rel=0&controls=0")
+		        	                   }
+		        	];
+		        	vm.offers = [
+		          	                   {
+		          	                	   "id": 1,
+		          	                	   "src": "data/afripoint/offers/1_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 2,
+		          	                	   "src": "data/afripoint/offers/2_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 3,
+		          	                	   "src": "data/afripoint/offers/3_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 4,
+		          	                	   "src": "data/afripoint/offers/4_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 5,
+		          	                	   "src": "data/afripoint/offers/5_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 6,
+		          	                	   "src": "data/afripoint/offers/6_offers.jpg"
+		          	                   },
+		          	                   {
+		          	                	   "id": 7,
+		          	                	   "src": "data/afripoint/offers/7_offers.jpg"
+		          	                   }
+		          	];
+		        	
+		        	LocationItem.query({}, onSuccess, onError); 
+		            function onSuccess(data) {
+		            	console.log(data);
+		                vm.serviceOffers = data;
+		            }            
+		            function onError(error) {
+		                AlertService.error(error.data.message);
+		            }
+		        	
         }
+        
+        
         /**
         Socialshare.share(
         		{
@@ -210,4 +318,7 @@
 			});
 		});
 	}
+
+	
+	
 })();

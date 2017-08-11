@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="afripointApp.product.home.title">Products</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="product.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="afripointApp.product.home.createLabel">
+                        Create new Product
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="afripointApp.product.name">Name</span></th>
+                    <th><span data-translate="afripointApp.product.category">Category</span></th>
+                    <th><span data-translate="afripointApp.product.price">Price</span></th>
+                    <th><span data-translate="afripointApp.product.size">Size</span></th>
+                    <th><span data-translate="afripointApp.product.quantity">Quantity</span></th>
+                    <th><span data-translate="afripointApp.product.shopId">Shop Id</span></th>
+                    <th><span data-translate="afripointApp.product.createdDate">Created Date</span></th>
+                    <th><span data-translate="afripointApp.product.modifiedDate">Modified Date</span></th>
+                    <th><span data-translate="afripointApp.product.lastModifiedBy">Last Modified By</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in vm.products track by product.id">
+                    <td><a ui-sref="product-detail({id:product.id})">{{product.id}}</a></td>
+                    <td>{{product.name}}</td>
+                    <td data-translate="{{'afripointApp.ProductCategory.' + product.category}}">{{product.category}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.size}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.shopId}}</td>
+                    <td>{{product.createdDate | date:'medium'}}</td>
+                    <td>{{product.modifiedDate | date:'medium'}}</td>
+                    <td>{{product.lastModifiedBy}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="product-detail({id:product.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="product.edit({id:product.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="product.delete({id:product.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
