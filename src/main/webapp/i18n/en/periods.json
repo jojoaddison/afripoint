@@ -6,7 +6,11 @@
             "DAY": "DAY",
             "WEEK": "WEEK",
             "MONTH": "MONTH",
+<<<<<<< HEAD
             "EVENT": "EVENT"
+=======
+            "EVENT": "PER-EVENT"
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         }
     }
 }

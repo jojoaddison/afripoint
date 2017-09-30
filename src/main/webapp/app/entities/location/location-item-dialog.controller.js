@@ -5,16 +5,25 @@
         .module('afripointApp')
         .controller('LocationItemDialogController', LocationItemDialogController);
 
+<<<<<<< HEAD
     LocationItemDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LocationItem', 'DataUtils'];
 
     function LocationItemDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LocationItem, DataUtils) {
+=======
+    LocationItemDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LocationItem'];
+
+    function LocationItemDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LocationItem) {
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         var vm = this;
 
         vm.locationItem = entity;
         vm.clear = clear;
         vm.save = save;
+<<<<<<< HEAD
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -43,6 +52,7 @@
             vm.isSaving = false;
         }
 
+<<<<<<< HEAD
         vm.setBytes = function ($file, locationItem) {
             if ($file && $file.$error === 'pattern') {
                 return;
@@ -56,6 +66,8 @@
                 });
             }
         };
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
     }
 })();

@@ -6,7 +6,11 @@
             "DAY": "TAG",
             "WEEK": "WOCHE",
             "MONTH": "MONAT",
+<<<<<<< HEAD
             "EVENT": "EVENT"
+=======
+            "EVENT": "PRO-EVENT"
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         }
     }
 }

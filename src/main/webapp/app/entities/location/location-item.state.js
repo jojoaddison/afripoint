@@ -126,8 +126,11 @@
                     resolve: {
                         entity: function () {
                             return {
+<<<<<<< HEAD
                             	image: null,
                             	contentType: null,
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
                                 category: null,
                                 service: null,
                                 description: null,

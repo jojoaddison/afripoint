@@ -7,8 +7,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 import net.jojoaddison.xmserv.domain.enumeration.Periods;
 
 /**
@@ -40,6 +43,7 @@ public class LocationItem implements Serializable {
 
     @Field("member_price")
     private Double memberPrice;
+<<<<<<< HEAD
     
     @Field("album")
     private String album;
@@ -54,6 +58,8 @@ public class LocationItem implements Serializable {
     private String contentType;
     
     private byte[] image;
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
     public String getId() {
         return id;
@@ -141,6 +147,7 @@ public class LocationItem implements Serializable {
 		return this;
 	}
 
+<<<<<<< HEAD
 	public String getAlbum() {
 		return album;
 	}
@@ -186,6 +193,8 @@ public class LocationItem implements Serializable {
 		this.image = image;
 	}
 
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 	@Override
     public boolean equals(Object o) {
         if (this == o) {

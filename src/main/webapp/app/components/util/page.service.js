@@ -15,7 +15,10 @@
 	            openService: openService,
 	            openPage: openPage,
 	            openLocation: openLocation,
+<<<<<<< HEAD
 	            checkBasket: checkBasket,
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 	            mod: mod
     		};
 
@@ -28,8 +31,45 @@
     		function mod(x, y){
     			return (x%y);
     		}
+<<<<<<< HEAD
     		
     		function openLocation() {
+=======
+
+    		
+    		function openLocation() {
+    			$uibModal.open(
+        				{
+        					templateUrl : "app/home/location.html",
+        					controller : 'LocationItemListController',
+        					controllerAs : 'vm',
+        					backdrop : 'static',
+        					size : 'lg',
+        		            params: {
+        		                page: {
+        		                    value: '1',
+        		                    squash: true
+        		                },
+        		                sort: {
+        		                    value: 'id,desc',
+        		                    squash: true
+        		                },
+        		                search: null
+        		            },
+        					resolve : {
+        						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+        							$translatePartialLoader.addPart('locationItem');
+        							$translatePartialLoader.addPart('home');
+        							$translatePartialLoader.addPart('global');
+        							return $translate.refresh();
+        						} ]
+        					}
+        				}
+        			);
+    		}
+    		
+    		function openPartner() {
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
     			$uibModal.open(
         				{
         					templateUrl : 'app/home/shopservice.html',
@@ -60,7 +100,10 @@
         				}
         			);
     		}
+<<<<<<< HEAD
     		
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
     		function openLearn() {
     			$uibModal.open(
@@ -183,8 +226,12 @@
                     }
                 );
             }    	
+<<<<<<< HEAD
     
             s
     	}
+=======
+    }
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
 })();

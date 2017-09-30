@@ -15,7 +15,11 @@
         },
         "businessCallout": "Ready to do business with us?<br/>That's great! Give us a call or send us an email and we will get back to you as soon as possible!",
         "learn": "Learn more...",
+<<<<<<< HEAD
         "partner": "Become a member!",
+=======
+        "partner": "Become a partner!",
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         "location": "Book a service",
         "download": "Please download now!",
         "brochure": "New brochure edition.",

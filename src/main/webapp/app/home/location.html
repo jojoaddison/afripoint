@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="well well-md" style="position: relative; top: -20px;">
 	
 	<section class="no-padding center" id="location">
@@ -108,3 +109,98 @@
 		</div>
 	</div>
 </div>
+=======
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			
+			<div class="col-md-10">
+				<h2 class="text-center">Book a service</h2>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-white btn-sm" ng-click="vm.close()">
+					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">		
+		<h1>Bla bla</h1>
+		<p>
+		{{vm.locationItems}}
+		</p>
+		<div class="well well-lg col-xs-8" style="margin-left: 20px; margin-right: 1px; min-width: 97%;" ng-repeat="locationItem in vm.locationItems track by locationItem.id">
+			<dl class="row jh-entity-details text-left">
+				<dt>
+					<span data-translate="afripointApp.locationItem.category">Category</span>
+				</dt>
+				<dd>
+					<span>{{locationItem.category}}</span>
+				</dd>
+				<dt>
+					<span data-translate="afripointApp.locationItem.service">Service</span>
+				</dt>
+				<dd>
+					<span>{{locationItem.service}}</span>
+				</dd>
+				<dt>
+					<span data-translate="afripointApp.locationItem.description">Description</span>
+				</dt>
+				<dd>
+					<span>{{locationItem.description}}</span>
+				</dd>
+				<dt>
+					<span data-translate="afripointApp.locationItem.period">Period</span>
+				</dt>
+				<dd>
+					<span data-translate="{{'afripointApp.Periods.' + locationItem.period}}">{{locationItem.period}}</span>
+				</dd>
+				<dt>
+					<span data-translate="afripointApp.locationItem.price">Price</span>
+				</dt>
+				<dd>
+					<span>{{locationItem.price}}</span>
+				</dd>
+				<dt>
+					<span data-translate="afripointApp.locationItem.member">Member Price</span>
+				</dt>
+				<dd>
+					<span>{{locationItem.memberPrice}}</span>
+				</dd>
+			</dl>
+			<hr />
+			<div class="row text-center">
+				<button type="submit"
+				ui-sref="location-item-detail({id:locationItem.id})"
+				class="btn btn-info btn-sm">
+					<span class="glyphicon glyphicon-eye-open"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.view"></span>
+				</button>
+			</div>
+		</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row text-center">
+				<button type="submit"
+				ui-sref="location-item-detail({id:locationItem.id})"
+				class="btn btn-info btn-sm">
+					<span class="glyphicon glyphicon-eye-open"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.view"></span>
+				</button>
+				<button type="submit"
+				ui-sref="location-item.edit({id:locationItem.id})"
+				class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-pencil"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+				</button>
+				<button type="submit"
+				ui-sref="location-item.delete({id:locationItem.id})"
+				class="btn btn-danger btn-sm">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+					<span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866

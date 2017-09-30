@@ -5,6 +5,7 @@
         .module('afripointApp')
         .controller('LocationItemListController', LocationItemListController);
 
+<<<<<<< HEAD
     LocationItemListController.$inject = ['$rootScope', 'LocationItem', 'ParseLinks', 'AlertService', '$uibModal', '$uibModalInstance', 'ngCart'];
 
     function LocationItemListController($rootScope, LocationItem, ParseLinks, AlertService, $uibModal, $uibModalInstance, ngCart) {
@@ -16,19 +17,40 @@
         vm.showItemsSelected = ngCart.getTotalItems() > 0;
         vm.checkLocationItemsSelected = checkLocationItemsSelected;
         
+=======
+    LocationItemListController.$inject = ['LocationItem', 'ParseLinks', 'AlertService', '$uibModalInstance'];
+
+    function LocationItemListController(LocationItem, ParseLinks, AlertService, $uibModalInstance) {
+
+        var vm = this;
+        vm.close = close;
+        vm.itemsPerPage = 20;
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
         loadAll();
 
         function loadAll () {
             LocationItem.query({
+<<<<<<< HEAD
                 page: 0,
                 size: vm.itemsPerPage,
                 sort: 'id,desc'
+=======
+                page: 1,
+                size: vm.itemsPerPage,
+                sort: {
+                    value: 'id,desc',
+                    squash: true
+                }
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
             }, onSuccess, onError);
             
             
             function onSuccess(data, headers) {
+<<<<<<< HEAD
             	console.log(data);
+=======
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
@@ -39,6 +61,7 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+<<<<<<< HEAD
             
         }
         
@@ -105,6 +128,10 @@
 
 			close();
 		}
+=======
+        }
+
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 
         function close(){
 			$uibModalInstance.dismiss('cancel');

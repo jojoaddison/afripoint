@@ -15,7 +15,11 @@
         },
         "businessCallout": "Bereit mit uns Geschäft zu machen? Super!<br/>Rufen Sie uns an oder schicken Sie uns ein Email.<br/>Wie melden uns bei Ihnen so bald wie möglich!",
         "learn": "Mehr über uns erfahren...",
+<<<<<<< HEAD
         "partner": "Mitglied werden",
+=======
+        "partner": "Partner werden",
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         "location": "Service bestellen",
         "download": "Bitte jetzt herunterladen!",
         "brochure": "Informationsbroschüre.",

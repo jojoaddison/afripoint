@@ -4,6 +4,7 @@
 		<div class="row bg-white pad text-center">
 			<a ui-sref="events"> <h2><i class="fa fa-birthday-cake"></i>&nbsp; <span class="hidden-sm" data-translate="home.eventTitle">Events</span></h2> </a>
 		</div>
+<<<<<<< HEAD
 		<div class="row well well-sm well-primary">
 			<div style="width: 100%" ng-if="vm.event.length < 1" class=" row text-center center">
 				<img src="content/images/robottt.gif" class="img-responsive text-center center-80" style="height: auto;"/>
@@ -19,6 +20,64 @@
 								<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
 							</div>
 							-->
+=======
+	</header>
+
+	<section class="container text-center" id="services" style="position: relative; top: -10px; width: 100%;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-11 text-center">
+					<h2 class="section-heading">At Your Service</h2>
+					<hr class="primary">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 text-center" style="margin-left: -20px;" ng-repeat="service in vm.services track by service.id" ngcloak>
+					<div class="service-box">
+						<i class="fa fa-4x fa-{{service.icon}} text-primary sr-icons"></i>
+						<h3><a ui-sref="{{service.name}}" data-translate="afripointApp.afripointService.{{service.name}}.name">{{service.name}}</a></h3>
+						<p class="text-muted" data-translate="afripointApp.afripointService.{{service.name}}.description">
+							{{service.description}}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<hr class="primary">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 text-center">
+					<h2 class="section-heading"><a data-translate="home.partner" ng-click="vm.openPartner()" class="btn btn-primary btn-xl sr-button">Become a partner!</a></h2>
+				</div>
+				<div class="col-lg-6 text-center">
+					<h2 class="section-heading"><a data-translate="home.location" ng-click="vm.openLocation()" class="btn btn-primary btn-xl sr-button">Book our location!</a></h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<hr class="primary">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container bg-dark border-primary-3 text-center"
+	style="overflow-y: auto; max-height:400px; position: relative; top: -80px; padding: 0; width: 100%;">
+		<div style="width: 100%" ng-if="vm.galleries.length < 1" class="text-center">
+			<img src="content/images/robottt.gif" class="img-responsive text-center" style="margin-left: auto; margin-right: auto; width: 60%; height: auto;"/>
+		</div>
+		<div class="row" ng-if="vm.events.length > 0">
+			<div class="col-md-6" style="margin-right: -15px; overflow-y: auto;">
+				<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
+					<div uib-slide ng-repeat="event in vm.events | orderBy: 'startTime' track by event.id" index="$index">
+						<img ng-src="{{event.photo}}" class="img-responsive" style="margin:auto; height:400px; width: 100%;" ngcloak>
+						<div class="carousel-caption bg-primary bg-transparent">
+							<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
+							<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
+
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 						</div>
 					</div>
 				</div>
@@ -35,6 +94,7 @@
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
 						<div class="col-md-2 text-center">
 							<a class="btn btn-primary btn-sm"
 							href="#"
@@ -65,6 +125,49 @@
 				</div>
 			</div>
 			<div class="row text-center">
+=======
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="btn btn-primary btn-sm"
+						href="#"
+						socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
+						socialshare
+						socialshare-provider="twitter"
+						socialshare-text="{{event.title}}"
+						socialshare-hashtags="#afripoint, #afripointEvent"
+						socialshare-popup-height="800"
+						socialshare-popup-width="800"
+						><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a class="btn btn-primary btn-sm"
+						href="#"
+						socialshare="share"
+						socialshare-provider="facebook"
+						socialshare-url="'http://www.afripoint.at/#/event/view/{{event.id}}'"
+						socialshare-title="{{event.title}}"
+						socialshare-caption="{{event.title}}"
+						socialshare-description="{{event.description}}"
+						socialshare-quote="{{event.description}}"
+						socialshare-text="{{event.title}}"
+						socialshare-hashtags="#afripoint, #afripointEvent"
+						socialshare-popup-height="800"
+						socialshare-popup-width="800"
+						><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<aside class="bg-dark border-primary-3" style="position: relative; top: -100px; width: 100%; height: auto;">
+		<div class="row text-center">
+			<div class="col-md-6 text-center">
+				<div class="call-to-action">
+					<h2 data-translate="home.brochure">New brochure edition</h2>
+					<a ng-click="vm.openPage(vm.currentBrochure)" class="btn btn-white btn-xl sr-button" data-translate="home.download">Download Now!</a>
+				</div>
+			</div>
+			<div class="col-md-6 text-center">
+>>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 				<div class="call-to-action">
 					<hr class="primary" />
 					<h2 data-translate="home.currentEvents">Current Events</h2>
