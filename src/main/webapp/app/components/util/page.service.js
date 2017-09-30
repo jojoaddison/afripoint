@@ -32,7 +32,7 @@
     		function openLocation() {
     			$uibModal.open(
         				{
-        					templateUrl : 'app/home/location.html',
+        					templateUrl : 'app/home/shopservice.html',
         					controller : 'LocationItemListController',
         					controllerAs : 'vm',
         					backdrop : 'static',

@@ -215,7 +215,7 @@ public class EventService {
     		
     		String sep = Tools.getSeparator();
     		
-    		String path = EVENT_DOCS.concat(sep).concat(Tools.removeSpaces(name));
+    		String path = (EVENT_DOCS).concat(sep).concat(Tools.removeSpaces(name));
     	    String root = env.getProperty("client.root");
     	    String directory = root.concat(sep).concat(path);
     	    Tools.createFile(directory, file);

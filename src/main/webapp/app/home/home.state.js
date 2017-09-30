@@ -131,9 +131,9 @@
                 }]
             }
         })
-        .state('shop', {
+        .state('shopping', {
             parent: 'home',
-            url: 'shop',
+            url: 'shopping',
             data: {
                 authorities: []
             },

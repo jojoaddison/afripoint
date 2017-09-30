@@ -64,6 +64,11 @@
                       pageTitle: 'afripointApp.event.home.title'
                   },
                   views: {
+                      'header@': {
+                          templateUrl: 'app/home/header.html',
+                          controller: 'HomeController',
+                          controllerAs: 'vm'
+                      },
                       'content@': {
                           templateUrl: 'app/entities/event/event-page.html',
                           controller: 'EventPageController',
@@ -93,6 +98,7 @@
                       }],
                       translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
                           $translatePartialLoader.addPart('event');
+                          $translatePartialLoader.addPart('home');
                           $translatePartialLoader.addPart('global');
                           return $translate.refresh();
                       }]
@@ -124,7 +130,7 @@
                           }).$promise;
                       }]
                   }
-              })              
+              })
               .state('events-management', {
                   parent: 'entity',
                   url: '/events-management?page&sort&search',
@@ -162,6 +168,7 @@
                       }],
                       translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
                           $translatePartialLoader.addPart('event');
+                          $translatePartialLoader.addPart('home');
                           $translatePartialLoader.addPart('global');
                           return $translate.refresh();
                       }]

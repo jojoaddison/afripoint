@@ -18,6 +18,7 @@
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.openEvent = PageUtils.openEvent;
         vm.mod = PageUtils.mod;
+		vm.openPage = PageUtils.openPage;
 		vm.active = 0;
 		vm.page = 0;
 		vm.size = 2;
@@ -27,6 +28,7 @@
      	vm.mode = "CURRENT";
      	vm.showHistory = showHistory;
      	vm.showCurrent = showCurrent;
+		vm.currentEvents = "data/event/docs/afripoint-events.pdf";
      	
      	
      	$scope.$on("afripointApp:eventUpdate", function(evt, event){

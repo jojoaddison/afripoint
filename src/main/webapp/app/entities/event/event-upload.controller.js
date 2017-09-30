@@ -5,11 +5,12 @@
         .module('afripointApp')
         .controller('EventUploadController', EventUploadController);
 
-    EventUploadController.$inject = ['$rootScope', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'Partner', 'Principal', 'DataUtils'];
+    EventUploadController.$inject = ['$rootScope', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'Partner', 'Principal', 'DataUtils','PageUtils'];
 
-    function EventUploadController ($rootScope, $timeout, $scope, $stateParams, $uibModalInstance, entity, Event, Partner, Principal, DataUtils) {
+    function EventUploadController ($rootScope, $timeout, $scope, $stateParams, $uibModalInstance, entity, Event, Partner, Principal, DataUtils, PageUtils) {
         var vm = this;
-
+        vm.openPage = PageUtils.openPage;
+        vm.currentEvents = "data/event/docs/afripoint-events.pdf";
         vm.event = entity;
         vm.clear = clear;
         vm.save = save;
@@ -30,6 +31,7 @@
 
         function clear () {
             $uibModalInstance.dismiss('cancel');
+
         }
 
         function save () {
@@ -48,6 +50,7 @@
             $scope.$emit('afripointApp:eventUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
+            vm.openPage(vm.currentEvents);
         }
 
         function onSaveError () {

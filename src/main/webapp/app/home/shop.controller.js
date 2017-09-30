@@ -5,9 +5,9 @@
         .module('afripointApp')
         .controller('ShoppingController', ShoppingController);
 
-    ShoppingController.$inject = ['$rootScope', 'LocationItem', 'ParseLinks', 'AlertService', '$uibModal', '$uibModalInstance', 'ngCart'];
+    ShoppingController.$inject = ['$rootScope', 'LocationItem', 'ParseLinks', 'AlertService', 'ngCart'];
 
-    function ShoppingController($rootScope, LocationItem, ParseLinks, AlertService, $uibModal, $uibModalInstance, ngCart) {
+    function ShoppingController($rootScope, LocationItem, ParseLinks, AlertService, ngCart) {
 
         var vm = this;
         vm.close = close;
@@ -81,29 +81,7 @@
 					}
 				}
 			}
-			$uibModal.open(
-    				{
-    					templateUrl : 'app/entities/location/location-item-selected.html',
-    					controller : 'LocationItemSelectedController',
-    					controllerAs : 'vm',
-    					backdrop : 'static',
-    					size : 'lg',
-    					resolve : {    						
-    						translatePartialLoader : [ '$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-    							$translatePartialLoader.addPart('locationItem');
-    							$translatePartialLoader.addPart('home');
-    							$translatePartialLoader.addPart('global');
-    							return $translate.refresh();  	
-    							}    						
-    						],    						
-    						orders: [ function() {
-    							return cart;
-    						}]
-    					}
-    				}
-    			);
 
-			close();
 		}
 
         function close(){

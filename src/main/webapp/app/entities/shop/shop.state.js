@@ -9,7 +9,7 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('shop-management', {
+        .state('shop', {
             parent: 'entity',
             url: '/shop?page&sort&search',
             data: {

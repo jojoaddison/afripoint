@@ -12,11 +12,13 @@
 				<div class="col-md-6" style=" overflow-y: auto;">
 					<div uib-carousel active="vm.active" interval="vm.slideInterval" no-wrap="vm.noWrapSlides" no-transition="false">
 						<div uib-slide ng-repeat="event in vm.events | orderBy: 'startTime' track by event.id" index="$index">
-							<img ng-src="{{event.photo}}" class="img-responsive" style="margin: auto; height:800px; width: auto;" ngcloak>
-							<div class="carousel-caption bg-primary bg-transparent">
+							<img ng-src="{{event.photo}}" class="img-responsive" style="margin: auto; height:600px; width: auto;" ngcloak>
+							<!--
+							<div class="carousel-caption bg-primary bg-transparent hidden-sm hidden-xs">
 								<h4 ng-click="vm.openEvent(event)">{{event.title}}</h4>
 								<h5>{{event.startTime | date:'EEE dd MMM HH:mm'}} - {{event.endTime | date:'EEE dd MMM  HH:mm'}} </h5>
 							</div>
+							-->
 						</div>
 					</div>
 				</div>
