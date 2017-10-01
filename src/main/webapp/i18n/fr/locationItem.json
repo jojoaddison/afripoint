@@ -15,6 +15,7 @@
             "detail": {
                 "title": "Location item"
             },
+            "image": "Service image",
             "category": "Category",
             "service": "Service",
             "description": "Description",

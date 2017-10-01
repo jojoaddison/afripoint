@@ -15,6 +15,7 @@
             "detail": {
                 "title": "Business Service"
             },
+            "image": "Service image",
             "category": "Category",
             "service": "Service",
             "description": "Description",

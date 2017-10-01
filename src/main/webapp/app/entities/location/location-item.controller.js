@@ -19,11 +19,7 @@
 
         loadAll();
 
-<<<<<<< HEAD
-        function loadAll () {        	
-=======
         function loadAll () {
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
             LocationItem.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
@@ -39,10 +35,7 @@
             }
             
             function onSuccess(data, headers) {
-<<<<<<< HEAD
             	console.log(data);
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;

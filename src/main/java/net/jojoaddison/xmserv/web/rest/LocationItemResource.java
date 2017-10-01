@@ -1,9 +1,6 @@
 package net.jojoaddison.xmserv.web.rest;
 
-<<<<<<< HEAD
 import java.io.File;
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -11,10 +8,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-<<<<<<< HEAD
 import org.springframework.core.env.Environment;
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -33,15 +27,10 @@ import com.codahale.metrics.annotation.Timed;
 
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-<<<<<<< HEAD
 import net.coobird.thumbnailator.Thumbnails;
 import net.jojoaddison.xmserv.domain.LocationItem;
 import net.jojoaddison.xmserv.service.LocationItemService;
 import net.jojoaddison.xmserv.service.util.Tools;
-=======
-import net.jojoaddison.xmserv.domain.LocationItem;
-import net.jojoaddison.xmserv.service.LocationItemService;
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 import net.jojoaddison.xmserv.web.rest.util.HeaderUtil;
 import net.jojoaddison.xmserv.web.rest.util.PaginationUtil;
 
@@ -57,7 +46,6 @@ public class LocationItemResource {
     private static final String ENTITY_NAME = "locationItem";
         
     private final LocationItemService locationItemService;
-<<<<<<< HEAD
     private final Environment env;
 
     private final String LOCATION_PHOTOS = "data/location-item/photos";
@@ -68,11 +56,6 @@ public class LocationItemResource {
     public LocationItemResource(LocationItemService locationItemService, Environment env) {
         this.locationItemService = locationItemService;
         this.env = env;
-=======
-
-    public LocationItemResource(LocationItemService locationItemService) {
-        this.locationItemService = locationItemService;
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
     }
 
     /**
@@ -89,11 +72,8 @@ public class LocationItemResource {
         if (locationItem.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new locationItem cannot already have an ID")).body(null);
         }
-<<<<<<< HEAD
         locationItem = convert(locationItem);
         locationItem = createThumbnail(locationItem);
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         LocationItem result = locationItemService.save(locationItem);
         return ResponseEntity.created(new URI("/api/location-items/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -116,11 +96,8 @@ public class LocationItemResource {
         if (locationItem.getId() == null) {
             return createLocationOrder(locationItem);
         }
-<<<<<<< HEAD
         locationItem = convert(locationItem);
         locationItem = createThumbnail(locationItem);
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
         LocationItem result = locationItemService.save(locationItem);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, locationItem.getId().toString()))
@@ -172,7 +149,6 @@ public class LocationItemResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-<<<<<<< HEAD
     private LocationItem convert(LocationItem locationItem){    	
     	if(locationItem.getImage() != null){
 			log.info("converting: {}", locationItem);
@@ -229,6 +205,4 @@ public class LocationItemResource {
     	}
     	return locationItem;
     }
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
 }

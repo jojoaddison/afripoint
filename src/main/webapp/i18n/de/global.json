@@ -29,12 +29,9 @@
                 "article": "Artikel",
                 "subscriber": "Subscriber",
                 "locationItem": "Location",
-<<<<<<< HEAD
                 "infoScreen": "Info Screen",
                 "product": "Product",
                 "shop": "Shop",
-=======
->>>>>>> 82dfbbffc7b4bbb5a6912aac616945f36895b866
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
