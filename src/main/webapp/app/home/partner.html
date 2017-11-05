@@ -1,0 +1,202 @@
+<form name="editForm" role="form" novalidate ng-submit="evm.save()" show-validation>
+	<div class="modal-heading">
+		<div class="row text-center">
+			<div class="col-md-10">
+				<h2 class="text-center " data-translate="afripointApp.partner.become">Become a partner</h2>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-white btn-sm" ng-click="evm.clear()">
+					<span class="glyphicon glyphicon-eye-close"></span>&nbsp;<span data-translate="entity.action.close" class="ng-scope">Close</span>
+				</button>
+			</div>
+		</div>
+		<div class="row-fluid text-center pad">
+			<div class="col-md-12">
+				<ul class="nav nav-pills nav-justified">
+					<li role="presentation" class="btn btn-primary" ng-class="{active: evm.showPage=='infos'}" ng-click="evm.switchTo('infos')">
+						<span data-translate="global.information"></span>
+					</li>
+					<li  role="presentation" class="btn btn-primary" ng-class="{active: evm.showPage=='register'}" ng-click="evm.switchTo('register')">
+						<span data-translate="global.register"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="modal-body" style="padding-left: 50px;">
+		<div class="row voffset3">
+			<div class="col-md-12">
+				<hr class="primary" />
+			</div>
+		</div>
+		<become-partner-info ng-if="evm.showPage == 'infos' "></become-partner-info>
+		<!--
+		<become-partner ng-if="evm.showPage == 'register' "></become-partner>
+		-->
+		<div ng-if="evm.showPage == 'register'">
+			<div class="row">
+
+				<div class="col-md-5 text-right"></div>
+				<div class="col-md-7 text-left">
+					<h4><!-- Data translate! --> Please fill out everything - All fields required </h4>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-md-5">
+					<div class="row text-center">
+						<div class="col-md-10 form-group">
+							<select id="field_type" class="form-control btn btn-sm" name="partner.type" ng-change="evm.changeCatalog()"
+							ng-model="evm.partner.type" ng-options="type.key as type.value for type in evm.types track by type.key">
+								<option value="" data-translate="afripointApp.partner.type"></option>
+							</select>
+						</div>
+						<div class="col-md-10">
+							<hr class="primary" />
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="form-group col-md-10" ngf-drop ngf-change="evm.setBytes($file)" ngf-pattern="'image/*'">
+							<label class="control-label" data-translate="afripointApp.partner.photo" for="field_photo">Photo</label>
+							<div ng-if="evm.partner.image">
+								<div class="row">
+									<div class="col-sm-10">
+										<button type="button" ng-click="evm.partner.image=null;evm.partner.imageContentType=null;evm.partner.photo=null;"
+										class="btn btn-default btn-xs pull-right">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+
+										<img id="image" data-ng-src="{{'data:' + evm.partner.imageContentType + ';base64,' + evm.partner.image}}"
+										style="width: 100%; height:auto;" ng-if="evm.partner.image" alt="partner image"/>
+
+									</div>
+								</div>
+								<div ng-if="evm.partner.image" class="help-block clearfix">
+									<span class="pull-left">{{evm.partner.imageContentType}}, {{evm.byteSize(evm.partner.image)}}</span>
+								</div>
+							</div>
+							<div ng-if="evm.partner.thumbnail">
+								<div class="row">
+									<div class="col-sm-10">
+										<img id="thumbnail" ng-src="{{evm.partner.thumbnail}}" class="img-responsive" ng-if="evm.partner.thumbnail" alt="partner thumbnail"/>
+									</div>
+								</div>
+							</div>
+							<button type="button" ngf-select class="btn btn-default btn-block" ng-if="evm.partner.image==null"
+							ngf-change="evm.setBytes($file)" accept="image/*" data-translate="entity.action.addimage">
+								Add image
+							</button>
+							<button type="button" ngf-select class="btn btn-default btn-block" ng-if="evm.partner.image!=null"
+							ngf-change="evm.setBytes($file)" accept="image/*" data-translate="entity.action.changeimage">
+								Change image
+							</button>
+							<input type="hidden" class="form-control" name="bytes" id="field_bytes"	ng-model="evm.partner.image"/>
+							<input type="hidden" class="form-control" name="bytesContentType" id="field_bytesContentType" ng-model="evm.partner.imageContentType" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7 text-left"  style="padding-left: 20px; border-left: solid #b99e95 5px;" >
+					<div class="row voffset3">
+						<div class="col-md-2 form-group">
+							<select id="field_type" class="form-control btn btn-sm" name="title" ng-model="evm.partner.title" ng-options="title.key as title.value for title in evm.titles track by title">
+								<option value="" data-translate="afripointApp.partner.title"></option>
+							</select>
+						</div>
+						<div class="col-md-5 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.firstname" for="field_firstname">Firstname</label>
+							<input type="text" class="form-control" name="firstname" id="field_firstname" ng-model="evm.partner.firstname" required/>
+						</div>
+						<div class="col-md-5 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.lastname" for="field_lastname">Lastname</label>
+							<input type="text" class="form-control" name="lastname" id="field_lastname" required
+							ng-model="evm.partner.lastname"
+							/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.email" for="field_email">Email</label>
+							<input type="text" class="form-control" name="email" id="field_email" required
+							ng-model="evm.partner.email"
+							/>
+						</div>
+
+						<div class="col-md-6 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.mobileNumber" for="field_mobileNumber">Mobile</label>
+							<input type="text" class="form-control" name="mobileNumber" id="field_mobileNumber" required
+							ng-model="evm.partner.mobileNumber"
+							/>
+						</div>
+						<div class="col-md-6 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.telephoneNumber" for="field_telephoneNumber">Telephone</label>
+							<input type="text" class="form-control" name="telephoneNumber" id="field_telephoneNumber"
+							ng-model="evm.partner.telephoneNumber"
+							/>
+						</div>
+
+						<div class="col-md-12 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.streetAddress" for="field_streetAddress">Street Address</label>
+							<input type="text" class="form-control" name="streetAddress" id="field_streetAddress" required
+							ng-model="evm.partner.streetAddress"
+							/>
+						</div>
+
+						<div class="col-md-3 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.zipcode" for="field_zipcode">Zipcode</label>
+							<input type="text" class="form-control" name="zipcode" id="field_zipcode" required
+							ng-model="evm.partner.zipcode"
+							/>
+						</div>
+						<div class="col-md-3 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.country" for="field_country">Country</label>
+							<input type="text" class="form-control" name="country" id="field_country" required
+							ng-model="evm.partner.country"
+							/>
+						</div>
+						<div class="col-md-3 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.state" for="field_state">State</label>
+							<select id="field_type" class="form-control btn btn-sm" name="title" ng-model="evm.partner.state" 
+							ng-options="state for state in evm.states track by state">								
+							</select>							
+							<input type="hidden" class="form-control" name="state" id="field_state" required
+							ng-model="evm.partner.state"
+							/>
+						</div>
+						<div class="col-md-3 form-group">
+							<label class="control-label" data-translate="afripointApp.partner.city" for="field_city">City</label>
+							<input type="text" class="form-control" name="city" id="field_city" required
+							ng-model="evm.partner.city"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row  well well-sm text-center" ng-if="evm.partner.type">
+			<div class="col-md-12  text-left">
+				<div ng-bind-html="evm.currentCatalog.info"></div>
+				<!-- Payment types -->
+				<!--<img ng-src="/data/partner/types/{{evm.partner.type}}.png" class="img-responsive"/>-->
+			</div>
+			<div class="col-md-9 col-md-offset-2 form-group text-left">				
+				<label  class="control-label" for="field_agree" data-translate="afripointApp.partner.terms">Ich habe den AGB gelesen und ich stimme sie zu</label>
+				<input type="checkbox" class="form-control text-left" name="agree" id="field_agree" required 	ng-model="vm.agree" checked="checked"/>
+			</div>
+		</div>
+		<hr class="primary">
+	</div>
+	<div class="modal-footer">
+		<div class="row text-center" ng-if="evm.showPage == 'register'">
+			<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="evm.clear()">
+				<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+			</button>
+			<button type="submit" ng-disabled="editForm.$invalid || evm.isSaving" class="btn btn-primary">
+				<span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+			</button>
+		</div>
+		<div class="row text-center" ng-if="evm.showPage == 'infos'">
+			<button type="button" class="btn btn-primary" ng-click="evm.switchTo('register')">
+				<span class="glyphicon glyphicon-edit"></span>&nbsp;<span data-translate="global.registerPlease">Register</span>
+			</button>
+		</div>
+	</div>
+</form>

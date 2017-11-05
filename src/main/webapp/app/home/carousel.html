@@ -1,0 +1,29 @@
+<div id="smartCarousel" class="carousel slide" data-ride="carousel" ng-cloak>
+    <ol class="carousel-indicators" ng-repeat="event in vm.events">
+        <!-- ng-repeat -->
+        <li data-target="#smartCarousel" data-slide-to="$index" class="active"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active carousel-image">
+            <img data-ng-src="content/img/opening/point1.jpg" />
+        </div>
+
+        <!-- ng-repeat rest-->
+        <div class="item carousel-image" ng-repeat="event in vm.events">
+            <img ng-cloak  data-ng-src="{{'data:' + event.imageContentType + ';base64,' + event.image}}" class="carousel-image" />
+        </div>
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#smartCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#smartCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

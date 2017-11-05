@@ -1,12 +1,14 @@
 package net.jojoaddison.xmserv.domain;
 
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.io.Serializable;
-import java.time.ZonedDateTime;
-import java.util.Objects;
 
 import net.jojoaddison.xmserv.domain.enumeration.ShopCategory;
 
@@ -25,17 +27,20 @@ public class Shop implements Serializable {
     @Field("name")
     private String name;
 
-    @Field("owner")
-    private String owner;
+    @Field("contact")
+    private String contact;
 
     @Field("products")
-    private String products;
+    private Set<Product> products = new HashSet<>();
 
-    @Field("physical_address")
-    private String physicalAddress;
+    @Field("address")
+    private String address;
 
-    @Field("virtual_address")
-    private String virtualAddress;
+    @Field("email")
+    private String email;
+
+    @Field("telephone")
+    private Set<String> telephone = new HashSet<>();
 
     @Field("created_date")
     private ZonedDateTime createdDate;
@@ -43,8 +48,8 @@ public class Shop implements Serializable {
     @Field("modified_date")
     private ZonedDateTime modifiedDate;
 
-    @Field("category")
-    private ShopCategory category;
+    @Field("categories")
+    private Set<ProductCategory> categories = new HashSet<>();
 
     public String getId() {
         return id;
@@ -67,56 +72,51 @@ public class Shop implements Serializable {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getContact() {
+        return contact;
     }
 
-    public Shop owner(String owner) {
-        this.owner = owner;
+    public Shop contact(String owner) {
+        this.contact = owner;
         return this;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setContact(String owner) {
+        this.contact = owner;
     }
 
-    public String getProducts() {
-        return products;
+    public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public String getAddress() {
+        return address;
     }
 
-    public Shop products(String products) {
-        this.products = products;
+    public Shop address(String physicalAddress) {
+        this.address = physicalAddress;
         return this;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
+    public void setAddress(String physicalAddress) {
+        this.address = physicalAddress;
     }
 
-    public String getPhysicalAddress() {
-        return physicalAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public Shop physicalAddress(String physicalAddress) {
-        this.physicalAddress = physicalAddress;
+    public Shop email(String virtualAddress) {
+        this.email = virtualAddress;
         return this;
     }
 
-    public void setPhysicalAddress(String physicalAddress) {
-        this.physicalAddress = physicalAddress;
-    }
-
-    public String getVirtualAddress() {
-        return virtualAddress;
-    }
-
-    public Shop virtualAddress(String virtualAddress) {
-        this.virtualAddress = virtualAddress;
-        return this;
-    }
-
-    public void setVirtualAddress(String virtualAddress) {
-        this.virtualAddress = virtualAddress;
+    public void setEmail(String virtualAddress) {
+        this.email = virtualAddress;
     }
 
     public ZonedDateTime getCreatedDate() {
@@ -145,20 +145,15 @@ public class Shop implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public ShopCategory getCategory() {
-        return category;
-    }
+    public Set<ProductCategory> getCategories() {
+		return categories;
+	}
 
-    public Shop category(ShopCategory category) {
-        this.category = category;
-        return this;
-    }
+	public void setCategories(Set<ProductCategory> categories) {
+		this.categories = categories;
+	}
 
-    public void setCategory(ShopCategory category) {
-        this.category = category;
-    }
-
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -183,13 +178,13 @@ public class Shop implements Serializable {
         return "Shop{" +
             "id=" + id +
             ", name='" + name + "'" +
-            ", owner='" + owner + "'" +
+            ", owner='" + contact + "'" +
             ", products='" + products + "'" +
-            ", physicalAddress='" + physicalAddress + "'" +
-            ", virtualAddress='" + virtualAddress + "'" +
+            ", physicalAddress='" + address + "'" +
+            ", virtualAddress='" + email + "'" +
             ", createdDate='" + createdDate + "'" +
             ", modifiedDate='" + modifiedDate + "'" +
-            ", category='" + category + "'" +
+            ", category='" + categories + "'" +
             '}';
     }
 }

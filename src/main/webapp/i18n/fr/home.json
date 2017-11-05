@@ -26,6 +26,8 @@
         "serviceTitle": "Commandez votre service chez nous",
         "eventTitle": "Planifiez vos événements chez nous",
         "openTimes": "Horaires ouverts",
+        "shopOpenTimes": "Shop Horaires ouverts",
+        "barOpenTimes": "Bar Horaires ouverts",
         "address": "Hofmühlgasse 2, A-1060 Wien"
     }
 }

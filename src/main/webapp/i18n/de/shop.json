@@ -4,7 +4,7 @@
             "home": {
                 "title": "Shops",
                 "createLabel": "Shop erstellen",
-                "createOrEditLabel": "Shop erstellen oder bearbeiten"
+                "createOrEditLabel": "Shop verwalten"
             },
             "created": "Shop erstellt mit ID {{ param }}",
             "updated": "Shop aktualisiert mit ID {{ param }}",

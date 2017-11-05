@@ -136,10 +136,10 @@ public class ShopResourceIntTest {
         assertThat(shopList).hasSize(databaseSizeBeforeCreate + 1);
         Shop testShop = shopList.get(shopList.size() - 1);
         assertThat(testShop.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testShop.getOwner()).isEqualTo(DEFAULT_OWNER);
+        assertThat(testShop.getContact()).isEqualTo(DEFAULT_OWNER);
         assertThat(testShop.getProducts()).isEqualTo(DEFAULT_PRODUCTS);
-        assertThat(testShop.getPhysicalAddress()).isEqualTo(DEFAULT_PHYSICAL_ADDRESS);
-        assertThat(testShop.getVirtualAddress()).isEqualTo(DEFAULT_VIRTUAL_ADDRESS);
+        assertThat(testShop.getAddress()).isEqualTo(DEFAULT_PHYSICAL_ADDRESS);
+        assertThat(testShop.getEmail()).isEqualTo(DEFAULT_VIRTUAL_ADDRESS);
         assertThat(testShop.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
         assertThat(testShop.getModifiedDate()).isEqualTo(DEFAULT_MODIFIED_DATE);
         assertThat(testShop.getCategory()).isEqualTo(DEFAULT_CATEGORY);
@@ -240,10 +240,10 @@ public class ShopResourceIntTest {
         assertThat(shopList).hasSize(databaseSizeBeforeUpdate);
         Shop testShop = shopList.get(shopList.size() - 1);
         assertThat(testShop.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testShop.getOwner()).isEqualTo(UPDATED_OWNER);
+        assertThat(testShop.getContact()).isEqualTo(UPDATED_OWNER);
         assertThat(testShop.getProducts()).isEqualTo(UPDATED_PRODUCTS);
-        assertThat(testShop.getPhysicalAddress()).isEqualTo(UPDATED_PHYSICAL_ADDRESS);
-        assertThat(testShop.getVirtualAddress()).isEqualTo(UPDATED_VIRTUAL_ADDRESS);
+        assertThat(testShop.getAddress()).isEqualTo(UPDATED_PHYSICAL_ADDRESS);
+        assertThat(testShop.getEmail()).isEqualTo(UPDATED_VIRTUAL_ADDRESS);
         assertThat(testShop.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
         assertThat(testShop.getModifiedDate()).isEqualTo(UPDATED_MODIFIED_DATE);
         assertThat(testShop.getCategory()).isEqualTo(UPDATED_CATEGORY);

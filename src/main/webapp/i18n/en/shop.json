@@ -4,7 +4,7 @@
             "home": {
                 "title": "Shops",
                 "createLabel": "Create a new Shop",
-                "createOrEditLabel": "Create or edit a Shop"
+                "createOrEditLabel": "Shop manager"
             },
             "created": "A new Shop is created with identifier {{ param }}",
             "updated": "A Shop is updated with identifier {{ param }}",
@@ -16,6 +16,9 @@
                 "title": "Shop"
             },
             "name": "Name",
+            "address": "Address",
+            "telephone": "Telephone",
+            "email": "Email",
             "owner": "Owner",
             "products": "Products",
             "physicalAddress": "Physical Address",

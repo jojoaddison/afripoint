@@ -32,7 +32,7 @@
     		function openLocation() {
     			$uibModal.open(
         				{
-        					templateUrl : "app/home/location.html",
+        					templateUrl : "app/entities/location-items.html",
         					controller : 'LocationItemListController',
         					controllerAs : 'vm',
         					backdrop : 'static',
@@ -155,15 +155,15 @@
                         templateUrl : "app/entities/afripoint/afripoint-view.html",
                         controller : [ '$uibModalInstance', 'service',
                             function($uibModalInstance, service) {
-                                var evm =  this;
-                                evm.service = service;
-                                evm.service.header = "afripointApp.afripointService." + service.name + ".name";
-                                evm.service.description = "afripointApp.afripointService." + service.name + ".description";
-                                evm.service.url = "data/afripoint/" + service.name + ".pdf";
-                                evm.close = function(){
+                                var vm =  this;
+                                vm.service = service;
+                                vm.service.header = "afripointApp.afripointService." + service.name + ".name";
+                                vm.service.description = "afripointApp.afripointService." + service.name + ".description";
+                                vm.service.url = "data/afripoint/" + service.name + ".pdf";
+                                vm.close = function(){
                                     $uibModalInstance.dismiss('cancel');
-                                }
-                                evm.clear = function(){
+                                };
+                                vm.clear = function(){
                                     $uibModalInstance.dismiss('cancel');
                                 }
                             }

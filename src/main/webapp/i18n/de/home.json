@@ -26,6 +26,8 @@
         "serviceTitle": "Bestellen Sie ihren Service bei uns",
         "eventTitle": "Planen sie ihre Veranstaltungen mit uns",
         "openTimes": "Öffnungszeiten",
+        "shopOpenTimes": "Shop Öffnungszeiten",
+        "barOpenTimes": "Bar Öffnungszeiten",
         "address": "Hofmühlgasse 2, A-1060 Wien"
     }
 }

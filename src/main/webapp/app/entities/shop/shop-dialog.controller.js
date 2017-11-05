@@ -15,10 +15,32 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.active = 'details';
+        vm.switchPanel = switchPanel;
+        vm.showCategory = showCategory;
+        vm.addCategory = addCategory;
+        vm.categoryShowing = false;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
+
+        function showCategory(){
+            vm.categoryShowing = !vm.categoryShowing;
+        }
+
+        function addCategory(){
+            var id = vm.shop.categories.length + 1;
+            var category = {
+                "id": id,
+                "name": vm.category
+            }
+            vm.shop.categories.push(category);
+        }
+
+        function switchPanel(panel){
+            vm.active = panel;
+        }
 
         function clear () {
             $uibModalInstance.dismiss('cancel');

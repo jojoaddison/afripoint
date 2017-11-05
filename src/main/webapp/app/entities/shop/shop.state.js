@@ -128,12 +128,13 @@
                             return {
                                 name: null,
                                 owner: null,
-                                products: null,
-                                physicalAddress: null,
-                                virtualAddress: null,
+                                address: null,
+                                email: null,
+                                telephone: [],
                                 createdDate: null,
                                 modifiedDate: null,
-                                category: null,
+                                categories: [],
+                                products: [],
                                 id: null
                             };
                         }
